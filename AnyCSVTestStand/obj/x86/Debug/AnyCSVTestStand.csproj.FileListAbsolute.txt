@@ -1,0 +1,50 @@
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\ConsoleUtility1.exe.config
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Debug\ConsoleUtility1.exe
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Debug\ConsoleUtility1.pdb
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Debug\ConsoleUtility1.Properties.Resources.resources
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Debug\GenerateResource-ResGen.read.1.tlog
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Debug\GenerateResource-ResGen.write.1.tlog
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.DLLServices2.dll.config
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\ConsoleUtility1.exe
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\ConsoleUtility1.pdb
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.AnyCSV.dll
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.AnyCSV.pdb
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.AnyCSV.xml
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\CSVCodeProject.pdb
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.ApplicationHelpers2.pdb
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.ApplicationHelpers2.xml
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.ConsoleAppAids2.pdb
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.ConsoleAppAids2.xml
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.DLLServices2.pdb
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.DLLServices2.xml
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.SharedUtl4.pdb
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.SharedUtl4.xml
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\CSVCodeProject.dll
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.ApplicationHelpers2.dll
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.ConsoleAppAids2.dll
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.DLLServices2.dll
+C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Debug\WizardWrx.SharedUtl4.dll
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.DLLServices2.dll.config
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.AnyCSV.dll
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.ConsoleAppAids2.dll
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.DLLServices2.dll
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.BitMath.dll
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.AnyCSV.pdb
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.AnyCSV.xml
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.ConsoleAppAids2.pdb
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.ConsoleAppAids2.xml
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.DLLServices2.pdb
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.DLLServices2.xml
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.BitMath.pdb
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.BitMath.xml
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Debug\AnyCSVTestStand.csprojResolveAssemblyReference.cache
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Debug\AnyCSVTestStand.csproj.GenerateResource.Cache
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe.config
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.pdb
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\Newtonsoft.Json.dll
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\Newtonsoft.Json.xml
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Debug\AnyCSVTestStand.Properties.Resources.resources
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Debug\AnyCSVTestStand.exe
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Debug\AnyCSVTestStand.pdb

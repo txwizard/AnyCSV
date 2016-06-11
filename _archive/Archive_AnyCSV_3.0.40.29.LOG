@@ -1,0 +1,50 @@
+"C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWr
+x_Libs\AnyCSV\_archive\Archive_AnyCSV.CMD" Begin
+
+------------------------------------------------------------------------
+Project Assembly = C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+Backup Directory = C:\COMMON_DATA\Assorted_Zips\program_source\Visual Studio 2010
+Backup Password  = Default
+------------------------------------------------------------------------
+
+WWSourceCodeArchiver, version 2.0.11.25045
+Begin @ 07/07/2014 01:18:04 (07/07/2014 06:18:04 UTC)
+
+ProjectPath            = C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+TargetPath             = C:\COMMON_DATA\Assorted_Zips\program_source\Visual Studio 2010\
+Product Type           = DynamicLinkLibrary
+
+Program Directory Name = C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release
+Program File Name      = WizardWrx.AnyCSV.dll
+    File Size          = 14,848
+    Create Date (LOC)  = 2014/07/07 01:00:59.279
+    Create Date (UTC)  = 2014/07/07 06:00:59.279
+    Mod Date (LOC)     = 2014/07/07 01:00:59.264
+    Mod Date (UTC)     = 2014/07/07 06:00:59.264
+Project Name           = AnyCSV
+Project Root           = C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\
+Assembly FullName      = WizardWrx.AnyCSV, Version=3.0.40.29, Culture=neutral, P
+ublicKeyToken=null
+    BaseName           = WizardWrx.AnyCSV
+    Full Version       = 3.0.40.29
+    Culture            = neutral
+    PublicKeyToken     = null
+
+2014/07/07 01:18:05.180 Creating archive.
+2014/07/07 01:18:13.617 The archive was successfully created.
+2014/07/07 01:18:13.774 Archive flag reset on 224 project files.
+
+Archive FQFN           = C:\COMMON_DATA\Assorted_Zips\program_source\Visual Studio 2010\WizardWrx.AnyCSV_3_0_40_29.7z
+    File Size          = 330,187
+    Create Date (LOC)  = 2014/07/07 01:18:05.945
+    Create Date (UTC)  = 2014/07/07 06:18:05.945
+    Mod Date (LOC)     = 2014/07/07 01:18:13.617
+    Mod Date (UTC)     = 2014/07/07 06:18:13.617
+
+WWSourceCodeArchiver End - 07/07/2014 01:18:14 (07/07/2014 06:18:14 UTC)
+Elapsed time: 00:00:09.984
+WWPause version 2, 0, 0, 3
+Mon 07 Jul 2014 06:18:14 UTC
+Mon 07 Jul 2014 01:18:14 Local
+
+Please press RETURN when ready...

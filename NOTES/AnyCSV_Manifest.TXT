@@ -1,0 +1,51 @@
+// Metadata version: v2.0.50727
+.assembly extern mscorlib
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89 )                         // .z\V.4..
+  .ver 2:0:0:0
+}
+.assembly extern System
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89 )                         // .z\V.4..
+  .ver 2:0:0:0
+}
+.assembly WizardWrx.AnyCSV
+{
+  .custom instance void [mscorlib]System.Reflection.AssemblyCompanyAttribute::.ctor(string) = ( 01 00 0D 44 61 76 69 64 20 41 2E 20 47 72 61 79   // ...David A. Gray
+                                                                                                00 00 ) 
+  .custom instance void [mscorlib]System.Reflection.AssemblyProductAttribute::.ctor(string) = ( 01 00 06 41 6E 79 43 53 56 00 00 )                // ...AnyCSV..
+  .custom instance void [mscorlib]System.Runtime.CompilerServices.RuntimeCompatibilityAttribute::.ctor() = ( 01 00 01 00 54 02 16 57 72 61 70 4E 6F 6E 45 78   // ....T..WrapNonEx
+                                                                                                             63 65 70 74 69 6F 6E 54 68 72 6F 77 73 01 )       // ceptionThrows.
+  .custom instance void [mscorlib]System.Reflection.AssemblyTitleAttribute::.ctor(string) = ( 01 00 06 41 6E 79 43 53 56 00 00 )                // ...AnyCSV..
+  .custom instance void [mscorlib]System.Reflection.AssemblyDescriptionAttribute::.ctor(string) = ( 01 00 17 50 72 6F 63 65 73 73 20 41 4E 59 20 43   // ...Process ANY C
+                                                                                                    53 56 20 73 74 72 69 6E 67 2E 00 00 )             // SV string...
+  .custom instance void [mscorlib]System.Reflection.AssemblyConfigurationAttribute::.ctor(string) = ( 01 00 00 00 00 ) 
+  .custom instance void [mscorlib]System.Reflection.AssemblyCopyrightAttribute::.ctor(string) = ( 01 00 20 43 6F 70 79 72 69 67 68 74 20 C2 A9 20   // .. Copyright .. 
+                                                                                                  32 30 31 34 2C 20 44 61 76 69 64 20 41 2E 20 47   // 2014, David A. G
+                                                                                                  72 61 79 00 00 )                                  // ray..
+  .custom instance void [mscorlib]System.Reflection.AssemblyTrademarkAttribute::.ctor(string) = ( 01 00 00 00 00 ) 
+  .custom instance void [mscorlib]System.Runtime.InteropServices.ComVisibleAttribute::.ctor(bool) = ( 01 00 00 00 00 ) 
+  .custom instance void [mscorlib]System.Runtime.InteropServices.GuidAttribute::.ctor(string) = ( 01 00 24 32 34 32 35 36 61 33 33 2D 64 39 32 61   // ..$24256a33-d92a
+                                                                                                  2D 34 38 38 33 2D 38 63 34 31 2D 32 64 36 39 66   // -4883-8c41-2d69f
+                                                                                                  66 65 62 63 36 65 35 00 00 )                      // febc6e5..
+
+  // --- The following custom attribute is added automatically, do not uncomment -------
+  //  .custom instance void [mscorlib]System.Diagnostics.DebuggableAttribute::.ctor(valuetype [mscorlib]System.Diagnostics.DebuggableAttribute/DebuggingModes) = ( 01 00 02 00 00 00 00 00 ) 
+
+  .custom instance void [mscorlib]System.Runtime.CompilerServices.CompilationRelaxationsAttribute::.ctor(int32) = ( 01 00 08 00 00 00 00 00 ) 
+  .hash algorithm 0x00008004
+  .ver 3:0:40:29
+}
+.mresource public WizardWrx.Properties.Resources.resources
+{
+  // Offset: 0x00000000 Length: 0x000004BB
+}
+.module WizardWrx.AnyCSV.dll
+// MVID: {987B4AAE-F077-4672-ACB8-341A341E86E5}
+.imagebase 0x00400000
+.file alignment 0x00000200
+.stackreserve 0x00100000
+.subsystem 0x0003       // WINDOWS_CUI
+.corflags 0x00000001    //  ILONLY
+// Image base: 0x04A70000
+

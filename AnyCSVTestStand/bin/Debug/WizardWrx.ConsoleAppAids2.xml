@@ -1,0 +1,1271 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WizardWrx.ConsoleAppAids2</name>
+    </assembly>
+    <members>
+        <member name="T:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager">
+            <summary>
+            ConsoleAppStateManager is an WizardWrx.DLLServices2.StateManager
+            adapter, which exposes the adapted object through its read only
+            BaseStateManager property, and extends it with methods that provide
+            services applicable exclusively to character mode (console mode)
+            programs.
+            </summary>
+            <remarks>
+            Internally, ConsoleAppStateManager uses some StateManager services that
+            could reasonably be expected to be defined locally. In particular, the
+            services for ascertaining the redirection state of the three standard
+            console handles and the names of the files to which they are redirected
+            seem logically out of place. They are in that library for two reasons.
+            
+            1) The ExceptionLogger class, which belongs where it is because it meets
+            needs that are substantially identical, regardless of the Windows 
+            subsystem in which it runs. While I could have made a wrapper that 
+            inherits from the ExceptionLogger, that seemed pointless for the few
+            lines of code that would have gone into the derived class, when this
+            library has unrelated dependencies on DLLServices2.
+            
+            2) It confines the services that invoke unmanaged code, and must make 
+            significant link demands, to one library.
+            </remarks>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.TIMED_WAIT_DEFAULT_SECONDS">
+            <summary>
+            This constant specifies the default number of seconds to wait when
+            NormalExitAction is Timed. Its current value of zero causes a wait
+            of up to 30 seconds, which should be about right most of the time.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.TIMED_WAIT_WAITING_FOR_DEFAULT">
+            <summary>
+            This constant specifies a default description of the event that
+            happens when the time expires or the wait is interrupted (canceled),
+            when NormalExitAction is Timed.
+            
+            Currently, the default description is "Program ending," which is
+            taken from a resource string in the WizardWrx.ConsoleAids class that
+            implements this feature.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.TIMED_WAIT_INTERRUPT_CRITERION">
+            <summary>
+            This constant specifies the default method by which the timed wait
+            can be interrupted (canceled) when NormalExitAction is Timed.
+            
+            Currently, the default method of interrupting the timed wait is by
+            pressing the ENTER (Return) key once (CarriageReturn).
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.TIMED_WAIT_TEXT_COLOR_DEFAULT">
+            <summary>
+            Use this member of the ConsoleColor enumeration, along with the
+            TIMED_WAIT_BACKGROUND_COLOR_DEFAULT, to instruct an ExceptionLogger
+            object to render text displayed in toe standard output window of a
+            console mode application in its default screen colors.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.TIMED_WAIT_BACKGROUND_COLOR_DEFAULT">
+            <summary>
+            Use this member of the ConsoleColor enumeration, along with the
+            TIMED_WAIT_TEXT_COLOR_DEFAULT, to instruct an ExceptionLogger object
+            to render text displayed in toe standard output window of a console
+            mode application in its default screen colors.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.GetTheSingleInstance">
+            <summary>
+            Get a reference to the ConsoleAppStateManager singleton, which
+            organizes a host of useful application state information under one
+            object.
+            </summary>
+            <returns>
+            The return value is the initialized singleton.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.DisplayBOJMessage">
+            <summary>
+            When called for the first time, this method displays a BOJ message
+            on the console. Subsequent calls return immediately, without taking
+            any action.
+            </summary>
+            <remarks>
+            This method is a wafer-thin wrapper around GetBOJMessage, and it
+            uses a thread-safe method to write its output on the console.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.DisplayEOJMessage">
+            <summary>
+            This method takes GetEOJMessage a step further by passing its return
+            value to a thread-safe console writer.
+            </summary>
+            <remarks>
+            Access to this method is synchronized by an internally managed
+            object lock.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.ErrorExit(System.UInt32)">
+             <summary>
+             Display an error message, read from a table of static strings, and
+             exit, returning the exit code. See Remarks.
+             </summary>
+             <param name="puintStatusCode">
+             This unsigned integer specifies the subscript of the message, and it
+             becomes the program's exit code. See Remarks.
+             </param>
+             <remarks>
+             You must supply the messages as an array of strings, by calling
+             instance method LoadErrorMessageTable.
+            
+             After the message is displayed, static method WaitForCarbonUnit
+             is called with a null string reference, causing it to display its
+             default prompt, and wait until an operator presses the RETURN key.
+            
+             When WaitForCarbonUnit returns, the DisplayEOJMessage method on the
+             singleton instance is called to display the end of job message,
+             along with the ending time and elapsed time, and control is returned
+             to the OS, sending along the exit code.
+             </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.GetBOJMessage">
+            <summary>
+            When called for the first time, this method returns a BOJ message,
+            ready for display on the console. Subsequent calls return an empty
+            string.
+            </summary>
+            <returns>
+            The first call returns a message for display on the console. All
+            subsequent calls return an empty string, indicating that another
+            thread already requested a message, and has, presumably, displayed
+            it.
+            </returns>
+            <remarks>
+            Access to this method is synchronized by an internally managed
+            object lock.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.GetEOJMessage">
+            <summary>
+            This method returns a new EOJ message each time it is called.
+            </summary>
+            <returns>
+            The returned string is ready to print on the console, by calling the
+            Console.WriteLine method.
+            </returns>
+            <remarks>
+            Access to this method is synchronized by an internally managed
+            object lock.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExit">
+             <summary>
+             Exit the program normally, returning the status code stored in this
+             instance, and optionally call WaitForCarbonUnit to suspend execution
+             until the operator has a chance to read the output or capture it
+             into the clipboard. If WaitForCarbonUnit is called, its default
+             message is used.
+             </summary>
+             <remarks>
+             This should have been the way the original version worked. Since it
+             is the simplest, I forced the original implementation to surrender
+             its hold on the number one slot.
+            
+             This method calls overload 4, passing in a null reference for the
+             carbon unit prompt and an immediate exit instruction.
+             </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExit(System.UInt32,System.String)">
+             <summary>
+             Exit the program normally, optionally returning a nonzero status
+             code. If running in debug mode, use WaitForCarbonUnit to block until
+             the tester has a chance to read the output or capture it into the
+             clipboard.
+             </summary>
+             <param name="puintStatusCode">
+             This unsigned integer specifies the program's exit code.
+             </param>
+             <param name="pstrOperatorPrompt">
+             This string specifies an alternative message for method
+             WaitForCarbonUnit to display. If this is an empty string or null
+             reference, a default message, "Please press the ENTER (Return) key
+             to exit the program." is shown.
+             </param>
+             <remarks>
+             This is the original implementation, since pre-empted by the simpler
+             method call that takes no arguments.
+            
+             When I implemented the #if DEBUG conditional compilation block, I
+             didn't take into consideration that the only time that #if DEBUG is
+             true is when the debug version of this library is built. I decided
+             to leave it in, as a reminder to myself of how it can be effectively
+             used with some of the new overloads.
+             </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExit(System.UInt32)">
+            <summary>
+            Exit the program normally, optionally returning a nonzero status
+            code. If running in debug mode, use WaitForCarbonUnit to block until
+            the tester has a chance to read the output or capture it into the
+            clipboard. Regardless, if WaitForCarbonUnit is called, its default
+            message is displayed.
+            </summary>
+            <param name="puintStatusCode">
+            This unsigned integer specifies the program's exit code.
+            </param>
+            <remarks>
+            This method calls overload 4, passing in a null reference for the
+            carbon unit prompt and an immediate exit instruction.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction)">
+            <summary>
+            Exit the program normally, optionally returning a nonzero status
+            code, and optionally calling WaitForCarbonUnit to suspend execution
+            until the operator has a chance to read the output or capture it
+            into the clipboard.
+            </summary>
+            <param name="puintStatusCode">
+            This unsigned integer specifies the program's exit code.
+            </param>
+            <param name="pstrOperatorPrompt">
+            This string specifies an alternative message for method
+            WaitForCarbonUnit to display. If this is an empty string or null
+            reference, a default message, "Please press the ENTER (Return) key
+            to exit the program." is shown.
+            </param>
+            <param name="penmNormalExitAction">
+            This member of the NormalExitAction enumeration controls whether to
+            use WaitForCarbonUnit to suspend execution until an operator has a
+            chance to read the output. See the NormalExitAction enumeration for
+            details.
+            </param>
+            <remarks>
+            This method differs sufficiently from overload 2 that it stands on
+            its own. Theoretically, every other overload could call this one.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExit(System.String,WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction)">
+            <summary>
+            Exit the program normally, optionally returning a nonzero status
+            code, and optionally calling WaitForCarbonUnit to suspend execution
+            until the operator has a chance to read the output or capture it
+            into the clipboard.
+            </summary>
+            <param name="pstrOperatorPrompt">
+            This string specifies an alternative message for method
+            WaitForCarbonUnit to display. If this is an empty string or null
+            reference, a default message, "Please press the ENTER (Return) key
+            to exit the program." is shown.
+            </param>
+            <param name="penmNormalExitAction">
+            This member of the NormalExitAction enumeration controls whether to
+            use WaitForCarbonUnit to suspend execution until an operator has a
+            chance to read the output. See the NormalExitAction enumeration for
+            details.
+            </param>
+            <remarks>
+            This method calls the fourth overload, the most coprehensive
+            implementation, passing in the return code stored in the instance,
+            which I explicitly cast to the unsigned integer type of its first
+            argument.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExit(System.UInt32,WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction)">
+            <summary>
+            Exit the program normally, optionally returning a nonzero status
+            code, and optionally calling WaitForCarbonUnit to suspend execution
+            until the operator has a chance to read the output or capture it
+            into the clipboard. If WaitForCarbonUnit is called, its default
+            message is used.
+            </summary>
+            <param name="puintStatusCode">
+            This unsigned integer specifies the program's exit code.
+            </param>
+            <param name="penmNormalExitAction">
+            This member of the NormalExitAction enumeration controls whether to
+            use WaitForCarbonUnit to suspend execution until an operator has a
+            chance to read the output. See the NormalExitAction enumeration for
+            details.
+            </param>
+            <remarks>
+            This method calls the fourth overload, the most coprehensive
+            implementation, passing in a null reference for the carbon unit
+            prompt message, forcing it to use its default message.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExit(WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction)">
+            <summary>
+            Exit the program normally, returning the status code stored in this
+            instance, and optionally call WaitForCarbonUnit to suspend execution
+            until the operator has a chance to read the output or capture it
+            into the clipboard. If WaitForCarbonUnit is called, its default
+            message is used.
+            </summary>
+            <param name="penmNormalExitAction">
+            This member of the NormalExitAction enumeration controls whether to
+            use WaitForCarbonUnit to suspend execution until an operator has a
+            chance to read the output. See the NormalExitAction enumeration for
+            details.
+            </param>
+            <remarks>
+            This method calls the fourth overload, the most coprehensive
+            implementation, passing in the return code stored in the instance,
+            which I explicitly cast to the unsigned integer type of its first
+            argument, and a null reference for the carbon unit prompt message,
+            forcing it to use its default message.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExit(System.UInt32,System.String,WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction,System.UInt32,System.String,System.ConsoleColor,System.ConsoleColor,WizardWrx.ConsoleAppAids2.DisplayAids.InterruptCriterion)">
+            <summary>
+            Exit the program normally, optionally returning a nonzero status
+            code, and optionally calling WaitForCarbonUnit to suspend execution
+            until the operator has a chance to read the output or capture it
+            into the clipboard.
+            </summary>
+            <param name="puintStatusCode">
+            This unsigned integer specifies the program's exit code.
+            </param>
+            <param name="pstrOperatorPrompt">
+            This string specifies an alternative message for method
+            WaitForCarbonUnit to display. If this is an empty string or null
+            reference, a default message, "Please press the ENTER (Return) key
+            to exit the program." is shown.
+            </param>
+            <param name="penmNormalExitAction">
+            This member of the NormalExitAction enumeration controls whether to
+            use WaitForCarbonUnit to suspend execution until an operator has a
+            chance to read the output. See the NormalExitAction enumeration for
+            details.
+            </param>
+            <param name="puintSecondsToWait">
+            Specify the number of seconds to wait, which must be a whole number
+            greater than or equal to zero. Setting this value to zero causes the
+            method to wait for 30 seconds.
+            </param>
+            <param name="pstrCountdownWaitingFor">
+            Specify the text to display along with the remaining time. If this
+            argument is null (Nothing in Visual Basic) or the empy string, the
+            method uses a default message.
+            
+            Currently, the default description is "Program ending," which is
+            taken from a resource string in the WizardWrx.ConsoleAids class that
+            implements this feature.
+            </param>
+            <param name="pclrTextColor">
+            Specify a member of the ConsoleColor enumeration to control the text
+            color used to display the countdown message.
+            
+            To use the default (current) screen colors, specify the same
+            ConsoleColor value for pclrTextColor and pclrTextBackgroundColor.
+            </param>
+            <param name="pclrTextBackgroundColor">
+            Specify a member of the ConsoleColor enumeration to control the
+            background color used to display the countdown message.
+            
+            To use the default (current) screen colors, specify the same
+            ConsoleColor value for pclrTextColor and pclrTextBackgroundColor.
+            </param>
+            <param name="penmInterruptCriterion">
+            Specify a member of the DisplayAids.InterruptCriterion enumeration
+            to indicate whether you want the timed wait to be interruptible, and
+            under what conditions.
+            </param>
+            <remarks>
+            This method differs sufficiently from overload 2 that it stands on
+            its own. Theoretically, every other overload could call this one.
+            </remarks>
+        </member>
+        <member name="P:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.BaseStateManager">
+            <summary>
+            Expose the real state manager behind this adapter.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction">
+            <summary>
+            This enumeration governs when the NormalExit method suspends a task
+            by calling WaitForCarbonUnit.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction.ExitImmediately">
+            <summary>
+            Always exit immediately, regardless of the status code.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction.HaltOnError">
+            <summary>
+            Exit immediately if the status code is ERROR_SUCCESS (zero).
+            Otherwise, call WaitForCarbonUnit.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction.Silent">
+            <summary>
+            Exit silently, without displaying any text on the console.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction.Timed">
+            <summary>
+            Exit after allowing a specified amount of time for an operator
+            to read the error message.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExitAction.WaitForOperator">
+            <summary>
+            Always call WaitForCarbonUnit.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.ConsoleAppAids2.DisplayAids">
+            <summary>
+            Use the methods of this sealed (implicitly static) class to precisely
+            control the way your application handles pauses.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.DisplayAids.FixedConsoleWriterAdapter(System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Filter the FixedConsoleWriter constructor inputs, returning a new
+            FixedConsoleWriter that uses the current screen colors if the inputs
+            are equal, and one that uses the specified colors if not.
+            </summary>
+            <param name="pclrTextColor"></param>
+            Use a member of the ConsoleColor enumeration to specify a color in
+            which to display the countdown message.
+            <param name="pclrTextBackgroundColor">
+            Use a member of the ConsoleColor enumeration to specify a color to
+            use as a background behind the countdown message text.
+            </param>
+            <returns>
+            This method returns a FixedConsoleWriter object that writes text in
+            the current console colors if both of the specified ConsoleColor
+            values are the same. Otherwise, it returns a FixedConsoleWriter that
+            writes in the specified colors.
+            </returns>
+            <remarks>
+            This method ensures that the countdown text is never hidden, without
+            altering the behavior of the MessageInColor object through which it
+            displays text on the console. Specifying the same color code for the
+            foreground and background color permits a MessageInColor object to
+            display hidden text; which this filter prevents by substituting the
+            current console colors when the foreground and background colors are
+            the same.
+            
+            Though intended for use by the companion method TimedWait, I marked
+            this method public because I feel sure that other applications will
+            emerge.
+            
+            For the benefit of anyone who want to know whether the author knows
+            anything about Design Patterns, although the base class is concrete,
+            in all other respects, this is a straightforward Class Factory.
+            I was using them long before I knew that anyone had given them a
+            name.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.DisplayAids.TimedWait(System.UInt32,System.String,System.ConsoleColor,System.ConsoleColor,WizardWrx.ConsoleAppAids2.DisplayAids.InterruptCriterion)">
+            <summary>
+            Freeze the screen and display a countdown clock for a specified
+            number of seconds.
+            </summary>
+            <param name="puintWaitSeconds">
+            Specify the time to wait, in seconds. If this value is zero, a
+            default value, WAIT_TIME_DEFAULT (currently 30 seconds) is used.
+            </param>
+            <param name="pstrCountdownWaitingFor"></param>
+            Describe what will happen when the time expires. If this value is
+            null (Nothing in Visual Basic) or the empty string, a default value,
+            COUNTDOWN_WAITING_FOR (currently "Program ending") is displayed in
+            the countdown message.
+            <param name="pclrTextColor"></param>
+            Use a member of the ConsoleColor enumeration to specify a color in
+            which to display the countdown message.
+            <param name="pclrTextBackgroundColor">
+            Use a member of the ConsoleColor enumeration to specify a color to
+            use as a background behind the countdown message text.
+            </param>
+            <param name="penmInterruptCriterion">
+            The WizardWrx.ConsoleAppAids2.DisplayAidsInterruptCriterion
+            enumeration specifies options that can be used to control whether,
+            and under what conditions, the countdown may be interrupted. The 
+            default value, None, prevents the user stopping the countdown.
+            </param>
+            <remarks>
+            Rather than spawn 4 overloads, there is a single version of this
+            method, and all arguments have built-in defaults.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.DisplayAids.WaitForCarbonUnit">
+            <summary>
+            Display a message, and wait until an operator presses the ENTER
+            (Return) key.
+            </summary>
+            <remarks>
+            This simple overload, which actually came into being second,
+            displays a default prompt, "Please press the ENTER (Return) key to
+            exit the program."
+            
+            The intent of this routine is to ensure that a report or important
+            message is actually read by a human.
+            
+            Consequently, this routine is very picky about the responses it
+            accepts; only the ENTER key is accepted. To prevent the prompt being
+            scrolled off the screen, all input is eaten (not echoed).
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.DisplayAids.WaitForCarbonUnit(System.String)">
+            <summary>
+            Display a message, and wait until an operator presses the ENTER
+            (Return) key. All cursor motion is suppressed, so that, on exit, the
+            cursor is exactly where the Console.Write method that displays the
+            prompt left it. Bo this means does this method avoid unexpected
+            screen scrolling.
+            </summary>
+            <param name="pstrPrompt">
+            This string specifies an alternative message to display. If this is
+            an empty string or null reference, a default message, "Please press
+            the ENTER (Return) key to exit the program." is shown.
+            
+            If you want the default message, there is a new overload, which has
+            no arguments, that does so, by calling this method, internally, with
+            a null reference. Having one routine that does the work simplifies
+            changing the behavior of both overloads, should the need arise.
+            </param>
+            <remarks>
+            The intent of this routine is to ensure that a report or important
+            message stands a better chance of actually being seen and read by a
+            human.
+            
+            Consequently, this routine is very picky about the responses it
+            accepts; only the ENTER key is accepted. To prevent the prompt being
+            scrolled off the screen, all input is eaten (not echoed).
+            
+            Moreover, you can't jump the gun. Any characters that accumulate in
+            the keyboard buffer before the prompt is displayed are swallowed
+            whole, with no outward sign that they were eaten. Though I could
+            display a message, doing so would, in most cases, be seen as noise
+            I might be persuaded to add it to a future version, as an option.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.DisplayAids.DrainKeyboardBuffer">
+            <summary>
+            Discard all remaining keys in the console input buffer.
+            </summary>
+            <remarks>
+            There are several reasons that you might want to do this. The method
+            began as an internal loop in WaitForCarbonUnit. Then, while testing
+            the library, I realized that I have another routine that needs to do
+            the same thing, which caused me to realize that there might be other
+            uses, too.
+            </remarks>
+        </member>
+        <member name="T:WizardWrx.ConsoleAppAids2.DisplayAids.InterruptCriterion">
+            <summary>
+            Use this enumeration to specify whether, and under what conditions,
+            the TimedWait method may be interrupted by user inputs.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.DisplayAids.InterruptCriterion.None">
+            <summary>
+            The countdown cannot be stopped.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.DisplayAids.InterruptCriterion.AnyKey">
+            <summary>
+            Pressing any key stops the countdown.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.DisplayAids.InterruptCriterion.CarriageReturn">
+            <summary>
+            Pressing the ENTER key stops the countdown.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.ConsoleAppAids2.FixedConsoleWriter">
+            <summary>
+            Instances of this class permit a line of a console window to be used
+            repeatedly for successive lines of text, replacing the contents of the
+            previous print statement, so that the lines above it don't scroll off
+            the screen.  Once instantiated, instances of this class behave almost
+            exactly like Console.WriteLine, and you can drop them into your code
+            in its place, because its overloads have identical signatures.
+            
+            Please see the Remarks.
+            </summary>
+            <remarks>
+            The magic of this class depends on keeping track of the starting and
+            current cursor positions. When a new instance is constructed, the cursor
+            position is stored into a pair of private integers, so that it can be
+            used whenever one of its Write methods is about to send text to the
+            console to determine how far right and/or down the last such operation
+            moved the cursor.
+            
+            Although Console.SetCursorPosition can be used to do so, and is used
+            internally, the point of this class is to relieve you of the burden of
+            keeping track of the cursor.
+            
+            Let it manage the cursor, so you don't have to.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.#ctor">
+            <summary>
+            Construct a default instance that uses the current console colors.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.#ctor(System.ConsoleColor,System.ConsoleColor)">
+            <summary>
+            Construct an instance that has color properties that are independent
+            of the current console foreground and background colors.
+            </summary>
+            <param name="pclrTextForeColor">
+            Specify the ConsoleColor property to use as the text (foreground)
+            color in generated messages.
+            </param>
+            <param name="pclrTextBackColor">
+            Specify the ConsoleColor property to use as the background color in
+            generated messages.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.#ctor(System.Int32)">
+            <summary>
+            Construct an instance that uses the current console colors, and 
+            writes text starting at a specified position relative to the left
+            edge of the window.
+            </summary>
+            <param name="pintOffset">
+            Specify the position relative to the left edge where writing should
+            start. Columns are counted from zero.
+            
+            Initializing private properties _intInitialCol and _intLastWriteCol from
+            Console.CursorTop is always deferred until the first time that a Write
+            method is called, because the correct cursor row is unknown until then.
+            </param>
+            <example>
+            To start writing at column 9, leaving 8 blanks to the left, pass 8
+            as the value of pintOffset.
+            </example>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.#ctor(System.ConsoleColor,System.ConsoleColor,System.Int32)">
+            <summary>
+            Construct an instance that has color properties that are independent
+            of the current console foreground and background colors and its left
+            margin set a specified number of columns in from the left margin.
+            </summary>
+            <param name="pclrTextForeColor">
+            Specify the ConsoleColor property to use as the text (foreground)
+            color in generated messages.
+            </param>
+            <param name="pclrTextBackColor">
+            Specify the ConsoleColor property to use as the background color in
+            generated messages.
+            </param>
+            <param name="pintOffset">
+            Specify the position relative to the left edge where writing should
+            start. Columns are counted from zero.
+            
+            Initializing private properties _intInitialCol and _intLastWriteCol from
+            Console.CursorTop is always deferred until the first time that a Write
+            method is called, because the correct cursor row is unknown until then.
+            </param>
+            <example>
+            To start writing at column 9, leaving 8 blanks to the left, pass 8
+            as the value of pintOffset.
+            </example>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.Boolean)">
+            <summary>
+            Write the string representation of a bool (Boolean) variable.
+            </summary>
+            <param name="value">
+            Specify the Boolean value to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.Char)">
+            <summary>
+            Write the string representation of a char (a Unicode character).
+            </summary>
+            <param name="value">
+            Specify the Unicode character to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.Char[])">
+            <summary>
+            Write the string representation of a character array.
+            </summary>
+            <param name="buffer">
+            Specify the array of Unicode characters to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.Decimal)">
+            <summary>
+            Write the string representation of a decimal variable.
+            </summary>
+            <param name="value">
+            Specify the decimal value to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.Double)">
+            <summary>
+            Write the string representation of a double precision variable.
+            </summary>
+            <param name="value">
+            Specify the double precision value to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.Single)">
+            <summary>
+            Write the string representation of a floating point variable.
+            </summary>
+            <param name="value">
+            Specify the floating point value to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.Int32)">
+            <summary>
+            Write the string representation of an integer variable.
+            </summary>
+            <param name="value">
+            Specify the integer value to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.Int64)">
+            <summary>
+            Write the string representation of a long integer variable.
+            </summary>
+            <param name="value">
+            Specify the long integer value to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.Object)">
+            <summary>
+            Write the string representation of a generic Object variable.
+            </summary>
+            <param name="value">
+            Specify the object value to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.String)">
+            <summary>
+            Write a string variable.
+            </summary>
+            <param name="value">
+            Specify the string value to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.UInt32)">
+            <summary>
+            Write the string representation of a uint (unsigned integer)
+            variable.
+            </summary>
+            <param name="value">
+            Specify the uint (unsigned integer) value to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.UInt64)">
+            <summary>
+            Write the string representation of a unsigned long integer
+            variable.
+            </summary>
+            <param name="value">
+            Specify the unsigned long integer value to display.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.String,System.Object)">
+            <summary>
+            Write a formatted message that includes the string representation of
+            an generic object variable.
+            </summary>
+            <param name="format">
+            Use this string as the message template, which may include at most
+            one substitution token.
+            </param>
+            <param name="arg0">
+            Replace the substitution token with the string representation of this
+            generic object.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.String,System.Object[])">
+            <summary>
+            Write a formatted message that includes the string representation of
+            an generic object variable.
+            </summary>
+            <param name="format">
+            Use this string as the message template, which may contains
+            substitution tokens for each object in an array of generic Object
+            variables.
+            </param>
+            <param name="arg">
+            Substitute elements from this array of generic Object variables into
+            the format string, replacing tokens with the element whose subscript
+            is the number within its brackets.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.Char[],System.Int32,System.Int32)">
+            <summary>
+            Write a formatted message that includes a range of characters taken
+            from an array of Unicode characters.
+            </summary>
+            <param name="buffer">
+            Extract characters from this array of Unicode characters.
+            </param>
+            <param name="index">
+            Subscript of character to substitute for token {0} in format.
+            </param>
+            <param name="count">
+            Number of characters from buffer to substitute into string, which
+            must contain at least count - 1 substitution tokens.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.String,System.Object,System.Object)">
+            <summary>
+            Write a formatted message that includes up to two substitution
+            tokens.
+            </summary>
+            <param name="format">
+            Use this string as the message template, which may contain up to two
+            substitution tokens, {0} and {1}.
+            </param>
+            <param name="arg0">
+            The default string representation of this generic Object variable is
+            substituted into format for token {0}.
+            </param>
+            <param name="arg1">
+            The default string representation of this generic Object variable is
+            substituted into format for token {1}.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Write(System.String,System.Object,System.Object,System.Object)">
+            <summary>
+            Write a formatted message that includes up to three substitution
+            tokens.
+            </summary>
+            <param name="format">
+            Use this string as the message template, which may contain up to 3
+            substitution tokens, {0}, {1}, and {2}.
+            </param>
+            <param name="arg0">
+            The default string representation of this generic Object variable is
+            substituted into format for token {0}.
+            </param>
+            <param name="arg1">
+            The default string representation of this generic Object variable is
+            substituted into format for token {1}.
+            </param>
+            <param name="arg2">
+            The default string representation of this generic Object variable is
+            substituted into format for token {2}.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.ReturnCarriage">
+            <summary>
+            Calling this method resets the console writing cursor to the point
+            at which it rested when the instance came into being.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.ReturnCarriage(WizardWrx.ConsoleAppAids2.FixedConsoleWriter.CRBehavior)">
+            <summary>
+            Calling this method resets the console writing cursor to the point
+            specified by the CRBehavior enumeration member that is passed into
+            it. Please see the Remarks.
+            </summary>
+            <param name="penmCRBehavior">
+            Use this enumeration to control whether the console writing cursor
+            is reset to the column where it was when the instance came into
+            being or to the beginning of that line. Regardless, it is reset to
+            the row where it was when the instance came into being.
+            
+            If the integral value of penmCRBehavior doesn't map to a member of
+            the CRBehavior enumeration, the method behaves as it would if its
+            actual value was ReturnToStartingColumn. This prevents overwriting
+            text that you intended to keep.
+            
+            Please see the Remarks.
+            </param>
+            <remarks>
+            If the initial cursor position was at the left edge of the console
+            window, it doesn't matter which CRBehavior member is specified, and
+            you may as well call the default method that takes no arguments.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.ScrollUp">
+            <summary>
+            You could just as well call Console.Error.WriteLine() directly, but
+            please read the remarks.
+            </summary>
+            <remarks>
+            The last Write method call leaves the cursor at the end of the text.
+            Unless you want your next call to Console.Error.WriteLine() to start
+            writing there, you must call either this method, which, in turn,
+            calls Console.Error.WriteLine(), or call it directly.
+            
+            If, instead, you want to overwrite the last message, call the
+            ReturnCarriage method.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrState">
+            <summary>
+            Gets the redirection state of the Standard Error handle.
+            </summary>
+            <returns>
+            The return value is the member of the StateManager.ShsHandleState
+            enumeration that corresponds to the state of the handle (either
+            attached or redirected).
+            </returns>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrFileName"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpFileName"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutFileName"/>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpState">
+            <summary>
+            Gets the redirection state of the Standard Input handle.
+            </summary>
+            <returns>
+            The return value is the member of the StateManager.ShsHandleState
+            enumeration that corresponds to the state of the handle (either
+            attached or redirected).
+            </returns>
+            <remarks>
+            Due to the relatively high cost of obtaining this information, it
+            retrieved to satisfy the first request, and cached in a private
+            static member, which is returned to satisfy subsequent requests.
+            </remarks>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrFileName"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpFileName"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutFileName"/>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutState">
+            <summary>
+            Gets the redirection state of the Standard Output handle.
+            </summary>
+            <returns>
+            The return value is the member of the StateManager.ShsHandleState
+            enumeration that corresponds to the state of the handle (either
+            attached or redirected).
+            </returns>
+            <remarks>
+            Due to the relatively high cost of obtaining this information, it
+            retrieved to satisfy the first request, and cached in a private
+            static member, which is returned to satisfy subsequent requests.
+            </remarks>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrFileName"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpFileName"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutFileName"/>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrFileName">
+            <summary>
+            Gets the absolute (fully qualified) name of the file to which the
+            Standard Output console handle is redirected.
+            </summary>
+            <returns>
+            If the Standard Error console handle is redirected, this method
+            returns is absolute (fully qualified) name. Otherwise, it returns
+            the empty string. 
+            
+            Please see the Remarks section for important information.
+            </returns>
+            <remarks>
+            If you just need to know whether the handle is redirected, use the
+            static GetStdErrState method, which is much cheaper.
+            
+            Due to the behavior of the underlying Win32 API that retrieves the
+            name of the file, the returned string begins with "\\?\d:\", 
+            where "d" is the letter assigned to the drive on which it resides,
+            and is always fully qualified.
+            </remarks>
+            <remarks>
+            Due to the relatively high cost of obtaining this information, it
+            retrieved to satisfy the first request, and cached in a private
+            static member, which is returned to satisfy subsequent requests.
+            </remarks>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpFileName"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutFileName"/>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpFileName">
+            <summary>
+            Gets the absolute (fully qualified) name of the file to which the
+            Standard Input console handle is redirected.
+            </summary>
+            <returns>
+            If the Standard Input console handle is redirected, this method
+            returns is absolute (fully qualified) name. Otherwise, it returns
+            the empty string. 
+            
+            Please see the Remarks section for important information.
+            </returns>
+            <remarks>
+            If you just need to know whether the handle is redirected, use the
+            static GetStdInpState method, which is much cheaper.
+            
+            Due to the behavior of the underlying Win32 API that retrieves the
+            name of the file, the returned string begins with "\\?\d:\", 
+            where "d" is the letter assigned to the drive on which it resides,
+            and is always fully qualified.
+            
+            Due to the relatively high cost of obtaining this information, it
+            retrieved to satisfy the first request, and cached in a private
+            static member, which is returned to satisfy subsequent requests.
+            </remarks>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrFileName"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutFileName"/>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutFileName">
+            <summary>
+            Gets the absolute (fully qualified) name of the file to which the
+            Standard Output console handle is redirected.
+            </summary>
+            <returns>
+            If the Standard Output console handle is redirected, this method
+            returns is absolute (fully qualified) name. Otherwise, it returns
+            the empty string. 
+            
+            Please see the Remarks section for important information.
+            </returns>
+            <remarks>
+            If you just need to know whether the handle is redirected, use the
+            static GetStdOutState method, which is much cheaper.
+            
+            Due to the behavior of the underlying Win32 API that retrieves the
+            name of the file, the returned string begins with "\\?\d:\", 
+            where "d" is the letter assigned to the drive on which it resides,
+            and is always fully qualified.
+            
+            Due to the relatively high cost of obtaining this information, it
+            retrieved to satisfy the first request, and cached in a private
+            static member, which is returned to satisfy subsequent requests.
+            </remarks>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdOutState"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdErrFileName"/>
+            <seealso cref="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.GetStdInpFileName"/>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.HandleConsoleIOException(System.IO.IOException)">
+            <summary>
+            Handle the I/O exception thrown when a console program whose
+            standard output is redirected attempts to call any method on the
+            Console singleton that changes the cursor position.
+            </summary>
+            <param name="pexIo">
+            Pass in the exception so that its properties can go into the message
+            that gets sent to the active trace listeners, if any.
+            </param>
+            <remarks>
+            Extracting this code simplifies handling this exception, which can
+            arise in several locations within the class, consistently.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Initialize(System.ConsoleColor,System.ConsoleColor,System.Int32)">
+            <summary>
+            All four constructors call upon this private routine to initialize
+            everything.
+            </summary>
+            <param name="pclrTextForeColor">
+            Specify the ConsoleColor property to use as the text (foreground)
+            color in generated messages.
+            </param>
+            <param name="pclrTextBackColor">
+            Specify the ConsoleColor property to use as the background color in
+            generated messages.
+            </param>
+            <param name="pintOffset">
+            Specify the position relative to the left edge where writing should
+            start. Columns are counted from zero.
+            </param>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.Reset">
+            <summary>
+            All writers use this method to clear the screen of characters
+            written by the last call to a Write method, and reset the cursor to
+            its starting position, so that the next write reuses the same space,
+            but doesn't leave behind part of the last text written if the new
+            message needs fewer characters. Please see the Remarks.
+            </summary>
+            <remarks>
+            Since the writers must always call this method, the current cursor
+            location is compared to the position it had at construction time. If
+            it hasn't moved, there is nothing to do. This is always the case on
+            the first call to a Write method, and it is theoretically possible
+            for it to happen again, if the last write operations doesn't move
+            the cursor from its starting point, or returns it there.
+            
+            Although Console.SetCursorPosition can be used to do so, and is used
+            internally, the point of this class is to relieve you of the burden of
+            keeping track of the cursor. Let it manage the cursor.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.WriteFiller(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This private instance method overwrites the reusable text area with
+            spaces, in case the next message uses fewer characters.
+            </summary>
+            <param name="pintAtRow">
+            Text is written at this row in the console window. Row numbering
+            starts at zero, which is the top row (line) in the console window.
+            
+            Please see the Remarks.
+            </param>
+            <param name="pintStartCol">
+            Text is written starting at this position unless pintNCols is WHOLE
+            (minus one), in which case this argument is ignored, and the whole
+            line is filled, starting at the left edge of the window, which is
+            column zero (signified by symbolic constant LEFT_EDGE).
+            
+            Please see the Remarks.
+            </param>
+            <param name="pintNCols">
+            This argument specifies the number of spaces to write, which varies
+            from one to the length of the _strFiller string, which happens also
+            to be the width, in characters, of the console window.
+            
+            Please see the Remarks.
+            </param>
+            <remarks>
+            The constructors establish the length of internal string variable
+            _strFiller, which is filled with exactly enough spaces to fill the
+            whole width of the console window. Each time the Reset method is
+            called, it evaluates the Console.WindowWidth property, and createes
+            a new filler string if its value has changed. This ensures that no
+            excess characters that would cause a line wrap are written.
+            
+            Unlike the other console writers in this class, this method uses the
+            regular Console.Error.Write, which doesn't mess with the console colors.
+            This enables it to ensure that there is no trailing white space in
+            the instance text and background colors.
+            </remarks>
+        </member>
+        <member name="T:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.CRBehavior">
+            <summary>
+            Use the members of this enumeration to control the behavior of the
+            ReturnCarriage method.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.CRBehavior.ReturnToStartingColumn">
+            <summary>
+            Return to the starting column. This is the default behavior if
+            the default form of the ReturnCarriage method is called.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.ConsoleAppAids2.FixedConsoleWriter.CRBehavior.ReturnToLefEdge">
+            <summary>
+            Return to the left edge, even if the original starting point was
+            to the right of it. 
+            
+            Use this setting to overwrite the entire line, including text
+            that was written before the first call to a Write method of this
+            class.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.CONSOLE_APP_BOJ">
+            <summary>
+              Looks up a localized string similar to {0}{1}Begin @ {2} ({3} UTC){1}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.CONSOLE_APP_BOJ_NO_UTC">
+            <summary>
+              Looks up a localized string similar to {0}{1}Begin @ {2}{1}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.CONSOLE_APP_EOJ">
+            <summary>
+              Looks up a localized string similar to {0}{1} End - {2} ({3} UTC){0}Elapsed time: {4}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.CONSOLE_APP_EOJ_NO_UTC">
+            <summary>
+              Looks up a localized string similar to {0}{1} End - {2}{0}Elapsed time: {3}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.CONSOLE_APP_EOJ_REPLACEMENT_TOKEN">
+            <summary>
+              Looks up a localized string similar to  End{0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.CONSOLE_APP_EOJ_SPLIT_TOKEN">
+            <summary>
+              Looks up a localized string similar to  End - .
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.CONSOLE_APP_EXIT_CODE">
+            <summary>
+              Looks up a localized string similar to {1}    Exit code = {0}{1}{1}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.ERRMSG_EXCEPTION_BARE_BONES">
+            <summary>
+              Looks up a localized string similar to {0}:An {1} exception occurred in routine {2}{8}                         Message            = {3}{8}                         Console.CursorLeft = {4}{8}                         Console.CursorTop  = {5}{8}                         _intInitialCol     = {6}{8}                         _intInitialRow     = {7}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.ERRMSG_UNKNOWN_EXIT_CODE">
+            <summary>
+              Looks up a localized string similar to Internal error: Unknown status code, {0}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.MSG_CARBON_UNIT_DEFAULT">
+            <summary>
+              Looks up a localized string similar to Please press the ENTER (Return) key to exit the program..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.MSG_INTERRUPTCRITERION_ANYKEY">
+            <summary>
+              Looks up a localized string similar to Press any key to stop the countdown..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.MSG_INTERRUPTCRITERION_CARRIAGERETURN">
+            <summary>
+              Looks up a localized string similar to Press the ENTER key to stop the countdown..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.MSG_INTERRUPTCRITERION_NONE">
+            <summary>
+              Looks up a localized string similar to The countdown cannot be stopped..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.NORMAL_EXIT_INTERNAL_ERROR">
+            <summary>
+              Looks up a localized string similar to {2}INTERNAL ERROR in routine WizardWrx.ConsoleAppAids2.ConsoleAppStateManager.NormalExit:{2}    Value given as argument penmNormalExitAction  = {0}{2}    Override substituted for above argument value = {1}{2}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.TIMEDWAIT_COUNTDOWN_MSG_TPL">
+            <summary>
+              Looks up a localized string similar to {0} in {1} seconds.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.TIMEDWAIT_COUNTDOWN_WAITING_FOR">
+            <summary>
+              Looks up a localized string similar to Program ending.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.TIMEDWAIT_DONE_EARLY_MSG_TPL">
+            <summary>
+              Looks up a localized string similar to {0} NOW, after pausing for {1} of {2} programmed secods.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.TIMEDWAIT_DONE_MSG_TPL">
+            <summary>
+              Looks up a localized string similar to {0} NOW.
+            </summary>
+        </member>
+    </members>
+</doc>
