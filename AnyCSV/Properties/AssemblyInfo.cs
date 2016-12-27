@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle ( "AnyCSV" )]
-[assembly: AssemblyDescription ( "Process ANY CSV string." )]
+[assembly: AssemblyDescription ( "AnyCSV - Process ANY delimited string." )]
 [assembly: AssemblyConfiguration ( "" )]
 [assembly: AssemblyCompany ( "David A. Gray" )]
 [assembly: AssemblyProduct ( "AnyCSV" )]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 // COM, set the ComVisible attribute to true on that type.
 [assembly: ComVisible ( false )]
 
-// The following GUID is for the ID of the typelib if this project is exposed to COM
+// The following GUID is for the ID of the typelib if this project is exposed to COM.
 [assembly: Guid ( "24256a33-d92a-4883-8c41-2d69ffebc6e5" )]
 
 // Version information for an assembly consists of the following four values:
@@ -32,4 +32,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ( "3.1.44.*" )]
+[assembly: AssemblyVersion ( "4.0.106.*" )]

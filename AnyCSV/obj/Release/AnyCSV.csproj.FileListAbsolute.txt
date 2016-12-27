@@ -1,23 +1,7 @@
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSV\bin\Release\WizardWrx.AnyCSV.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSV\obj\Release\ResolveAssemblyReference.cache
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSV\obj\Release\WizardWrx.Properties.Resources.resources
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSV\obj\Release\GenerateResource-ResGen.read.1.tlog
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSV\obj\Release\GenerateResource-ResGen.write.1.tlog
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSV\obj\Release\WizardWrx.AnyCSV.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSV\obj\Release\WizardWrx.AnyCSV.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.XML
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\ResolveAssemblyReference.cache
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.Properties.Resources.resources
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\GenerateResource-ResGen.read.1.tlog
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\GenerateResource-ResGen.write.1.tlog
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.AnyCSV.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.AnyCSV.pdb
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.XML
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.pdb
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.tlb
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.Properties.Resources.resources
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\AnyCSV.csproj.GenerateResource.Cache
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.AnyCSV.dll

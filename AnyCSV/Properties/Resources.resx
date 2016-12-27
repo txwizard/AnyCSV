@@ -59,8 +59,8 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http:/   w.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http:/   w.w3.org/XML/1998/namespace" />
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -119,36 +119,66 @@
   </resheader>
   <data name="DLM_DSP_CARAT" xml:space="preserve">
     <value>Carat (^, ASCII code 0x5E)</value>
+    <comment>Display value for carat character as delimiter character</comment>
+  </data>
+  <data name="DLM_DSP_CARRIAGE_RETURN" xml:space="preserve">
+    <value>Carriage return (CR, ASCII code 0x0D)</value>
+    <comment>Display value for carriage return character as delimiter character</comment>
   </data>
   <data name="DLM_DSP_COMMA" xml:space="preserve">
     <value>Comma (, ASCII code 0x2C)</value>
+    <comment>Display value for commacharacter as delimiter character</comment>
+  </data>
+  <data name="DLM_DSP_LINE_FEED" xml:space="preserve">
+    <value>Line feed (LF, ASCII code 0x0A)</value>
+    <comment>Display value for line feed character as delimiter character</comment>
   </data>
   <data name="DLM_DSP_OTHER" xml:space="preserve">
     <value>Other ({0}, ASCII code {1})</value>
+    <comment>Display value for other character as delimiter or guard character</comment>
   </data>
   <data name="DLM_DSP_SPACE" xml:space="preserve">
-    <value>Space, ASCII code 0x20)</value>
+    <value>Space (ASCII code 0x20)</value>
+    <comment>Display value for space character as delimiter character</comment>
   </data>
   <data name="DLM_DSP_TAB" xml:space="preserve">
     <value>Tab (Horizontal Tab, ASCII code 0x09)</value>
+    <comment>Display value for tab character as delimiter character</comment>
   </data>
   <data name="DLM_DSP_VERTICAL_BAR" xml:space="preserve">
     <value>Vertical Bar (|,  a. k. a. Pipe, ASCII code 0x7C)</value>
+    <comment>Display value for vertical bar character as delimiter character</comment>
   </data>
   <data name="ERRMSG_SAME_CHAR_AS_DLM_AND_GUARD" xml:space="preserve">
     <value>The delimiter and guard characters must differ.{2}    Specified Delimiter Character = {0}{2}    Specified Guard Character     = {1}</value>
+    <comment>Property setters use this message when the program attempts to use the same character as both the delimiter and the guard character.</comment>
   </data>
   <data name="ERRMSG_SETTINGS_ARE_LOCKED" xml:space="preserve">
     <value>Settings on this instance are locked.</value>
     <comment>Property setters use this message in the InvalidOperationException exception that they throw when a program attempts to set a property after the object's properties are locked.</comment>
   </data>
-  <data name="GRD_DSP_BCK_QUOTE" xml:space="preserve">
+  <data name="ERRMSG_TYPE_MISMATCH" xml:space="preserve">
+    <value>{0} is of type {1}, which cannot be meaningfully compared to a {2}, which is of type {3}.</value>
+    <comment>The Equals override of the two private structures that store the preset delimiter and guard characters uses this template to construct the message for an InvalidCastException if a caller attempts to compare a structure with an object of another type.</comment>
+  </data>
+  <data name="GRD_DSP_BACK_QUOTE" xml:space="preserve">
     <value>Back Quotation Mark (`, ASCII code 0x60)</value>
+    <comment>Display value for backquote as guard character</comment>
   </data>
-  <data name="GRD_DSP_DBL_QUOTE" xml:space="preserve">
+  <data name="GRD_DSP_DOUBLE_QUOTE" xml:space="preserve">
     <value>Double Quotation Mark (", ASCII code 0x22)</value>
+    <comment>Display value for double quatation mark as guard character</comment>
   </data>
-  <data name="GRD_DSP_SGL_QUOTE" xml:space="preserve">
+  <data name="GRD_DSP_SINGLE_QUOTE" xml:space="preserve">
     <value>Single Quotation Mark (', ASCII code 0x27)</value>
+    <comment>Display value for single quotation mark as guard character</comment>
+  </data>
+  <data name="HASH_CODE_TEMPLATE" xml:space="preserve">
+    <value>{0},{1},{2},{3},{4},{5}</value>
+    <comment>The Equals override uses this template to construct a test value.</comment>
+  </data>
+  <data name="TOSTRING_TEMPLATE" xml:space="preserve">
+    <value>Delimiter         = {0}{6}Guard Character   = {1}{6}Trim White Space  = {2}{6}Guard Disposition = {3}{6}Lock State        = {4}{6}Lock Method       = {5}{6}</value>
+    <comment>The ToString override uses this template to construct its value.</comment>
   </data>
 </root>

@@ -1,69 +1,11 @@
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\ConsoleUtility1.exe.config
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.dll.config
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\ConsoleUtility1.exe
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\ConsoleUtility1.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\CSVCodeProject.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.ApplicationHelpers2.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids2.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.SharedUtl4.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\CSVCodeProject.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.ApplicationHelpers2.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.ApplicationHelpers2.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids2.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids2.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.SharedUtl4.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\bin\Release\WizardWrx.SharedUtl4.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Release\ConsoleUtility1.Properties.Resources.resources
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Release\GenerateResource-ResGen.read.1.tlog
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Release\GenerateResource-ResGen.write.1.tlog
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Release\ConsoleUtility1.exe
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\CSVParser\AnyCSVTestStand\obj\x86\Release\ConsoleUtility1.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\ConsoleUtility1.exe.config
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\ConsoleUtility1.exe
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\ConsoleUtility1.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.dll.config
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\ConsoleUtility1.exe
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\ConsoleUtility1.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\CSVCodeProject.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ApplicationHelpers2.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids2.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.SharedUtl4.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.FormatStringEngine.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.BitMath.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ASCIIInfo.dll
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\CSVCodeProject.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ApplicationHelpers2.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ApplicationHelpers2.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids2.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids2.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.SharedUtl4.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.SharedUtl4.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.FormatStringEngine.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.FormatStringEngine.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.BitMath.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.BitMath.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ASCIIInfo.pdb
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ASCIIInfo.xml
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\ResolveAssemblyReference.cache
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\ConsoleUtility1.Properties.Resources.resources
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\GenerateResource-ResGen.read.1.tlog
-C:\Documents and Settings\DAG\My Documents\Visual Studio 2010\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\GenerateResource-ResGen.write.1.tlog
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.dll.config
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe.config
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.pdb
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.dll
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids2.dll
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.dll
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\Newtonsoft.Json.dll
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.BitMath.dll
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.pdb
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.xml
@@ -71,15 +13,11 @@ C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids2.xml
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.pdb
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.xml
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\Newtonsoft.Json.xml
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.BitMath.pdb
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.BitMath.xml
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\AnyCSVTestStand.csprojResolveAssemblyReference.cache
-C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\AnyCSVTestStand.csproj.GenerateResource.Cache
-C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe.config
-C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
-C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.pdb
-C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\Newtonsoft.Json.dll
-C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\Newtonsoft.Json.xml
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\AnyCSVTestStand.Properties.Resources.resources
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\AnyCSVTestStand.csproj.GenerateResource.Cache
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\AnyCSVTestStand.exe
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\x86\Release\AnyCSVTestStand.pdb

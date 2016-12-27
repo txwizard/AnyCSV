@@ -4,111 +4,1231 @@
         <name>WizardWrx.AnyCSV</name>
     </assembly>
     <members>
-        <member name="T:WizardWrx.AnyCSV.Parser">
+        <member name="T:WizardWrx.AnyCSV.CSVParseEngine">
             <summary>
-            This class defines the most robust CSV string parser that I can
-            conceive, based on 17 years of experience writing CSV parsers, leading
-            to the discovery today of a use case that breaks parsers that were
-            thought to be bulletproof.
+            This abstract class encapsulates the core components of my robust string
+            parsing algorithm, along with the code and data to support a set of 
+            commonly used delimiter and guard characters. 
+            
+            RobustDelimitedStringParser, a companion class defined in the same
+            assembly, is a basic concrete instance of this class, which contains the
+            bare essentials needed to expose its functionality to COM. The original
+            class, Parser, extends RobustDelimitedStringParser with overloaded class
+            constructors and Parse methods.
             </summary>
         </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.COMMA">
+        <member name="M:WizardWrx.AnyCSV.ICSVParser.LockSettings">
+             <summary>
+             Lock the properties against changes.
+            
+             IMPORTANT: Once this method is called on an instance, subsequent
+             attempts to set any of its properties are punished, without a trial,
+             by an InvalidOperationException exception.
+             </summary>
+             <remarks>
+             The fact that there is no inverse (unlock) method is by design, to
+             ensure that a series of calls to parse all records in a file use the
+             same settings.
+             
+             This method is manifestly thread-safe.
+             </remarks>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.ICSVParser.Parse(System.String)">
+            <summary>
+            Use the properties set on the current Parser instance to parse any
+            valid CSV string.
+            </summary>
+            <param name="pstrAnyCSV">
+            The string may be any type of well formed CSV string. See Remarks
+            on the like named static method.
+            </param>
+            <returns>
+            The return value is the array of fields parsed from the string.
+            </returns>
+            <remarks>
+            This method is thread-safe.
+            </remarks>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.ICSVParser.FieldDelimiter">
+             <summary>
+             Get or set the character currently specified as the delimiter
+             character.
+            
+             Before a value is accepted, it is compared against the current
+             delimiter guard character. If the two characters are different, the
+             new value is accepted and saved. Otherwise, an
+             InvalidOperationException exception is thrown.
+            
+             To ensure consistent behavior in a loop, once the LockSettings or
+             Parse method on an instance is called, the property values are fixed
+             permanently (for the remaining lifetime of the instance).
+             </summary>
+             <remarks>
+             The setter method is thread-safe.
+             </remarks>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.ICSVParser.DelimiterGuard">
+             <summary>
+             Get or set the character currently specified as the delimiter guard
+             character.
+            
+             Before a value is accepted, it is compared against the current
+             delimiter character. If the two characters are different, the new
+             value is accepted and saved. Otherwise, an InvalidOperationException
+             exception is thrown.
+            
+             To ensure consistent behavior in a loop, once the LockSettings or
+             Parse method on an instance is called, the property values are fixed
+             permanently (for the remaining lifetime of the instance).
+             </summary>
+             <remarks>
+             The setter method is thread-safe.
+             </remarks>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.ICSVParser.GuardCharDisposition">
+             <summary>
+             Get or set the flag implemented by the GuardDisposition enumeration
+             that indicates whether delimiter guard characters surrounding a
+             whole filed are discarded (default) or kept.
+            
+             To ensure consistent behavior in a loop, once the LockSettings or
+             Parse method on an instance is called, the property values are fixed
+             permanently (for the remaining lifetime of the instance).
+             </summary>
+             <remarks>
+             The setter method is thread-safe.
+             </remarks>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.ICSVParser.WhiteSpaceDisposition">
+             <summary>
+             Get or set the flag implemented by the TrimWhiteSpace enumeration
+             that indicates whether leading and trailing white space is kept
+             (default) or discarded if at the beginning, end, or both.
+            
+             To ensure consistent behavior in a loop, once the LockSettings or
+             Parse method on an instance is called, the property values are fixed
+             permanently (for the remaining lifetime of the instance).
+             </summary>
+             <remarks>
+             The setter method is thread-safe.
+             </remarks>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.ICSVParser.SettingsLocked">
+             <summary>
+             This read only flag indicates whether the other settings are
+             locked, and cannot henceforth be changed, for the remaining lifetime
+             of the instance.
+            
+             There are two ways for settings to become locked.
+            
+             1) Call the instance Parse method.
+            
+             2) Call the LockSettings method.
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.BACK_QUOTE">
+             <summary>
+             Protect delimiters enclosed in backwards quotation marks, commonly
+             called back-ticks.
+            
+             The equivalent GuardChar member is BackQuote (2), and its integral
+             value is 0x60 (96 decimal).
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.CARAT">
+             <summary>
+             Use this symbolic constant to construct a Parser instance that uses
+             a carat ('^') as its delimiter, or to specify one to the static
+             Parse method.
+            
+             The equivalent DelimiterChar member is Carat (3), and its integral
+             value is 0x5e (94 decimal).
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.CARRIAGE_RETURN">
+            <summary>
+            Use this symbolic constant to construct a Parser instance that uses
+            a Carriage Return (CR) character as its delimiter, or to specify one 
+            to the static Parse method.
+            
+            The equivalent DelimiterChar member is CarriageReturn (5), and its
+            integral value is 0x0D (013 decimal).
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.COMMA">
              <summary>
              Use this symbolic constant to construct a Parser instance that uses
              a comma (',') as its delimiter, or to specify one to the static
              Parse method.
             
-             The equivalent DelimiterChar member is Comma, and its integral value
-             is 0x2c (44 decimal).
+             The equivalent DelimiterChar member is Comma (0), and its integral 
+             value is 0x2c (44 decimal).
              </summary>
         </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.TAB">
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DOUBLE_QUOTE">
+             <summary>
+             Protect delimiters enclosed in double quotation marks.
+            
+             The equivalent GuardChar member is DoubleQuote (0), and its integral
+             value is 0x22 (34 decimal).
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.LINE_FEED">
+            <summary>
+            Use this symbolic constant to construct a Parser instance that uses
+            a Line Feed (LF) character as its delimiter, or to specify one 
+            to the static Parse method.
+            
+            The equivalent DelimiterChar member is LineFeed (6), and its
+            integral value is 0x0A (010 decimal).
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.SINGLE_QUOTE">
+             <summary>
+             Protect delimiters enclosed in single quotation marks.
+            
+             The equivalent GuardChar member is SingleQuote (1), and its integral
+             value is 0x27 (39 decimal).
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.SPACE">
+             <summary>
+             Use this symbolic constant to construct a Parser instance that uses
+             a space (' ') as its delimiter, or to specify one to the static
+             Parse method.
+            
+             The equivalent DelimiterChar member is Space (4), and its integral
+             value is 0x20 (32 decimal).
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.TAB">
              <summary>
              Use this symbolic constant to construct a Parser instance that uses
              a tab ('\t") as its delimiter, or to specify one to the static Parse
              method.
             
-             The equivalent DelimiterChar member is Tab, and its integral value
+             The equivalent DelimiterChar member is Tab (1), and its integral value
              is 9.
              </summary>
         </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.VERTICAL_BAR">
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.VERTICAL_BAR">
              <summary>
              Use this symbolic constant to construct a Parser instance that uses
              a vertical bar ('|'), also known as the Pipe character, vertical 
              slash, bar, obelisk, and various other names, as its delimiter, or
              to specify one to the static Parse method.
             
-             The equivalent DelimiterChar member is VerticalBar, and its integral
+             The equivalent DelimiterChar member is VerticalBar (2), and its integral
              value is 0x7C (124 decimal).
              </summary>
         </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.CARAT">
-             <summary>
-             Use this symbolic constant to construct a Parser instance that uses
-             a carat ('^') as its delimiter, or to specify one to the static
-             Parse method.
-            
-             The equivalent DelimiterChar member is Carat, and its integral
-             value is 0x5e (94 decimal).
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.SPACE">
-             <summary>
-             Use this symbolic constant to construct a Parser instance that uses
-             a space (' ') as its delimiter, or to specify one to the static
-             Parse method.
-            
-             The equivalent DelimiterChar member is Space, and its integral
-             value is 0x20 (32 decimal).
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DOUBLE_QUOTE">
-             <summary>
-             Protect delimiters enclosed in double quotation marks.
-            
-             The equivalent GuardChar member is DoubleQuote, and its integral
-             value is 0x22 (34 decimal).
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.SINGLE_QUOTE">
-             <summary>
-             Protect delimiters enclosed in single quotation marks.
-            
-             The equivalent GuardChar member is SingleQuote, and its integral
-             value is 0x27 (39 decimal).
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.BACK_QUOTE">
-             Protect delimiters enclosed in backwards quotation marks, commonly
-             called back-ticks.
-            
-             The equivalent GuardChar member is BackQuote, and its integral
-             value is 0x60 (96 decimal).
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DEFAULT_DELIMITER">
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_DELIMITER">
             <summary>
             This property governs the static Parse methods that omit a delimiter
             argument.
             </summary>
         </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DEFAULT_DELIMITER_GUARD">
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_DELIMITER_GUARD">
             <summary>
             This constant governs the static Parse methods that omit a delimiter
             protector (guard) character.
             </summary>
         </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DEFAULT_GUARD_DISPOSITION">
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_GUARD_DISPOSITION">
             <summary>
             This constant governs the static Parse methods that leave the
             disposition of guard characters unspecified.
             </summary>
         </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DEFAULT_WHITESPACE_TREATMENT">
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_WHITESPACE_TREATMENT">
             <summary>
             This constant governs the static Parse methods that leave the
             treatment of white space unspecified. The default is the most
             conservative treatment.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.s_aDelimiterMap">
+            <summary>
+            This array stores information about the preset delimiter characters,
+            ordered by the integral value to which their DelimiterChar members
+            resolve.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.s_aGuardrMap">
+            <summary>
+            This array stores information about the preset delimiter guard
+            characters, ordered by the integral value to which their GuardChar
+            members resolve.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine._chrDelimiter">
+            <summary>
+            Instance storage for the delimiter character is marked as protected,
+            so that derived classes can access it directly, rather than wasting
+            stack space and processor time to go through its public property.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine._chrGuard">
+            <summary>
+            Instance storage for the delimiter guard character is marked as 
+            protected, so that derived classes can access it directly, rather
+            than wasting stack space and processor time to go through its
+            public property.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine._enmDelimiter">
+            <summary>
+            Instance storage for the delimiter character enumeration is marked
+            as protected, so that derived classes can access it directly, rather
+            than wasting stack space and processor time to go through its public
+            property.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine._enmGuard">
+            <summary>
+            Instance storage for the delimiter guard character enumeration is
+            marked as protected, so that derived classes can access it directly,
+            rather than wasting stack space and processor time to go through its
+            public property.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine._enmGuardDisposition">
+            <summary>
+            Instance storage for the delimiter guard character enumeration is
+            marked as protected, so that derived classes can access it directly,
+            rather than wasting stack space and processor time to go through its
+            public property.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine._enmLockMethod">
+            <summary>
+            This flag maintains the method by which the class property values
+            became locked.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine._fSettingsLocked">
+            <summary>
+            Instance storage for the settings lock state enumeration is marked
+            as protected, so that derived classes can access it directly, rather
+            than wasting stack space and processor time to go through its public
+            property.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine._objSettingsLockSync">
+            <summary>
+            Use this object to synchronize access by multiple threads. The only
+            case in which this seems necessary is when the properties are edited
+            or locked.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine._objParseingLockSync">
+            <summary>
+            Use this object to synchronize access to the Parse method by multiple
+            threads.
+            </summary>
+            <remarks>
+            The parse method uses this lock only very briefly while the settings
+            lock is evaluated and set if it isn't already.
+            </remarks>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine._enmTrimWhiteSpace">
+            <summary>
+            Instance storage for the white space disposition enumeration is
+            marked as protected, so that derived classes can access it directly,
+            rather than wasting stack space and processor time to go through its
+            public property.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.#ctor">
+            <summary>
+            The default constructor creates a Parser that uses its namesake, the
+            comma, as its delimiter, protects commas that occur within double
+            quotation marks, discards double quotation marks that surround whole
+            fields, and preserves leading and trailing white space.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.LockSettings">
+             <summary>
+             Lock the properties against changes.
+            
+             IMPORTANT: Once this method is called on an instance, subsequent
+             attempts to set any of its properties are punished, without a trial,
+             by an InvalidOperationException exception.
+             </summary>
+             <remarks>
+             The fact that there is no inverse (unlock) method is by design, to
+             ensure that a series of calls to parse all records in a file use the
+             same settings.
+             
+             This method is manifestly thread-safe.
+             </remarks>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String)">
+            <summary>
+            Use the properties set on the current Parser instance to parse any
+            valid CSV string.
+            </summary>
+            <param name="pstrAnyCSV">
+            The string may be any type of well formed CSV string. See Remarks
+            on the like named static method.
+            </param>
+            <returns>
+            The return value is the array of fields parsed from the string.
+            </returns>
+            <remarks>
+            This method is thread-safe.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String,System.Char,System.Char,WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition,WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)">
+            <summary>
+            Call this method to parse any CSV string without working from an
+            instance of the Parser class, specifying both the field delimiter
+            and a separate character to protect delimiters embedded in fields.
+            </summary>
+            <param name="pstrAnyCSV">
+            The string may be any type of well formed CSV string. See Remarks.
+            </param>
+            <param name="pchrDelimiter">
+            Specify the character to treat as the delimiter. Any character that
+            can occur in a text file is valid.
+            </param>
+            <param name="pchrProtector">
+            Specify the character to treat as the protector of delimiters. Any
+            character that can occur in a text file is valid.
+            </param>
+            <param name="penmGuardDisposition">
+            Specify whether guard characters that surround a whole field should
+            be stripped (default) or kept.
+            </param>
+            <param name="penmTrimWhiteSpace">
+            Specify whether leading or trailing white space should be trimmed
+            from a field.
+            </param>
+            <returns>
+            The return value is the array of fields parsed from the string.
+            </returns>
+            <remarks>
+            Rather than wastefully coding the same routine twice, parsing for
+            both instances of the Parser class and stand-alone parse requests
+            that accept defaults for one or both of the character parameters is
+            handled by this static method. This is easily accomplished by having
+            the instance method pass in its current property values, along with
+            the string, which always accompanies the request.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String,System.Char,System.Char,WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition)">
+            <summary>
+            Call this method to parse any CSV string without working from an
+            instance of the Parser class, specifying both the field delimiter
+            and a separate character to protect delimiters embedded in fields.
+            </summary>
+            <param name="pstrAnyCSV">
+            The string may be any type of well formed CSV string. See Remarks.
+            </param>
+            <param name="pchrDelimiter">
+            Specify the character to treat as the delimiter. Any character that
+            can occur in a text file is valid.
+            </param>
+            <param name="pchrProtector">
+            Specify the character to treat as the protector of delimiters. Any
+            character that can occur in a text file is valid.
+            </param>
+            <param name="penmGuardDisposition">
+            Specify whether guard characters that surround a whole field should
+            be stripped (default) or kept.
+            </param>
+            <returns>
+            The return value is the array of fields parsed from the string.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String,System.Char,System.Char)">
+            <summary>
+            Call this method to parse any CSV string without working from an
+            instance of the Parser class, specifying both the field delimiter
+            and a separate character to protect delimiters embedded in fields.
+            </summary>
+            <param name="pstrAnyCSV">
+            The string may be any type of well formed CSV string. See Remarks.
+            </param>
+            <param name="pchrDelimiter">
+            Specify the character to treat as the delimiter. Any character that
+            can occur in a text file is valid.
+            </param>
+            <param name="pchrProtector">
+            Specify the character to treat as the protector of delimiters. Any
+            character that can occur in a text file is valid.
+            </param>
+            <returns>
+            The return value is the array of fields parsed from the string.
+            </returns>
+            <remarks>
+            Rather than wastefully coding the same routine twice, parsing for
+            both instances of the Parser class and stand-alone parse requests
+            that accept defaults for one or both of the character parameters is
+            handled by this static method. This is easily accomplished by having
+            the instance method pass in its current property values, along with
+            the string, which always accompanies the request.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String,System.Char)">
+            <summary>
+            Call this method to parse any CSV string without working from an
+            instance of the Parser class, specifying the field delimiter, and
+            using the default delimiter guard character, the double quotation
+            mark.
+            </summary>
+            <param name="pstrAnyCSV">
+            The string may be any type of well formed CSV string. See Remarks.
+            </param>
+            <param name="pchrDelimiter">
+            Specify the character to treat as the delimiter. Any character that
+            can occur in a text file is valid.
+            </param>
+            <returns>
+            The return value is the array of fields parsed from the string.
+            </returns>
+            <seealso cref="M:WizardWrx.AnyCSV.CSVParseEngine.StandardCSVParse(System.String)"/>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.StandardCSVParse(System.String)">
+            <summary>
+            Call this method to parse any CSV string without working from an
+            instance of the Parser class, using the default delimiter character
+            and  the default delimiter guard character, the double quotation
+            mark. See Remarks.
+            </summary>
+            <param name="pstrAnyCSV">
+            The string may be any type of well formed CSV string. See Remarks.
+            </param>
+            <returns>
+            The return value is the array of fields parsed from the string.
+            </returns>
+            <remarks>
+            This method gets its own name, to distinguish it from a similarly
+            named instance method that has the same signature. This is just as
+            well, because its distinctive name clarifies that its use is limited
+            to true Comma Separated Values (CSV) strings.
+            </remarks>
+            <seealso cref="M:WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String,System.Char,System.Char,WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition,WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)"/>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.DelimiterCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar)">
+            <summary>
+            The inverse of DelimiterEnumFromChar, this method returns the 
+            character that corresponds to the specified member of the
+            DelimiterChar enumeration, unless the specified DelimiterChar is not
+            that of one of the presets.
+            </summary>
+            <param name="penmDelimiter">
+            Specify the DelimiterChar member to be mapped to the corresponding
+            delimiter character. This routine treats DelimiterChar.None and
+            DelimiterChar.Other as invalid values, and raises an
+            InvalidEnumArgumentException Exception, as it does if its value is
+            outright invalid (out of range).
+            </param>
+            <returns>
+            The return value is the character that corresponds to the specified
+            DelimiterChar enumeration member.
+            </returns>
+            <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">
+            An InvalidEnumArgumentException exception is thrown if the specified
+            DelimiterChar value is either out of range, or is either of
+            DelimiterChar.None or DelimiterChar.None.
+            </exception>
+            <seealso cref="M:WizardWrx.AnyCSV.CSVParseEngine.DelimiterEnumFromChar(System.Char)"/>
+            <seealso cref="M:WizardWrx.AnyCSV.CSVParseEngine.GuardCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.GuardChar)"/>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.FormatInvalidCastExceptionMessage(System.Object,System.Object)">
+            <summary>
+            The Equals methods on the two structures, DelimiterMap and GuardMap,
+            use this static method to format a detailed exception report when
+            either is called to compare an instance with an object of the wrong
+            type.
+            </summary>
+            <param name="pobjThis">
+            This argument is the instance on which the Equals method was called.
+            </param>
+            <param name="pobjOther">
+            This argument is the instance against which a comparison was 
+            requested. This method is called when the System.Type of pobjOther
+            differs from that of pobjThis.
+            </param>
+            <returns>
+            The return value is a string that endeavors to provide the person
+            who is tasked with investigating the exception with enough data to
+            identify and correct its cause.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.GuardCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.GuardChar)">
+            <summary>
+            The inverse of GuardEnumFromChar, this method returns the
+            character that corresponds to the specified member of the GuardChar
+            enumeration, unless the specified GuardChar is not that of one of the
+            presets.
+            </summary>
+            <param name="penmGuardChar">
+            Specify the GuardMap member to be mapped to the corresponding guard
+            character. This routine treats GuardMap.None and GuardMap.Other as
+            invalid values, and raises an InvalidEnumArgumentException
+            Exception, as it does if its value is outright invalid (out of
+            range).
+            </param>
+            <returns>
+            The return value is the character that corresponds to the specified
+            GuardChar enumeration member.
+            </returns>
+            <exception cref="T:System.ComponentModel.InvalidEnumArgumentException">
+            An InvalidEnumArgumentException exception is thrown if the specified
+            GuardChar value is either out of range, or is either of GuardChar.None
+            or GuardChar.None.
+            </exception>
+            <seealso cref="M:WizardWrx.AnyCSV.CSVParseEngine.GuardEnumFromChar(System.Char)"/>
+            <seealso cref="M:WizardWrx.AnyCSV.CSVParseEngine.DelimiterEnumFromChar(System.Char)"/>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.DelimiterEnumFromChar(System.Char)">
+            <summary>
+            Return the DelimiterChar enumeration member that corresponds to a given
+            character, if it is one of the presets.
+            </summary>
+            <param name="pchrDelimiter">
+            Specify the character to be mapped onto the DelimiterChar
+            enumeration.
+            </param>
+            <returns>
+            If the pchrDelimiter argument is one of the preset characters, the
+            return value is the corresponding member of the DelimiterChar
+            enumeration. Otherwise, DelimiterChar.Other, the highest value in
+            the enumeration, is returned.
+            </returns>
+            <seealso cref="M:WizardWrx.AnyCSV.CSVParseEngine.DelimiterCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar)"/>
+            <seealso cref="M:WizardWrx.AnyCSV.CSVParseEngine.GuardCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.GuardChar)"/>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.GuardEnumFromChar(System.Char)">
+            <summary>
+            Return the GuardChar enumeration member that corresponds to a given
+            character, if it is one of the presets.
+            </summary>
+            <param name="pchrProtector">
+            Specify the character to be mapped onto the GuardChar enumeration.
+            </param>
+            <returns>
+            If the pchrProtector argument is one of the preset characters, the
+            return value is the corresponding member of the GuardChar
+            enumeration. Otherwise, GuardChar.Other, the highest value in the
+            enumeration, is returned.
+            </returns>
+            <seealso cref="M:WizardWrx.AnyCSV.CSVParseEngine.GuardCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.GuardChar)"/>
+            <seealso cref="M:WizardWrx.AnyCSV.CSVParseEngine.DelimiterCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar)"/>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.ShowDelimiterAndGuardChars(System.Char,System.Char)">
+            <summary>
+            Format a message that unambiguously describes the delimiter and
+            guard characters specified for an instance.
+            </summary>
+            <param name="pchrDelimiter">
+            Specify the selected delimiter character.
+            </param>
+            <param name="pchrGuard">
+            Specify the selected guard character.
+            </param>
+            <returns>
+            The return value is a message string that fully describes the guard
+            and delimiter characters, including both decimal and hexadecimal
+            representations of their numeric values.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.TransformAsDirectoed(System.Text.StringBuilder,System.Char,WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition,WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)">
+            <summary>
+            Other methods on the base class and its derived classes, usually
+            working through a base class method, invoke this routine to put the
+            finishing touches on a parsed substring, which may consist of
+            trimming its guard characters, if present, trimming leading and/or
+            trailing white space, or neither.
+            </summary>
+            <param name="psbCurrentField">
+            This string is the raw substring returned by the parsing engine.
+            </param>
+            <param name="pchrProtector">
+            This character is the guard character that protects delimiter
+            characters that are to be ignored.
+            </param>
+            <param name="penmGuardDisposition">
+            This flag specifies whether guard characters, if present, should be
+            striped or left.
+            </param>
+            <param name="penmTrimWhiteSpace">
+            This flag specifies whether to trim or leave leading and/or trailing
+            white space.
+            </param>
+            <returns>
+            A copy of the string, with guard characters, leading white space, and
+            trailing white space removed if so directed.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.TransformWhiteSpace(System.String,WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)">
+            <summary>
+            The companion TransformAsDirectoed method calls upon this method as
+            needed to trim leading and/or trailing white space, depending upon
+            the state of the TrimWhiteSpace flag.
+            </summary>
+            <param name="pstrAlmostReady">
+            This string is the input that was fed to TransformAsDirectoed, with
+            guard characters, if any, stripped from both ends.
+            </param>
+            <param name="penmTrimWhiteSpace">
+            The TrimWhiteSpace flag is passed through from TransformAsDirectoed,
+            and it determines the action taken by this routine.
+            </param>
+            <returns>
+            The returned string is handed up through TransformAsDirectoed, since
+            it is ready to return to the caller following this transformation.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.Equals(System.Object)">
+            <summary>
+            Overriding the Equals method permits meaningful equality comparisons
+            of CSVParseEngine instances.
+            </summary>
+            <param name="obj">
+            To be valid, the other object must be a CSVParseEngine object or a
+            derivative thereof. Otherwise, an InvalidCastException exception is
+            thrown.
+            </param>
+            <returns>
+            If all four public properties other than the locked state are equal,
+            two CSVParseEngine instances are evaluated as equal to each other.
+            Otherwise, they are evaluates as unequal.
+            </returns>
+            <exception cref="T:System.InvalidCastException">
+            Attempting to evaluate the equality of a CSVParseEngine against an
+            object of another type raises an InvalidCastException exception,
+            which reports the fully qualified types of both comparands, along
+            with a string representation of each (whatever their respective
+            ToString methods return).
+            </exception>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.GetHashCode">
+            <summary>
+            Return the hash code of a string composed of a concatenation of the
+            string representations of the key properties of the instance.
+            </summary>
+            <returns>
+            The return value is the hash code generated from a comma-separated
+            list of the properties of the instance.
+            </returns>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.ToString">
+            <summary>
+            Return a message that displays the state of the properties that
+            govern the behavior of the Parse method.
+            </summary>
+            <returns>
+            The returned string makes all properties visible in debugger windows
+            without expanding the properties, and provides a quick way to list
+            them on a report.
+            </returns>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.CSVParseEngine.FieldDelimiter">
+             <summary>
+             Get or set the character currently specified as the delimiter
+             character.
+            
+             Before a value is accepted, it is compared against the current
+             delimiter guard character. If the two characters are different, the
+             new value is accepted and saved. Otherwise, an
+             InvalidOperationException exception is thrown.
+            
+             To ensure consistent behavior in a loop, once the LockSettings or
+             Parse method on an instance is called, the property values are fixed
+             permanently (for the remaining lifetime of the instance).
+             </summary>
+             <remarks>
+             The setter method is thread-safe.
+             </remarks>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.CSVParseEngine.DelimiterGuard">
+             <summary>
+             Get or set the character currently specified as the delimiter guard
+             character.
+            
+             Before a value is accepted, it is compared against the current
+             delimiter character. If the two characters are different, the new
+             value is accepted and saved. Otherwise, an InvalidOperationException
+             exception is thrown.
+            
+             To ensure consistent behavior in a loop, once the LockSettings or
+             Parse method on an instance is called, the property values are fixed
+             permanently (for the remaining lifetime of the instance).
+             </summary>
+             <remarks>
+             The setter method is thread-safe.
+             </remarks>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.CSVParseEngine.GuardCharDisposition">
+             <summary>
+             Get or set the flag implemented by the GuardDisposition enumeration
+             that indicates whether delimiter guard characters surrounding a
+             whole filed are discarded (default) or kept.
+            
+             To ensure consistent behavior in a loop, once the LockSettings or
+             Parse method on an instance is called, the property values are fixed
+             permanently (for the remaining lifetime of the instance).
+             </summary>
+             <remarks>
+             The setter method is thread-safe.
+             </remarks>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.CSVParseEngine.SettingsLockMethod">
+            <summary>
+            This read only flag indicates the event that caused the other
+            settings to become locked.
+            </summary>
+            <see cref="P:WizardWrx.AnyCSV.CSVParseEngine.SettingsLocked"/>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.CSVParseEngine.SettingsLocked">
+             <summary>
+             This read only flag indicates whether the other settings are
+             locked, and cannot henceforth be changed, for the remaining lifetime
+             of the instance.
+            
+             There are two ways for settings to become locked.
+            
+             1) Call the instance Parse method.
+            
+             2) Call the LockSettings method.
+             </summary>
+             <remarks>
+             Since access to this property is synchronized, its value reflects
+             the most recent change made by code running on another thread.
+             </remarks>
+        </member>
+        <member name="P:WizardWrx.AnyCSV.CSVParseEngine.WhiteSpaceDisposition">
+             <summary>
+             Get or set the flag implemented by the TrimWhiteSpace enumeration
+             that indicates whether leading and trailing white space is kept
+             (default) or discarded if at the beginning, end, or both.
+            
+             To ensure consistent behavior in a loop, once the LockSettings or
+             Parse method on an instance is called, the property values are fixed
+             permanently (for the remaining lifetime of the instance).
+             </summary>
+             <remarks>
+             The setter method is thread-safe.
+             </remarks>
+        </member>
+        <member name="T:WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar">
+            <summary>
+            The DelimiterChar enumeration simplifies specifying any of the
+            commonly used field delimiter characters. 
+            
+            All but the first and last values map to one of the public constants
+            defined by this class.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar.None">
+            <summary>
+            This value indicates that the DelimiterChar is uninitialized.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar.Carat">
+             <summary>
+             Specify a CARAT (^) as the delimiter.
+            
+             The equivalent character constant is CARAT.
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar.CarriageReturn">
+            <summary>
+            Specify a Carriage Return (CR) control character as the delimiter.
+            
+            The equivalent character constant is CARRIAGE_RETURN.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar.Comma">
+             <summary>
+             Specify a comma as the delimiter.
+            
+             The equivalent character constant is COMMA.
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar.LineFeed">
+             <summary>
+             Specify a Line Feed (LF) control character as the delimiter.
+            
+             The equivalent character constant is LINE_FEED.
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar.Space">
+             <summary>
+             Specify a SPACE (' ') as the delimiter.
+            
+             The equivalent character constant is SPACE.
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar.Tab">
+             <summary>
+             Specify a tab control character as the delimiter.
+            
+             The equivalent character constant is TAB.
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar.VerticalBar">
+             <summary>
+             Specify a vertical bar ('|'), commonly called the pipe symbol,
+             as the delimiter.
+            
+             The equivalent character constant is VERTICAL_BAR.
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar.Other">
+             <summary>
+             Infrastructure: The delimiter is something besides the
+             enumerated choices.
+            
+             You cannot specify this type as input to the constructor. Use
+             the overload that takes a character.
+             </summary>
+        </member>
+        <member name="T:WizardWrx.AnyCSV.CSVParseEngine.GuardChar">
+            <summary>
+            The GuardChar enumeration simplifies specifying any of the
+            commonly used field delimiter protector characters.
+            
+            All but the first and last values map to one of the public constants
+            defined by this class.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardChar.None">
+            <summary>
+            This value indicates that the GuardChar is uninitialized.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardChar.BackQuote">
+             <summary>
+             Specify a double quotation as the protector of delimiters.
+            
+             The equivalent character constant is SINGLE_QUOTE.
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardChar.DoubleQuote">
+             <summary>
+             Specify a double quotation as the protector of delimiters.
+            
+             The equivalent character constant is DOUBLE_QUOTE.
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardChar.SingleQuote">
+             <summary>
+             Specify a double quotation as the protector of delimiters.
+            
+             The equivalent character constant is SINGLE_QUOTE.
+             </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardChar.Other">
+             <summary>
+             Infrastructure: The delimiter is something besides the
+             enumerated choices.
+            
+             You cannot specify this type as input to the constructor. Use
+             the overload that takes a character.
+             </summary>
+        </member>
+        <member name="T:WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition">
+            <summary>
+            Indicate whether to keep or discard field guard characters. Guards
+            that simply appear in the body of a field are always preserved.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition.Keep">
+            <summary>
+            Keep guards that surround a whole field.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition.Strip">
+            <summary>
+            Strip (discard) guards that surround a whole field.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.AnyCSV.CSVParseEngine.LockMethod">
+            <summary>
+            Once locked, this flag tracks whether the lock was applied by an
+            explicit call to LockSettings or by an internal call made on the
+            first call to the Parse method. Until then, its value is IsUnlocked,
+            which reflects the uninitialized state of its instance member.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.LockMethod.IsUnlocked">
+            <summary>
+            The properties are unlocked, which is their initial state, even
+            when the constructor sets one or more of them.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.LockMethod.LockedExplicitly">
+            <summary>
+            The LockSettings method was called explicitly by the code that
+            called this instance into existence.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.LockMethod.LockedImplicitly">
+            <summary>
+            The LockSettings method was called by the Parse method.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.AnyCSV.CSVParseEngine.LockState">
+            <summary>
+            This flag tracks the lock state of the instance properties that
+            govern operation of the CSV parsing engine when the instance method
+            calls upon it to parse a string.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.LockState.Unlocked">
+            <summary>
+            Initially, the operating parameters are unlocked.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.LockState.Locked">
+            <summary>
+            When the object is locked, either explicitly by calling the
+            LockSettings method on the instance, or implicitly, the first
+            time that an instance Parse method is called, whichever comes
+            first, a private LockState member transitions to this state.
+            
+            Thereafter, it is an error to change any property, and any
+            attempt to do so elicits an InvalidOperationException exception.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace">
+            <summary>
+            Indicate whether to trim leading and trailing space from fields. By
+            default, leading and trailing white space is left. The other three
+            options are self explanatory.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace.Leave">
+            <summary>
+            Leave leading and trailing white space. Assume that its presence
+            is meaningful. This is the default behavior.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace.TrimLeading">
+            <summary>
+            Trim leading white space. This is designed specifically for use
+            with Issuer and Subject fields of X.509 digital certificates.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace.TrimTrailing">
+            <summary>
+            Trim trailing white space. This option is especially useful with
+            CSV files generated by Microsoft Excel, which often have long
+            runs of meaningless white space, especially when a worksheet has
+            blank rows or columns in its UsedRange.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace.TrimBoth">
+             <summary>
+             Given that TrimLeading and TrimTrailing are required use cases,
+             trimming both ends is essentially free.
+            
+             This flag is implemented such that it can be logically processed
+             as TrimLeading | TrimTrailing.
+             </summary>
+        </member>
+        <member name="T:WizardWrx.AnyCSV.CSVParseEngine.GuardState">
+            <summary>
+            Specify whether and why the current character is guarded.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardState.Unguarded">
+            <summary>
+            The current character is unguarded.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardState.FieldIsGuarded">
+            <summary>
+            The current character belongs to a guarded field.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardState.SegmentIsGuarded">
+            <summary>
+            The current character belongs to a guarded segment of a field.
+            </summary>
+        </member>
+        <member name="T:WizardWrx.AnyCSV.CSVParseEngine.DelimiterMap">
+            <summary>
+            An element of an array of these structures identifies the delimiter
+            character, the corresponding member of the DelimiterChar enumeration,
+            and a string representation to display on reports and in debugger
+            windows.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterMap.DelimiterEnum">
+            <summary>
+            The DelimiterChar enumeration does double duty, both as an index
+            for the array of these structures that defines preset delimiter
+            characters, and as a convenient mechanism for using unambiguous
+            numeric constants as inputs to the parsing engine.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterMap.DelimiterCharacter">
+            <summary>
+            This member stores a preset character, to simplify using several
+            popular field delimiter characters, most of which are tricky to
+            define correctly in code.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.DelimiterMap.DelimiterDisplay">
+            <summary>
+            This member stores a preset string, constructed from a template,
+            that displays the character, itself, or a literal proxy, along
+            with decimal and hexadecimal representations of its numeric
+            value.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.DelimiterMap.#ctor(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar,System.Char,System.String)">
+            <summary>
+            The purpose of this constructor is to permit the array of preset
+            delimiters to be constructed at compile time.
+            </summary>
+            <param name="penmDelimiterEnum">
+            Specify the DelimiterChar member to store into the DelimiterEnum
+            member.
+            </param>
+            <param name="pchrDelimiterCharacter">
+            Specify the character to store into the DelimiterCharacter
+            member.
+            </param>
+            <param name="pstrDelimiterDisplay">
+            Specify the string to store into the DelimiterDisplay member.
+            </param>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.DelimiterMap.ToString">
+            <summary>
+            Take control of the string representation of this structure.
+            </summary>
+            <returns>
+            Use the DelimiterDisplay member as the string representation.
+            </returns>
+            <remarks>
+            The default string representation of a user defined type is its
+            absolute (fully qualified) type name, which isn't much use in a
+            debugger windows, since such a rendering duplicates information
+            that appears in the last column anyway. On the other hand, a
+            labeled display of the properties means that the value shown in
+            the debug window is immediately useful, and expanding the member
+            list is unnecessary.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.DelimiterMap.Equals(System.Object)">
+            <summary>
+            Take control of the IEquatable interface implementation of this
+            structure.
+            </summary>
+            <param name="obj">
+            Specify the other GuardMap structure against which to compare
+            this structure.
+            </param>
+            <returns>
+            Equality is evaluated based on the values of the GuardEnum and
+            GuardCharacter members of each structure.
+            </returns>
+            <remarks>
+            Taking control of the IEquatable implementation partially paves
+            the way for sorting the list in a meaningful fashion. Though it
+            is probably overkill, it's ready if needed for some future 
+            extension.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.DelimiterMap.GetHashCode">
+            <summary>
+            Since I overrode the Equals method, the compiler insists that I
+            must also override GetHashCode. That being the case, I'll accept
+            the default method generated by the compiler.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WizardWrx.AnyCSV.CSVParseEngine.GuardMap">
+            <summary>
+            An element of an array of these structures identifies the delimiter
+            guard character, the corresponding member of the GuardChar 
+            enumeration, and a string representation to display on reports and
+            in debugger windows.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardMap.GuardEnum">
+            <summary>
+            The GuardChar enumeration does double duty, both as an index
+            for the array of these structures that defines preset delimiter
+            guard characters, and as a convenient mechanism for using
+            unambiguous numeric constants as inputs to the parsing engine.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardMap.GuardCharacter">
+            <summary>
+            This member stores a preset character, to simplify using several
+            popular field delimiter guard characters, most of which are 
+            tricky to define correctly in code.
+            </summary>
+        </member>
+        <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardMap.GuardDisplay">
+            <summary>
+            This member stores a preset string, constructed from a template,
+            that displays the character, itself, or a literal proxy, along
+            with decimal and hexadecimal representations of its numeric
+            value.
+            </summary>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.GuardMap.ToString">
+            <summary>
+            Take control of the string representation of this structure.
+            </summary>
+            <returns>
+            Use the GuardDisplay member as the string representation.
+            </returns>
+            <remarks>
+            The default string representation of a user defined type is its
+            absolute (fully qualified) type name, which isn't much use in a
+            debugger windows, since such a rendering duplicates information
+            that appears in the last column anyway. On the other hand, a
+            labeled display of the properties means that the value shown in
+            the debug window is immediately useful, and expanding the member
+            list is unnecessary.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.GuardMap.Equals(System.Object)">
+            <summary>
+            Take control of the IEquatable interface implementation of this
+            structure.
+            </summary>
+            <param name="obj">
+            Specify the other GuardMap structure against which to compare
+            this structure.
+            </param>
+            <returns>
+            Equality is evaluated based on the values of the GuardEnum and
+            GuardCharacter members of each structure.
+            </returns>
+            <remarks>
+            Taking control of the IEquatable implementation partially paves
+            the way for sorting the list in a meaningful fashion. Though it
+            is probably overkill, it's ready if needed for some future 
+            extension.
+            </remarks>
+        </member>
+        <member name="M:WizardWrx.AnyCSV.CSVParseEngine.GuardMap.GetHashCode">
+            <summary>
+            Since I overrode the Equals method, the compiler insists that I
+            must also override GetHashCode. That being the case, I'll accept
+            the default method generated by the compiler.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WizardWrx.AnyCSV.Parser">
+            <summary>
+            This class defines the most robust CSV string parser that I can
+            conceive, based on 17 years of experience writing CSV parsers, leading
+            to the discovery today of a use case that breaks parsers that were
+            thought to be bulletproof.
+            
+            Like its parent, RobustDelimitedStringParser, this class relies upon a
+            static method on its base class, CSVParseEngine, to do the work.
             </summary>
         </member>
         <member name="M:WizardWrx.AnyCSV.Parser.#ctor">
@@ -129,7 +1249,7 @@
             can occur in a text file is valid.
             </param>
         </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.Parser.DelimiterChar)">
+        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar)">
             <summary>
             Use this constructor to override the default delimiter (comma) by
             selecting a character from an enumeration.
@@ -139,7 +1259,7 @@
             to specify your chosen delimiter.
             </param>
         </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.Parser.GuardChar)">
+        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.CSVParseEngine.GuardChar)">
             <summary>
             Use this constructor to override the default protector of delimiters
             (double quote) by selecting a character from an enumeration.
@@ -170,11 +1290,11 @@
             most applications, the enumerated types are adequate, and safer.
             </remarks>
         </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.Parser.DelimiterChar,WizardWrx.AnyCSV.Parser.GuardChar)">
+        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar,WizardWrx.AnyCSV.CSVParseEngine.GuardChar)">
             <summary>
             Use this constructor to override the default delimiter (comma) and
             the protector of delimiters (double quotation marks) by selecting
-            characters from a pair of emumerations that offer two mutually
+            characters from a pair of enumerations that offer two mutually
             exclusive lists of characters.
             </summary>
             <param name="penmDelimiter">
@@ -186,11 +1306,11 @@
             to specify your chosen character to protect delimiters.
             </param>
         </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.Parser.DelimiterChar,WizardWrx.AnyCSV.Parser.GuardChar,WizardWrx.AnyCSV.Parser.GuardDisposition)">
+        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar,WizardWrx.AnyCSV.CSVParseEngine.GuardChar,WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition)">
              <summary>
              Use this constructor to override the default delimiter (comma) and
              the protector of delimiters (double quotation marks) by selecting
-             characters from a pair of emumerations that offer two mutually
+             characters from a pair of enumerations that offer two mutually
              exclusive lists of characters.
             
              In addition, this constructor can override the default disposition
@@ -211,11 +1331,11 @@
              be stripped (default) or kept.
              </param>
         </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.Parser.DelimiterChar,WizardWrx.AnyCSV.Parser.GuardChar,WizardWrx.AnyCSV.Parser.TrimWhiteSpace)">
+        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar,WizardWrx.AnyCSV.CSVParseEngine.GuardChar,WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)">
              <summary>
              Use this constructor to override the default delimiter (comma) and
              the protector of delimiters (double quotation marks) by selecting
-             characters from a pair of emumerations that offer two mutually
+             characters from a pair of enumerations that offer two mutually
              exclusive lists of characters.
             
              In addition, this constructor can override the default disposition
@@ -236,11 +1356,11 @@
              from a field.
              </param>
         </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.Parser.DelimiterChar,WizardWrx.AnyCSV.Parser.GuardChar,WizardWrx.AnyCSV.Parser.GuardDisposition,WizardWrx.AnyCSV.Parser.TrimWhiteSpace)">
+        <member name="M:WizardWrx.AnyCSV.Parser.#ctor(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar,WizardWrx.AnyCSV.CSVParseEngine.GuardChar,WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition,WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)">
              <summary>
              Use this constructor to override the default delimiter (comma) and
              the protector of delimiters (double quotation marks) by selecting
-             characters from a pair of emumerations that offer two mutually
+             characters from a pair of enumerations that offer two mutually
              exclusive lists of characters.
             
              In addition, this constructor can override the default disposition
@@ -264,381 +1384,6 @@
              Specify whether leading or trailing white space should be trimmed
              from a field.
              </param>
-        </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.LockSettings">
-             <summary>
-             Lock the properties against changes.
-            
-             IMPORTANT: Once this method is called on an instance, subsequent
-             attempts to set any of its properties are punished, without a trial,
-             by an InvalidOperationException exception.
-             </summary>
-             <remarks>
-             This method is thread-safe.
-             </remarks>
-        </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.Parse(System.String)">
-            <summary>
-            Use the properties set on the current Parser instance to parse any
-            valid CSV string.
-            </summary>
-            <param name="pstrAnyCSV">
-            The string may be any type of well formed CSV string. See Remoarks
-            on the like named static method.
-            </param>
-            <returns>
-            The return value is the array of fields parsed from the string.
-            </returns>
-            <remarks>
-            This method is thread-safe.
-            </remarks>
-        </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.Parse(System.String,System.Char,System.Char,WizardWrx.AnyCSV.Parser.GuardDisposition,WizardWrx.AnyCSV.Parser.TrimWhiteSpace)">
-            <summary>
-            Call this method to parse any CSV string without working from an
-            instance of the Parser class, specifying both the field delimiter
-            and a separate character to protect delimiters embedded in fields.
-            </summary>
-            <param name="pstrAnyCSV">
-            The string may be any type of well formed CSV string. See Remoarks.
-            </param>
-            <param name="pchrDelimiter">
-            Specify the character to treat as the delimiter. Any character that
-            can occur in a text file is valid.
-            </param>
-            <param name="pchrProtector">
-            Specify the character to treat as the protector of delimiters. Any
-            character that can occur in a text file is valid.
-            </param>
-            <param name="penmGuardDisposition">
-            Specify whether guard characters that surround a whole field should
-            be stripped (default) or kept.
-            </param>
-            <param name="penmTrimWhiteSpace">
-            Specify whether leading or trailing white space should be trimmed
-            from a field.
-            </param>
-            <returns>
-            The return value is the array of fields parsed from the string.
-            </returns>
-            <remarks>
-            Rather than wastefully coding the same routine twice, parsing for
-            both instances of the Parser class and stand-alone parse requests
-            that accept defaults for one or both of the character parameters is
-            handled by this static method. This is easily accomplished by having
-            the instance method pass in its current property values, along with
-            the string, which always accompanies the request.
-            </remarks>
-        </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.Parse(System.String,System.Char,System.Char,WizardWrx.AnyCSV.Parser.GuardDisposition)">
-            <summary>
-            Call this method to parse any CSV string without working from an
-            instance of the Parser class, specifying both the field delimiter
-            and a separate character to protect delimiters embedded in fields.
-            </summary>
-            <param name="pstrAnyCSV">
-            The string may be any type of well formed CSV string. See Remoarks.
-            </param>
-            <param name="pchrDelimiter">
-            Specify the character to treat as the delimiter. Any character that
-            can occur in a text file is valid.
-            </param>
-            <param name="pchrProtector">
-            Specify the character to treat as the protector of delimiters. Any
-            character that can occur in a text file is valid.
-            </param>
-            <param name="penmGuardDisposition">
-            Specify whether guard characters that surround a whole field should
-            be stripped (default) or kept.
-            </param>
-            <returns>
-            The return value is the array of fields parsed from the string.
-            </returns>
-            <remarks>
-            </remarks>
-        </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.Parse(System.String,System.Char,System.Char)">
-            <summary>
-            Call this method to parse any CSV string without working from an
-            instance of the Parser class, specifying both the field delimiter
-            and a separate character to protect delimiters embedded in fields.
-            </summary>
-            <param name="pstrAnyCSV">
-            The string may be any type of well formed CSV string. See Remoarks.
-            </param>
-            <param name="pchrDelimiter">
-            Specify the character to treat as the delimiter. Any character that
-            can occur in a text file is valid.
-            </param>
-            <param name="pchrProtector">
-            Specify the character to treat as the protector of delimiters. Any
-            character that can occur in a text file is valid.
-            </param>
-            <returns>
-            The return value is the array of fields parsed from the string.
-            </returns>
-            <remarks>
-            Rather than wastefully coding the same routine twice, parsing for
-            both instances of the Parser class and stand-alone parse requests
-            that accept defaults for one or both of the character parameters is
-            handled by this static method. This is easily accomplished by having
-            the instance method pass in its current property values, along with
-            the string, which always accompanies the request.
-            </remarks>
-        </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.Parse(System.String,System.Char)">
-            <summary>
-            Call this method to parse any CSV string without working from an
-            instance of the Parser class, specifying the field delimiter, and
-            using the default delimiter guard character, the double quotation
-            mark.
-            </summary>
-            <param name="pstrAnyCSV">
-            The string may be any type of well formed CSV string. See Remoarks.
-            </param>
-            <param name="pchrDelimiter">
-            Specify the character to treat as the delimiter. Any character that
-            can occur in a text file is valid.
-            </param>
-            <returns>
-            The return value is the array of fields parsed from the string.
-            </returns>
-        </member>
-        <member name="M:WizardWrx.AnyCSV.Parser.StandardCSVParse(System.String)">
-            <summary>
-            Call this method to parse any CSV string without working from an
-            instance of the Parser class, using the default delimiter character
-            and  the default delimiter guard character, the double quotation
-            mark. See Remarks.
-            </summary>
-            <param name="pstrAnyCSV">
-            The string may be any type of well formed CSV string. See Remoarks.
-            </param>
-            <returns>
-            The return value is the array of fields parsed from the string.
-            </returns>
-            <remarks>
-            This method gets its own name, to distinguish it from a similarly
-            named instance method that has the same signature. This is just as
-            well, because its distictive name clarifies that its use is limited
-            to true Comma Separated Values (CSV) strings.
-            </remarks>
-        </member>
-        <member name="P:WizardWrx.AnyCSV.Parser.FieldDelimiter">
-             <summary>
-             Get or set the character currently specified as the delimiter
-             character.
-            
-             Before a value is accepted, it is compared against the current
-             delimiter guard character. If the two characters are different, the
-             new value is accepted and saved. Otherwise, an
-             InvalidOperationException exception is thrown.
-            
-             To ensure consistent behavior in a loop, once the LockSettings or
-             Parse method on an instance is called, the property values are fixed
-             permanently (for the remaining lifetime of the instance).
-             </summary>
-             <remarks>
-             The setter method is thread-safe.
-             </remarks>
-        </member>
-        <member name="P:WizardWrx.AnyCSV.Parser.DelimiterGuard">
-             <summary>
-             Get or set the character currently specified as the delimiter guard
-             character.
-            
-             Before a value is accepted, it is compared against the current
-             delimiter character. If the two characters are different, the new
-             value is accepted and saved. Otherwise, an InvalidOperationException
-             exception is thrown.
-            
-             To ensure consistent behavior in a loop, once the LockSettings or
-             Parse method on an instance is called, the property values are fixed
-             permanently (for the remaining lifetime of the instance).
-             </summary>
-             <remarks>
-             The setter method is thread-safe.
-             </remarks>
-        </member>
-        <member name="P:WizardWrx.AnyCSV.Parser.GuardCharDisposition">
-             <summary>
-             Get or set the flag implemented by the GuardDisposition enumeration
-             that indicates whether delimiter guard characters surrounding a
-             whole filed are discarded (default) or kept.
-            
-             To ensure consistent behavior in a loop, once the LockSettings or
-             Parse method on an instance is called, the property values are fixed
-             permanently (for the remaining lifetime of the instance).
-             </summary>
-             <remarks>
-             The setter method is thread-safe.
-             </remarks>
-        </member>
-        <member name="P:WizardWrx.AnyCSV.Parser.WhiteSpaceDisposition">
-             <summary>
-             Get or set the flag implemented by the TrimWhiteSpace enumeration
-             that indicates whether leading and trailing white space is kept
-             (default) or discarded if at the beginning, end, or both.
-            
-             To ensure consistent behavior in a loop, once the LockSettings or
-             Parse method on an instance is called, the property values are fixed
-             permanently (for the remaining lifetime of the instance).
-             </summary>
-             <remarks>
-             The setter method is thread-safe.
-             </remarks>
-        </member>
-        <member name="P:WizardWrx.AnyCSV.Parser.SettingsLocked">
-             <summary>
-             This read only flag indicates whether the the other settings are
-             locked, and cannot henceforth be changed, for the remaining lifetime
-             of the instance.
-            
-             There are two ways for settings to become locked.
-            
-             1) Call the instance Parse method.
-            
-             2) Call the LockSettings method.
-             </summary>
-        </member>
-        <member name="T:WizardWrx.AnyCSV.Parser.DelimiterChar">
-            <summary>
-            The DelimiterChar enumeration simplifies specifying any of the commonly
-            used field delimiter characters.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DelimiterChar.Comma">
-             <summary>
-             Specify a comma as the delimiter.
-            
-             The equivalent character constant is COMMA.
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DelimiterChar.Tab">
-             <summary>
-             Specify a tab as the delimiter.
-            
-             The equivalent character constant is TAB.
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DelimiterChar.VerticalBar">
-             <summary>
-             Specify a vertical bar ('|'), commonly called the pipe symbol,
-             as the delimiter.
-            
-             The equivalent character constant is VERTICAL_BAR.
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DelimiterChar.Carat">
-             <summary>
-             Specify a CARAT (^) as the delimiter.
-            
-             The equivalent character constant is CARAT.
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DelimiterChar.Space">
-             <summary>
-             Specify a SPACE (' ') as the delimiter.
-            
-             The equivalent character constant is SPACE.
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.DelimiterChar.Other">
-             <summary>
-             Infrastructure: The delimiter is something besides the
-             enumerated choices.
-            
-             You cannot specify this type as input to the constructor. Use
-             the overload that takes a character.
-             </summary>
-        </member>
-        <member name="T:WizardWrx.AnyCSV.Parser.GuardChar">
-            <summary>
-            The GuardChar enumeration simplifies specifying any of the
-            commonly used field delimiter protector characters.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.GuardChar.DoubleQuote">
-             <summary>
-             Specify a double quotation as the protector of delimiters.
-            
-             The equivalent character constant is DOUBLE_QUOTE.
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.GuardChar.SingleQuote">
-             <summary>
-             Specify a double quotation as the protector of delimiters.
-            
-             The equivalent character constant is SINGLE_QUOTE.
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.GuardChar.BackQuote">
-             <summary>
-             Specify a double quotation as the protector of delimiters.
-            
-             The equivalent character constant is SINGLE_QUOTE.
-             </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.GuardChar.Other">
-             <summary>
-             Infrastructure: The delimiter is something besides the
-             enumerated choices.
-            
-             You cannot specify this type as input to the constructor. Use
-             the overload that takes a character.
-             </summary>
-        </member>
-        <member name="T:WizardWrx.AnyCSV.Parser.GuardDisposition">
-            <summary>
-            Indicate whether to keep or discard field guard characters. Guards
-            that simply appear in the body of a field are always preserved.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.GuardDisposition.Keep">
-            <summary>
-            Keep guards that surround a whole field.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.GuardDisposition.Strip">
-            <summary>
-            Strip (discard) guards that surround a whole field.
-            </summary>
-        </member>
-        <member name="T:WizardWrx.AnyCSV.Parser.TrimWhiteSpace">
-            <summary>
-            Indicate whether to trim leading and trailing space from fields.
-            By default, leading and trailing white space is left. The other
-            three options are self explanatory.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.TrimWhiteSpace.Leave">
-            <summary>
-            Leave leading and trailing white space. Assume that its presence
-            is meaningful. This is the default behavior.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.TrimWhiteSpace.TrimLeading">
-            <summary>
-            Trim leading white space. This is designed specifically for use
-            with Issuer and Subject fields of X.509 digital certificates.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.TrimWhiteSpace.TrimTrailing">
-            <summary>
-            Trim trailing white space. This option is especially useful with
-            CSV files generated by Microsoft Excel, which often have long
-            runs of meaningless white space, especially when a worksheet has
-            blank rows or columns in its UsedRange.
-            </summary>
-        </member>
-        <member name="F:WizardWrx.AnyCSV.Parser.TrimWhiteSpace.TrimBoth">
-             <summary>
-             Given that TrimLeading and TrimTrailing are required use cases,
-             trimming both ends is essentially free.
-            
-             This flag is implemented such that it can be logically processed
-             as TrimLeading | TrimTrailing.
-             </summary>
         </member>
         <member name="T:WizardWrx.Properties.Resources">
             <summary>
@@ -661,9 +1406,19 @@
               Looks up a localized string similar to Carat (^, ASCII code 0x5E).
             </summary>
         </member>
+        <member name="P:WizardWrx.Properties.Resources.DLM_DSP_CARRIAGE_RETURN">
+            <summary>
+              Looks up a localized string similar to Carriage return (CR, ASCII code 0x0D).
+            </summary>
+        </member>
         <member name="P:WizardWrx.Properties.Resources.DLM_DSP_COMMA">
             <summary>
               Looks up a localized string similar to Comma (, ASCII code 0x2C).
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.DLM_DSP_LINE_FEED">
+            <summary>
+              Looks up a localized string similar to Line feed (LF, ASCII code 0x0A).
             </summary>
         </member>
         <member name="P:WizardWrx.Properties.Resources.DLM_DSP_OTHER">
@@ -673,7 +1428,7 @@
         </member>
         <member name="P:WizardWrx.Properties.Resources.DLM_DSP_SPACE">
             <summary>
-              Looks up a localized string similar to Space, ASCII code 0x20).
+              Looks up a localized string similar to Space (ASCII code 0x20).
             </summary>
         </member>
         <member name="P:WizardWrx.Properties.Resources.DLM_DSP_TAB">
@@ -696,19 +1451,34 @@
               Looks up a localized string similar to Settings on this instance are locked..
             </summary>
         </member>
-        <member name="P:WizardWrx.Properties.Resources.GRD_DSP_BCK_QUOTE">
+        <member name="P:WizardWrx.Properties.Resources.ERRMSG_TYPE_MISMATCH">
+            <summary>
+              Looks up a localized string similar to {0} is of type {1}, which cannot be meaningfully compared to a {2}, which is of type {3}..
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.GRD_DSP_BACK_QUOTE">
             <summary>
               Looks up a localized string similar to Back Quotation Mark (`, ASCII code 0x60).
             </summary>
         </member>
-        <member name="P:WizardWrx.Properties.Resources.GRD_DSP_DBL_QUOTE">
+        <member name="P:WizardWrx.Properties.Resources.GRD_DSP_DOUBLE_QUOTE">
             <summary>
               Looks up a localized string similar to Double Quotation Mark (&quot;, ASCII code 0x22).
             </summary>
         </member>
-        <member name="P:WizardWrx.Properties.Resources.GRD_DSP_SGL_QUOTE">
+        <member name="P:WizardWrx.Properties.Resources.GRD_DSP_SINGLE_QUOTE">
             <summary>
               Looks up a localized string similar to Single Quotation Mark (&apos;, ASCII code 0x27).
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.HASH_CODE_TEMPLATE">
+            <summary>
+              Looks up a localized string similar to {0},{1},{2},{3},{4},{5}.
+            </summary>
+        </member>
+        <member name="P:WizardWrx.Properties.Resources.TOSTRING_TEMPLATE">
+            <summary>
+              Looks up a localized string similar to Delimiter         = {0}{6}Guard Character   = {1}{6}Trim White Space  = {2}{6}Guard Disposition = {3}{6}Lock State        = {4}{6}Lock Method       = {5}{6}.
             </summary>
         </member>
     </members>

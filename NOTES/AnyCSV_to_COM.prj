@@ -1,0 +1,19 @@
+[Project ID]
+	Signature=UE Proj: v.1
+[PUI]
+.ENIGMA.DAVE.pui=77ecdb41-1417-49f6-8757-5c183d169ac1
+[Project Information]
+	Use Relative Directory=1
+	Relative to Project File=1
+	Include Sub Directories=1
+	Project Tagfile=
+	Project Wordfile=
+	Project TpFile=
+	Filter=
+	Create Tagfile=0
+[Files]
+	0=..\..\AssemblyPropertyViewer\AssemblyPropertyViewer\IAssemblyProperties.cs
+	1=..\..\AssemblyPropertyViewer\AssemblyPropertyViewer\AssemblyPropertyViewer.CS
+	2=Development_Notes_4.0.TXT
+	3=..\AnyCSV\Parser.cs
+	4=..\AnyCSV\ICSVParser.cs

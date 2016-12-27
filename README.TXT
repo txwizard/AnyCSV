@@ -1,14 +1,18 @@
                                  AnyCSV ReadMe
 
 ================================================================================
-2016-06-10 01:13:49
+2016-12-27 00:41:36 is the publication date of COM-visible version 4.0.
+2016-06-10 01:13:49 is the initial public release date.
 ================================================================================
 
 AnyCSV is the definitive CSV parsing engine; so far as I know, there isn't a CSV
 string that it can't handle, including the unusually formatted strings found in
 X.509 digital certificates. Unlike every CSV parser that I considered before
-concluding that the world really does need Yet Another CSV Parser. The result is
-a textbook example of Separation of Concerns; this class parese strings, period.
+concluding that the world really does need Yet Another CSV Parser, this library
+accepts guard characters anywhere in a string; if a pair guards a delimiter,
+it guards a delimiter, even if the guarded delimiter is the only character
+between the opening and closing guard characters. The result is a textbook
+example of Separation of Concerns; this class parese strings, period.
 Reading them is the responsibility of other code; I see no point in deciding for
 you how you may acquire them.
 
@@ -98,6 +102,21 @@ the binary code in the tool kit into open source repositories, due to the way
 their source code is organized, making usable repositories is nontrivial, and
 must wait for another day. Meanwhile, the shell scripts shall remain completely
 free to use and adapt.
+
+--------------------------
+COM Interop
+--------------------------
+
+Beginning with version 4.0, this library is COM visible, and the project
+configuration includes instructions to the build engine to register the
+assembly for COM interop. As was so with the initial work, the addtion of COM
+interoperability meet a pressing need for a robust CSV string parsing engine
+that could run in a Microsoft Excel application.
+
+The idisyncrhatic way that VBA processes inidividual characters is reflected in
+the COM interface, and the enumerated types that expose the most popular guard
+and delimiter characters are the best way to set your object properties from
+your COM client.
 
 --------------------------
 Internal Documentation

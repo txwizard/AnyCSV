@@ -72,9 +72,14 @@
     Date       Version Author Synopsis
     ---------- ------- ------ -------------------------------------------------
     2014/07/07 3.0     DAG    This is the first version.
-    2016/06/10 3.1     DAG    Embed my three-clause BSD license, and sever all
+
+	2016/06/10 3.1     DAG    Embed my three-clause BSD license, and sever all
                               ties with the deprecated class libraries and the
                               CodeProject library that AnyCSV superseded.
+
+    2016/09/18 4.0     DAG    The original Parser class exposes many more
+                              constructors and overloaded Parse methods than can
+                              be exposed to COM, and this remains its unit test.
     ============================================================================
 */
 
@@ -84,7 +89,6 @@ using System.Collections.Generic;
 using System.Text;
 
 /*  Added by DAG */
-
 
 using WizardWrx;
 using WizardWrx.ConsoleAppAids2;

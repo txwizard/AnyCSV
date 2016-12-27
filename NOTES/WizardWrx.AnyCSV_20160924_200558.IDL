@@ -1,0 +1,68 @@
+// Generated .IDL file (by the OLE/COM Object Viewer)
+// 
+// typelib filename: WizardWrx.AnyCSV.tlb
+
+[
+  uuid(24256A33-D92A-4883-8C41-2D69FFEBC6E5),
+  version(4.0),
+  helpstring("Process ANY CSV string."),
+  custom(90883F05-3D28-11D2-8F17-00A0C9A6186D, "WizardWrx.AnyCSV, Version=4.0.80.33052, Culture=neutral, PublicKeyToken=null")
+
+]
+library WizardWrx_AnyCSV
+{
+    // TLib :     // TLib : mscorlib.dll : {BED7F4EA-1A96-11D2-8F08-00A0C9A6186D}
+    importlib("mscorlib.tlb");
+    // TLib : OLE Automation : {00020430-0000-0000-C000-000000000046}
+    importlib("stdole2.tlb");
+
+    // Forward declare all types defined in this typelib
+    interface _RobustDelimitedStringParser;
+
+    [
+      uuid(EE63E545-0FC1-42F0-9DDD-028A5FFD438F),
+      version(1.0),
+      custom(0F21F359-AB84-41E8-9A78-36D110E6D2F9, "WizardWrx.AnyCSV.RobustDelimitedStringParser")
+    ]
+    coclass RobustDelimitedStringParser {
+        [default] interface _RobustDelimitedStringParser;
+        interface _Object;
+    };
+
+    [
+      odl,
+      uuid(A8F2848B-9A12-36CB-8141-B53CCF411537),
+      hidden,
+      dual,
+      nonextensible,
+      oleautomation,
+      custom(0F21F359-AB84-41E8-9A78-36D110E6D2F9, "WizardWrx.AnyCSV.RobustDelimitedStringParser")    
+
+    ]
+    interface _RobustDelimitedStringParser : IDispatch {
+        [restricted] void Missing7();
+        [restricted] void Missing8();
+        [restricted] void Missing9();
+        [id(0x60020003)]
+        HRESULT GetType([out, retval] _Type** pRetVal);
+        [id(0x60020004), propget]
+        HRESULT FieldDelimiter([out, retval] unsigned short* pRetVal);
+        [id(0x60020004), propput]
+        HRESULT FieldDelimiter([in] unsigned short pRetVal);
+        [id(0x60020006), propget]
+        HRESULT DelimiterGuard([out, retval] unsigned short* pRetVal);
+        [id(0x60020006), propput]
+        HRESULT DelimiterGuard([in] unsigned short pRetVal);
+        [restricted] void Missing15();
+        [restricted] void Missing16();
+        [restricted] void Missing17();
+        [restricted] void Missing18();
+        [restricted] void Missing19();
+        [id(0x6002000d)]
+        HRESULT LockSettings();
+        [id(0x6002000e)]
+        HRESULT Parse(
+                        [in] BSTR pstrAnyCSV, 
+                        [out, retval] SAFEARRAY(BSTR)* pRetVal);
+    };
+};

@@ -4,4 +4,8 @@
     <StartArguments>CSV_Test_Strings.TXT</StartArguments>
     <StartWorkingDirectory>C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\NOTES\</StartWorkingDirectory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <StartWorkingDirectory>C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\NOTES</StartWorkingDirectory>
+    <StartArguments>CSV_Test_Strings.TXT</StartArguments>
+  </PropertyGroup>
 </Project>
