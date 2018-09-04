@@ -6,3 +6,14 @@ C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\AnyCSV.csproj.GenerateResource.Cache
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.AnyCSV.dll
 C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.AnyCSV.pdb
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\AnyCSV.csprojResolveAssemblyReference.cache
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.XML
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.pdb
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.Properties.Resources.resources
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\AnyCSV.csproj.GenerateResource.Cache
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\AnyCSV.csproj.CoreCompileInputs.cache
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.AnyCSV.dll
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.AnyCSV.pdb
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.tlb
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\AnyCSV.csprojAssemblyReference.cache

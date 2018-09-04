@@ -13,10 +13,14 @@
 	Remarks:			It wouldn't surprise me to discover that the base class
 						being abstract trips up COM Interop.
 
-	Reference:			"C++ calling C# COM Interop Error: HRESULT 0x80131509"
-						http://stackoverflow.com/questions/9093531/c-calling-c-sharp-com-interop-error-hresult-0x80131509
- 
-	License:            Copyright (C) 2014-2016, David A. Gray.
+	Reference:			1)	"C++ calling C# COM Interop Error: HRESULT 0x80131509"
+							http://stackoverflow.com/questions/9093531/c-calling-c-sharp-com-interop-error-hresult-0x80131509
+
+						2)	"Issues with building a project with "Register for COM interop" for a 64-bit assembly"
+							https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
+							Retrieved 2017/08/05 07:28:24
+
+	License:            Copyright (C) 2014-2018, David A. Gray.
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -63,6 +67,17 @@
     2016/10/01 4.0     DAG    Move the guts of the Parser class, the original
                               implementation of my CSV parsing algorithm, into
                               this class.
+
+    2017/08/05 5.0     DAG    Change CPU architecture from x86 to MSIL, and
+                              record the COM registration in the 64 bit Registry
+                              as described in the second reference cited above.
+
+    2018/01/03 7.0     DAG    Sign the assembly with a strong name, so that it
+                              can go into a Global Assembly Cache. Since there
+                              are no other changes, there is no debug build.
+
+    2018/09/03 7.0     DAG    Amend ToString to display character codes as both
+	                          raw characters and decimal values.
     ============================================================================
 */
 
@@ -1830,12 +1845,14 @@ namespace WizardWrx.AnyCSV
 				new object [ ]
 				{
 					_chrDelimiter ,							// Format item 0 = Delimiter character
-					_chrGuard ,								// Format Item 1 = Guard character
-					_enmTrimWhiteSpace ,					// Format Item 2 = White space disposition flag
-					_enmGuardDisposition ,					// Format item 3 = Guard character disposition flag
-					_fSettingsLocked ,						// Format Item 4 = Property lock state (Locked or Unlocked)
-					_enmLockMethod ,						// Format Item 5 = Property Locking method (unlocked, explicit, or implicit)
-					Environment.NewLine						// Format Item 6 = Embedded Newline
+					( int ) _chrDelimiter ,					// Format Item 1 = Delimiter character (decimal)
+					_chrGuard ,								// Format Item 2 = Guard character
+					( int ) _chrGuard ,						// Format Item 3 = Guard character (decimal)
+					_enmTrimWhiteSpace ,					// Format Item 4 = White space disposition flag
+					_enmGuardDisposition ,					// Format item 5 = Guard character disposition flag
+					_fSettingsLocked ,						// Format Item 6 = Property lock state (Locked or Unlocked)
+					_enmLockMethod ,						// Format Item 7 = Property Locking method (unlocked, explicit, or implicit)
+					Environment.NewLine						// Format Item 8 = Embedded Newline
 				} );
 		}	// ToString
 		#endregion	// Overridden Root Class Methods

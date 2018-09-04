@@ -10,9 +10,8 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AnyCSVTestStand</RootNamespace>
     <AssemblyName>AnyCSVTestStand</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>16c18c11</NuGetPackageImportStamp>
   </PropertyGroup>
@@ -38,13 +37,43 @@
   <PropertyGroup>
     <ApplicationIcon>WW_Icon1.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;ANYCSV</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE;ANYCSV</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>DavidAGrayMyAbacus.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="WizardWrx.ConsoleAppAids2">
-      <HintPath>..\..\ConsoleAppAids2\ConsoleAppAids2\bin\Release\WizardWrx.ConsoleAppAids2.dll</HintPath>
+    <Reference Include="WizardWrx.Common">
+      <HintPath>..\..\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll</HintPath>
     </Reference>
-    <Reference Include="WizardWrx.DLLServices2">
-      <HintPath>..\..\DLLServices2\DLLServices2\bin\Release\WizardWrx.DLLServices2.dll</HintPath>
+    <Reference Include="WizardWrx.ConsoleAppAids3">
+      <HintPath>..\..\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.Core">
+      <HintPath>..\..\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="WizardWrx.DLLConfigurationManager">
+      <HintPath>..\..\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -65,16 +94,18 @@
     <Content Include="WizardWrx.DLLServices2.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="DavidAGrayMyAbacus.pfx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AnyCSV\AnyCSV.csproj">
-      <Project>{71AF5044-EF2C-46DE-9965-4D39811BE0BF}</Project>
+      <Project>{71af5044-ef2c-46de-9965-4d39811be0bf}</Project>
       <Name>AnyCSV</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,0 +1,211 @@
+                Update the AnyCSV Git Repository to Version 4.0
+
+================================================================================
+2016-12-27 00:57:35
+================================================================================
+
+DAG@ENIGMA MINGW64 ~/Documents/Visual Studio 2013/Projects/WizardWrx_Libs/AnyCSV (master)
+$ pwd
+/c/Users/DAVE/Documents/Visual Studio 2013/Projects/WizardWrx_Libs/AnyCSV
+
+DAG@ENIGMA MINGW64 ~/Documents/Visual Studio 2013/Projects/WizardWrx_Libs/AnyCSV (master)
+$ git add *
+warning: LF will be replaced by CRLF in AnyCSV/package.builder.json.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in packages/NuGet.Package.Builder.1.0.10/content/package.builder.json.
+The file will have its original line endings in your working directory.
+
+DAG@ENIGMA MINGW64 ~/Documents/Visual Studio 2013/Projects/WizardWrx_Libs/AnyCSV (master)
+$ git add README.TXT
+
+DAG@ENIGMA MINGW64 ~/Documents/Visual Studio 2013/Projects/WizardWrx_Libs/AnyCSV (master)
+$ git commit -m "Version 4.0 adds COM Interop"
+[master warning: LF will be replaced by CRLF in AnyCSV/package.builder.json.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in packages/NuGet.Package.Builder.1.0.10/content/package.builder.json.
+The file will have its original line endings in your working directory.
+c56f067] Version 4.0 adds COM Interop
+warning: LF will be replaced by CRLF in AnyCSV/package.builder.json.
+The file will have its original line endings in your working directory.
+warning: LF will be replaced by CRLF in packages/NuGet.Package.Builder.1.0.10/content/package.builder.json.
+The file will have its original line endings in your working directory.
+ 181 files changed, 22867 insertions(+), 36438 deletions(-)
+ rewrite AnyCSV.v12.suo (87%)
+ create mode 100644 AnyCSV/AnyCSV.nuspec
+ create mode 100644 AnyCSV/CSVParseEngine.cs
+ create mode 100644 AnyCSV/ICSVParser.cs
+ rewrite AnyCSV/Parser.cs (74%)
+ delete mode 100644 AnyCSV/bin/Debug/WizardWrx.AnyCSV.dll
+ delete mode 100644 AnyCSV/bin/Debug/WizardWrx.AnyCSV.pdb
+ delete mode 100644 AnyCSV/bin/Debug/WizardWrx.AnyCSV.xml
+ rewrite AnyCSV/bin/Release/WizardWrx.AnyCSV.dll (93%)
+ rewrite AnyCSV/bin/Release/WizardWrx.AnyCSV.pdb (79%)
+ create mode 100644 AnyCSV/bin/Release/WizardWrx.AnyCSV.tlb
+ create mode 100644 AnyCSV/obj/AnyCSV.csproj.UnmanagedRegistration.cache
+ delete mode 100644 AnyCSV/obj/Debug/AnyCSV.csproj.FileListAbsolute.txt
+ delete mode 100644 AnyCSV/obj/Debug/AnyCSV.csproj.GenerateResource.Cache
+ delete mode 100644 AnyCSV/obj/Debug/AnyCSV.csprojResolveAssemblyReference.cache
+ delete mode 100644 AnyCSV/obj/Debug/GenerateResource-ResGen.read.1.tlog
+ delete mode 100644 AnyCSV/obj/Debug/GenerateResource-ResGen.write.1.tlog
+ delete mode 100644 AnyCSV/obj/Debug/TempPE/Properties.Resources.Designer.cs.dll
+ delete mode 100644 AnyCSV/obj/Debug/WizardWrx.AnyCSV.dll
+ delete mode 100644 AnyCSV/obj/Debug/WizardWrx.AnyCSV.pdb
+ delete mode 100644 AnyCSV/obj/Debug/WizardWrx.Properties.Resources.resources
+ rewrite AnyCSV/obj/Release/AnyCSV.csproj.FileListAbsolute.txt (74%)
+ rename AnyCSV/obj/{Debug => Release}/DesignTimeResolveAssemblyReferencesInput.cache (58%)
+ delete mode 100644 AnyCSV/obj/Release/GenerateResource-ResGen.read.1.tlog
+ delete mode 100644 AnyCSV/obj/Release/GenerateResource-ResGen.write.1.tlog
+ delete mode 100644 AnyCSV/obj/Release/TempPE/Properties.Resources.Designer.cs.dll
+ rewrite AnyCSV/obj/Release/WizardWrx.AnyCSV.dll (93%)
+ rewrite AnyCSV/obj/Release/WizardWrx.AnyCSV.pdb (79%)
+ rewrite AnyCSV/obj/Release/WizardWrx.Properties.Resources.resources (89%)
+ create mode 100644 AnyCSV/package.builder.json
+ create mode 100644 AnyCSV/packages.config
+ delete mode 100644 AnyCSVTestStand/bin/Debug/AnyCSVTestStand.exe.config
+ delete mode 100644 AnyCSVTestStand/bin/Debug/AnyCSVTestStand.pdb
+ delete mode 100644 AnyCSVTestStand/bin/Debug/AnyCSVTestStand.vshost.exe
+ delete mode 100644 AnyCSVTestStand/bin/Debug/AnyCSVTestStand.vshost.exe.config
+ delete mode 100644 AnyCSVTestStand/bin/Debug/AnyCSVTestStand.vshost.exe.manifest
+ delete mode 100644 AnyCSVTestStand/bin/Debug/ConsoleUtility1.vshost.exe.config
+ delete mode 100644 AnyCSVTestStand/bin/Debug/ConsoleUtility1.vshost.exe.manifest
+ delete mode 100644 AnyCSVTestStand/bin/Debug/Newtonsoft.Json.dll
+ delete mode 100644 AnyCSVTestStand/bin/Debug/Newtonsoft.Json.xml
+ delete mode 100644 AnyCSVTestStand/bin/Debug/P6CUtilLib1.dll
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.AnyCSV.dll
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.AnyCSV.pdb
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.AnyCSV.xml
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.BitMath.dll
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.BitMath.pdb
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.BitMath.xml
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.ConsoleAppAids2.dll
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.ConsoleAppAids2.pdb
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.ConsoleAppAids2.xml
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.DLLServices2.dll
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.DLLServices2.dll.config
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.DLLServices2.pdb
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.DLLServices2.xml
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.DateMath.dll
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.DateMath.pdb
+ delete mode 100644 AnyCSVTestStand/bin/Debug/WizardWrx.DateMath.xml
+ rename AnyCSVTestStand/{obj/x86/Debug => bin/Release}/AnyCSVTestStand.exe (51%)
+ delete mode 100644 AnyCSVTestStand/bin/Release/ConsoleUtility1.vshost.exe
+ delete mode 100644 AnyCSVTestStand/bin/Release/ConsoleUtility1.vshost.exe.config
+ delete mode 100644 AnyCSVTestStand/bin/Release/ConsoleUtility1.vshost.exe.manifest
+ delete mode 100644 AnyCSVTestStand/bin/Release/P6CUtilLib1.dll
+ rewrite AnyCSVTestStand/bin/Release/WizardWrx.AnyCSV.dll (93%)
+ rewrite AnyCSVTestStand/bin/Release/WizardWrx.AnyCSV.pdb (79%)
+ delete mode 100644 AnyCSVTestStand/bin/Release/WizardWrx.DateMath.dll
+ delete mode 100644 AnyCSVTestStand/bin/Release/WizardWrx.DateMath.pdb
+ delete mode 100644 AnyCSVTestStand/bin/Release/WizardWrx.DateMath.xml
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/AnyCSVTestStand.Properties.Resources.resources
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/AnyCSVTestStand.csproj.FileListAbsolute.txt
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/AnyCSVTestStand.csproj.GenerateResource.Cache
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/AnyCSVTestStand.csprojResolveAssemblyReference.cache
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/AnyCSVTestStand.pdb
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/ConsoleUtility1.csproj.FileListAbsolute.txt
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/DesignTimeResolveAssemblyReferences.cache
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/GenerateResource-ResGen.read.1.tlog
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/GenerateResource-ResGen.write.1.tlog
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/ResolveAssemblyReference.cache
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/TempPE/Properties.Resources.Designer.cs.dll
+ delete mode 100644 AnyCSVTestStand/obj/x86/Debug/build.force
+ rewrite AnyCSVTestStand/obj/x86/Release/AnyCSVTestStand.csproj.FileListAbsolute.txt (75%)
+ rewrite AnyCSVTestStand/obj/x86/Release/AnyCSVTestStand.csprojResolveAssemblyReference.cache (81%)
+ rename AnyCSVTestStand/{bin/Debug => obj/x86/Release}/AnyCSVTestStand.exe (51%)
+ rename AnyCSVTestStand/obj/x86/{Debug => Release}/DesignTimeResolveAssemblyReferencesInput.cache (51%)
+ delete mode 100644 AnyCSVTestStand/obj/x86/Release/GenerateResource-ResGen.read.1.tlog
+ delete mode 100644 AnyCSVTestStand/obj/x86/Release/GenerateResource-ResGen.write.1.tlog
+ delete mode 100644 AnyCSVTestStand/obj/x86/Release/ResolveAssemblyReference.cache
+ delete mode 100644 AnyCSVTestStand/obj/x86/Release/TempPE/Properties.Resources.Designer.cs.dll
+ create mode 100644 NOTES/AnyCSVTestStand_20160914_220714.LOG
+ create mode 100644 NOTES/AnyCSVTestStand_20160914_223625.LOG
+ create mode 100644 NOTES/AnyCSVTestStand_20160915_003412.LOG
+ create mode 100644 NOTES/AnyCSVTestStand_20160919_235528.LOG
+ create mode 100644 NOTES/AnyCSVTestStand_20160924_125611.LOG
+ create mode 100644 NOTES/AnyCSVTestStand_20160924_135445.LOG
+ create mode 100644 NOTES/AnyCSVTestStand_20160924_194735.LOG
+ create mode 100644 NOTES/AnyCSVTestStand_20161001_133129.LOG
+ create mode 100644 NOTES/AnyCSV_to_COM.prj
+ create mode 100644 NOTES/Development_Notes_4.0.TXT
+ create mode 100644 NOTES/Development_Worksheets_4.0.XLSM
+ create mode 100644 NOTES/Development_Worksheets_4.0.XLSX
+ create mode 100644 NOTES/Development_Worksheets_4_0_Module1.BAS
+ create mode 100644 NOTES/HKCR_Interface_A8F2848B_9A12_36CB_8141_B53CCF411537.REG
+ create mode 100644 NOTES/HKCR_Record_093B06A4_2450-_30E_8E67_0D988638FE2A.REG
+ create mode 100644 NOTES/HKCR_TypeLib_24256A33_D92A_4883_8C41_2D69FFEBC6E5.REG
+ create mode 100644 NOTES/HKCR_WizardWrx_AnyCSV_RobustDelimitedStringParser.REG
+ create mode 100644 NOTES/HKCR_Wow6432Node_CLSID_EE63E545_0FC1_42F0_9DDD_028A5FFD438F.REG
+ create mode 100644 NOTES/HKCR_Wow6432Node_Interface_A8F2848B_9A12_36CB_8141_B53CCF411537.REG
+ create mode 100644 NOTES/HKCR_Wow6432Node_TypeLib_24256A33_D92A_4883_8C41_2D69FFEBC6E5.REG
+ create mode 100644 NOTES/HKLM_SOFTWARE_Classes_Interface_A8F2848B_9A12_36CB_8141_B53CCF411537.REG
+ create mode 100644 NOTES/HKLM_SOFTWARE_Classes_Record_093B06A4_2450_430E_8E67_0D988638FE2A.REG
+ create mode 100644 NOTES/HKLM_SOFTWARE_Classes_TypeLib_24256A33_D92A_4883_8C41_2D69FFEBC6E5.REG
+ create mode 100644 NOTES/HKLM_SOFTWARE_Classes_WizardWrx_AnyCSV_RobustDelimitedStringParser.REG
+ create mode 100644 NOTES/HKLM_SOFTWARE_Classes_Wow6432Node_CLSID_EE63E545_0FC1_42F0_9DDD_028A5FFD438F.REG
+ create mode 100644 NOTES/HKLM_SOFTWARE_Classes_Wow6432Node_Interface_A8F2848B_9A12_36CB_8141_B53CCF411537.REG
+ create mode 100644 NOTES/HKLM_SOFTWARE_Classes_Wow6432Node_TypeLib_24256A33_D92A_4883_8C41_2D69FFEBC6E5.REG
+ create mode 100644 NOTES/HKLM_SOFTWARE_Wow6432Node_Classes_CLSID_EE63E545_0FC1_42F0_9DDD_028A5FFD438F.REG
+ create mode 100644 NOTES/HKLM_SOFTWARE_Wow6432Node_Classes_Interface_A8F2848B_9A12_36CB_8141_B53CCF411537.REG
+ create mode 100644 NOTES/HKLM_SOFTWARE_Wow6432Node_Classes_TypeLib_24256A33_D92A_4883_8C41_2D69FFEBC6E5.REG
+ create mode 100644 NOTES/Important_Named_Ranges_in_Reference_Worksheet.TXT
+ create mode 100644 NOTES/Inventory_VisualBasicScripts_20160911_190720.CSV
+ create mode 100644 NOTES/Inventory_WizardWrx_DLLServices2_dll_config_20160911_165813.CSV
+ create mode 100644 NOTES/NuGet_Package_Release_Notes.DOCX
+ create mode 100644 NOTES/Reference_Worksheets.XLSX.lnk
+ create mode 100644 NOTES/WizardWrx.AnyCSV_20160924_200558.IDL
+ create mode 100644 NOTES/WizardWrx.AnyCSV_20160925_135318.IDL
+ create mode 100644 NOTES/WizardWrx.AnyCSV_20160925_135318.tlb
+ create mode 100644 NOTES/WizardWrx.AnyCSV_20160925_150522.IDL
+ create mode 100644 NOTES/WizardWrx.AnyCSV_20160925_150522.TLB
+ create mode 100644 NOTES/WizardWrx.AnyCSV_20160925_205801.IDL
+ create mode 100644 NOTES/WizardWrx.AnyCSV_20160925_205801.dll
+ create mode 100644 NOTES/WizardWrx.AnyCSV_20160925_205801.pdb
+ create mode 100644 NOTES/WizardWrx.AnyCSV_20160925_205801.tlb
+ create mode 100644 NOTES/WizardWrx.AnyCSV_20160925_205801.xml
+ create mode 100644 Reference/AssemblyPropertyViewer.CS.lnk
+ create mode 100644 Reference/AssemblyPropertyViewer.csproj.lnk
+ create mode 100644 Reference/COM Interop Exposed  Binh's blog.url
+ create mode 100644 Reference/Consuming .net Assemblies from VB6  zbz5.net.url
+ create mode 100644 Reference/How to Configure .NET Framework-Based COM Components for Registration-Free Activation.url
+ create mode 100644 Reference/IAssemblyProperties.cs.lnk
+ create mode 100644 _archive/AnyCSV_NuGet_Package_Specifications_20161226_145302.ZIPX
+ create mode 100644 _archive/AnyCSV_NuGet_Package_Specifications_20161227_002046.ZIPX
+ rename {NOTES => _archive}/CSVCodeProject.ZIPX (100%)
+ rename {NOTES => _archive}/CsCSVFileAndStringReaderClasses_src.zip (100%)
+ rename {NOTES => _archive}/CsvParser.zip (100%)
+ rename {NOTES => _archive}/CsvParser_CodeProject.ZIPX (100%)
+ create mode 100644 _archive/WizardWrx.AnyCSV.4.0.106.27625.nupkg
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/NuGet.Package.Builder.1.0.10.nupkg
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/build/NuGet.Package.Builder.targets
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/content/package.builder.json
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/tools/AnyCSV.nuspec
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/tools/AnyCSVTestStand.nuspec
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/tools/CommandLine.dll
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/tools/Install.ps1
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/tools/Newtonsoft.Json.dll
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/tools/NuGet.Package.Builder.exe
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/tools/NuGet.exe
+ create mode 100644 packages/NuGet.Package.Builder.1.0.10/tools/Package.template
+ create mode 100644 packages/repositories.config
+ create mode 100644 scripts/RegEdit64.CMD.lnk
+ create mode 100644 scripts/TlbExp.exe.lnk
+ create mode 100644 scripts/Visaual_Studio_Solution_Elevator.REG.lnk
+ create mode 100644 scripts/WizardWrx.AnyCSV.tlb.lnk
+ create mode 100644 scripts/oleview.exe.lnk
+
+DAG@ENIGMA MINGW64 ~/Documents/Visual Studio 2013/Projects/WizardWrx_Libs/AnyCSV (master)
+$
+
+DAG@ENIGMA MINGW64 ~/Documents/Visual Studio 2013/Projects/WizardWrx_Libs/AnyCSV (master)
+$ git push origin master
+Counting objects: 128, done.
+Delta compression using up to 2 threads.
+Compressing objects: 100% (123/123), done.
+Writing objects: 100% (128/128), 3.07 MiB | 850.00 KiB/s, done.
+Total 128 (delta 58), reused 0 (delta 0)
+remote: Resolving deltas: 100% (58/58), completed with 23 local objects.
+To https://github.com/txwizard/AnyCSV.git
+   33280cb..c56f067  master -> master
+
+DAG@ENIGMA MINGW64 ~/Documents/Visual Studio 2013/Projects/WizardWrx_Libs/AnyCSV (master)
+$

@@ -80,6 +80,10 @@
     2016/09/18 4.0     DAG    The original Parser class exposes many more
                               constructors and overloaded Parse methods than can
                               be exposed to COM, and this remains its unit test.
+
+    2017/08/11 5.0     DAG    Adapt to use the new constellation of helper
+                              libraries in place of WizardWrx.DllServices2.dll,
+                              which was a monolith.
     ============================================================================
 */
 
@@ -91,8 +95,10 @@ using System.Text;
 /*  Added by DAG */
 
 using WizardWrx;
-using WizardWrx.ConsoleAppAids2;
-using WizardWrx.DLLServices2;
+using WizardWrx.ConsoleAppAids3;
+using WizardWrx.Core;
+using WizardWrx.DLLConfigurationManager;
+
 
 namespace AnyCSVTestStand
 {
@@ -123,7 +129,6 @@ namespace AnyCSVTestStand
         };  // s_astrErrorMessages
 
         static ConsoleAppStateManager s_theApp;
-        static StateManager s_appCore;
 
         const char SW_OUTPUT = 'o';  // Argument specifies one of three supported formats for the STDOUT display.
 
@@ -140,7 +145,6 @@ namespace AnyCSVTestStand
             cmdArgs.AllowEmptyStringAsDefault = CmdLneArgsBasic.BLANK_AS_DEFAULT_ALLOWED;
 
             s_theApp = ConsoleAppStateManager.GetTheSingleInstance ( );
-            s_appCore=s_theApp.BaseStateManager;
 
             //  ----------------------------------------------------------------
             //  The default value of the AppSubsystem property is GUI, which
@@ -152,12 +156,12 @@ namespace AnyCSVTestStand
             //  purged by the aging rules or some other method.
             //  ----------------------------------------------------------------
 
-            s_appCore.AppExceptionLogger.OptionFlags =
-                s_appCore.AppExceptionLogger.OptionFlags
+			s_theApp.BaseStateManager.AppExceptionLogger.OptionFlags =
+                s_theApp.BaseStateManager.AppExceptionLogger.OptionFlags
                 | ExceptionLogger.OutputOptions.EventLog
                 | ExceptionLogger.OutputOptions.Stack
                 | ExceptionLogger.OutputOptions.StandardError;
-            s_appCore.LoadErrorMessageTable ( s_astrErrorMessages );
+			s_theApp.BaseStateManager.LoadErrorMessageTable ( s_astrErrorMessages );
 
             string strDeferredMessage = null;
 
@@ -183,7 +187,7 @@ namespace AnyCSVTestStand
             string strTestFileName = cmdArgs.GetArgByPosition ( CmdLneArgsBasic.FIRST_POSITIONAL_ARG );
             Console.WriteLine (
                 Properties.Resources.MSG_INPUT_FILENAME ,
-                s_appCore.InitialWorkingDirectoryName ,
+				s_theApp.BaseStateManager.InitialWorkingDirectoryName ,
                 strTestFileName ,
                 Environment.NewLine );
 
@@ -298,7 +302,7 @@ namespace AnyCSVTestStand
             }
             catch ( Exception exAll )
             {   // The Message string is displayed, but the complete exception goes to the event log.
-				s_appCore.AppExceptionLogger.ReportException ( exAll );
+				s_theApp.BaseStateManager.AppExceptionLogger.ReportException ( exAll );
                 Console.WriteLine ( exAll.Message );
 
                 ExitWithError (
@@ -413,12 +417,10 @@ namespace AnyCSVTestStand
             }
             catch ( ArgumentException exArg )
             {   // Display of the message is deferred until the BOJ message is printed.
-				s_appCore.AppExceptionLogger.ReportException ( exArg );
+				s_theApp.BaseStateManager.AppExceptionLogger.ReportException ( exArg );
                 pstrDeferredMessage = string.Format (
                     Properties.Resources.ERRMSG_INVALID_OUTPUT_FORMAT ,
-                    WizardWrx.StringTricks.ExtractBoundedSubstrings (
-                        exArg.Message ,
-                        WizardWrx.SpecialCharacters.SINGLE_QUOTE ) ,
+                    exArg.Message.ExtractBoundedSubstrings ( WizardWrx.SpecialCharacters.SINGLE_QUOTE ) ,
                     renmOutputFormat ,
                     Environment.NewLine );
             }

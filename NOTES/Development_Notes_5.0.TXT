@@ -1,0 +1,2167 @@
+﻿                     Development Notes: AnyCSV, version 5.0
+
+================================================================================
+2017/08/05 07:26:08 - Retarget to AnyCPU, and register for COM Interop.
+================================================================================
+
+To work around the problem, add a post build command to call the 64-bit version of RegAsm.exe using the following steps.
+
+1. In the project properties, select “Build Events…” from the Compile page.
+
+
+2. Add the following post build command line
+
+
+	"%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "$(TargetPath)"
+
+Reference:	"Issues with building a project with "Register for COM interop" for a 64-bit assembly"
+			https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
+			Retrieved 2017/08/05 07:28:24
+
+================================================================================
+2017/08/05 08:08:12
+================================================================================
+
+NuGet package restore started.
+Restoring NuGet packages for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+NuGet Package restored finished for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+Restoring NuGet packages for project AnyCSV.
+Skipping NuGet package NuGet.Package.Builder 1.0.10 since it is already installed.
+NuGet Package restored finished for project AnyCSV.
+All packages are already installed and there is nothing to restore.
+NuGet package restore finished.
+------ Build started: Project: AnyCSV, Configuration: Debug Any CPU ------
+Build started 2017/08/05 08:07:53.
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/05 08:07:54 (2017/08/05 13:07:54 UTC)
+          Build Number = 107
+  Sleeping for 3 seconds
+  Waking from cat nap
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll /compile Properties\Resources.resx,obj\Debug\WizardWrx.Properties.Resources.resources
+  Processing resource file "Properties\Resources.resx" into "obj\Debug\WizardWrx.Properties.Resources.resources".
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig /checked+ /nowarn:1701,1702,2008 /nostdlib+ /platform:x86 /errorreport:prompt /warn:4 /doc:bin\Debug\WizardWrx.AnyCSV.xml /define:DEBUG;TRACE /errorendlocation /preferreduilang:en-US /highentropyva- /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll /debug+ /debug:full /filealign:512 /optimize- /out:obj\Debug\WizardWrx.AnyCSV.dll /resource:obj\Debug\WizardWrx.Properties.Resources.resources /target:library /utf8output CSVParseEngine.cs ICSVParser.cs Parser.cs Properties\AssemblyInfo.cs Properties\Resources.Designer.cs
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1182,5): error MSB3392: Cannot unregister assembly "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll" - access denied. Please make sure you're running the application as administrator. Requested registry access is not allowed.
+
+Build FAILED.
+
+Time Elapsed 00:00:07.60
+------ Build started: Project: AnyCSVTestStand, Configuration: Debug x86 ------
+Build started 2017/08/05 08:08:01.
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/05 08:08:02 (2017/08/05 13:08:02 UTC)
+          Build Number = 105
+  Sleeping for 3 seconds
+  Waking from cat nap
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1697,5): warning MSB3268: The primary reference "WizardWrx.DLLConfigurationManager" could not be resolved because it has an indirect dependency on the framework assembly "System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" which could not be resolved in the currently targeted framework. ".NETFramework,Version=v2.0". To resolve this problem, either remove the reference "WizardWrx.DLLConfigurationManager" or retarget your application to a framework version which contains "System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1697,5): warning MSB3268: The primary reference "WizardWrx.Core" could not be resolved because it has an indirect dependency on the framework assembly "System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" which could not be resolved in the currently targeted framework. ".NETFramework,Version=v2.0". To resolve this problem, either remove the reference "WizardWrx.Core" or retarget your application to a framework version which contains "System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
+  Primary reference "WizardWrx.AnyCSV".
+      Could not find dependent files. Expected file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll" does not exist.
+      Could not find dependent files. Expected file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll" does not exist.
+      Resolved file path is "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll".
+      Reference found at search path location "".
+      Found related file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.xml".
+      The ImageRuntimeVersion for this reference is "".
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll" /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll" /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids2\ConsoleAppAids2\bin\Release\WizardWrx.ConsoleAppAids2.dll" /compile Properties\Resources.resx,obj\x86\Debug\AnyCSVTestStand.Properties.Resources.resources
+  Processing resource file "Properties\Resources.resx" into "obj\x86\Debug\AnyCSVTestStand.Properties.Resources.resources".
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig /nowarn:1701,1702,2008 /nostdlib+ /platform:x86 /errorreport:prompt /warn:4 /define:TRACE;DEBUG;ANYCSV /errorendlocation /preferreduilang:en-US /highentropyva- /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll" /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll" /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids2\ConsoleAppAids2\bin\Release\WizardWrx.ConsoleAppAids2.dll" /debug+ /debug:full /filealign:512 /optimize- /out:obj\x86\Debug\AnyCSVTestStand.exe /resource:obj\x86\Debug\AnyCSVTestStand.Properties.Resources.resources /target:exe /utf8output /win32icon:WW_Icon1.ico Program.cs Properties\AssemblyInfo.cs Properties\Resources.Designer.cs
+CSC : error CS0006: Metadata file 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll' could not be found
+
+Build FAILED.
+
+Time Elapsed 00:00:05.71
+========== Build: 0 succeeded, 2 failed, 0 up-to-date, 0 skipped ==========
+
+
+================================================================================
+2017/08/05 08:17:15
+================================================================================
+
+Error	3	The type 'WizardWrx.DLLServices2.GenericSingletonBase`1<T0>' is defined in an assembly that is not referenced. You must add a reference to assembly 'WizardWrx.DLLServices2, Version=6.3.474.22543, Culture=neutral, PublicKeyToken=null'.	C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Program.cs	131	39	AnyCSVTestStand
+Warning	67	The element 'Target' in namespace 'http://schemas.microsoft.com/developer/msbuild/2003' has invalid child element 'AssignLinkMetadata' in namespace 'http://schemas.microsoft.com/developer/msbuild/2003'. List of possible elements expected: 'Task, AL, AspNetCompiler, AssignCulture, AssignProjectConfiguration, AssignTargetPath, AxImp, CallTarget, CombinePath, ConvertToAbsolutePath, Copy, CreateCSharpManifestResourceName, CreateItem, CreateProperty, CreateVisualBasicManifestResourceName, Csc, Delete, Error, Exec, FindAppConfigFile, FindInList, FindUnderPath, FormatUrl, FormatVersion, GenerateApplicationManifest, GenerateBootstrapper, GenerateDeploymentManifest, GenerateResource, GenerateTrustInfo, GetAssemblyIdentity, GetFrameworkPath, GetFrameworkSdkPath, GetReferenceAssemblyPaths, LC, MakeDir, Message, Move, MSBuild, ReadLinesFromFile, RegisterAssembly, RemoveDir, RemoveDuplicates, RequiresFramework35SP1Assembly, ResolveAssemblyReference, ResolveComReference, ResolveKeySource, ResolveManifestFiles, ResolveNativeReference, ResolveNonMSBuildProjectOutput, SGen, SignFile, TlbImp, Touch, UnregisterAssembly, UpdateManifest, Vbc, VCBuild, Warning, WriteCodeFragment, WriteLinesToFile, XslTransformation, CodeAnalysis, CL, Link, BSCMake, CPPClean, Get....	C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets	1058	6	Miscellaneous Files
+Warning	100	The element 'Reference' in namespace 'http://schemas.microsoft.com/developer/msbuild/2003' has invalid child element 'Implicit' in namespace 'http://schemas.microsoft.com/developer/msbuild/2003'. List of possible elements expected: 'HintPath, Name, FusionName, SpecificVersion, Aliases, Private, EmbedInteropTypes, RequiredTargetFramework' in namespace 'http://schemas.microsoft.com/developer/msbuild/2003'.	C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets	1693	10	Miscellaneous Files
+
+Error	108	The type 'WizardWrx.StringTricks' exists in both 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll' and 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLServices2\bin\Release\WizardWrx.DLLServices2.dll'	c:\users\dave\documents\visual studio 2013\projects\wizardwrx_libs\anycsv\anycsvteststand\program.cs	424	21	AnyCSVTestStand
+
+
+================================================================================
+2017/08/05 08:28:03
+================================================================================
+
+Error	2	The command ""%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"" exited with code 100.	C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets	4548	5	AnyCSV
+Error	1	Failed to load 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll' because it is not a valid .NET assembly	C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\RegAsm	AnyCSV
+
+NuGet package restore started.
+Restoring NuGet packages for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+NuGet Package restored finished for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+Restoring NuGet packages for project AnyCSV.
+Skipping NuGet package NuGet.Package.Builder 1.0.10 since it is already installed.
+NuGet Package restored finished for project AnyCSV.
+All packages are already installed and there is nothing to restore.
+NuGet package restore finished.
+
+------ Rebuild All started: Project: AnyCSV, Configuration: Debug Any CPU ------
+Build started 2017/08/05 08:27:47.
+
+CoreClean:
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Debug\AnyCSV.csprojResolveAssemblyReference.cache".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Debug\WizardWrx.Properties.Resources.resources".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Debug\AnyCSV.csproj.GenerateResource.Cache".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Debug\WizardWrx.AnyCSV.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Debug\WizardWrx.AnyCSV.pdb".
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/05 08:27:48 (2017/08/05 13:27:48 UTC)
+          Build Number = 109
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\Debug\WizardWrx.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Debug\WizardWrx.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /checked+
+                                                  /nowarn:1701,
+                                                          1702,
+                                                          2008
+                                                  /nostdlib+
+                                                  /platform:x86
+                                                  /errorreport:prompt
+                                                  /warn:4
+
+                                                  /doc:bin\Debug\WizardWrx.AnyCSV.xml
+
+                                                  /define:DEBUG;
+                                                          TRACE
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+
+                                                  /debug+
+                                                  /debug:full
+                                                  /filealign:512
+                                                  /optimize-
+
+                                                  /out:obj\Debug\WizardWrx.AnyCSV.dll
+
+                                                  /resource:obj\Debug\WizardWrx.Properties.Resources.resources
+
+                                                  /target:library
+                                                  /utf8output
+
+                                                  CSVParseEngine.cs
+                                                  ICSVParser.cs
+                                                  Parser.cs
+
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Debug\WizardWrx.AnyCSV.dll"
+                 to "bin\Debug\WizardWrx.AnyCSV.dll".
+  AnyCSV         -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll
+  Copying file from "obj\Debug\WizardWrx.AnyCSV.pdb"
+                 to "bin\Debug\WizardWrx.AnyCSV.pdb".
+
+__BuildNuGetPackage:
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Debug" -p "Configuration=Debug;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Debug" -p "Configuration=Debug;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+PostBuildEvent:
+  "%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+  Microsoft (R) .NET Framework Assembly Registration Utility 2.0.50727.5483
+  Copyright (C) Microsoft Corporation 1998-2004.  All rights reserved.
+
+RegAsm : error RA0000: Failed to load 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll' because it is not a valid .NET assembly
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(4548,5): error MSB3073: The command ""%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"" exited with code 100.
+
+Build FAILED.
+
+Time Elapsed 00:00:04.58
+========== Rebuild All: 0 succeeded, 1 failed, 0 skipped ==========
+
+ Volume in drive C is Gateway
+ Volume Serial Number is D841-419A
+
+ Directory of C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug
+
+2017/08/05  08:27            20,992 WizardWrx.AnyCSV.dll
+               1 File(s)         20,992 bytes
+               0 Dir(s)  437,475,471,360 bytes free
+
+
+================================================================================
+2017/08/05 09:58:36
+================================================================================
+
+NuGet package restore started.
+Restoring NuGet packages for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+NuGet Package restored finished for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+Restoring NuGet packages for project AnyCSV.
+Skipping NuGet package NuGet.Package.Builder 1.0.10 since it is already installed.
+NuGet Package restored finished for project AnyCSV.
+All packages are already installed and there is nothing to restore.
+NuGet package restore finished.
+
+------ Build started: Project: AnyCSV, Configuration: Debug Any CPU ------
+Build started 2017/08/05 09:57:44.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/05 09:57:44 (2017/08/05 14:57:44 UTC)
+          Build Number = 110
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\Debug\WizardWrx.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Debug\WizardWrx.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /checked+
+                                                  /nowarn:1701,
+                                                          1702,
+                                                          2008
+                                                  /nostdlib+
+                                                  /platform:x86
+                                                  /errorreport:prompt
+                                                  /warn:4
+
+                                                  /doc:bin\Debug\WizardWrx.AnyCSV.xml
+
+                                                  /define:DEBUG;
+                                                          TRACE
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+
+                                                  /debug+
+                                                  /debug:full
+                                                  /filealign:512
+                                                  /optimize-
+
+                                                  /out:obj\Debug\WizardWrx.AnyCSV.dll
+
+                                                  /resource:obj\Debug\WizardWrx.Properties.Resources.resources
+
+                                                  /target:library
+                                                  /utf8output
+
+                                                  CSVParseEngine.cs
+                                                  ICSVParser.cs
+                                                  Parser.cs
+
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Debug\WizardWrx.AnyCSV.dll"
+                 to "bin\Debug\WizardWrx.AnyCSV.dll".
+  AnyCSV         -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll
+  Copying file from "obj\Debug\WizardWrx.AnyCSV.pdb"
+                 to "bin\Debug\WizardWrx.AnyCSV.pdb".
+
+__BuildNuGetPackage:
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Debug" -p "Configuration=Debug;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Debug" -p "Configuration=Debug;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+
+PostBuildEvent:
+  wwBldNbrMgr.exe -r "-pC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ " "-tC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+  Build Task           = RecordBuildDetails
+  Assembly File FQFN = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll
+          Version    = 5.0.110.16134
+          File Date  = 2017/08/05 09:57:48 (2017/08/05 14:57:48 UTC)
+  Log File FQFN      = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\BuildHistory.LOG
+          File Date  = 2017/08/05 09:57:49 (2017/08/05 14:57:49 UTC)
+
+Build succeeded.
+
+Time Elapsed 00:00:04.25
+
+------ Skipped Build: Project: AnyCSVTestStand, Configuration: Debug x86 ------
+Project not selected to build for this solution configuration
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 1 skipped ==========
+
+================================================================================
+2017/08/05 10:02:54 - Attempt to build the test stand, expecting failure.
+================================================================================
+
+NuGet package restore started.
+Restoring NuGet packages for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+NuGet Package restored finished for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+Restoring NuGet packages for project AnyCSV.
+Skipping NuGet package NuGet.Package.Builder 1.0.10 since it is already installed.
+NuGet Package restored finished for project AnyCSV.
+All packages are already installed and there is nothing to restore.
+NuGet package restore finished.
+
+------ Build started: Project: AnyCSVTestStand, Configuration: Debug x86 ------
+Build started 2017/08/05 10:02:27.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/05 10:02:27 (2017/08/05 15:02:27 UTC)
+          Build Number = 107
+  Sleeping for 3 seconds
+  Waking from cat nap
+ResolveAssemblyReferences:
+  A TargetFramework profile exclusion list will be generated.
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids2\ConsoleAppAids2\bin\Release\WizardWrx.ConsoleAppAids2.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLServices2\bin\Release\WizardWrx.DLLServices2.dll"
+
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\x86\Debug\AnyCSVTestStand.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx" into "obj\x86\Debug\AnyCSVTestStand.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /nowarn:1701,
+                                                          1702,
+                                                          2008
+                                                  /nostdlib+
+                                                  /platform:x86
+                                                  /errorreport:prompt
+                                                  /warn:4
+                                                  /define:TRACE;
+                                                          DEBUG;
+                                                          ANYCSV
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids2\ConsoleAppAids2\bin\Release\WizardWrx.ConsoleAppAids2.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLServices2\bin\Release\WizardWrx.DLLServices2.dll"
+
+                                                  /debug+
+                                                  /debug:full
+                                                  /filealign:512
+                                                  /optimize-
+
+                                                  /out:obj\x86\Debug\AnyCSVTestStand.exe
+
+                                                  /resource:obj\x86\Debug\AnyCSVTestStand.Properties.Resources.resources
+
+                                                  /target:exe
+                                                  /utf8output
+                                                  /win32icon:WW_Icon1.ico
+
+                                                  Program.cs
+
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Program.cs(201,35,201,47): error CS0433: The type 'WizardWrx.MagicNumbers' exists in both 'c:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll' and 'c:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLServices2\bin\Release\WizardWrx.DLLServices2.dll'
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Program.cs(345,38,345,47): error CS0433: The type 'WizardWrx.ArrayInfo' exists in both 'c:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll' and 'c:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLServices2\bin\Release\WizardWrx.DLLServices2.dll'
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Program.cs(424,21,424,33): error CS0433: The type 'WizardWrx.StringTricks' exists in both 'c:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll' and 'c:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLServices2\bin\Release\WizardWrx.DLLServices2.dll'
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Program.cs(426,35,426,52): error CS0433: The type 'WizardWrx.SpecialCharacters' exists in both 'c:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll' and 'c:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLServices2\bin\Release\WizardWrx.DLLServices2.dll'
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Program.cs(424,21,424,60): warning CS0618: 'WizardWrx.StringTricks.ExtractBoundedSubstrings(string, char)' is obsolete: 'Use the corresponding extension method.'
+
+Build FAILED.
+
+Time Elapsed 00:00:03.38
+========== Build: 0 succeeded, 1 failed, 1 up-to-date, 0 skipped ==========
+
+================================================================================
+2017/08/11 01:26:24 - This is the first successful build of the upgrade project.
+                      There are several warnings that must be resolved before I
+                      am willing to call it done, or even try to test it.
+================================================================================
+
+NuGet package restore started.
+Restoring NuGet packages for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+NuGet Package restored finished for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+Restoring NuGet packages for project AnyCSV.
+Skipping NuGet package NuGet.Package.Builder 1.0.10 since it is already installed.
+NuGet Package restored finished for project AnyCSV.
+All packages are already installed and there is nothing to restore.
+NuGet package restore finished.
+
+
+------ Build started: Project: AnyCSVTestStand, Configuration: Debug Any CPU ------
+Build started 2017/08/11 01:32:37.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/11 01:32:37 (2017/08/11 06:32:37 UTC)
+          Build Number = 112
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+ResolveAssemblyReferences:
+  A TargetFramework profile exclusion list will be generated.
+
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1697,5): warning MSB3270: There was a mismatch between the processor architecture of the project being built "MSIL" and the processor architecture of the reference "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll", "x86". This mismatch may cause runtime failures. Please consider changing the targeted processor architecture of your project through the Configuration Manager so as to align the processor architectures between your project and references, or take a dependency on references with a processor architecture that matches the targeted processor architecture of your project.
+
+CoreResGen:
+  No resources are out of date with respect to their source files. Skipping resource generation.
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /nowarn:1701,
+                                                          1702,
+                                                          2008
+                                                  /nostdlib+
+                                                  /platform:AnyCPU
+                                                  /errorreport:prompt
+                                                  /define:TRACE;
+                                                          DEBUG;
+                                                          ANYCSV
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+
+                                                  /debug+
+                                                  /debug:full
+                                                  /filealign:512
+
+                                                  /out:obj\Debug\AnyCSVTestStand.exe
+
+                                                  /resource:obj\Debug\AnyCSVTestStand.Properties.Resources.resources
+
+                                                  /target:exe
+                                                  /utf8output
+                                                  /win32icon:WW_Icon1.ico
+
+                                                  Program.cs
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Program.cs(424,21,424,60): warning CS0618: 'WizardWrx.StringTricks.ExtractBoundedSubstrings(string, char)' is obsolete: 'Use the corresponding extension method.'
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Program.cs(132,29,132,38): warning CS0649: Field 'AnyCSVTestStand.Program.s_appCore' is never assigned to, and will always have its default value null
+
+_CopyFilesMarkedCopyLocal:
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+                 to "bin\Debug\WizardWrx.AnyCSV.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                 to "bin\Debug\WizardWrx.ConsoleAppAids3.dll".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.AssemblyUtils.dll"
+                 to "bin\Debug\WizardWrx.AssemblyUtils.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.BitMath.dll"
+                 to "bin\Debug\WizardWrx.BitMath.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                 to "bin\Debug\WizardWrx.Common.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleStreams.dll"
+                 to "bin\Debug\WizardWrx.ConsoleStreams.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                 to "bin\Debug\WizardWrx.Core.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+                 to "bin\Debug\WizardWrx.DLLConfigurationManager.dll".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.pdb"
+                 to "bin\Debug\WizardWrx.AnyCSV.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.xml"
+                 to "bin\Debug\WizardWrx.AnyCSV.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.AssemblyUtils.pdb"
+                 to "bin\Debug\WizardWrx.AssemblyUtils.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.AssemblyUtils.xml"
+                 to "bin\Debug\WizardWrx.AssemblyUtils.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.BitMath.pdb"
+                 to "bin\Debug\WizardWrx.BitMath.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.BitMath.xml"
+                 to "bin\Debug\WizardWrx.BitMath.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.pdb"
+                 to "bin\Debug\WizardWrx.Common.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.xml"
+                 to "bin\Debug\WizardWrx.Common.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.pdb"
+                 to "bin\Debug\WizardWrx.ConsoleAppAids3.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.xml"
+                 to "bin\Debug\WizardWrx.ConsoleAppAids3.xml".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.pdb"
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleStreams.pdb"
+                 to "bin\Debug\WizardWrx.ConsoleStreams.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleStreams.xml"
+                 to "bin\Debug\WizardWrx.ConsoleStreams.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.pdb"
+                 to "bin\Debug\WizardWrx.Core.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.xml"
+                 to "bin\Debug\WizardWrx.Core.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.pdb"
+                 to "bin\Debug\WizardWrx.DLLConfigurationManager.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.xml"
+                 to "bin\Debug\WizardWrx.DLLConfigurationManager.xml".
+
+_CopyOutOfDateSourceItemsToOutputDirectory:
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\WizardWrx.DLLServices2.dll.config" to "bin\Debug\WizardWrx.DLLServices2.dll.config".
+
+_CopyAppConfigFile:
+Skipping target "_CopyAppConfigFile" because all output files are up-to-date with respect to the input files.
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Debug\AnyCSVTestStand.exe"
+                 to "bin\Debug\AnyCSVTestStand.exe".
+  AnyCSVTestStand -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe
+  Copying file from "obj\Debug\AnyCSVTestStand.pdb"
+                 to "bin\Debug\AnyCSVTestStand.pdb".
+
+PostBuildEvent:
+  wwBldNbrMgr.exe -r "-pC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ " "-tC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe"
+  Build Task           = RecordBuildDetails
+  Assembly File FQFN = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe
+          Version    = 5.0.112.980
+          File Date  = 2017/08/11 01:32:40 (2017/08/11 06:32:40 UTC)
+  Log File FQFN      = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\BuildHistory.LOG
+          File Date  = 2017/08/11 01:32:41 (2017/08/11 06:32:41 UTC)
+
+Build succeeded.
+
+Time Elapsed 00:00:04.02
+========== Build: 1 succeeded, 0 failed, 1 up-to-date, 0 skipped ==========
+
+
+================================================================================
+2017/08/11 01:53:56
+================================================================================
+
+NuGet package restore started.
+Restoring NuGet packages for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+NuGet Package restored finished for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+Restoring NuGet packages for project AnyCSV.
+Skipping NuGet package NuGet.Package.Builder 1.0.10 since it is already installed.
+NuGet Package restored finished for project AnyCSV.
+All packages are already installed and there is nothing to restore.
+NuGet package restore finished.
+
+
+------ Build started: Project: AnyCSVTestStand, Configuration: Debug Any CPU ------
+Build started 2017/08/11 01:53:41.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/11 01:53:41 (2017/08/11 06:53:41 UTC)
+          Build Number = 113
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+ResolveAssemblyReferences:
+  A TargetFramework profile exclusion list will be generated.
+
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1697,5): warning MSB3270: There was a mismatch between the processor architecture of the project being built "MSIL" and the processor architecture of the reference "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll", "x86". This mismatch may cause runtime failures. Please consider changing the targeted processor architecture of your project through the Configuration Manager so as to align the processor architectures between your project and references, or take a dependency on references with a processor architecture that matches the targeted processor architecture of your project.
+
+CoreResGen:
+  No resources are out of date with respect to their source files. Skipping resource generation.
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /nowarn:1701,1702,2008
+                                                  /nostdlib+
+                                                  /platform:AnyCPU
+                                                  /errorreport:prompt
+                                                  /define:TRACE;DEBUG;ANYCSV
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+
+                                                  /debug+
+                                                  /debug:full
+                                                  /filealign:512
+
+                                                  /out:obj\Debug\AnyCSVTestStand.exe
+
+                                                  /resource:obj\Debug\AnyCSVTestStand.Properties.Resources.resources
+
+                                                  /target:exe
+                                                  /utf8output
+                                                  /win32icon:WW_Icon1.ico
+
+                                                  Program.cs
+
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+
+_CopyOutOfDateSourceItemsToOutputDirectory:
+Skipping target "_CopyOutOfDateSourceItemsToOutputDirectory" because all output files are up-to-date with respect to the input files.
+
+_CopyAppConfigFile:
+Skipping target "_CopyAppConfigFile" because all output files are up-to-date with respect to the input files.
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Debug\AnyCSVTestStand.exe"
+                 to "bin\Debug\AnyCSVTestStand.exe".
+  AnyCSVTestStand -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe
+  Copying file from "obj\Debug\AnyCSVTestStand.pdb"
+                 to "bin\Debug\AnyCSVTestStand.pdb".
+
+PostBuildEvent:
+  wwBldNbrMgr.exe -r "-pC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ " "-tC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe"
+  Build Task           = RecordBuildDetails
+  Assembly File FQFN = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe
+          Version    = 5.0.113.1612
+          File Date  = 2017/08/11 01:53:45 (2017/08/11 06:53:45 UTC)
+  Log File FQFN      = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\BuildHistory.LOG
+          File Date  = 2017/08/11 01:53:45 (2017/08/11 06:53:45 UTC)
+
+Build succeeded.
+
+Time Elapsed 00:00:03.85
+========== Build: 1 succeeded, 0 failed, 1 up-to-date, 0 skipped ==========
+
+================================================================================
+2017/08/11 02:04:47 - Create a release build.
+================================================================================
+
+NuGet package restore started.
+Restoring NuGet packages for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+NuGet Package restored finished for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+Restoring NuGet packages for project AnyCSV.
+Skipping NuGet package NuGet.Package.Builder 1.0.10 since it is already installed.
+NuGet Package restored finished for project AnyCSV.
+
+All packages are already installed and there is nothing to restore.
+NuGet package restore finished.
+
+
+------ Build started: Project: AnyCSV, Configuration: Release Any CPU ------
+Build started 2017/08/11 02:03:00.
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/11 02:03:00 (2017/08/11 07:03:00 UTC)
+          Build Number = 112
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll /compile Properties\Resources.resx,obj\Release\WizardWrx.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Release\WizardWrx.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig /nowarn:1701,1702,2008 /nostdlib+ /platform:x86 /errorreport:prompt /warn:4 /doc:bin\Release\WizardWrx.AnyCSV.XML /define:TRACE /errorendlocation /preferreduilang:en-US /highentropyva- /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll /debug:pdbonly /filealign:512 /optimize+ /out:obj\Release\WizardWrx.AnyCSV.dll /resource:obj\Release\WizardWrx.Properties.Resources.resources /target:library /utf8output CSVParseEngine.cs ICSVParser.cs Parser.cs Properties\AssemblyInfo.cs Properties\Resources.Designer.cs
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\WizardWrx.AnyCSV.dll"
+                 to "bin\Release\WizardWrx.AnyCSV.dll".
+  AnyCSV         -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+  Copying file from "obj\Release\WizardWrx.AnyCSV.pdb"
+                 to "bin\Release\WizardWrx.AnyCSV.pdb".
+
+__BuildNuGetPackage:
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.exe pack "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj"  -NoDefaultExcludes -Verbosity Detailed -Properties "OutDir=C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release;Configuration=Release;Platform=AnyCPU" -NonInteractive -OutputDirectory "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -basepath "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -IncludeReferencedProjects
+  MSBuild auto-detection: using msbuild version '12.0' from 'C:\Program Files (x86)\MSBuild\12.0\bin'. Use option -MSBuildVersion to force nuget to use a specific version of MSBuild.
+  Attempting to build package from 'AnyCSV.csproj'.
+  Packing files from 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release'.
+  Using 'AnyCSV.nuspec' for metadata.
+  Add file 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll' to package as 'lib\net20\WizardWrx.AnyCSV.dll'
+  Add file 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.XML' to package as 'lib\net20\WizardWrx.AnyCSV.XML'
+  Found packages.config. Using packages listed as dependencies
+
+  Id: WizardWrx.AnyCSV
+  Version: 5.0.112.1891
+  Authors: David A. Gray
+  Description: This library parses ANY delimited string, including the unusual strings found in the X.509 metadata of the certificates in the Trusted Root Certificate Store of Microsoft Windows.
+  Project Url: https://github.com/txwizard/AnyCSV
+  Tags: CSV,Delimited String,Parser
+  Dependencies: None
+
+  Added file 'lib\net20\WizardWrx.AnyCSV.dll'.
+  Added file 'lib\net20\WizardWrx.AnyCSV.XML'.
+
+  Successfully created package 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.5.0.112.1891.nupkg'.
+
+PostBuildEvent:
+  "%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+  Microsoft (R) .NET Framework Assembly Registration Utility 2.0.50727.5483
+  Copyright (C) Microsoft Corporation 1998-2004.  All rights reserved.
+
+RegAsm : error RA0000: Failed to load 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll' because it is not a valid .NET assembly
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(4548,5): error MSB3073: The command ""%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"" exited with code 100.
+
+Build FAILED.
+
+Time Elapsed 00:00:08.46
+------ Skipped Build: Project: AnyCSVTestStand, Configuration: Release x86 ------
+Project not selected to build for this solution configuration
+========== Build: 0 succeeded, 1 failed, 0 up-to-date, 1 skipped ==========
+
+================================================================================
+2017/08/11 02:09:28 - Scan for all programs named RegAsm.exe.
+================================================================================
+
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Users\DAVE>dir %Windir%\Microsoft.NET\regasm.exe /s
+ Volume in drive C is Gateway
+ Volume Serial Number is D841-419A
+
+ Directory of C:\Windows\Microsoft.NET\Framework\v2.0.50727
+
+2014/03/20  17:49            53,248 RegAsm.exe
+               1 File(s)         53,248 bytes
+
+ Directory of C:\Windows\Microsoft.NET\Framework\v4.0.30319
+
+2017/04/21  14:53            64,624 RegAsm.exe
+               1 File(s)         64,624 bytes
+
+ Directory of C:\Windows\Microsoft.NET\Framework64\v2.0.50727
+
+2014/03/20  17:50            49,152 RegAsm.exe
+               1 File(s)         49,152 bytes
+
+ Directory of C:\Windows\Microsoft.NET\Framework64\v4.0.30319
+
+2017/04/21  14:50            64,120 RegAsm.exe
+               1 File(s)         64,120 bytes
+
+     Total Files Listed:
+               4 File(s)        231,144 bytes
+               0 Dir(s)  475,868,114,944 bytes free
+
+
+C:\Users\DAVE>dir "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+ Volume in drive C is Gateway
+ Volume Serial Number is D841-419A
+
+ Directory of C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release
+
+2017/08/11  02:03            19,456 WizardWrx.AnyCSV.dll
+               1 File(s)         19,456 bytes
+               0 Dir(s)  475,868,114,944 bytes free
+
+C:\Users\DAVE>ShowVer.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+VERSIONINFO for file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll":  (type:0)
+  Signature:       feef04bd
+  StrucVersion:    1.0
+  FileVersion:     5.0.112.1891
+  ProductVersion:  5.0.112.1891
+  FileFlagsMask:   0x3f
+  FileFlags:       0
+  FileOS:          VOS__WINDOWS32
+  FileType:        VFT_DLL
+  FileDate:        0.0
+ Translation: 000004b0
+ LangID: 000004b0
+  Comments          : AnyCSV - Process ANY delimited string.
+  CompanyName       : David A. Gray
+  FileDescription   : AnyCSV
+  FileVersion       : 5.0.112.1891
+  InternalName      : WizardWrx.AnyCSV.dll
+  LegalCopyright    : Copyright ⌐ 2012-2017, David A. Gray
+  LegalTrademarks   : This library is distributed under a three-clause BSD license.
+  OriginalFilename  : WizardWrx.AnyCSV.dll
+  ProductName       : AnyCSV
+  ProductVersion    : 5.0.112.1891
+  Assembly Version  : 5.0.112.1891
+
+C:\Users\DAVE>"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\Tools_for_Programmers\WWDisplayAssemblyInfo\WWDisplayAssemblyInfo\bin\Release\WWDisplayAssemblyInfo.exe" "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+WWDisplayAssemblyInfo, version 2.0.2.23209
+Begin @ 2017/08/11 02:12:33 (2017/08/11 07:12:33 UTC)
+
+
+Unhandled Exception: System.BadImageFormatException: Could not load file or assembly 'file:///C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll' or one of its dependencies. An attempt was made to load a program with an incorrect format.
+   at System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark& stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)
+   at System.Reflection.RuntimeAssembly.InternalLoadFrom(String assemblyFile, Evidence securityEvidence, Byte[] hashValue, AssemblyHashAlgorithm hashAlgorithm, Boolean forIntrospection, Boolean suppressSecurityChecks, StackCrawlMark& stackMark)
+   at System.Reflection.Assembly.LoadFrom(String assemblyFile)
+   at WWDisplayAssemblyInfo.Program.Main(String[] args) in C:\Documents and Settings\David\My Documents\Visual Studio 2010\Projects\Tools_for_Programmers\WWDisplayAssemblyInfo\WWDisplayAssemblyInfo\Program.cs:line 91
+
+C:\Users\DAVE>
+
+================================================================================
+2017/08/11 02:15:31 - Display the manifest of WizardWrx.AnyCSV.dll Release.
+================================================================================
+
+------------------------------------------------------------------------------------------------------------------
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll:
+------------------------------------------------------------------------------------------------------------------
+
+// Metadata version: v2.0.50727
+.assembly extern mscorlib
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89 )                         // .z\V.4..
+  .ver 2:0:0:0
+}
+.assembly extern System
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89 )                         // .z\V.4..
+  .ver 2:0:0:0
+}
+.assembly WizardWrx.AnyCSV
+{
+  .custom instance void [mscorlib]System.Runtime.CompilerServices.CompilationRelaxationsAttribute::.ctor(int32) = ( 01 00 08 00 00 00 00 00 )
+
+  // --- The following custom attribute is added automatically, do not uncomment -------
+  //  .custom instance void [mscorlib]System.Diagnostics.DebuggableAttribute::.ctor(valuetype [mscorlib]System.Diagnostics.DebuggableAttribute/DebuggingModes) = ( 01 00 02 00 00 00 00 00 )
+
+  .custom instance void [mscorlib]System.Reflection.AssemblyCompanyAttribute::.ctor(string) = ( 01 00 0D 44 61 76 69 64 20 41 2E 20 47 72 61 79   // ...David A. Gray
+                                                                                                00 00 )
+  .custom instance void [mscorlib]System.Runtime.InteropServices.GuidAttribute::.ctor(string) = ( 01 00 24 32 34 32 35 36 61 33 33 2D 64 39 32 61   // ..$24256a33-d92a
+                                                                                                  2D 34 38 38 33 2D 38 63 34 31 2D 32 64 36 39 66   // -4883-8c41-2d69f
+                                                                                                  66 65 62 63 36 65 35 00 00 )                      // febc6e5..
+  .custom instance void [mscorlib]System.Reflection.AssemblyTitleAttribute::.ctor(string) = ( 01 00 06 41 6E 79 43 53 56 00 00 )                // ...AnyCSV..
+  .custom instance void [mscorlib]System.Reflection.AssemblyDescriptionAttribute::.ctor(string) = ( 01 00 26 41 6E 79 43 53 56 20 2D 20 50 72 6F 63   // ..&AnyCSV - Proc
+                                                                                                    65 73 73 20 41 4E 59 20 64 65 6C 69 6D 69 74 65   // ess ANY delimite
+                                                                                                    64 20 73 74 72 69 6E 67 2E 00 00 )                // d string...
+  .custom instance void [mscorlib]System.Reflection.AssemblyConfigurationAttribute::.ctor(string) = ( 01 00 00 00 00 )
+  .custom instance void [mscorlib]System.Runtime.CompilerServices.RuntimeCompatibilityAttribute::.ctor() = ( 01 00 01 00 54 02 16 57 72 61 70 4E 6F 6E 45 78   // ....T..WrapNonEx
+                                                                                                             63 65 70 74 69 6F 6E 54 68 72 6F 77 73 01 )       // ceptionThrows.
+  .custom instance void [mscorlib]System.Reflection.AssemblyProductAttribute::.ctor(string) = ( 01 00 06 41 6E 79 43 53 56 00 00 )                // ...AnyCSV..
+  .custom instance void [mscorlib]System.Reflection.AssemblyCopyrightAttribute::.ctor(string) = ( 01 00 25 43 6F 70 79 72 69 67 68 74 20 C2 A9 20   // ..%Copyright ..
+                                                                                                  32 30 31 32 2D 32 30 31 37 2C 20 44 61 76 69 64   // 2012-2017, David
+                                                                                                  20 41 2E 20 47 72 61 79 00 00 )                   //  A. Gray..
+  .custom instance void [mscorlib]System.Reflection.AssemblyTrademarkAttribute::.ctor(string) = ( 01 00 3D 54 68 69 73 20 6C 69 62 72 61 72 79 20   // ..=This library
+                                                                                                  69 73 20 64 69 73 74 72 69 62 75 74 65 64 20 75   // is distributed u
+                                                                                                  6E 64 65 72 20 61 20 74 68 72 65 65 2D 63 6C 61   // nder a three-cla
+                                                                                                  75 73 65 20 42 53 44 20 6C 69 63 65 6E 73 65 2E   // use BSD license.
+                                                                                                  00 00 )
+  .custom instance void [mscorlib]System.Runtime.InteropServices.ComVisibleAttribute::.ctor(bool) = ( 01 00 00 00 00 )
+  .hash algorithm 0x00008004
+  .ver 5:0:112:1891
+}
+.mresource public WizardWrx.Properties.Resources.resources
+{
+  // Offset: 0x00000000 Length: 0x00000723
+}
+.module WizardWrx.AnyCSV.dll
+// MVID: {CFE8DD17-B276-4CC2-87FC-9E8BA873B90A}
+.imagebase 0x10000000
+.file alignment 0x00000200
+.stackreserve 0x00100000
+.subsystem 0x0003       // WINDOWS_CUI
+.corflags 0x00000003    //  ILONLY 32BITREQUIRED
+// Image base: 0x0000000000790000
+
+================================================================================
+2017/08/11 02:21:26 - Rebuild the Release configuration of the solution.
+================================================================================
+
+NuGet package restore started.
+Restoring NuGet packages for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+NuGet Package restored finished for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+Restoring NuGet packages for project AnyCSV.
+Skipping NuGet package NuGet.Package.Builder 1.0.10 since it is already installed.
+NuGet Package restored finished for project AnyCSV.
+All packages are already installed and there is nothing to restore.
+NuGet package restore finished.
+
+
+------ Rebuild All started: Project: AnyCSV, Configuration: Release Any CPU ------
+Build started 2017/08/11 02:20:34.
+
+CoreClean:
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.tlb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.Properties.Resources.resources".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\AnyCSV.csproj.GenerateResource.Cache".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.AnyCSV.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\WizardWrx.AnyCSV.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\AnyCSV.csprojResolveAssemblyReference.cache".
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/11 02:20:35 (2017/08/11 07:20:35 UTC)
+          Build Number = 113
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\Release\WizardWrx.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Release\WizardWrx.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /nowarn:1701,1702,2008
+                                                  /nostdlib+
+                                                  /platform:x86
+                                                  /errorreport:prompt
+                                                  /warn:4
+
+                                                  /doc:bin\Release\WizardWrx.AnyCSV.XML
+
+                                                  /define:TRACE
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+
+                                                  /debug:pdbonly
+                                                  /filealign:512
+                                                  /optimize+
+
+                                                  /out:obj\Release\WizardWrx.AnyCSV.dll
+
+                                                  /resource:obj\Release\WizardWrx.Properties.Resources.resources
+
+                                                  /target:library
+                                                  /utf8output
+
+                                                  CSVParseEngine.cs
+                                                  ICSVParser.cs
+                                                  Parser.cs
+
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\WizardWrx.AnyCSV.dll"
+                 to "bin\Release\WizardWrx.AnyCSV.dll".
+  AnyCSV         -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+  Copying file from "obj\Release\WizardWrx.AnyCSV.pdb"
+                 to "bin\Release\WizardWrx.AnyCSV.pdb".
+
+__BuildNuGetPackage:
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.exe pack "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj"  -NoDefaultExcludes -Verbosity Detailed -Properties "OutDir=C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release;Configuration=Release;Platform=AnyCPU" -NonInteractive -OutputDirectory "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -basepath "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -IncludeReferencedProjects
+  MSBuild auto-detection: using msbuild version '12.0' from 'C:\Program Files (x86)\MSBuild\12.0\bin'. Use option -MSBuildVersion to force nuget to use a specific version of MSBuild.
+  Attempting to build package from 'AnyCSV.csproj'.
+  Packing files from 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release'.
+  Using 'AnyCSV.nuspec' for metadata.
+  Add file 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll' to package as 'lib\net20\WizardWrx.AnyCSV.dll'
+  Add file 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.XML' to package as 'lib\net20\WizardWrx.AnyCSV.XML'
+  Found packages.config. Using packages listed as dependencies
+
+  Id: WizardWrx.AnyCSV
+  Version: 5.0.113.2419
+  Authors: David A. Gray
+  Description: This library parses ANY delimited string, including the unusual strings found in the X.509 metadata of the certificates in the Trusted Root Certificate Store of Microsoft Windows.
+  Project Url: https://github.com/txwizard/AnyCSV
+  Tags: CSV,Delimited String,Parser
+  Dependencies: None
+
+  Added file 'lib\net20\WizardWrx.AnyCSV.dll'.
+  Added file 'lib\net20\WizardWrx.AnyCSV.XML'.
+
+  Successfully created package 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.5.0.113.2419.nupkg'.
+
+PostBuildEvent:
+  "%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+  Microsoft (R) .NET Framework Assembly Registration Utility 2.0.50727.5483
+  Copyright (C) Microsoft Corporation 1998-2004.  All rights reserved.
+
+RegAsm : error RA0000: Failed to load 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll' because it is not a valid .NET assembly
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(4548,5): error MSB3073: The command ""%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"" exited with code 100.
+
+Build FAILED.
+
+Time Elapsed 00:00:05.85
+
+
+------ Rebuild All started: Project: AnyCSVTestStand, Configuration: Release Any CPU ------
+Build started 2017/08/11 02:20:40.
+
+CoreClean:
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe.config".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLServices2.dll.config".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.Common.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids3.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.Core.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLConfigurationManager.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.BitMath.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleStreams.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AssemblyUtils.dll".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AnyCSV.xml".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.Common.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.Common.xml".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids3.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleAppAids3.xml".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.Core.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.Core.xml".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLConfigurationManager.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.DLLConfigurationManager.xml".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.BitMath.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.BitMath.xml".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleStreams.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.ConsoleStreams.xml".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AssemblyUtils.pdb".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\WizardWrx.AssemblyUtils.xml".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\Release\AnyCSVTestStand.csprojResolveAssemblyReference.cache".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\Release\AnyCSVTestStand.Properties.Resources.resources".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\Release\AnyCSVTestStand.csproj.GenerateResource.Cache".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\Release\AnyCSVTestStand.exe".
+  Deleting file "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\Release\AnyCSVTestStand.pdb".
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/11 02:20:40 (2017/08/11 07:20:40 UTC)
+          Build Number = 115
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+ResolveAssemblyReferences:
+  A TargetFramework profile exclusion list will be generated.
+
+C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets(1697,5): warning MSB3270: There was a mismatch between the processor architecture of the project being built "MSIL" and the processor architecture of the reference "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll", "x86". This mismatch may cause runtime failures. Please consider changing the targeted processor architecture of your project through the Configuration Manager so as to align the processor architectures between your project and references, or take a dependency on references with a processor architecture that matches the targeted processor architecture of your project.
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\Release\AnyCSVTestStand.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Release\AnyCSVTestStand.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /nowarn:1701,1702,2008
+                                                  /nostdlib+
+                                                  /platform:AnyCPU
+                                                  /errorreport:prompt
+                                                  /define:TRACE;ANYCSV
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+
+                                                  /debug:pdbonly
+                                                  /filealign:512
+                                                  /optimize+
+
+                                                  /out:obj\Release\AnyCSVTestStand.exe
+
+                                                  /resource:obj\Release\AnyCSVTestStand.Properties.Resources.resources
+
+                                                  /target:exe
+                                                  /utf8output
+                                                  /win32icon:WW_Icon1.ico
+
+                                                  Program.cs
+
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+
+_CopyFilesMarkedCopyLocal:
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+                 to "bin\Release\WizardWrx.AnyCSV.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                 to "bin\Release\WizardWrx.ConsoleAppAids3.dll".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.AssemblyUtils.dll"
+                 to "bin\Release\WizardWrx.AssemblyUtils.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.BitMath.dll"
+                 to "bin\Release\WizardWrx.BitMath.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                 to "bin\Release\WizardWrx.Common.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                 to "bin\Release\WizardWrx.Core.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleStreams.dll"
+                 to "bin\Release\WizardWrx.ConsoleStreams.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+                 to "bin\Release\WizardWrx.DLLConfigurationManager.dll".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.pdb"
+                 to "bin\Release\WizardWrx.AnyCSV.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.xml"
+                 to "bin\Release\WizardWrx.AnyCSV.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.AssemblyUtils.pdb"
+                 to "bin\Release\WizardWrx.AssemblyUtils.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.AssemblyUtils.xml"
+                 to "bin\Release\WizardWrx.AssemblyUtils.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.BitMath.pdb"
+                 to "bin\Release\WizardWrx.BitMath.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.BitMath.xml"
+                 to "bin\Release\WizardWrx.BitMath.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.pdb"
+                 to "bin\Release\WizardWrx.Common.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.xml"
+                 to "bin\Release\WizardWrx.Common.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.pdb"
+                 to "bin\Release\WizardWrx.ConsoleAppAids3.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.xml"
+                 to "bin\Release\WizardWrx.ConsoleAppAids3.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleStreams.pdb"
+                 to "bin\Release\WizardWrx.ConsoleStreams.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleStreams.xml"
+                 to "bin\Release\WizardWrx.ConsoleStreams.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.pdb"
+                 to "bin\Release\WizardWrx.Core.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.xml"
+                 to "bin\Release\WizardWrx.Core.xml".
+
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.pdb"
+                 to "bin\Release\WizardWrx.DLLConfigurationManager.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.xml"
+                 to "bin\Release\WizardWrx.DLLConfigurationManager.xml".
+
+_CopyOutOfDateSourceItemsToOutputDirectory:
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\WizardWrx.DLLServices2.dll.config"
+                 to "bin\Release\WizardWrx.DLLServices2.dll.config".
+
+_CopyAppConfigFile:
+  Copying file from "app.config"
+                 to "bin\Release\AnyCSVTestStand.exe.config".
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\AnyCSVTestStand.exe"
+                 to "bin\Release\AnyCSVTestStand.exe".
+  AnyCSVTestStand -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+  Copying file from "obj\Release\AnyCSVTestStand.pdb"
+                 to "bin\Release\AnyCSVTestStand.pdb".
+
+PostBuildEvent:
+  wwBldNbrMgr.exe -r "-pC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ " "-tC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe"
+  Build Task           = RecordBuildDetails
+  Assembly File FQFN = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+          Version    = 5.0.115.2422
+          File Date  = 2017/08/11 02:20:44 (2017/08/11 07:20:44 UTC)
+  Log File FQFN      = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\BuildHistory.LOG
+          File Date  = 2017/08/11 02:20:44 (2017/08/11 07:20:44 UTC)
+
+Build succeeded.
+
+Time Elapsed 00:00:03.79
+========== Rebuild All: 1 succeeded, 1 failed, 0 skipped ==========
+
+================================================================================
+2017/08/11 02:32:14 - Display the manifest of WizardWrx.AnyCSV.dll Release.
+================================================================================
+
+------------------------------------------------------------------------------------------------------------------
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll:
+------------------------------------------------------------------------------------------------------------------
+
+// Metadata version: v2.0.50727
+.assembly extern mscorlib
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89 )                         // .z\V.4..
+  .ver 2:0:0:0
+}
+.assembly extern System
+{
+  .publickeytoken = (B7 7A 5C 56 19 34 E0 89 )                         // .z\V.4..
+  .ver 2:0:0:0
+}
+.assembly WizardWrx.AnyCSV
+{
+  .custom instance void [mscorlib]System.Runtime.CompilerServices.CompilationRelaxationsAttribute::.ctor(int32) = ( 01 00 08 00 00 00 00 00 )
+
+  // --- The following custom attribute is added automatically, do not uncomment -------
+  //  .custom instance void [mscorlib]System.Diagnostics.DebuggableAttribute::.ctor(valuetype [mscorlib]System.Diagnostics.DebuggableAttribute/DebuggingModes) = ( 01 00 02 00 00 00 00 00 )
+
+  .custom instance void [mscorlib]System.Reflection.AssemblyCompanyAttribute::.ctor(string) = ( 01 00 0D 44 61 76 69 64 20 41 2E 20 47 72 61 79   // ...David A. Gray
+                                                                                                00 00 )
+  .custom instance void [mscorlib]System.Runtime.InteropServices.GuidAttribute::.ctor(string) = ( 01 00 24 32 34 32 35 36 61 33 33 2D 64 39 32 61   // ..$24256a33-d92a
+                                                                                                  2D 34 38 38 33 2D 38 63 34 31 2D 32 64 36 39 66   // -4883-8c41-2d69f
+                                                                                                  66 65 62 63 36 65 35 00 00 )                      // febc6e5..
+  .custom instance void [mscorlib]System.Reflection.AssemblyTitleAttribute::.ctor(string) = ( 01 00 06 41 6E 79 43 53 56 00 00 )                // ...AnyCSV..
+  .custom instance void [mscorlib]System.Reflection.AssemblyDescriptionAttribute::.ctor(string) = ( 01 00 26 41 6E 79 43 53 56 20 2D 20 50 72 6F 63   // ..&AnyCSV - Proc
+                                                                                                    65 73 73 20 41 4E 59 20 64 65 6C 69 6D 69 74 65   // ess ANY delimite
+                                                                                                    64 20 73 74 72 69 6E 67 2E 00 00 )                // d string...
+  .custom instance void [mscorlib]System.Reflection.AssemblyConfigurationAttribute::.ctor(string) = ( 01 00 00 00 00 )
+  .custom instance void [mscorlib]System.Runtime.CompilerServices.RuntimeCompatibilityAttribute::.ctor() = ( 01 00 01 00 54 02 16 57 72 61 70 4E 6F 6E 45 78   // ....T..WrapNonEx
+                                                                                                             63 65 70 74 69 6F 6E 54 68 72 6F 77 73 01 )       // ceptionThrows.
+  .custom instance void [mscorlib]System.Reflection.AssemblyProductAttribute::.ctor(string) = ( 01 00 06 41 6E 79 43 53 56 00 00 )                // ...AnyCSV..
+  .custom instance void [mscorlib]System.Reflection.AssemblyCopyrightAttribute::.ctor(string) = ( 01 00 25 43 6F 70 79 72 69 67 68 74 20 C2 A9 20   // ..%Copyright ..
+                                                                                                  32 30 31 32 2D 32 30 31 37 2C 20 44 61 76 69 64   // 2012-2017, David
+                                                                                                  20 41 2E 20 47 72 61 79 00 00 )                   //  A. Gray..
+  .custom instance void [mscorlib]System.Reflection.AssemblyTrademarkAttribute::.ctor(string) = ( 01 00 3D 54 68 69 73 20 6C 69 62 72 61 72 79 20   // ..=This library
+                                                                                                  69 73 20 64 69 73 74 72 69 62 75 74 65 64 20 75   // is distributed u
+                                                                                                  6E 64 65 72 20 61 20 74 68 72 65 65 2D 63 6C 61   // nder a three-cla
+                                                                                                  75 73 65 20 42 53 44 20 6C 69 63 65 6E 73 65 2E   // use BSD license.
+                                                                                                  00 00 )
+  .custom instance void [mscorlib]System.Runtime.InteropServices.ComVisibleAttribute::.ctor(bool) = ( 01 00 00 00 00 )
+  .hash algorithm 0x00008004
+  .ver 5:0:113:2419
+}
+.mresource public WizardWrx.Properties.Resources.resources
+{
+  // Offset: 0x00000000 Length: 0x00000723
+}
+.module WizardWrx.AnyCSV.dll
+// MVID: {77230855-AA0B-408E-BACF-3F6F5EF0B5DA}
+.imagebase 0x10000000
+.file alignment 0x00000200
+.stackreserve 0x00100000
+.subsystem 0x0003       // WINDOWS_CUI
+.corflags 0x00000003    //  ILONLY 32BITREQUIRED
+// Image base: 0x0000000000540000
+
+================================================================================
+2017/08/12 01:15:16 - Force the build to REALLY be AnyCPU.
+================================================================================
+
+-----------------------------------------------------------------------------------------------
+C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj:
+-----------------------------------------------------------------------------------------------
+
+    <!--
+        ========================================================================
+        Revision History
+        ========================================================================
+
+        Date       By  Synopsis
+        ========== === =========================================================
+        2017/08/12 DAG Manually change PlatformTarget from x86 to AnyCPU so that
+                       the 64 bit assembly registrar can register the assembly
+                       for COM interop.
+        ========================================================================
+
+Reference:	Setting up build configuration in .NET
+			http://aakinshin.net/blog/post/msbuild-configurations/
+
+================================================================================
+2017/08/12 01:17:25 - Start by repeating the debug build, followed immediately
+                      by the retail build.
+================================================================================
+
+=============
+Debug Build:
+=============
+
+NuGet package restore started.
+Restoring NuGet packages for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+NuGet Package restored finished for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+Restoring NuGet packages for project AnyCSV.
+Skipping NuGet package NuGet.Package.Builder 1.0.10 since it is already installed.
+NuGet Package restored finished for project AnyCSV.
+All packages are already installed and there is nothing to restore.
+NuGet package restore finished.
+
+
+------ Build started: Project: AnyCSV, Configuration: Debug Any CPU ------
+Build started 2017/08/12 01:19:40.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/12 01:19:41 (2017/08/12 06:19:41 UTC)
+          Build Number = 114
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\Debug\WizardWrx.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Debug\WizardWrx.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /checked+
+                                                  /nowarn:1701,
+                                                          1702,
+                                                          2008
+                                                  /nostdlib+
+                                                  /platform:AnyCPU
+                                                  /errorreport:prompt
+                                                  /warn:4
+
+                                                  /doc:bin\Debug\WizardWrx.AnyCSV.xml
+
+                                                  /define:DEBUG;
+                                                          TRACE
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+
+                                                  /debug+
+                                                  /debug:full
+                                                  /filealign:512
+                                                  /optimize-
+
+                                                  /out:obj\Debug\WizardWrx.AnyCSV.dll
+
+                                                  /resource:obj\Debug\WizardWrx.Properties.Resources.resources
+
+                                                  /target:library
+                                                  /utf8output
+
+                                                  CSVParseEngine.cs
+                                                  ICSVParser.cs
+                                                  Parser.cs
+
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Debug\WizardWrx.AnyCSV.dll"
+                 to "bin\Debug\WizardWrx.AnyCSV.dll".
+  AnyCSV         -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll
+  Copying file from "obj\Debug\WizardWrx.AnyCSV.pdb"
+                 to "bin\Debug\WizardWrx.AnyCSV.pdb".
+
+__BuildNuGetPackage:
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Debug" -p "Configuration=Debug;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Debug" -p "Configuration=Debug;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+
+PostBuildEvent:
+  wwBldNbrMgr.exe -r "-pC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ " "-tC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+  Build Task           = RecordBuildDetails
+  Assembly File FQFN = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll
+          Version    = 5.0.114.593
+          File Date  = 2017/08/12 01:19:47 (2017/08/12 06:19:47 UTC)
+  Log File FQFN      = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\BuildHistory.LOG
+          File Date  = 2017/08/12 01:19:50 (2017/08/12 06:19:50 UTC)
+
+Build succeeded.
+
+Time Elapsed 00:00:09.48
+
+
+------ Build started: Project: AnyCSVTestStand, Configuration: Debug Any CPU ------
+Build started 2017/08/12 01:19:50.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/12 01:19:50 (2017/08/12 06:19:50 UTC)
+          Build Number = 116
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+ResolveAssemblyReferences:
+  A TargetFramework profile exclusion list will be generated.
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\Debug\AnyCSVTestStand.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Debug\AnyCSVTestStand.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /nowarn:1701,
+                                                          1702,
+                                                          2008
+                                                  /nostdlib+
+                                                  /platform:AnyCPU
+                                                  /errorreport:prompt
+                                                  /define:TRACE;
+                                                          DEBUG;
+                                                          ANYCSV
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+
+                                                  /debug+
+                                                  /debug:full
+                                                  /filealign:512
+
+                                                  /out:obj\Debug\AnyCSVTestStand.exe
+
+                                                  /resource:obj\Debug\AnyCSVTestStand.Properties.Resources.resources
+
+                                                  /target:exe
+                                                  /utf8output
+                                                  /win32icon:WW_Icon1.ico
+
+                                                  Program.cs
+
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+
+_CopyFilesMarkedCopyLocal:
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.dll"
+                 to "bin\Debug\WizardWrx.AnyCSV.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.pdb"
+                 to "bin\Debug\WizardWrx.AnyCSV.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Debug\WizardWrx.AnyCSV.xml"
+                 to "bin\Debug\WizardWrx.AnyCSV.xml".
+
+_CopyOutOfDateSourceItemsToOutputDirectory:
+Skipping target "_CopyOutOfDateSourceItemsToOutputDirectory" because all output files are up-to-date with respect to the input files.
+
+_CopyAppConfigFile:
+Skipping target "_CopyAppConfigFile" because all output files are up-to-date with respect to the input files.
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Debug\AnyCSVTestStand.exe"
+                 to "bin\Debug\AnyCSVTestStand.exe".
+  AnyCSVTestStand -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe
+  Copying file from "obj\Debug\AnyCSVTestStand.pdb"
+                 to "bin\Debug\AnyCSVTestStand.pdb".
+
+PostBuildEvent:
+  wwBldNbrMgr.exe -r "-pC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ " "-tC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe"
+  Build Task           = RecordBuildDetails
+  Assembly File FQFN = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe
+          Version    = 5.0.116.597
+          File Date  = 2017/08/12 01:19:54 (2017/08/12 06:19:54 UTC)
+  Log File FQFN      = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\BuildHistory.LOG
+          File Date  = 2017/08/12 01:19:54 (2017/08/12 06:19:54 UTC)
+
+Build succeeded.
+
+Time Elapsed 00:00:04.14
+========== Build: 2 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+
+=============
+Retail Build:
+=============
+
+NuGet package restore started.
+Restoring NuGet packages for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+NuGet Package restored finished for solution C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV.sln.
+Restoring NuGet packages for project AnyCSV.
+Skipping NuGet package NuGet.Package.Builder 1.0.10 since it is already installed.
+NuGet Package restored finished for project AnyCSV.
+All packages are already installed and there is nothing to restore.
+NuGet package restore finished.
+
+
+------ Build started: Project: AnyCSV, Configuration: Release Any CPU ------
+Build started 2017/08/12 01:25:48.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/12 01:25:48 (2017/08/12 06:25:48 UTC)
+          Build Number = 115
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\Release\WizardWrx.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Release\WizardWrx.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /nowarn:1701,
+                                                          1702,
+                                                          2008
+                                                  /nostdlib+
+                                                  /platform:AnyCPU
+                                                  /errorreport:prompt
+                                                  /warn:4
+
+                                                  /doc:bin\Release\WizardWrx.AnyCSV.XML
+
+                                                  /define:TRACE
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+
+                                                  /debug:pdbonly
+                                                  /filealign:512
+                                                  /optimize+
+
+                                                  /out:obj\Release\WizardWrx.AnyCSV.dll
+
+                                                  /resource:obj\Release\WizardWrx.Properties.Resources.resources
+
+                                                  /target:library
+                                                  /utf8output
+
+                                                  CSVParseEngine.cs
+                                                  ICSVParser.cs
+                                                  Parser.cs
+
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\WizardWrx.AnyCSV.dll"
+                 to "bin\Release\WizardWrx.AnyCSV.dll".
+  AnyCSV         -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+  Copying file from "obj\Release\WizardWrx.AnyCSV.pdb"
+                 to "bin\Release\WizardWrx.AnyCSV.pdb".
+
+__BuildNuGetPackage:
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.exe pack "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj"  -NoDefaultExcludes -Verbosity Detailed -Properties "OutDir=C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release;Configuration=Release;Platform=AnyCPU" -NonInteractive -OutputDirectory "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -basepath "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -IncludeReferencedProjects
+  MSBuild auto-detection: using msbuild version '12.0' from 'C:\Program Files (x86)\MSBuild\12.0\bin'. Use option -MSBuildVersion to force nuget to use a specific version of MSBuild.
+  Attempting to build package from 'AnyCSV.csproj'.
+  Packing files from 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release'.
+  Using 'AnyCSV.nuspec' for metadata.
+  Add file 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll' to package as 'lib\net20\WizardWrx.AnyCSV.dll'
+  Add file 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.XML' to package as 'lib\net20\WizardWrx.AnyCSV.XML'
+  Found packages.config. Using packages listed as dependencies
+
+  Id: WizardWrx.AnyCSV
+  Version: 5.0.115.775
+  Authors: David A. Gray
+  Description: This library parses ANY delimited string, including the unusual strings found in the X.509 metadata of the certificates in the Trusted Root Certificate Store of Microsoft Windows.
+  Project Url: https://github.com/txwizard/AnyCSV
+  Tags: CSV,Delimited String,Parser
+  Dependencies: None
+
+  Added file 'lib\net20\WizardWrx.AnyCSV.dll'.
+  Added file 'lib\net20\WizardWrx.AnyCSV.XML'.
+
+  Successfully created package 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.5.0.115.775.nupkg'.
+
+PostBuildEvent:
+  "%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+  Microsoft (R) .NET Framework Assembly Registration Utility 2.0.50727.5483
+  Copyright (C) Microsoft Corporation 1998-2004.  All rights reserved.
+
+  Types registered successfully
+
+Build succeeded.
+
+Time Elapsed 00:00:08.39
+
+
+------ Build started: Project: AnyCSVTestStand, Configuration: Release Any CPU ------
+Build started 2017/08/12 01:25:56.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2017/08/12 01:25:56 (2017/08/12 06:25:56 UTC)
+          Build Number = 117
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+ResolveAssemblyReferences:
+  A TargetFramework profile exclusion list will be generated.
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                                                                       /r:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\Release\AnyCSVTestStand.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Release\AnyCSVTestStand.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\MSBuild\12.0\bin\Csc.exe /noconfig
+                                                  /nowarn:1701,
+                                                         1702,
+                                                         2008
+                                                  /nostdlib+
+                                                  /platform:AnyCPU
+                                                  /errorreport:prompt
+                                                  /define:TRACE;
+                                                          ANYCSV
+                                                  /errorendlocation
+                                                  /preferreduilang:en-US
+                                                  /highentropyva-
+
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                  /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                                                  /reference:"C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+
+                                                  /debug:pdbonly
+                                                  /filealign:512
+                                                  /optimize+
+
+                                                  /out:obj\Release\AnyCSVTestStand.exe
+
+                                                  /resource:obj\Release\AnyCSVTestStand.Properties.Resources.resources
+
+                                                  /target:exe
+                                                  /utf8output
+                                                  /win32icon:WW_Icon1.ico
+
+                                                  Program.cs
+
+                                                  Properties\AssemblyInfo.cs
+                                                  Properties\Resources.Designer.cs
+
+_CopyFilesMarkedCopyLocal:
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+                 to "bin\Release\WizardWrx.AnyCSV.dll".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.pdb"
+                 to "bin\Release\WizardWrx.AnyCSV.pdb".
+  Copying file from "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.xml"
+                 to "bin\Release\WizardWrx.AnyCSV.xml".
+
+_CopyOutOfDateSourceItemsToOutputDirectory:
+Skipping target "_CopyOutOfDateSourceItemsToOutputDirectory" because all output files are up-to-date with respect to the input files.
+
+_CopyAppConfigFile:
+Skipping target "_CopyAppConfigFile" because all output files are up-to-date with respect to the input files.
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\AnyCSVTestStand.exe"
+                 to "bin\Release\AnyCSVTestStand.exe".
+  AnyCSVTestStand -> C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+  Copying file from "obj\Release\AnyCSVTestStand.pdb"
+                 to "bin\Release\AnyCSVTestStand.pdb".
+
+PostBuildEvent:
+  wwBldNbrMgr.exe -r "-pC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ " "-tC:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe"
+  Build Task           = RecordBuildDetails
+  Assembly File FQFN = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+          Version    = 5.0.117.779
+          File Date  = 2017/08/12 01:25:59 (2017/08/12 06:25:59 UTC)
+  Log File FQFN      = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\BuildHistory.LOG
+          File Date  = 2017/08/12 01:26:00 (2017/08/12 06:26:00 UTC)
+
+Build succeeded.
+
+Time Elapsed 00:00:03.71
+========== Build: 2 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+
+================================================================================
+2017/08/12 01:33:03 - Run the debug build in the Visual Studio debugger.
+================================================================================
+
+AnyCSVTestStand, version 5.0.118.983
+Begin @ 2017/08/12 01:32:50.877 (2017/08/12 06:32:50.877 UTC)
+
+
+Working Directory Name = C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\NOTES
+
+Test Case File  Name   = CSV_Test_Strings.TXT
+
+Caee  1 of 10: Subfield Count = 5
+               Input String   = This,is,a,basic,test.
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = is
+                           Field  3 of  5 = a
+                           Field  4 of  5 = basic
+                           Field  5 of  5 = test.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = is
+                           Field  3 of  5 = a
+                           Field  4 of  5 = basic
+                           Field  5 of  5 = test.
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = is
+                           Field  3 of  5 = a
+                           Field  4 of  5 = basic
+                           Field  5 of  5 = test.
+
+Caee  2 of 10: Subfield Count = 8
+               Input String   = ,This,test,starts,with,an,empty,string.
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  8 =
+                           Field  2 of  8 = This
+                           Field  3 of  8 = test
+                           Field  4 of  8 = starts
+                           Field  5 of  8 = with
+                           Field  6 of  8 = an
+                           Field  7 of  8 = empty
+                           Field  8 of  8 = string.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  8 =
+                           Field  2 of  8 = This
+                           Field  3 of  8 = test
+                           Field  4 of  8 = starts
+                           Field  5 of  8 = with
+                           Field  6 of  8 = an
+                           Field  7 of  8 = empty
+                           Field  8 of  8 = string.
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  8 =
+                           Field  2 of  8 = This
+                           Field  3 of  8 = test
+                           Field  4 of  8 = starts
+                           Field  5 of  8 = with
+                           Field  6 of  8 = an
+                           Field  7 of  8 = empty
+                           Field  8 of  8 = string.
+
+Caee  3 of 10: Subfield Count = 8
+               Input String   = This,test,ends,with,an,empty,field.,
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  8 = This
+                           Field  2 of  8 = test
+                           Field  3 of  8 = ends
+                           Field  4 of  8 = with
+                           Field  5 of  8 = an
+                           Field  6 of  8 = empty
+                           Field  7 of  8 = field.
+                           Field  8 of  8 =
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  8 = This
+                           Field  2 of  8 = test
+                           Field  3 of  8 = ends
+                           Field  4 of  8 = with
+                           Field  5 of  8 = an
+                           Field  6 of  8 = empty
+                           Field  7 of  8 = field.
+                           Field  8 of  8 =
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  8 = This
+                           Field  2 of  8 = test
+                           Field  3 of  8 = ends
+                           Field  4 of  8 = with
+                           Field  5 of  8 = an
+                           Field  6 of  8 = empty
+                           Field  7 of  8 = field.
+                           Field  8 of  8 =
+
+Caee  4 of 10: Subfield Count = 6
+               Input String   = "This test",starts,with,a,quoted,string.
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  6 = This test
+                           Field  2 of  6 = starts
+                           Field  3 of  6 = with
+                           Field  4 of  6 = a
+                           Field  5 of  6 = quoted
+                           Field  6 of  6 = string.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  6 = "This test"
+                           Field  2 of  6 = starts
+                           Field  3 of  6 = with
+                           Field  4 of  6 = a
+                           Field  5 of  6 = quoted
+                           Field  6 of  6 = string.
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  6 = This test
+                           Field  2 of  6 = starts
+                           Field  3 of  6 = with
+                           Field  4 of  6 = a
+                           Field  5 of  6 = quoted
+                           Field  6 of  6 = string.
+
+Caee  5 of 10: Subfield Count = 6
+               Input String   = This,test,ends,with,a,"quoted string."
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  6 = This
+                           Field  2 of  6 = test
+                           Field  3 of  6 = ends
+                           Field  4 of  6 = with
+                           Field  5 of  6 = a
+                           Field  6 of  6 = quoted string.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  6 = This
+                           Field  2 of  6 = test
+                           Field  3 of  6 = ends
+                           Field  4 of  6 = with
+                           Field  5 of  6 = a
+                           Field  6 of  6 = "quoted string."
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  6 = This
+                           Field  2 of  6 = test
+                           Field  3 of  6 = ends
+                           Field  4 of  6 = with
+                           Field  5 of  6 = a
+                           Field  6 of  6 = quoted string.
+
+Caee  6 of 10: Subfield Count = 5
+               Input String   = This,test,"contains an embedded",quoted,string.
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = contains an embedded
+                           Field  4 of  5 = quoted
+                           Field  5 of  5 = string.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = "contains an embedded"
+                           Field  4 of  5 = quoted
+                           Field  5 of  5 = string.
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = contains an embedded
+                           Field  4 of  5 = quoted
+                           Field  5 of  5 = string.
+
+Caee  7 of 10: Subfield Count = 4
+               Input String   = This,"test contains",two,"quoted strings."
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  4 = This
+                           Field  2 of  4 = test contains
+                           Field  3 of  4 = two
+                           Field  4 of  4 = quoted strings.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  4 = This
+                           Field  2 of  4 = "test contains"
+                           Field  3 of  4 = two
+                           Field  4 of  4 = "quoted strings."
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  4 = This
+                           Field  2 of  4 = test contains
+                           Field  3 of  4 = two
+                           Field  4 of  4 = quoted strings.
+
+Caee  8 of 10: Subfield Count = 5
+               Input String   = This,test,"contains a quoted string,",followed by more,"text, both of which include commas."
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = contains a quoted string,
+                           Field  4 of  5 = followed by more
+                           Field  5 of  5 = text, both of which include commas.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = "contains a quoted string,"
+                           Field  4 of  5 = followed by more
+                           Field  5 of  5 = "text, both of which include commas.
+"
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = contains a quoted string,
+                           Field  4 of  5 = followed by more
+                           Field  5 of  5 = text, both of which include commas.
+
+Caee  9 of 10: Subfield Count = 11
+               Input String   = ,This,test,",includes a little of this, and a little of that,",,to,push,the,routine to its limits.,
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of 11 =
+                           Field  2 of 11 = This
+                           Field  3 of 11 = test
+                           Field  4 of 11 =
+                           Field  5 of 11 = includes a little of this, and a little of that,
+                           Field  6 of 11 =
+                           Field  7 of 11 = to
+                           Field  8 of 11 = push
+                           Field  9 of 11 = the
+                           Field 10 of 11 = routine to its limits.
+                           Field 11 of 11 =
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of 11 =
+                           Field  2 of 11 = This
+                           Field  3 of 11 = test
+                           Field  4 of 11 =
+                           Field  5 of 11 = "includes a little of this, and a little of that,"
+                           Field  6 of 11 =
+                           Field  7 of 11 = to
+                           Field  8 of 11 = push
+                           Field  9 of 11 = the
+                           Field 10 of 11 = routine to its limits.
+                           Field 11 of 11 =
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of 11 =
+                           Field  2 of 11 = This
+                           Field  3 of 11 = test
+                           Field  4 of 11 =
+                           Field  5 of 11 = includes a little of this, and a little of that,
+                           Field  6 of 11 =
+                           Field  7 of 11 = to
+                           Field  8 of 11 = push
+                           Field  9 of 11 = the
+                           Field 10 of 11 = routine to its limits.
+                           Field 11 of 11 =
+
+Caee 10 of 10: Subfield Count = 3
+               Input String   = CN=RapidSSL CA, O="GeoTrust, Inc.", C=US
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  3 = CN=RapidSSL CA
+                           Field  2 of  3 =  O="GeoTrust, Inc."
+                           Field  3 of  3 =  C=US
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  3 = CN=RapidSSL CA
+                           Field  2 of  3 =  O="GeoTrust, Inc."
+                           Field  3 of  3 =  C=US
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  3 = CN=RapidSSL CA
+                           Field  2 of  3 = O="GeoTrust, Inc."
+                           Field  3 of  3 = C=US
+
+AnyCSVTestStand End
+2017/08/12 01:32:52.597 (2017/08/12 06:32:52.597 UTC)
+Elapsed time: 00:00:01.7210984
+Please press the ENTER (Return) key to exit the program.
+
+------------------------------
+Visual Studio Debugger Window:
+------------------------------
+
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Windows\assembly\GAC_64\mscorlib\2.0.0.0__b77a5c561934e089\mscorlib.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\Microsoft.VisualStudio.HostingProcess.Utilities\12.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.HostingProcess.Utilities.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System.Windows.Forms\2.0.0.0__b77a5c561934e089\System.Windows.Forms.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System\2.0.0.0__b77a5c561934e089\System.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System.Drawing\2.0.0.0__b03f5f7f11d50a3a\System.Drawing.dll'. Cannot find or open the PDB file.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\Microsoft.VisualStudio.HostingProcess.Utilities.Sync\12.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.HostingProcess.Utilities.Sync.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\Microsoft.VisualStudio.Debugger.Runtime\12.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.Debugger.Runtime.dll'.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.vshost.exe'. Symbols loaded.
+The thread 0x137c has exited with code 259 (0x103).
+The thread 0x1ebc has exited with code 259 (0x103).
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\AnyCSVTestStand.exe'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.Core.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.ConsoleAppAids3.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.DLLConfigurationManager.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.AnyCSV.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System.Core\3.5.0.0__b77a5c561934e089\System.Core.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.AssemblyUtils.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.Common.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Debug\WizardWrx.ConsoleStreams.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System.Configuration\2.0.0.0__b03f5f7f11d50a3a\System.Configuration.dll'. Symbols loaded.
+'AnyCSVTestStand.vshost.exe' (CLR v2.0.50727: AnyCSVTestStand.vshost.exe): Loaded 'C:\Windows\assembly\GAC_MSIL\System.Xml\2.0.0.0__b77a5c561934e089\System.Xml.dll'. Cannot find or open the PDB file.
+The program '[0x1DE8] AnyCSVTestStand.vshost.exe' has exited with code 0 (0x0).
+
+================================================================================
+2017/12/21 11:40:36 - This is my new NuGet all access API key.
+================================================================================
+
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Users\DAVE>dir "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\NOTES\NuGet_API_Key_20171221.BIN"
+ Volume in drive C is Gateway
+ Volume Serial Number is D841-419A
+
+ Directory of C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\NOTES
+
+2017/12/21  11:38                46 NuGet_API_Key_20171221.BIN
+               1 File(s)             46 bytes
+               0 Dir(s)  417,945,735,168 bytes free
+
+C:\Users\DAVE>attrib "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\NOTES\NuGet_API_Key_20171221.BIN" +r
+
+C:\Users\DAVE>attrib "C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\NOTES\NuGet_API_Key_20171221.BIN"
+A    R       C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\NOTES\NuGet_API_Key_20171221.BIN
+
+C:\Users\DAVE>

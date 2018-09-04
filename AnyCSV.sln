@@ -1,6 +1,8 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyCSV", "AnyCSV\AnyCSV.csproj", "{71AF5044-EF2C-46DE-9965-4D39811BE0BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnyCSVTestStand", "AnyCSVTestStand\AnyCSVTestStand.csproj", "{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}"
@@ -28,12 +30,14 @@ Global
 		{71AF5044-EF2C-46DE-9965-4D39811BE0BF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{71AF5044-EF2C-46DE-9965-4D39811BE0BF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{71AF5044-EF2C-46DE-9965-4D39811BE0BF}.Release|x86.ActiveCfg = Release|Any CPU
-		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Debug|Mixed Platforms.Build.0 = Debug|x86
 		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Debug|x86.ActiveCfg = Debug|x86
 		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Debug|x86.Build.0 = Debug|x86
-		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Release|Any CPU.ActiveCfg = Release|x86
+		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Release|Mixed Platforms.ActiveCfg = Release|x86
 		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Release|Mixed Platforms.Build.0 = Release|x86
 		{A8A55EAA-55C2-4DFC-88E8-B21F7D06B136}.Release|x86.ActiveCfg = Release|x86

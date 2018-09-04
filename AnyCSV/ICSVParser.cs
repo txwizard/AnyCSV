@@ -11,7 +11,11 @@
 						the most robust CSV string parser that I can conceive to
 						COM.
 
-	License:            Copyright (C) 2014-2016, David A. Gray.
+	Reference:			"Issues with building a project with "Register for COM interop" for a 64-bit assembly"
+						https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
+						Retrieved 2017/08/05 07:28:24
+
+	License:            Copyright (C) 2014-2017, David A. Gray.
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -57,6 +61,13 @@
     ---------- ------- ------ --------------------------------------------------
     2016/09/25 4.0     DAG    Define an interface, so that I can expose the base
                               class to COM.
+
+    2017/08/05 5.0     DAG    Change CPU architecture from x86 to MSIL, and
+                              record the COM registration in the 64 bit Registry
+                              as described in the reference cited above.
+
+                              Since the interface is unchanged, I kept the 
+                              original GUID.
     ============================================================================
 */
 

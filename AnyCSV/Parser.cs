@@ -32,7 +32,11 @@
                         reference to them, so that this library is completely
                         freestanding.
 
-	License:            Copyright (C) 2014-2016, David A. Gray.
+	Reference:			"Issues with building a project with "Register for COM interop" for a 64-bit assembly"
+						https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
+						Retrieved 2017/08/05 07:28:24
+
+	License:            Copyright (C) 2014-2018, David A. Gray.
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -84,15 +88,21 @@
     2016/10/01 4.0     DAG    Expose this class to COM, correct typographical
                               errors in the documentation and comments, and
                               clarify a handful of technical points in the help.
+
+    2017/08/05 5.0     DAG    Change CPU architecture from x86 to MSIL, and
+                              record the COM registration in the 64 bit Registry
+                              as described in the reference cited above.
+
+    2018/01/03 7.0     DAG    Sign the assembly with a strong name, so that it
+                              can go into a Global Assembly Cache. Since there
+                              are no other changes, there is no debug build.
+
+    2018/09/03 7.0     DAG    Eliminate unused using directives.
     ============================================================================
 */
 
 
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Runtime.InteropServices;
-using System.Text;
 
 
 namespace WizardWrx.AnyCSV

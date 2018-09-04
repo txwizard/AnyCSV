@@ -1,0 +1,1410 @@
+                     Development Notes: AnyCSV, version 5.0
+
+================================================================================
+1/2/2018 23:55:05 - Rebuild and sign with a strong name.
+================================================================================
+
+1>------ Build started: Project: AnyCSV, Configuration: Release Any CPU ------
+1>  Build Task           = IncrementBuildNbr
+1>  AssemblyInfo File    = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+1>          Project Type = CSharp
+1>          File Date    = 1/2/2018 23:51:48 (1/3/2018 05:51:48 UTC)
+1>          Build Number = 117
+1>  Sleeping for 3 seconds
+1>  Waking from cat nap
+1>  AnyCSV -> F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+1>  "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+1>  F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.exe pack "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj"  -NoDefaultExcludes -Verbosity Detailed -Properties "OutDir=F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release;Configuration=Release;Platform=AnyCPU" -NonInteractive -OutputDirectory "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -basepath "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -IncludeReferencedProjects
+1>  MSBuild auto-detection: using msbuild version '14.0' from 'C:\Program Files (x86)\MSBuild\14.0\bin'. Use option -MSBuildVersion to force nuget to use a specific version of MSBuild.
+1>  Attempting to build package from 'AnyCSV.csproj'.
+1>  Packing files from 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release'.
+1>  Using 'AnyCSV.nuspec' for metadata.
+1>  Add file 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll' to package as 'lib\net20\WizardWrx.AnyCSV.dll'
+1>  Add file 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.XML' to package as 'lib\net20\WizardWrx.AnyCSV.XML'
+1>  Found packages.config. Using packages listed as dependencies
+1>
+1>  Id: WizardWrx.AnyCSV
+1>  Version: 7.0.117.42956
+1>  Authors: David A. Gray
+1>  Description: This library parses ANY delimited string, including the unusual strings found in the X.509 metadata of the certificates in the Trusted Root Certificate Store of Microsoft Windows.
+1>  Project Url: https://github.com/txwizard/AnyCSV
+1>  Tags: CSV,Delimited String,Parser
+1>  Dependencies: None
+1>
+1>  Added file 'lib\net20\WizardWrx.AnyCSV.dll'.
+1>  Added file 'lib\net20\WizardWrx.AnyCSV.XML'.
+1>
+1>  Successfully created package 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.7.0.117.42956.nupkg'.
+1>C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets(4695,5): error MSB3216: Cannot register assembly "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll" - access denied. Please make sure you're running the application as administrator. Access to the registry key 'HKEY_CLASSES_ROOT\WizardWrx.AnyCSV.CSVParseEngine' is denied.
+2>------ Build started: Project: AnyCSVTestStand, Configuration: Release Any CPU ------
+2>  Build Task           = IncrementBuildNbr
+2>  AssemblyInfo File    = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Properties\AssemblyInfo.cs
+2>          Project Type = CSharp
+2>          File Date    = 1/1/2018 21:10:36 (1/2/2018 03:10:36 UTC)
+2>          Build Number = 119
+2>  Sleeping for 3 seconds
+2>  Waking from cat nap
+2>  AnyCSVTestStand -> F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+2>  Build Task           = RecordBuildDetails
+2>  Assembly File FQFN = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+2>          Version    = 5.0.119.42958
+2>          File Date  = 1/2/2018 23:51:57 (1/3/2018 05:51:57 UTC)
+2>  Log File FQFN      = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\BuildHistory.LOG
+2>          File Date  = 1/2/2018 23:51:57 (1/3/2018 05:51:57 UTC)
+========== Build: 1 succeeded, 1 failed, 0 up-to-date, 0 skipped ==========
+
+================================================================================
+1/3/2018 00:21:54 - Detailed logging gives me more than I usually use.
+================================================================================
+
+1>------ Build started: Project: AnyCSV, Configuration: Release Any CPU ------
+1>Build started 1/3/2018 00:21:23.
+1>Building with tools version "15.0".
+1>Project file contains ToolsVersion="12.0". This toolset may be unknown or missing, in which case you may be able to resolve this by installing the appropriate version of MSBuild, or the build may have been forced to a particular ToolsVersion for policy reasons. Treating the project as if it had ToolsVersion="15.0". For more information, please see http://go.microsoft.com/fwlink/?LinkId=293424.
+1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "BeforeBuild" depends on it):
+1>Task "Error" skipped, due to false condition; ( '$(_InvalidConfigurationError)' == 'true' ) was evaluated as ( '' == 'true' ).
+1>Task "Warning" skipped, due to false condition; ( '$(_InvalidConfigurationWarning)' == 'true' ) was evaluated as ( '' == 'true' ).
+1>Using "Message" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "Message"
+1>  Configuration=Release
+1>Done executing task "Message".
+1>Task "Message"
+1>  Platform=AnyCPU
+1>Done executing task "Message".
+1>Task "Error" skipped, due to false condition; ('$(OutDir)' != '' and !HasTrailingSlash('$(OutDir)')) was evaluated as ('bin\Release\' != '' and !HasTrailingSlash('bin\Release\')).
+1>Task "Error" skipped, due to false condition; ('$(BaseIntermediateOutputPath)' != '' and !HasTrailingSlash('$(BaseIntermediateOutputPath)')) was evaluated as ('obj\' != '' and !HasTrailingSlash('obj\')).
+1>Task "Error" skipped, due to false condition; ('$(IntermediateOutputPath)' != '' and !HasTrailingSlash('$(IntermediateOutputPath)')) was evaluated as ('obj\Release\' != '' and !HasTrailingSlash('obj\Release\')).
+1>Done building target "_CheckForInvalidConfigurationAndPlatform" in project "AnyCSV.csproj".
+1>Target "_WaitForServiceFabricApplicationCleanupBeforeBuild" skipped, due to false condition; ('$(IsServiceFabricServiceProject)' == 'true') was evaluated as ('' == 'true').
+1>Target "BeforeBuild" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Build" depends on it):
+1>Done building target "BeforeBuild" in project "AnyCSV.csproj".
+1>Target "BuildOnlySettings" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Done building target "BuildOnlySettings" in project "AnyCSV.csproj".
+1>Target "GetFrameworkPaths" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.NETFramework.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareForBuild" depends on it):
+1>Done building target "GetFrameworkPaths" in project "AnyCSV.csproj".
+1>Target "GetReferenceAssemblyPaths" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareForBuild" depends on it):
+1>Using "GetReferenceAssemblyPaths" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "GetReferenceAssemblyPaths"
+1>Done executing task "GetReferenceAssemblyPaths".
+1>Done building target "GetReferenceAssemblyPaths" in project "AnyCSV.csproj".
+1>Target "AssignLinkMetadata" skipped, due to false condition; ( '$(SynthesizeLinkMetadata)' == 'true' ) was evaluated as ( '' == 'true' ).
+1>Target "EnsureNuGetPackageBuildImports" in project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareForBuild" depends on it):
+1>Task "Error" skipped, due to false condition; (!Exists('..\packages\NuGet.Package.Builder.1.0.10\build\NuGet.Package.Builder.targets')) was evaluated as (!Exists('..\packages\NuGet.Package.Builder.1.0.10\build\NuGet.Package.Builder.targets')).
+1>Done building target "EnsureNuGetPackageBuildImports" in project "AnyCSV.csproj".
+1>Target "PrepareForBuild" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Using "FindAppConfigFile" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "FindAppConfigFile"
+1>Done executing task "FindAppConfigFile".
+1>Using "MakeDir" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "MakeDir"
+1>Done executing task "MakeDir".
+1>Done building target "PrepareForBuild" in project "AnyCSV.csproj".
+1>Target "PreBuildEvent" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Using "Exec" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "Exec"
+1>  wwBldNbrMgr.exe "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ "
+1>  Build Task           = IncrementBuildNbr
+1>  AssemblyInfo File    = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+1>          Project Type = CSharp
+1>          File Date    = 1/2/2018 23:51:48 (1/3/2018 05:51:48 UTC)
+1>          Build Number = 118
+1>  Sleeping for 3 seconds
+1>  Waking from cat nap
+1>Done executing task "Exec".
+1>Done building target "PreBuildEvent" in project "AnyCSV.csproj".
+1>Target "BeforeResolveReferences" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResolveReferences" depends on it):
+1>Done building target "BeforeResolveReferences" in project "AnyCSV.csproj".
+1>Target "AssignProjectConfiguration" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResolveReferences" depends on it):
+1>Using "AssignProjectConfiguration" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "AssignProjectConfiguration"
+1>Done executing task "AssignProjectConfiguration".
+1>Done building target "AssignProjectConfiguration" in project "AnyCSV.csproj".
+1>Target "AssignProjectConfiguration" skipped. Previously built successfully.
+1>Target "_SplitProjectReferencesByFileExistence" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareProjectReferences" depends on it):
+1>Task "ResolveNonMSBuildProjectOutput" skipped, due to false condition; ('$(BuildingInsideVisualStudio)'=='true' and '@(ProjectReferenceWithConfiguration)'!='') was evaluated as ('true'=='true' and ''!='').
+1>Done building target "_SplitProjectReferencesByFileExistence" in project "AnyCSV.csproj".
+1>Target "_GetProjectReferenceTargetFrameworkProperties" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareProjectReferences" depends on it):
+1>Using "MSBuild" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "MSBuild"
+1>Done executing task "MSBuild".
+1>Task "GetReferenceNearestTargetFrameworkTask" skipped, due to false condition; ('@(_ProjectReferenceTargetFrameworkPossibilities->Count())' != '0' and '$(ReferringTargetFrameworkForProjectReferences)' != '') was evaluated as ('0' != '0' and '.NETFramework,Version=v2.0' != '').
+1>Done building target "_GetProjectReferenceTargetFrameworkProperties" in project "AnyCSV.csproj".
+1>Target "PrepareProjectReferences" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResolveProjectReferences" depends on it):
+1>Done building target "PrepareProjectReferences" in project "AnyCSV.csproj".
+1>Target "ResolveProjectReferences" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResolveReferences" depends on it):
+1>Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and ('$(BuildingInsideVisualStudio)' == 'true' or '$(BuildProjectReferences)' != 'true') and '$(VisualStudioVersion)' != '10.0' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == 'true' and '' != '' and ('true' == 'true' or 'true' != 'true') and '15.0' != '10.0' and '' != '').
+1>Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and ('$(BuildingInsideVisualStudio)' == 'true' or '$(BuildProjectReferences)' != 'true') and '$(VisualStudioVersion)' == '10.0' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == 'true' and '' != '' and ('true' == 'true' or 'true' != 'true') and '15.0' == '10.0' and '' != '').
+1>Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '$(BuildingInsideVisualStudio)' != 'true' and '$(BuildProjectReferences)' == 'true' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == 'true' and '' != '' and 'true' != 'true' and 'true' == 'true' and '' != '').
+1>Task "MSBuild" skipped, due to false condition; ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '$(BuildingProject)' == 'true' and '@(_MSBuildProjectReferenceExistent)' != '') was evaluated as ('' == 'true' and '' != '' and 'true' == 'true' and '' != '').
+1>Task "Warning" skipped, due to false condition; ('@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceNonexistent)' != '') was evaluated as ('' != '' and '' != '').
+1>Done building target "ResolveProjectReferences" in project "AnyCSV.csproj".
+1>Target "FindInvalidProjectReferences" skipped, due to false condition; ('$(FindInvalidProjectReferences)' == 'true') was evaluated as ('' == 'true').
+1>Target "ResolveNativeReferences" skipped, due to false condition; ('@(NativeReference)'!='') was evaluated as (''!='').
+1>Target "GetFrameworkPaths" skipped. Previously built successfully.
+1>Target "GetReferenceAssemblyPaths" skipped. Previously built successfully.
+1>Target "PrepareForBuild" skipped. Previously built successfully.
+1>Target "GetInstalledSDKLocations" skipped, due to false condition; ('@(SDKReference)' != '') was evaluated as ('' != '').
+1>Target "ResolveSDKReferences" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResolveAssemblyReferences" depends on it):
+1>Task "ResolveSDKReference" skipped, due to false condition; ('@(SDKReference)'!='') was evaluated as (''!='').
+1>Done building target "ResolveSDKReferences" in project "AnyCSV.csproj".
+1>Target "ResolveSDKReferences" skipped. Previously built successfully.
+1>Target "ExpandSDKReferences" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResolveAssemblyReferences" depends on it):
+1>Task "GetSDKReferenceFiles" skipped, due to false condition; ('@(ResolvedSDKReference)'!='') was evaluated as (''!='').
+1>Done building target "ExpandSDKReferences" in project "AnyCSV.csproj".
+1>Target "ResolveNuGetPackageAssets" skipped, due to false condition; ('$(ResolveNuGetPackages)' == 'true' and exists('$(ProjectLockFile)')) was evaluated as ('true' == 'true' and exists('obj\project.assets.json')).
+1>Target "ImplicitlyExpandNETStandardFacades" skipped, due to false condition; ('$(ImplicitlyExpandNETStandardFacades)' == 'true') was evaluated as ('' == 'true').
+1>Target "GetReferenceAssemblyPaths" skipped. Previously built successfully.
+1>Target "ImplicitlyExpandNETStandardFacades" skipped, due to false condition; ('$(ImplicitlyExpandNETStandardFacades)' == 'true') was evaluated as ('' == 'true').
+1>Target "_HandlePackageFileConflicts" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\Microsoft.NET.Build.Extensions\Microsoft.NET.Build.Extensions.ConflictResolution.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResolveAssemblyReferences" depends on it):
+1>Using "ResolvePackageFileConflicts" task from assembly "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\Microsoft.NET.Build.Extensions\\tools\net46\Microsoft.NET.Build.Extensions.Tasks.dll".
+1>Task "ResolvePackageFileConflicts"
+1>Done executing task "ResolvePackageFileConflicts".
+1>Done building target "_HandlePackageFileConflicts" in project "AnyCSV.csproj".
+1>Target "ResolveAssemblyReferences" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResolveReferences" depends on it):
+1>Using "ResolveAssemblyReference" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "ResolveAssemblyReference"
+1>  TargetFrameworkMoniker:
+1>      .NETFramework,Version=v2.0
+1>  TargetFrameworkMonikerDisplayName:
+1>      .NETFramework v2.0
+1>  TargetedRuntimeVersion:
+1>      v2.0.50727
+1>  Assemblies:
+1>      System
+1>  AssemblyFiles:
+1>      C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+1>  CandidateAssemblyFiles:
+1>  TargetFrameworkDirectories:
+1>      C:\Windows\Microsoft.NET\Framework\v2.0.50727\
+1>  InstalledAssemblyTables:
+1>  IgnoreInstalledAssemblyTable:
+1>      False
+1>  SearchPaths:
+1>      {CandidateAssemblyFiles}
+1>      {HintPathFromItem}
+1>      {TargetFrameworkDirectory}
+1>      {AssemblyFoldersFromConfig:C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\AssemblyFolders.config,v2.0}
+1>      {Registry:Software\Microsoft\.NETFramework,v2.0,AssemblyFoldersEx}
+1>      {AssemblyFolders}
+1>      {GAC}
+1>      {RawFileName}
+1>      bin\Release\
+1>  AllowedAssemblyExtensions:
+1>      .winmd
+1>      .dll
+1>      .exe
+1>  AllowedRelatedFileExtensions:
+1>      .pdb
+1>      .xml
+1>      .pri
+1>      .dll.config
+1>      .exe.config
+1>  AppConfigFile:
+1>
+1>  AutoUnify:
+1>      True
+1>  CopyLocalDependenciesWhenParentReferenceInGac:
+1>      True
+1>  FindDependencies:
+1>      True
+1>  TargetProcessorArchitecture:
+1>      msil
+1>  StateFile:
+1>      obj\Release\AnyCSV.csprojResolveAssemblyReference.cache
+1>  InstalledAssemblySubsetTables:
+1>  IgnoreInstalledAssemblySubsetTable:
+1>      False
+1>  TargetFrameworkSubsets:
+1>  FullTargetFrameworkSubsetNames:
+1>      Full
+1>  ProfileName:
+1>
+1>  FullFrameworkFolders:
+1>      C:\Windows\Microsoft.NET\Framework\v2.0.50727\
+1>  LatestTargetFrameworkDirectories:
+1>  ProfileTablesLocation:
+1>  Could not read state file "obj\Release\AnyCSV.csprojResolveAssemblyReference.cache". The format of this state file is not valid.
+1>  Primary reference "mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
+1>      Resolved file path is "C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll".
+1>      Reference found at search path location "C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll".
+1>      This reference is not "CopyLocal" because it's in a Frameworks directory.
+1>      The ImageRuntimeVersion for this reference is "v2.0.50727".
+1>  Primary reference "System, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089".
+1>      Resolved file path is "C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll".
+1>      Reference found at search path location "{TargetFrameworkDirectory}".
+1>          For SearchPath "{TargetFrameworkDirectory}".
+1>          Considered "C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.winmd", but it didn't exist.
+1>      This reference is not "CopyLocal" because it's a prerequisite file.
+1>      The ImageRuntimeVersion for this reference is "v2.0.50727".
+1>Done executing task "ResolveAssemblyReference".
+1>Done building target "ResolveAssemblyReferences" in project "AnyCSV.csproj".
+1>Target "GenerateBindingRedirects" skipped, due to false condition; ('$(AutoGenerateBindingRedirects)' == 'true' and '$(GenerateBindingRedirectsOutputType)' == 'true') was evaluated as ('' == 'true' and '' == 'true').
+1>Target "GenerateBindingRedirectsUpdateAppConfig" skipped, due to false condition; ('$(AutoGenerateBindingRedirects)' == 'true' and '$(GenerateBindingRedirectsOutputType)' == 'true' and Exists('$(_GenerateBindingRedirectsIntermediateAppConfig)')) was evaluated as ('' == 'true' and '' == 'true' and Exists('obj\Release\WizardWrx.AnyCSV.dll.config')).
+1>Target "ResolveComReferences" skipped, due to false condition; ('@(COMReference)'!='' or '@(COMFileReference)'!='') was evaluated as (''!='' or ''!='').
+1>Target "AfterResolveReferences" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResolveReferences" depends on it):
+1>Done building target "AfterResolveReferences" in project "AnyCSV.csproj".
+1>Target "ImplicitlyExpandDesignTimeFacades" skipped, due to false condition; ('$(ImplicitlyExpandDesignTimeFacades)' == 'true') was evaluated as ('' == 'true').
+1>Target "ResolveTestReferences" skipped, due to false condition; ('@(Shadow)'!='') was evaluated as (''!='').
+1>Target "ResolveReferences" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Done building target "ResolveReferences" in project "AnyCSV.csproj".
+1>Target "ResolveAdditionalReferenceCopyLocalPathsForIIS" skipped, due to false condition; ('$(BuildForIIS)' == 'true') was evaluated as ('' == 'true').
+1>Target "ResolveNuGetPackageAssets" skipped, due to false condition; ('$(ResolveNuGetPackages)' == 'true' and exists('$(ProjectLockFile)')) was evaluated as ('true' == 'true' and exists('obj\project.assets.json')).
+1>Target "AssignTargetPaths" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareResourceNames" depends on it):
+1>Using "AssignTargetPath" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "AssignTargetPath"
+1>Done executing task "AssignTargetPath".
+1>Task "AssignTargetPath"
+1>Done executing task "AssignTargetPath".
+1>Task "AssignTargetPath"
+1>Done executing task "AssignTargetPath".
+1>Task "AssignTargetPath"
+1>Done executing task "AssignTargetPath".
+1>Task "AssignTargetPath" skipped, due to false condition; ('@(_DeploymentBaseManifestWithTargetPath)'=='' and '%(None.Extension)'=='.manifest') was evaluated as (''=='' and '.nuspec'=='.manifest').
+1>Task "AssignTargetPath" skipped, due to false condition; ('@(_DeploymentBaseManifestWithTargetPath)'=='' and '%(None.Extension)'=='.manifest') was evaluated as (''=='' and '.pfx'=='.manifest').
+1>Task "AssignTargetPath" skipped, due to false condition; ('@(_DeploymentBaseManifestWithTargetPath)'=='' and '%(None.Extension)'=='.manifest') was evaluated as (''=='' and '.json'=='.manifest').
+1>Task "AssignTargetPath" skipped, due to false condition; ('@(_DeploymentBaseManifestWithTargetPath)'=='' and '%(None.Extension)'=='.manifest') was evaluated as (''=='' and '.config'=='.manifest').
+1>Done building target "AssignTargetPaths" in project "AnyCSV.csproj".
+1>Target "AssignTargetPaths" skipped. Previously built successfully.
+1>Target "SplitResourcesByCulture" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareResourceNames" depends on it):
+1>Task "Warning" skipped, due to false condition; ('@(ResxWithNoCulture)'!='') was evaluated as (''!='').
+1>Task "Warning" skipped, due to false condition; ('@(ResxWithCulture)'!='') was evaluated as (''!='').
+1>Task "Warning" skipped, due to false condition; ('@(NonResxWithCulture)'!='') was evaluated as (''!='').
+1>Task "Warning" skipped, due to false condition; ('@(NonResxWithNoCulture)'!='') was evaluated as (''!='').
+1>Using "AssignCulture" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "AssignCulture"
+1>  Culture of "" was assigned to file "Properties\Resources.resx".
+1>Done executing task "AssignCulture".
+1>Done building target "SplitResourcesByCulture" in project "AnyCSV.csproj".
+1>Target "CreateManifestResourceNames" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.CSharp.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareResourceNames" depends on it):
+1>Using "CreateCSharpManifestResourceName" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "CreateCSharpManifestResourceName"
+1>  Root namespace is 'WizardWrx'.
+1>  Resource file 'Properties\Resources.resx' doesn't depend on any other file.
+1>  Resource file 'Properties\Resources.resx' gets manifest resource name 'WizardWrx.Properties.Resources'.
+1>Done executing task "CreateCSharpManifestResourceName".
+1>Task "CreateCSharpManifestResourceName" skipped, due to false condition; ('%(EmbeddedResource.ManifestResourceName)' == '' and '%(EmbeddedResource.WithCulture)' == 'true' and '%(EmbeddedResource.Type)' == 'Non-Resx') was evaluated as ('' == '' and 'false' == 'true' and 'Resx' == 'Non-Resx').
+1>Done building target "CreateManifestResourceNames" in project "AnyCSV.csproj".
+1>Target "CreateCustomManifestResourceNames" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareResourceNames" depends on it):
+1>Done building target "CreateCustomManifestResourceNames" in project "AnyCSV.csproj".
+1>Target "PrepareResourceNames" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareResources" depends on it):
+1>Done building target "PrepareResourceNames" in project "AnyCSV.csproj".
+1>Target "ResolveAssemblyReferences" skipped. Previously built successfully.
+1>Target "SplitResourcesByCulture" skipped. Previously built successfully.
+1>Target "BeforeResGen" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResGen" depends on it):
+1>Done building target "BeforeResGen" in project "AnyCSV.csproj".
+1>Target "ResolveReferences" skipped. Previously built successfully.
+1>Target "FindReferenceAssembliesForReferences" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreResGen" depends on it):
+1>Done building target "FindReferenceAssembliesForReferences" in project "AnyCSV.csproj".
+1>Target "CoreResGen" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResGen" depends on it):
+1>Task "GenerateResource" skipped, due to false condition; ('%(EmbeddedResource.Type)' == 'Resx' and '%(EmbeddedResource.GenerateResource)' != 'false' and '$(GenerateResourceMSBuildRuntime)' != 'CLR2') was evaluated as ('Resx' == 'Resx' and '' != 'false' and 'CLR2' != 'CLR2').
+1>Using "GenerateResource" task from assembly "Microsoft.Build.Tasks.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "GenerateResource"
+1>  Launching task "GenerateResource" from assembly "Microsoft.Build.Tasks.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" in an external task host with a runtime of "CLR2" and a process architecture of "x86".
+1>  No resources are out of date with respect to their source files. Skipping resource generation.
+1>Done executing task "GenerateResource".
+1>Done building target "CoreResGen" in project "AnyCSV.csproj".
+1>Target "AfterResGen" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "ResGen" depends on it):
+1>Done building target "AfterResGen" in project "AnyCSV.csproj".
+1>Target "ResGen" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareResources" depends on it):
+1>Done building target "ResGen" in project "AnyCSV.csproj".
+1>Target "CompileLicxFiles" skipped, due to false condition; ('@(_LicxFile)'!='') was evaluated as (''!='').
+1>Target "PrepareResources" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Done building target "PrepareResources" in project "AnyCSV.csproj".
+1>Target "ResolveKeySource" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Using "ResolveKeySource" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "ResolveKeySource"
+1>Done executing task "ResolveKeySource".
+1>Done building target "ResolveKeySource" in project "AnyCSV.csproj".
+1>Target "ResolveReferences" skipped. Previously built successfully.
+1>Target "ResolveKeySource" skipped. Previously built successfully.
+1>Target "ResolveComReferences" skipped, due to false condition; ('@(COMReference)'!='' or '@(COMFileReference)'!='') was evaluated as (''!='' or ''!='').
+1>Target "ResolveNativeReferences" skipped, due to false condition; ('@(NativeReference)'!='') was evaluated as (''!='').
+1>Target "_SetExternalWin32ManifestProperties" skipped, due to false condition; ('$(GenerateClickOnceManifests)'=='true' or '@(NativeReference)'!='' or '@(ResolvedIsolatedComModules)'!='') was evaluated as (''=='true' or ''!='' or ''!='').
+1>Target "_SetEmbeddedWin32ManifestProperties" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "SetWin32ManifestProperties" depends on it):
+1>Using "GetFrameworkPath" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "GetFrameworkPath"
+1>Done executing task "GetFrameworkPath".
+1>Done building target "_SetEmbeddedWin32ManifestProperties" in project "AnyCSV.csproj".
+1>Target "SetWin32ManifestProperties" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Compile" depends on it):
+1>Done building target "SetWin32ManifestProperties" in project "AnyCSV.csproj".
+1>Target "FindReferenceAssembliesForReferences" skipped. Previously built successfully.
+1>Target "_GenerateCompileInputs" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Compile" depends on it):
+1>Task "Warning" skipped, due to false condition; ('@(ManifestResourceWithNoCulture)'!='' and '%(ManifestResourceWithNoCulture.EmittedForCompatibilityOnly)'=='') was evaluated as ('obj\Release\WizardWrx.Properties.Resources.resources'!='' and 'true'=='').
+1>Task "Warning" skipped, due to false condition; ('@(ManifestNonResxWithNoCultureOnDisk)'!='' and '%(ManifestNonResxWithNoCultureOnDisk.EmittedForCompatibilityOnly)'=='') was evaluated as (''!='' and ''=='').
+1>Done building target "_GenerateCompileInputs" in project "AnyCSV.csproj".
+1>Target "GenerateTargetFrameworkMonikerAttribute" skipped, due to false condition; ('$(GenerateTargetFrameworkAttribute)' == 'true') was evaluated as ('' == 'true').
+1>Target "_SetTargetFrameworkMonikerAttribute" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.CSharp.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "GenerateTargetFrameworkMonikerAttribute" depends on it):
+1>Done building target "_SetTargetFrameworkMonikerAttribute" in project "AnyCSV.csproj".
+1>Target "GenerateAdditionalSources" skipped, due to false condition; ('@(AssemblyAttributes)' != '' and '$(GenerateAdditionalSources)' == 'true') was evaluated as ('' != '' and '' == 'true').
+1>Target "BeforeCompile" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Compile" depends on it):
+1>Done building target "BeforeCompile" in project "AnyCSV.csproj".
+1>Target "_TimeStampBeforeCompile" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Compile" depends on it):
+1>Done building target "_TimeStampBeforeCompile" in project "AnyCSV.csproj".
+1>Target "ResolveAssemblyReferences" skipped. Previously built successfully.
+1>Target "_GenerateCompileDependencyCache" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Compile" depends on it):
+1>Using "Hash" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "Hash"
+1>Done executing task "Hash".
+1>Using "WriteLinesToFile" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "WriteLinesToFile"
+1>  MSB3493: Skipping write to file "obj\Release\AnyCSV.csproj.CoreCompileInputs.cache" because content would not change.
+1>Done executing task "WriteLinesToFile".
+1>Done building target "_GenerateCompileDependencyCache" in project "AnyCSV.csproj".
+1>Target "_ComputeNonExistentFileProperty" skipped, due to false condition; (('$(BuildingInsideVisualStudio)' == 'true') and ('$(BuildingOutOfProcess)' != 'true') and (('$(BuildingProject)' == 'false') or ('$(UseHostCompilerIfAvailable)' == 'true'))) was evaluated as (('true' == 'true') and ('true' != 'true') and (('true' == 'false') or ('true' == 'true'))).
+1>Target "ResolveCodeAnalysisRuleSet" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.CSharp.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreCompile" depends on it):
+1>Using "ResolveCodeAnalysisRuleSet" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "ResolveCodeAnalysisRuleSet"
+1>Done executing task "ResolveCodeAnalysisRuleSet".
+1>Done building target "ResolveCodeAnalysisRuleSet" in project "AnyCSV.csproj".
+1>Target "ShimReferencePathsWhenCommonTargetsDoesNotUnderstandReferenceAssemblies" skipped, due to false condition; ('@(ReferencePathWithRefAssemblies)' == '') was evaluated as ('C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll;C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll' == '').
+1>Target "CoreCompile" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn\Microsoft.CSharp.Core.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Compile" depends on it):
+1>Building target "CoreCompile" completely.
+1>Output file "bin\Release\WizardWrx.AnyCSV.XML" does not exist.
+1>Using "Csc" task from assembly "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll".
+1>Task "Csc"
+1>  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn\csc.exe /noconfig /nowarn:1701,1702,2008 /nostdlib+ /platform:AnyCPU /errorreport:prompt /warn:4 /doc:bin\Release\WizardWrx.AnyCSV.XML /define:TRACE /errorendlocation /preferreduilang:en-US /highentropyva- /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll /debug:pdbonly /filealign:512 /keycontainer:VS_KEY_76C9184CE3CE2D8F /optimize+ /out:obj\Release\WizardWrx.AnyCSV.dll /ruleset:"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Team Tools\Static Analysis Tools\\Rule Sets\MinimumRecommendedRules.ruleset" /resource:obj\Release\WizardWrx.Properties.Resources.resources /target:library /utf8output CSVParseEngine.cs ICSVParser.cs Parser.cs Properties\AssemblyInfo.cs Properties\Resources.Designer.cs
+1>  Using shared compilation with compiler from directory: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn
+1>  Microsoft (R) Visual C# Compiler version 2.6.0.62329 (5429b35d)
+1>  Copyright (C) Microsoft Corporation. All rights reserved.
+1>Done executing task "Csc".
+1>Task "CallTarget" skipped, due to false condition; ('$(TargetsTriggeredByCompilation)' != '') was evaluated as ('' != '').
+1>Done building target "CoreCompile" in project "AnyCSV.csproj".
+1>Target "_TimeStampAfterCompile" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Compile" depends on it):
+1>Done building target "_TimeStampAfterCompile" in project "AnyCSV.csproj".
+1>Target "AfterCompile" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Compile" depends on it):
+1>Done building target "AfterCompile" in project "AnyCSV.csproj".
+1>Target "Compile" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Done building target "Compile" in project "AnyCSV.csproj".
+1>Target "ExportWindowsMDFile" skipped, due to false condition; ('$(ExportWinMDFile)' == 'true') was evaluated as ('' == 'true').
+1>Target "UnmanagedUnregistration" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Using "UnregisterAssembly" task from assembly "Microsoft.Build.Tasks.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "UnregisterAssembly"
+1>  Launching task "UnregisterAssembly" from assembly "Microsoft.Build.Tasks.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" in an external task host with a runtime of "CLR2" and a process architecture of "x86".
+1>Done executing task "UnregisterAssembly".
+1>Done building target "UnmanagedUnregistration" in project "AnyCSV.csproj".
+1>Target "GenerateSerializationAssemblies" skipped, due to false condition; ('$(_SGenGenerateSerializationAssembliesConfig)' == 'On' or ('@(WebReferenceUrl)'!='' and '$(_SGenGenerateSerializationAssembliesConfig)' == 'Auto')) was evaluated as ('Auto' == 'On' or (''!='' and 'Auto' == 'Auto')).
+1>Target "_GenerateSatelliteAssemblyInputs" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CreateSatelliteAssemblies" depends on it):
+1>Task "Warning" skipped, due to false condition; ('@(ManifestResourceWithCulture)'!='' and '%(ManifestResourceWithCulture.EmittedForCompatibilityOnly)'=='') was evaluated as (''!='' and ''=='').
+1>Task "Warning" skipped, due to false condition; ('@(ManifestNonResxWithCultureOnDisk)'!='' and '%(ManifestNonResxWithCultureOnDisk.EmittedForCompatibilityOnly)'=='') was evaluated as (''!='' and ''=='').
+1>Done building target "_GenerateSatelliteAssemblyInputs" in project "AnyCSV.csproj".
+1>Target "CreateManifestResourceNames" skipped. Previously built successfully.
+1>Target "ComputeIntermediateSatelliteAssemblies" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CreateSatelliteAssemblies" depends on it):
+1>Done building target "ComputeIntermediateSatelliteAssemblies" in project "AnyCSV.csproj".
+1>Target "GenerateSatelliteAssemblies" skipped, due to false condition; ('@(_SatelliteAssemblyResourceInputs)' != '' and '$(MSBuildRuntimeType)' != 'Core') was evaluated as ('' != '' and 'Full' != 'Core').
+1>Target "CreateSatelliteAssemblies" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Done building target "CreateSatelliteAssemblies" in project "AnyCSV.csproj".
+1>Target "GenerateManifests" skipped, due to false condition; ('$(GenerateClickOnceManifests)'=='true' or '@(NativeReference)'!='' or '@(ResolvedIsolatedComModules)'!='' or '$(GenerateAppxManifest)' == 'true') was evaluated as (''=='true' or ''!='' or ''!='' or '' == 'true').
+1>Target "GetTargetPathWithTargetPlatformMoniker" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "GetTargetPath" depends on it):
+1>Done building target "GetTargetPathWithTargetPlatformMoniker" in project "AnyCSV.csproj".
+1>Target "GetTargetPath" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Done building target "GetTargetPath" in project "AnyCSV.csproj".
+1>Target "ComputeIntermediateSatelliteAssemblies" skipped. Previously built successfully.
+1>Target "_CopyFilesMarkedCopyLocal" skipped, due to false condition; ('@(ReferenceCopyLocalPaths)' != '') was evaluated as ('' != '').
+1>Target "AssignTargetPaths" skipped. Previously built successfully.
+1>Target "_SplitProjectReferencesByFileExistence" skipped. Previously built successfully.
+1>Target "_GetProjectReferenceTargetFrameworkProperties" skipped. Previously built successfully.
+1>Target "GetCopyToOutputDirectoryItems" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "_CopySourceItemsToOutputDirectory" depends on it):
+1>Task "MSBuild" skipped, due to false condition; ('@(_MSBuildProjectReferenceExistent)' != '' and '$(_GetChildProjectCopyToOutputDirectoryItems)' == 'true' and '%(_MSBuildProjectReferenceExistent.Private)' != 'false' and '$(UseCommonOutputDirectory)' != 'true') was evaluated as ('' != '' and 'true' == 'true' and '' != 'false' and 'false' != 'true').
+1>Task "AssignTargetPath"
+1>Done executing task "AssignTargetPath".
+1>Done building target "GetCopyToOutputDirectoryItems" in project "AnyCSV.csproj".
+1>Target "_CopyOutOfDateSourceItemsToOutputDirectory" skipped, due to false condition; ( '@(_SourceItemsToCopyToOutputDirectory)' != '' ) was evaluated as ( '' != '' ).
+1>Target "_CopyOutOfDateSourceItemsToOutputDirectoryAlways" skipped, due to false condition; ( '@(_SourceItemsToCopyToOutputDirectoryAlways)' != '' ) was evaluated as ( '' != '' ).
+1>Target "_CopySourceItemsToOutputDirectory" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CopyFilesToOutputDirectory" depends on it):
+1>Done building target "_CopySourceItemsToOutputDirectory" in project "AnyCSV.csproj".
+1>Target "_CopyAppConfigFile" skipped, due to false condition; ( '@(AppConfigWithTargetPath)' != '' ) was evaluated as ( '' != '' ).
+1>Target "_CopyManifestFiles" skipped, due to false condition; ( '$(_DeploymentCopyApplicationManifest)'=='true' or '$(GenerateClickOnceManifests)'=='true' ) was evaluated as ( ''=='true' or ''=='true' ).
+1>Target "_CheckForCompileOutputs" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CopyFilesToOutputDirectory" depends on it):
+1>Done building target "_CheckForCompileOutputs" in project "AnyCSV.csproj".
+1>Target "_SGenCheckForOutputs" skipped, due to false condition; ('$(_SGenGenerateSerializationAssembliesConfig)' == 'On' or ('@(WebReferenceUrl)'!='' and '$(_SGenGenerateSerializationAssembliesConfig)' == 'Auto')) was evaluated as ('Auto' == 'On' or (''!='' and 'Auto' == 'Auto')).
+1>Target "CopyFilesToOutputDirectory" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareForRun" depends on it):
+1>Using "Copy" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "Copy"
+1>  Copying file from "obj\Release\WizardWrx.AnyCSV.dll" to "bin\Release\WizardWrx.AnyCSV.dll".
+1>Done executing task "Copy".
+1>Task "CopyRefAssembly" skipped, due to false condition; ('$(ProduceReferenceAssembly)' == 'true' and '$(CopyBuildOutputToOutputDirectory)' == 'true' and '$(SkipCopyBuildProduct)' != 'true') was evaluated as ('false' == 'true' and 'true' == 'true' and '' != 'true').
+1>Task "Message"
+1>  AnyCSV -> F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+1>Done executing task "Message".
+1>Task "Copy" skipped, due to false condition; ('@(AddModules)' != '') was evaluated as ('' != '').
+1>Task "Copy" skipped, due to false condition; ('$(_SGenDllCreated)'=='true') was evaluated as ('false'=='true').
+1>Task "Copy"
+1>  Copying file from "obj\Release\WizardWrx.AnyCSV.pdb" to "bin\Release\WizardWrx.AnyCSV.pdb".
+1>Done executing task "Copy".
+1>Task "Copy"
+1>  Did not copy from file "bin\Release\WizardWrx.AnyCSV.XML" to file "bin\Release\WizardWrx.AnyCSV.XML" because the "SkipUnchangedFiles" parameter was set to "true" in the project and the files' sizes and timestamps match.
+1>Done executing task "Copy".
+1>Task "Copy" skipped, due to false condition; ('@(IntermediateSatelliteAssembliesWithTargetPath)' != '') was evaluated as ('' != '').
+1>Task "Copy" skipped, due to false condition; ('@(ReferenceComWrappersToCopyLocal)' != '' or '@(ResolvedIsolatedComModules)' != '' or '@(_DeploymentLooseManifestFile)' != '' or '@(NativeReferenceFile)' != '' ) was evaluated as ('' != '' or '' != '' or '' != '' or '' != '' ).
+1>Task "Copy" skipped, due to false condition; ('$(SkipCopyWinMDArtifact)' != 'true' and '@(WinMDExpArtifacts)' != '') was evaluated as ('' != 'true' and '' != '').
+1>Task "Message" skipped, due to false condition; ('$(SkipCopyWinMDArtifact)' != 'true' and '$(_WindowsMetadataOutputPath)' != '') was evaluated as ('' != 'true' and '' != '').
+1>Done building target "CopyFilesToOutputDirectory" in project "AnyCSV.csproj".
+1>Target "RunCodeAnalysis" skipped, due to false condition; ('$(RunCodeAnalysisOnThisProject)'=='true') was evaluated as (''=='true').
+1>Target "__BuildNuGetPackage" in file "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\build\NuGet.Package.Builder.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "PrepareForRun" depends on it):
+1>Task "Message"
+1>  "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+1>Done executing task "Message".
+1>Task "Exec"
+1>  "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+1>  F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.exe pack "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj"  -NoDefaultExcludes -Verbosity Detailed -Properties "OutDir=F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release;Configuration=Release;Platform=AnyCPU" -NonInteractive -OutputDirectory "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -basepath "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -IncludeReferencedProjects
+1>  MSBuild auto-detection: using msbuild version '14.0' from 'C:\Program Files (x86)\MSBuild\14.0\bin'. Use option -MSBuildVersion to force nuget to use a specific version of MSBuild.
+1>  Attempting to build package from 'AnyCSV.csproj'.
+1>  Packing files from 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release'.
+1>  Using 'AnyCSV.nuspec' for metadata.
+1>  Add file 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll' to package as 'lib\net20\WizardWrx.AnyCSV.dll'
+1>  Add file 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.XML' to package as 'lib\net20\WizardWrx.AnyCSV.XML'
+1>  Found packages.config. Using packages listed as dependencies
+1>
+1>  Id: WizardWrx.AnyCSV
+1>  Version: 7.0.118.643
+1>  Authors: David A. Gray
+1>  Description: This library parses ANY delimited string, including the unusual strings found in the X.509 metadata of the certificates in the Trusted Root Certificate Store of Microsoft Windows.
+1>  Project Url: https://github.com/txwizard/AnyCSV
+1>  Tags: CSV,Delimited String,Parser
+1>  Dependencies: None
+1>
+1>  Added file 'lib\net20\WizardWrx.AnyCSV.dll'.
+1>  Added file 'lib\net20\WizardWrx.AnyCSV.XML'.
+1>
+1>  Successfully created package 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.7.0.118.643.nupkg'.
+1>Done executing task "Exec".
+1>Done building target "__BuildNuGetPackage" in project "AnyCSV.csproj".
+1>Target "PrepareForRun" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Done building target "PrepareForRun" in project "AnyCSV.csproj".
+1>Target "UnmanagedRegistration" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Using "RegisterAssembly" task from assembly "Microsoft.Build.Tasks.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "RegisterAssembly"
+1>  Launching task "RegisterAssembly" from assembly "Microsoft.Build.Tasks.v3.5, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" in an external task host with a runtime of "CLR2" and a process architecture of "x86".
+1>  Registering assembly "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll" for COM Interop.
+1>  Exporting and registering type library "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.tlb".
+1>  Type 'W' exported.
+1>  Type 'W' exported.
+1>  Type 'W' exported.
+1>  Type 'W' exported.
+1>  Type 'W' exported.
+1>  Type 'W' exported.
+1>  Type 'W' exported.
+1>Done executing task "RegisterAssembly".
+1>Done building target "UnmanagedRegistration" in project "AnyCSV.csproj".
+1>Target "_CheckForCompileOutputs" skipped. Previously built successfully.
+1>Target "_SGenCheckForOutputs" skipped, due to false condition; ('$(_SGenGenerateSerializationAssembliesConfig)' == 'On' or ('@(WebReferenceUrl)'!='' and '$(_SGenGenerateSerializationAssembliesConfig)' == 'Auto')) was evaluated as ('Auto' == 'On' or (''!='' and 'Auto' == 'Auto')).
+1>Target "_CleanGetCurrentAndPriorFileWrites" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "IncrementalClean" depends on it):
+1>Using "ReadLinesFromFile" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "ReadLinesFromFile"
+1>Done executing task "ReadLinesFromFile".
+1>Using "ConvertToAbsolutePath" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "ConvertToAbsolutePath"
+1>Done executing task "ConvertToAbsolutePath".
+1>Using "FindUnderPath" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "FindUnderPath"
+1>  Comparison path is "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV".
+1>Done executing task "FindUnderPath".
+1>Task "FindUnderPath"
+1>  Comparison path is "bin\Release\".
+1>Done executing task "FindUnderPath".
+1>Task "FindUnderPath"
+1>  Comparison path is "obj\Release\".
+1>Done executing task "FindUnderPath".
+1>Using "RemoveDuplicates" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "RemoveDuplicates"
+1>Done executing task "RemoveDuplicates".
+1>Done building target "_CleanGetCurrentAndPriorFileWrites" in project "AnyCSV.csproj".
+1>Target "IncrementalClean" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Task "FindUnderPath"
+1>  Comparison path is "bin\Release\".
+1>Done executing task "FindUnderPath".
+1>Task "FindUnderPath"
+1>  Comparison path is "obj\Release\".
+1>Done executing task "FindUnderPath".
+1>Using "Delete" task from assembly "Microsoft.Build.Tasks.Core, Version=15.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
+1>Task "Delete"
+1>Done executing task "Delete".
+1>Task "RemoveDuplicates"
+1>Done executing task "RemoveDuplicates".
+1>Task "WriteLinesToFile"
+1>Done executing task "WriteLinesToFile".
+1>Done building target "IncrementalClean" in project "AnyCSV.csproj".
+1>Target "PostBuildEvent" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "CoreBuild" depends on it):
+1>Task "Exec"
+1>  "%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+1>  Microsoft (R) .NET Framework Assembly Registration Utility 2.0.50727.8825
+1>  Copyright (C) Microsoft Corporation 1998-2004.  All rights reserved.
+1>
+1>  Types registered successfully
+1>Done executing task "Exec".
+1>Done building target "PostBuildEvent" in project "AnyCSV.csproj".
+1>Target "CoreBuild" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Build" depends on it):
+1>Done building target "CoreBuild" in project "AnyCSV.csproj".
+1>Target "AfterBuild" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (target "Build" depends on it):
+1>Done building target "AfterBuild" in project "AnyCSV.csproj".
+1>Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
+1>Target "_CheckForInvalidConfigurationAndPlatform" skipped. Previously built successfully.
+1>Target "Build" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (entry point):
+1>Done building target "Build" in project "AnyCSV.csproj".
+1>Target "CleanupEmptyRefsFolder" in file "C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\Microsoft\VisualStudio\Managed.Web\Microsoft.Web.IISSupport.targets" from project "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj" (entry point):
+1>Task "RemoveDir" skipped, due to false condition; (@(_FilesInRefsFolder ->Count()) == 0) was evaluated as (10 == 0).
+1>Done building target "CleanupEmptyRefsFolder" in project "AnyCSV.csproj".
+1>
+1>Build succeeded.
+1>    0 Warning(s)
+1>    0 Error(s)
+1>
+1>Time Elapsed 00:00:04.73
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+
+================================================================================
+1/3/2018 00:23:06
+================================================================================
+
+1>------ Build started: Project: AnyCSV, Configuration: Release Any CPU ------
+1>Build started 1/3/2018 00:30:06.
+
+1>PreBuildEvent:
+1>  wwBldNbrMgr.exe "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ "
+1>  Build Task           = IncrementBuildNbr
+1>  AssemblyInfo File    = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+1>          Project Type = CSharp
+1>          File Date    = 1/2/2018 23:51:48 (1/3/2018 05:51:48 UTC)
+1>          Build Number = 119
+1>  Sleeping for 3 seconds
+1>  Waking from cat nap
+
+1>CoreResGen:
+1>  No resources are out of date with respect to their source files. Skipping resource generation.
+
+1>CoreCompile:
+1>  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn\csc.exe /noconfig
+                                                                                                  /nowarn:1701,
+                                                                                                          1702,
+                                                                                                          2008
+                                                                                                  /nostdlib+
+                                                                                                  /platform:AnyCPU
+                                                                                                  /errorreport:prompt
+                                                                                                  /warn:4
+
+                                                                                                  /doc:bin\Release\WizardWrx.AnyCSV.XML
+
+                                                                                                  /define:TRACE
+                                                                                                  /errorendlocation
+                                                                                                  /preferreduilang:en-US
+                                                                                                  /highentropyva-
+
+                                                                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                                                                  /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+                                                                                                  /debug:pdbonly
+
+                                                                                                  /filealign:512
+                                                                                                  /keycontainer:VS_KEY_76C9184CE3CE2D8F
+                                                                                                  /optimize+
+
+                                                                                                  /out:obj\Release\WizardWrx.AnyCSV.dll
+
+                                                                                                  /ruleset:"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Team Tools\Static Analysis Tools\\Rule Sets\MinimumRecommendedRules.ruleset"
+                                                                                                  /resource:obj\Release\WizardWrx.Properties.Resources.resources
+                                                                                                  /target:library
+                                                                                                  /utf8output
+
+                                                                                                  CSVParseEngine.cs
+                                                                                                  ICSVParser.cs
+                                                                                                  Parser.cs
+
+                                                                                                  Properties\AssemblyInfo.cs
+                                                                                                  Properties\Resources.Designer.cs
+
+1>  Using shared compilation with compiler from directory: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn
+
+1>CopyFilesToOutputDirectory:
+1>  Copying file from "obj\Release\WizardWrx.AnyCSV.dll"
+                   to "bin\Release\WizardWrx.AnyCSV.dll".
+1>  AnyCSV -> F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+1>  Copying file from "obj\Release\WizardWrx.AnyCSV.pdb"
+                   to "bin\Release\WizardWrx.AnyCSV.pdb".
+
+1>__BuildNuGetPackage:
+1>  "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+1>  "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+1>  F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.exe pack "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj"  -NoDefaultExcludes -Verbosity Detailed -Properties "OutDir=F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release;Configuration=Release;Platform=AnyCPU" -NonInteractive -OutputDirectory "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release"
+                                                                                                                           -basepath "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release"
+                                                                                                                           -IncludeReferencedProjects
+
+1>  MSBuild auto-detection: using msbuild version '14.0' from 'C:\Program Files (x86)\MSBuild\14.0\bin'. Use option -MSBuildVersion to force nuget to use a specific version of MSBuild.
+
+1>  Attempting to build package from 'AnyCSV.csproj'.
+
+1>  Packing files from 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release'.
+
+1>  Using 'AnyCSV.nuspec' for metadata.
+
+1>  Add file 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll' to package as 'lib\net20\WizardWrx.AnyCSV.dll'
+1>  Add file 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.XML' to package as 'lib\net20\WizardWrx.AnyCSV.XML'
+1>  Found packages.config. Using packages listed as dependencies
+1>
+1>  Id: WizardWrx.AnyCSV
+1>  Version: 7.0.119.904
+1>  Authors: David A. Gray
+1>  Description: This library parses ANY delimited string, including the unusual strings found in the X.509 metadata of the certificates in the Trusted Root Certificate Store of Microsoft Windows.
+1>  Project Url: https://github.com/txwizard/AnyCSV
+1>  Tags: CSV,Delimited String,Parser
+1>  Dependencies: None
+1>
+1>  Added file 'lib\net20\WizardWrx.AnyCSV.dll'.
+1>  Added file 'lib\net20\WizardWrx.AnyCSV.XML'.
+1>
+1>  Successfully created package 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.7.0.119.904.nupkg'.
+
+1>PostBuildEvent:
+1>  "%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+1>  Microsoft (R) .NET Framework Assembly Registration Utility 2.0.50727.8825
+1>  Copyright (C) Microsoft Corporation 1998-2004.  All rights reserved.
+1>
+1>  Types registered successfully
+1>
+1>Build succeeded.
+1>    0 Warning(s)
+1>    0 Error(s)
+1>
+1>Time Elapsed 00:00:03.96
+========== Build: 1 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+
+================================================================================
+2018/09/03 17:00:28 - Build a new retail library with the improved ToString.
+================================================================================
+
+------ Build started: Project: AnyCSV, Configuration: Release Any CPU ------
+Build started 2018/09/03 16:59:31.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2018/01/02 23:51:48 (2018/01/03 05:51:48 UTC)
+          Build Number = 120
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                                       /r:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\Release\WizardWrx.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Release\WizardWrx.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn\csc.exe /noconfig
+                                                                                                /nowarn:1701,
+                                                                                                        1702,
+                                                                                                        2008
+                                                                                                /nostdlib+
+                                                                                                /platform:AnyCPU
+                                                                                                /errorreport:prompt
+                                                                                                /warn:4
+                                                                                                /doc:bin\Release\WizardWrx.AnyCSV.XML
+                                                                                                /define:TRACE
+                                                                                                /errorendlocation
+                                                                                                /preferreduilang:en-US
+                                                                                                /highentropyva-
+
+                                                                                                /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\mscorlib.dll
+                                                                                                /reference:C:\Windows\Microsoft.NET\Framework\v2.0.50727\System.dll
+
+                                                                                                /debug:pdbonly
+                                                                                                /filealign:512
+                                                                                                /keycontainer:VS_KEY_76C9184CE3CE2D8F
+                                                                                                /optimize+
+
+                                                                                                /out:obj\Release\WizardWrx.AnyCSV.dll
+
+                                                                                                /ruleset:"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Team Tools\Static Analysis Tools\\Rule Sets\MinimumRecommendedRules.ruleset"
+
+                                                                                                /resource:obj\Release\WizardWrx.Properties.Resources.resources
+
+                                                                                                /target:library
+                                                                                                /utf8output
+
+                                                                                                CSVParseEngine.cs
+                                                                                                ICSVParser.cs
+                                                                                                Parser.cs
+
+                                                                                                Properties\AssemblyInfo.cs
+                                                                                                Properties\Resources.Designer.cs
+
+  Using shared compilation with compiler from directory: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\WizardWrx.AnyCSV.dll"
+                 to "bin\Release\WizardWrx.AnyCSV.dll".
+  AnyCSV         -> F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+  Copying file from "obj\Release\WizardWrx.AnyCSV.pdb"
+                 to "bin\Release\WizardWrx.AnyCSV.pdb".
+
+__BuildNuGetPackage:
+  "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.Package.Builder.exe" --path "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools" -r "AnyCSV" -t "WizardWrx.AnyCSV" -e .csproj -c "Release" -p "Configuration=Release;Platform=AnyCPU" -o "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -w "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV"
+  F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\packages\NuGet.Package.Builder.1.0.10\tools\NuGet.exe pack "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\AnyCSV.csproj"  -NoDefaultExcludes -Verbosity Detailed -Properties "OutDir=F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release;Configuration=Release;Platform=AnyCPU" -NonInteractive -OutputDirectory "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -basepath "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release" -IncludeReferencedProjects
+  MSBuild auto-detection: using msbuild version '14.0' from 'C:\Program Files (x86)\MSBuild\14.0\bin'. Use option -MSBuildVersion to force nuget to use a specific version of MSBuild.
+  Attempting to build package from 'AnyCSV.csproj'.
+  Packing files from 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release'.
+  Using 'AnyCSV.nuspec' for metadata.
+  Add file 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll' to package as 'lib\net20\WizardWrx.AnyCSV.dll'
+  Add file 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.XML' to package as 'lib\net20\WizardWrx.AnyCSV.XML'
+  Found packages.config. Using packages listed as dependencies
+
+  Id: WizardWrx.AnyCSV
+  Version: 7.0.120.30587
+  Authors: David A. Gray
+  Description: This library parses ANY delimited string, including the unusual strings found in the X.509 metadata of the certificates in the Trusted Root Certificate Store of Microsoft Windows.
+  Project Url: https://github.com/txwizard/AnyCSV
+  Tags: CSV,Delimited String,Parser
+  Dependencies: None
+
+  Added file 'lib\net20\WizardWrx.AnyCSV.dll'.
+  Added file 'lib\net20\WizardWrx.AnyCSV.XML'.
+
+  Successfully created package 'F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.7.0.120.30587.nupkg'.
+
+IncrementalClean:
+  Deleting file "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\obj\Release\AnyCSV.csprojResolveAssemblyReference.cache".
+
+PostBuildEvent:
+  "%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+  Microsoft (R) .NET Framework Assembly Registration Utility 2.0.50727.8922
+  Copyright (C) Microsoft Corporation 1998-2004.  All rights reserved.
+
+  Types registered successfully
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.48
+
+
+------ Build started: Project: AnyCSVTestStand, Configuration: Release Any CPU ------
+Build started 2018/09/03 16:59:37.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2018/01/01 21:10:36 (2018/01/02 03:10:36 UTC)
+          Build Number = 120
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+ResolveAssemblyReferences:
+  A TargetFramework profile exclusion list will be generated.
+
+  Consider app.config remapping of assembly "WizardWrx.AnyCSV, Culture=neutral, PublicKeyToken=39f6551a21db420a" from Version "7.0.119.904" [F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.AnyCSV.dll] to Version "7.0.120.30587" [F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll] to solve conflict and get rid of warning.
+
+C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets(2106,5): warning MSB3276: Found conflicts between different versions of the same dependent assembly. Please set the "AutoGenerateBindingRedirects" property to true in the project file. For more information, see http://go.microsoft.com/fwlink/?LinkId=294190.
+
+CoreResGen:
+  "C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\Resgen.exe" /useSourcePath
+
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                                       /r:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                                       /r:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+                                                                       /r:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll
+                                                                       /r:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll
+                                                                       /r:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll
+                                                                       /r:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll
+
+                                                                       /compile Properties\Resources.resx,
+                                                                                obj\Release\AnyCSVTestStand.Properties.Resources.resources
+
+  Processing resource file "Properties\Resources.resx"
+                      into "obj\Release\AnyCSVTestStand.Properties.Resources.resources".
+
+CoreCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn\csc.exe /noconfig
+                                                                                                /nowarn:1701,
+                                                                                                        1702,
+                                                                                                        2008
+                                                                                                /nostdlib+
+                                                                                                /platform:AnyCPU
+                                                                                                /errorreport:prompt
+                                                                                                /define:TRACE;ANYCSV
+                                                                                                /errorendlocation
+                                                                                                /preferreduilang:en-US
+                                                                                                /highentropyva-
+
+                                                                                                /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                                                                /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                                                                /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                                                                /reference:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+                                                                                                /reference:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll
+                                                                                                /reference:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll
+                                                                                                /reference:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll
+                                                                                                /reference:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll
+
+                                                                                                /debug:pdbonly
+                                                                                                /filealign:512
+                                                                                                /optimize+
+
+                                                                                                /out:obj\Release\AnyCSVTestStand.exe
+
+                                                                                                /ruleset:"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Team Tools\Static Analysis Tools\\Rule Sets\MinimumRecommendedRules.ruleset"
+
+                                                                                                /resource:obj\Release\AnyCSVTestStand.Properties.Resources.resources
+
+                                                                                                /target:exe
+                                                                                                /utf8output
+                                                                                                /win32icon:WW_Icon1.ico
+
+                                                                                                Program.cs
+
+                                                                                                Properties\AssemblyInfo.cs
+                                                                                                Properties\Resources.Designer.cs
+
+  Using shared compilation with compiler from directory: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn
+
+_CopyFilesMarkedCopyLocal:
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.ASCIIInfo.dll"
+                 to "bin\Release\WizardWrx.ASCIIInfo.dll".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.AssemblyUtils.dll"
+                 to "bin\Release\WizardWrx.AssemblyUtils.dll".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll"
+                 to "bin\Release\WizardWrx.AnyCSV.dll".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll"
+                 to "bin\Release\WizardWrx.Common.dll".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll"
+                 to "bin\Release\WizardWrx.ConsoleAppAids3.dll".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleStreams.dll"
+                 to "bin\Release\WizardWrx.ConsoleStreams.dll".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll"
+                 to "bin\Release\WizardWrx.Core.dll".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll"
+                 to "bin\Release\WizardWrx.DLLConfigurationManager.dll".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.FormatStringEngine.dll"
+                 to "bin\Release\WizardWrx.FormatStringEngine.dll".
+
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.pdb"
+                 to "bin\Release\WizardWrx.AnyCSV.pdb".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.xml"
+                 to "bin\Release\WizardWrx.AnyCSV.xml".
+
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.ASCIIInfo.pdb"
+                 to "bin\Release\WizardWrx.ASCIIInfo.pdb".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.ASCIIInfo.xml"
+                 to "bin\Release\WizardWrx.ASCIIInfo.xml".
+
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.AssemblyUtils.pdb"
+                 to "bin\Release\WizardWrx.AssemblyUtils.pdb".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.AssemblyUtils.xml"
+                 to "bin\Release\WizardWrx.AssemblyUtils.xml".
+
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.pdb"
+                 to "bin\Release\WizardWrx.Common.pdb".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.xml"
+                 to "bin\Release\WizardWrx.Common.xml".
+
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.pdb"
+                 to "bin\Release\WizardWrx.ConsoleAppAids3.pdb".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.xml"
+                 to "bin\Release\WizardWrx.ConsoleAppAids3.xml".
+
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleStreams.pdb"
+                 to "bin\Release\WizardWrx.ConsoleStreams.pdb".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleStreams.xml"
+                 to "bin\Release\WizardWrx.ConsoleStreams.xml".
+
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.pdb"
+                 to "bin\Release\WizardWrx.Core.pdb".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.xml"
+                 to "bin\Release\WizardWrx.Core.xml".
+
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.pdb"
+                 to "bin\Release\WizardWrx.DLLConfigurationManager.pdb".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.xml"
+                 to "bin\Release\WizardWrx.DLLConfigurationManager.xml".
+
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.FormatStringEngine.pdb"
+                 to "bin\Release\WizardWrx.FormatStringEngine.pdb".
+  Copying file from "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.FormatStringEngine.xml"
+                 to "bin\Release\WizardWrx.FormatStringEngine.xml".
+
+  Touching "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\Release\AnyCSVTestStand.csproj.CopyComplete".
+
+_CopyOutOfDateSourceItemsToOutputDirectory:
+Skipping target "_CopyOutOfDateSourceItemsToOutputDirectory" because all output files are up-to-date with respect to the input files.
+
+_CopyAppConfigFile:
+Skipping target "_CopyAppConfigFile" because all output files are up-to-date with respect to the input files.
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\AnyCSVTestStand.exe"
+                 to "bin\Release\AnyCSVTestStand.exe".
+  AnyCSVTestStand -> F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+  Copying file from "obj\Release\AnyCSVTestStand.pdb"
+                 to "bin\Release\AnyCSVTestStand.pdb".
+
+IncrementalClean:
+  Deleting file "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\Release\AnyCSVTestStand.csprojResolveAssemblyReference.cache".
+
+PostBuildEvent:
+  wwBldNbrMgr.exe -r "-pF:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ " "-tF:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe"
+  Build Task           = RecordBuildDetails
+  Assembly File FQFN = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+          Version    = 5.0.120.30590
+          File Date  = 2018/09/03 16:59:41 (2018/09/03 21:59:41 UTC)
+  Log File FQFN      = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\BuildHistory.LOG
+          File Date  = 2018/09/03 16:59:41 (2018/09/03 21:59:41 UTC)
+
+Build succeeded.
+
+"F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\AnyCSVTestStand.csproj" (default target) (1) ->
+(ResolveAssemblyReferences target) ->
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Microsoft.Common.CurrentVersion.targets(2106,5): warning MSB3276: Found conflicts between different versions of the same dependent assembly. Please set the "AutoGenerateBindingRedirects" property to true in the project file. For more information, see http://go.microsoft.com/fwlink/?LinkId=294190.
+
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:03.57
+========== Build: 2 succeeded, 0 failed, 0 up-to-date, 0 skipped ==========
+
+================================================================================
+2018/09/03 17:33:51 - Build only the unit test program, to incorporate the new
+                      assembly redirect directive.
+================================================================================
+
+------ Build started: Project: AnyCSVTestStand, Configuration: Release Any CPU ------
+Build started 2018/09/03 17:33:37.
+
+PreBuildEvent:
+  wwBldNbrMgr.exe "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ "
+  Build Task           = IncrementBuildNbr
+  AssemblyInfo File    = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\Properties\AssemblyInfo.cs
+          Project Type = CSharp
+          File Date    = 2018/01/01 21:10:36 (2018/01/02 03:10:36 UTC)
+          Build Number = 121
+  Sleeping for 3 seconds
+  Waking from cat nap
+
+ResolveAssemblyReferences:
+  A TargetFramework profile exclusion list will be generated.
+
+CoreResGen:
+  No resources are out of date with respect to their source files. Skipping resource generation.
+
+CoreCompile:
+  C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn\csc.exe /noconfig
+                                                                                                /nowarn:1701,
+                                                                                                        1702,
+                                                                                                        2008
+                                                                                                /nostdlib+
+                                                                                                /platform:AnyCPU
+                                                                                                /errorreport:prompt
+                                                                                                /define:TRACE;
+                                                                                                        ANYCSV
+                                                                                                /errorendlocation
+                                                                                                /preferreduilang:en-US
+                                                                                                /highentropyva-
+
+                                                                                                /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\mscorlib.dll"
+                                                                                                /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.Core.dll"
+                                                                                                /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v3.5\Profile\Client\System.dll"
+
+                                                                                                /reference:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSV\bin\Release\WizardWrx.AnyCSV.dll
+                                                                                                /reference:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll
+                                                                                                /reference:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll
+                                                                                                /reference:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll
+                                                                                                /reference:F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll
+
+                                                                                                /debug:pdbonly
+                                                                                                /filealign:512
+                                                                                                /optimize+
+
+                                                                                                /out:obj\Release\AnyCSVTestStand.exe
+
+                                                                                                /ruleset:"C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Team Tools\Static Analysis Tools\\Rule Sets\MinimumRecommendedRules.ruleset"
+
+                                                                                                /resource:obj\Release\AnyCSVTestStand.Properties.Resources.resources
+
+                                                                                                /target:exe
+                                                                                                /utf8output
+                                                                                                /win32icon:WW_Icon1.ico
+
+                                                                                                Program.cs
+
+                                                                                                Properties\AssemblyInfo.cs
+                                                                                                Properties\Resources.Designer.cs
+
+  Using shared compilation with compiler from directory: C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\MSBuild\15.0\Bin\Roslyn
+
+_CopyFilesMarkedCopyLocal:
+  Touching "F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\obj\Release\AnyCSVTestStand.csproj.CopyComplete".
+
+_CopyOutOfDateSourceItemsToOutputDirectory:
+Skipping target "_CopyOutOfDateSourceItemsToOutputDirectory" because all output files are up-to-date with respect to the input files.
+
+_CopyAppConfigFile:
+  Copying file from "app.config" to "bin\Release\AnyCSVTestStand.exe.config".
+
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\AnyCSVTestStand.exe"
+                 to "bin\Release\AnyCSVTestStand.exe".
+  AnyCSVTestStand -> F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+  Copying file from "obj\Release\AnyCSVTestStand.pdb"
+                 to "bin\Release\AnyCSVTestStand.pdb".
+
+PostBuildEvent:
+  wwBldNbrMgr.exe -r "-pF:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\ " "-tF:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe"
+  Build Task           = RecordBuildDetails
+  Assembly File FQFN = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+          Version    = 5.0.121.31610
+          File Date  = 2018/09/03 17:33:41 (2018/09/03 22:33:41 UTC)
+  Log File FQFN      = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\BuildHistory.LOG
+          File Date  = 2018/09/03 17:33:41 (2018/09/03 22:33:41 UTC)
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:04.36
+========== Build: 1 succeeded, 0 failed, 1 up-to-date, 0 skipped ==========
+
+================================================================================
+2018/09/03 17:36:47 - Run the test stand from the shell.
+================================================================================
+
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV 2018/09/03 17:37:10.37>F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe
+AnyCSVTestStand, version 5.0.121.31610
+Begin @ 2018/09/03 17:37:27.216 (2018/09/03 22:37:27.216 UTC)
+
+The name of an input file is required.
+
+    Exit code = 2
+
+
+
+AnyCSVTestStand End - 2018/09/03 17:37:27.326 (2018/09/03 22:37:27.326 UTC)
+Elapsed time: 00:00:00.1093388
+Press the ENTER key to stop the countdown.
+Program ending NOW.
+
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV 2018/09/03 17:37:57.81>F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\AnyCSVTestStand\bin\Release\AnyCSVTestStand.exe F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\NOTES\CSV_Test_Strings.TXT
+AnyCSVTestStand, version 5.0.121.31610
+Begin @ 2018/09/03 17:43:16.637 (2018/09/03 22:43:16.637 UTC)
+
+
+Working Directory Name = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV
+
+Test Case File  Name   = F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\NOTES\CSV_Test_Strings.TXT
+
+Caee  1 of 10: Subfield Count = 5
+               Input String   = This,is,a,basic,test.
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = is
+                           Field  3 of  5 = a
+                           Field  4 of  5 = basic
+                           Field  5 of  5 = test.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = is
+                           Field  3 of  5 = a
+                           Field  4 of  5 = basic
+                           Field  5 of  5 = test.
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = is
+                           Field  3 of  5 = a
+                           Field  4 of  5 = basic
+                           Field  5 of  5 = test.
+
+Caee  2 of 10: Subfield Count = 8
+               Input String   = ,This,test,starts,with,an,empty,string.
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  8 =
+                           Field  2 of  8 = This
+                           Field  3 of  8 = test
+                           Field  4 of  8 = starts
+                           Field  5 of  8 = with
+                           Field  6 of  8 = an
+                           Field  7 of  8 = empty
+                           Field  8 of  8 = string.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  8 =
+                           Field  2 of  8 = This
+                           Field  3 of  8 = test
+                           Field  4 of  8 = starts
+                           Field  5 of  8 = with
+                           Field  6 of  8 = an
+                           Field  7 of  8 = empty
+                           Field  8 of  8 = string.
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  8 =
+                           Field  2 of  8 = This
+                           Field  3 of  8 = test
+                           Field  4 of  8 = starts
+                           Field  5 of  8 = with
+                           Field  6 of  8 = an
+                           Field  7 of  8 = empty
+                           Field  8 of  8 = string.
+
+Caee  3 of 10: Subfield Count = 8
+               Input String   = This,test,ends,with,an,empty,field.,
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  8 = This
+                           Field  2 of  8 = test
+                           Field  3 of  8 = ends
+                           Field  4 of  8 = with
+                           Field  5 of  8 = an
+                           Field  6 of  8 = empty
+                           Field  7 of  8 = field.
+                           Field  8 of  8 =
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  8 = This
+                           Field  2 of  8 = test
+                           Field  3 of  8 = ends
+                           Field  4 of  8 = with
+                           Field  5 of  8 = an
+                           Field  6 of  8 = empty
+                           Field  7 of  8 = field.
+                           Field  8 of  8 =
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  8 = This
+                           Field  2 of  8 = test
+                           Field  3 of  8 = ends
+                           Field  4 of  8 = with
+                           Field  5 of  8 = an
+                           Field  6 of  8 = empty
+                           Field  7 of  8 = field.
+                           Field  8 of  8 =
+
+Caee  4 of 10: Subfield Count = 6
+               Input String   = "This test",starts,with,a,quoted,string.
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  6 = This test
+                           Field  2 of  6 = starts
+                           Field  3 of  6 = with
+                           Field  4 of  6 = a
+                           Field  5 of  6 = quoted
+                           Field  6 of  6 = string.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  6 = "This test"
+                           Field  2 of  6 = starts
+                           Field  3 of  6 = with
+                           Field  4 of  6 = a
+                           Field  5 of  6 = quoted
+                           Field  6 of  6 = string.
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  6 = This test
+                           Field  2 of  6 = starts
+                           Field  3 of  6 = with
+                           Field  4 of  6 = a
+                           Field  5 of  6 = quoted
+                           Field  6 of  6 = string.
+
+Caee  5 of 10: Subfield Count = 6
+               Input String   = This,test,ends,with,a,"quoted string."
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  6 = This
+                           Field  2 of  6 = test
+                           Field  3 of  6 = ends
+                           Field  4 of  6 = with
+                           Field  5 of  6 = a
+                           Field  6 of  6 = quoted string.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  6 = This
+                           Field  2 of  6 = test
+                           Field  3 of  6 = ends
+                           Field  4 of  6 = with
+                           Field  5 of  6 = a
+                           Field  6 of  6 = "quoted string."
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  6 = This
+                           Field  2 of  6 = test
+                           Field  3 of  6 = ends
+                           Field  4 of  6 = with
+                           Field  5 of  6 = a
+                           Field  6 of  6 = quoted string.
+
+Caee  6 of 10: Subfield Count = 5
+               Input String   = This,test,"contains an embedded",quoted,string.
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = contains an embedded
+                           Field  4 of  5 = quoted
+                           Field  5 of  5 = string.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = "contains an embedded"
+                           Field  4 of  5 = quoted
+                           Field  5 of  5 = string.
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = contains an embedded
+                           Field  4 of  5 = quoted
+                           Field  5 of  5 = string.
+
+Caee  7 of 10: Subfield Count = 4
+               Input String   = This,"test contains",two,"quoted strings."
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  4 = This
+                           Field  2 of  4 = test contains
+                           Field  3 of  4 = two
+                           Field  4 of  4 = quoted strings.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  4 = This
+                           Field  2 of  4 = "test contains"
+                           Field  3 of  4 = two
+                           Field  4 of  4 = "quoted strings."
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  4 = This
+                           Field  2 of  4 = test contains
+                           Field  3 of  4 = two
+                           Field  4 of  4 = quoted strings.
+
+Caee  8 of 10: Subfield Count = 5
+               Input String   = This,test,"contains a quoted string,",followed by more,"text, both of which include commas."
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = contains a quoted string,
+                           Field  4 of  5 = followed by more
+                           Field  5 of  5 = text, both of which include commas.
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = "contains a quoted string,"
+                           Field  4 of  5 = followed by more
+                           Field  5 of  5 = "text, both of which include commas."
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  5 = This
+                           Field  2 of  5 = test
+                           Field  3 of  5 = contains a quoted string,
+                           Field  4 of  5 = followed by more
+                           Field  5 of  5 = text, both of which include commas.
+
+Caee  9 of 10: Subfield Count = 11
+               Input String   = ,This,test,",includes a little of this, and a little of that,",,to,push,the,routine to its limits.,
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of 11 =
+                           Field  2 of 11 = This
+                           Field  3 of 11 = test
+                           Field  4 of 11 =
+                           Field  5 of 11 = includes a little of this, and a little of that,
+                           Field  6 of 11 =
+                           Field  7 of 11 = to
+                           Field  8 of 11 = push
+                           Field  9 of 11 = the
+                           Field 10 of 11 = routine to its limits.
+                           Field 11 of 11 =
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of 11 =
+                           Field  2 of 11 = This
+                           Field  3 of 11 = test
+                           Field  4 of 11 =
+                           Field  5 of 11 = "includes a little of this, and a little of that,"
+                           Field  6 of 11 =
+                           Field  7 of 11 = to
+                           Field  8 of 11 = push
+                           Field  9 of 11 = the
+                           Field 10 of 11 = routine to its limits.
+                           Field 11 of 11 =
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of 11 =
+                           Field  2 of 11 = This
+                           Field  3 of 11 = test
+                           Field  4 of 11 =
+                           Field  5 of 11 = includes a little of this, and a little of that,
+                           Field  6 of 11 =
+                           Field  7 of 11 = to
+                           Field  8 of 11 = push
+                           Field  9 of 11 = the
+                           Field 10 of 11 = routine to its limits.
+                           Field 11 of 11 =
+
+Caee 10 of 10: Subfield Count = 3
+               Input String   = CN=RapidSSL CA, O="GeoTrust, Inc.", C=US
+
+               Scenario 1: Robust Parsing
+
+                           Field  1 of  3 = CN=RapidSSL CA
+                           Field  2 of  3 =  O="GeoTrust, Inc."
+                           Field  3 of  3 =  C=US
+
+               Scenario 2: Keep Guards
+
+                           Field  1 of  3 = CN=RapidSSL CA
+                           Field  2 of  3 =  O="GeoTrust, Inc."
+                           Field  3 of  3 =  C=US
+
+               Scenario 3: Trim Leading
+
+                           Field  1 of  3 = CN=RapidSSL CA
+                           Field  2 of  3 = O="GeoTrust, Inc."
+                           Field  3 of  3 = C=US
+
+AnyCSVTestStand End - 2018/09/03 17:43:16.809 (2018/09/03 22:43:16.809 UTC)
+Elapsed time: 00:00:00.1718539
+
+F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV 2018/09/03 17:43:16.82>
