@@ -30,3 +30,7 @@ privately to make your case. If you can convince me, I'll add you as a
 contributor.
 
 If you find and fix a bug, please submit a pull requeest.
+
+If you find a bug, but can't fix it, or would rather let me do it, please open
+an issue, and I'll get to it as soon as I can. Your bug may not be mine, but I
+use this library too, and I want all bugs banished from it.

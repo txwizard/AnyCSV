@@ -11,6 +11,9 @@ example of Separation of Concerns; this class parese strings, period.
 Reading them is the responsibility of other code; I see no point in deciding for
 you how to acquire them.
 
+Complete documentation is available online at
+[https://txwizard.github.io/AnyCSV](https://txwizard.github.io/AnyCSV).
+
 This project includes one single-purpose class library, `WizardWrx.AnyCSV.dll`,
 and its unit test program, `AnyCSVTestStand.exe`. The library defines namespace
 `WizardWrx.AnyCSV`, which contains one class, `Parser`, which defines two methods,
@@ -96,10 +99,10 @@ your COM client.
 The source code includes comprehenisve technical documentation, including XML to
 generate IntelliSense help, from which the build engine generates XML documents,
 which are included herein. Argument names follow Hungarian notation, to make the
-type immediately evident in most cases. A lower case "p" precedes a type prefix,
-to differentiate arguments from local variables, followed by a lower case "a" to
+type immediately evident in most cases. A lower case `p` precedes a type prefix,
+to differentiate arguments from local variables, followed by a lower case `a` to
 designate arguments that are arrays. Object variables have an initial underscore
-and static variables begin with "s_"; this naming scheme makes variable scope
+and static variables begin with `s_`; this naming scheme makes variable scope
 crystal clear.
 
 The classes are thoroughly cross referenced, and many properties and methods
