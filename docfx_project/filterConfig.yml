@@ -1,0 +1,13 @@
+attributeRules:
+- exclude:
+    uidRegex: '^BinaryPropertyStorage.*$'
+    type: Namespace
+- exclude:
+    uidRegex: '^ConsoleStreamsLab.*$'
+    type: Namespace
+- exclude:
+    uidRegex: '^POC.*$'
+    type: Namespace
+- exclude:
+    uidRegex: '^MSBuildTask.*$'
+    type: Namespace

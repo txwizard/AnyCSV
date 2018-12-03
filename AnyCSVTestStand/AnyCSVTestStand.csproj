@@ -64,16 +64,16 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="WizardWrx.Common">
-      <HintPath>..\..\Wizardwrx\Common\bin\Release\WizardWrx.Common.dll</HintPath>
+      <HintPath>..\..\WizardWrx_NET_API\Common\bin\Release\Wizardwrx.Common.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.ConsoleAppAids3">
-      <HintPath>..\..\ConsoleAppAids3\ConsoleAppAids3\bin\Release\WizardWrx.ConsoleAppAids3.dll</HintPath>
+      <HintPath>..\..\ConsoleAppAids3\ConsoleAppAids3\bin\Release\Wizardwrx.ConsoleAppAids3.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.Core">
-      <HintPath>..\..\Wizardwrx\Core\bin\Release\WizardWrx.Core.dll</HintPath>
+      <HintPath>..\..\WizardWrx_NET_API\Core\bin\Release\Wizardwrx.Core.dll</HintPath>
     </Reference>
     <Reference Include="WizardWrx.DLLConfigurationManager">
-      <HintPath>..\..\Wizardwrx\DLLConfigurationManager\bin\Release\WizardWrx.DLLConfigurationManager.dll</HintPath>
+      <HintPath>..\..\WizardWrx_NET_API\DLLConfigurationManager\bin\Release\Wizardwrx.DLLConfigurationManager.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
