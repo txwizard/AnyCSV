@@ -7,7 +7,7 @@ concluding that the world really does need Yet Another CSV Parser, this library
 accepts guard characters anywhere in a string; if a pair guards a delimiter,
 it guards a delimiter, even if the guarded delimiter is the only character
 between the opening and closing guard characters. The result is a textbook
-example of Separation of Concerns; this class parese strings, period.
+example of Separation of Concerns; this class parses strings, period.
 Reading them is the responsibility of other code; I see no point in deciding for
 you how to acquire them.
 
