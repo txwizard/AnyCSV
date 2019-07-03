@@ -27,7 +27,7 @@
                         run against any version of the Microsoft .NET Framework
                         above 1.1 (Does anybody still use that version?).
 
-	License:            Copyright (C) 2014-2016, David A. Gray.
+	License:            Copyright (C) 2014-2019, David A. Gray.
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -84,15 +84,19 @@
     2017/08/11 5.0     DAG    Adapt to use the new constellation of helper
                               libraries in place of WizardWrx.DllServices2.dll,
                               which was a monolith.
+
+    2019/07/01 7.1     DAG    Using the enumerations, create an instance that is
+                              functionally identical to the first static method
+                              scenario, use it to parse all strings, and use its
+                              ToString method to report its properties 
+                              immediately post-construction and immediately
+                              after first use.
     ============================================================================
 */
 
 
 using System;
-using System.Collections.Generic;
 using System.Text;
-
-/*  Added by DAG */
 
 using WizardWrx;
 using WizardWrx.ConsoleAppAids3;
@@ -121,7 +125,7 @@ namespace AnyCSVTestStand
 
         const bool IGNORE_BOM = false;
 
-        static string [ ] s_astrErrorMessages =
+        static readonly string [ ] s_astrErrorMessages =
         {
             Properties.Resources.ERRMSG_SUCCESS ,           // ERROR_SUCCESS
             Properties.Resources.ERRMSG_RUNTIME,            // ERR_RUNTIME
@@ -130,21 +134,24 @@ namespace AnyCSVTestStand
 
         static ConsoleAppStateManager s_theApp;
 
-        const char SW_OUTPUT = 'o';  // Argument specifies one of three supported formats for the STDOUT display.
+        const char SW_OUTPUT = 'o';                         // Argument specifies one of three supported formats for the STDOUT display.
 
-        static char [ ] s_achrValidSwitches =
+        static readonly char [ ] s_achrValidSwitches =
         {
             SW_OUTPUT ,
         };  // static char [ ] s_achrValidSwitches
 
         static void Main ( string [ ] args )
         {
-            CmdLneArgsBasic cmdArgs = new CmdLneArgsBasic (
-                s_achrValidSwitches ,
-                CmdLneArgsBasic.ArgMatching.CaseInsensitive );
-            cmdArgs.AllowEmptyStringAsDefault = CmdLneArgsBasic.BLANK_AS_DEFAULT_ALLOWED;
 
             s_theApp = ConsoleAppStateManager.GetTheSingleInstance ( );
+
+            CmdLneArgsBasic cmdArgs = new CmdLneArgsBasic (
+                s_achrValidSwitches ,
+                CmdLneArgsBasic.ArgMatching.CaseInsensitive )
+            {
+                AllowEmptyStringAsDefault = CmdLneArgsBasic.BLANK_AS_DEFAULT_ALLOWED
+            };
 
             //  ----------------------------------------------------------------
             //  The default value of the AppSubsystem property is GUI, which
@@ -156,7 +163,7 @@ namespace AnyCSVTestStand
             //  purged by the aging rules or some other method.
             //  ----------------------------------------------------------------
 
-			s_theApp.BaseStateManager.AppExceptionLogger.OptionFlags =
+            s_theApp.BaseStateManager.AppExceptionLogger.OptionFlags =
                 s_theApp.BaseStateManager.AppExceptionLogger.OptionFlags
                 | ExceptionLogger.OutputOptions.EventLog
                 | ExceptionLogger.OutputOptions.Stack
@@ -199,6 +206,16 @@ namespace AnyCSVTestStand
                     Encoding.ASCII ).Length;
                 int intCurrCase = MagicNumbers.ZERO;
 
+                WizardWrx.AnyCSV.Parser ReusableParser = new WizardWrx.AnyCSV.Parser (
+                    WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar.Comma ,
+                    WizardWrx.AnyCSV.CSVParseEngine.GuardChar.DoubleQuote ,
+                    WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition.Strip );
+                Console.WriteLine (
+                    Properties.Resources.MSG_TOSTRING_CONSTRUCTED_FROM_ENUMS ,          // Format control string
+                    Properties.Resources.MSG_TOSTRING_JUST_CONSTRUCTED ,                // Format Item 0: {0}, the ToString method
+                    nameof ( ReusableParser ) ,                                         // Format Item 1: the ToString method on {1} reports
+                    ReusableParser.ToString ( ) );                                      // Format Item 2: reports as follows: {2}.
+
                 using ( System.IO.StreamReader srTestData = new System.IO.StreamReader (
                         strTestFileName ,
                         Encoding.ASCII ,
@@ -208,59 +225,70 @@ namespace AnyCSVTestStand
                     do
                     {
                         string strTestCase = srTestData.ReadLine ( );
-                        string [ ] astrTestOutput1 = WizardWrx.AnyCSV.Parser.Parse (
-                            strTestCase ,                           // Input string
-                            WizardWrx.AnyCSV.Parser.COMMA ,         // Field delimiter character
-                            WizardWrx.AnyCSV.Parser.DOUBLE_QUOTE ); // Delimiter guard character
+
+                        string [ ] astrInstanceTestOutput = ReusableParser.Parse ( strTestCase );
+
+                        if ( intCurrCase == MagicNumbers.ZERO )
+                        {   // On the first iteration, intCurrCase is zero.
+                            Console.WriteLine (
+                                Properties.Resources.MSG_TOSTRING_CONSTRUCTED_FROM_ENUMS ,          // Format control string
+                                Properties.Resources.MSG_TOSTRING_POST_FIRST_USE ,                  // Format Item 0: {0}, the ToString method
+                                nameof ( ReusableParser ) ,                                         // Format Item 1: the ToString method on {1} reports
+                                ReusableParser.ToString ( ) );                                      // Format Item 2: reports as follows: {2}.
+                        }   // if ( intCurrCase == MagicNumbers.ZERO )
+
+                        string [ ] astrStaticTestOutput1 = WizardWrx.AnyCSV.Parser.Parse (
+                            strTestCase ,                                                           // Input string
+                            WizardWrx.AnyCSV.Parser.COMMA ,                                         // Field delimiter character
+                            WizardWrx.AnyCSV.Parser.DOUBLE_QUOTE );                                 // Delimiter guard character
 
                         //  ----------------------------------------------------
                         //  Identify the case number, and show the input string.
                         //  ----------------------------------------------------
 
                         intCurrCase++;
-                        int intNFields = astrTestOutput1.Length;
+                        int intNFields = astrStaticTestOutput1.Length;
                         Console.WriteLine (
                             Properties.Resources.MSG_CASE_LABEL ,
                             new string [ ]
-                        {
-                            intCurrCase.ToString(),
-                            intNCases.ToString() ,
-                            intNFields.ToString() ,
-                            strTestCase ,
-                            Environment.NewLine
-                        } );
-
-                        //  ----------------------------------------------------
-                        //  List the returned substrings.
-                        //  ----------------------------------------------------
+                            {
+                                intCurrCase.ToString ( ) ,
+                                intNCases.ToString ( ) ,
+                                intNFields.ToString ( ) ,
+                                strTestCase ,
+                                Environment.NewLine } );
 
                         ReportScenarioOutcome (
-                            Properties.Resources.SCENARIO_1 ,
-                            astrTestOutput1 ,
-                            intNFields );
-
-                        string [ ] astrTestOutput2 = WizardWrx.AnyCSV.Parser.Parse (
-                            strTestCase ,                                           // Input string
-                            WizardWrx.AnyCSV.Parser.COMMA ,                         // Field delimiter character
-                            WizardWrx.AnyCSV.Parser.DOUBLE_QUOTE ,                  // Delimiter guard character
-                            WizardWrx.AnyCSV.Parser.GuardDisposition.Keep );        // Override to keep.
-
-                        intNFields = astrTestOutput2.Length;
+                            Properties.Resources.INSTANCE_SCENARIO_1 ,
+                            astrInstanceTestOutput ,
+                            astrInstanceTestOutput.Length );
                         ReportScenarioOutcome (
-                            Properties.Resources.SCENARIO_2 ,
-                            astrTestOutput2 ,
+                            Properties.Resources.STATIC_SCENARIO_1 ,
+                            astrStaticTestOutput1 ,
                             intNFields );
 
-                        string [ ] astrTestOutput3 = WizardWrx.AnyCSV.Parser.Parse (
-                            strTestCase ,                                           // Input string
-                            WizardWrx.AnyCSV.Parser.COMMA ,                         // Field delimiter character
-                            WizardWrx.AnyCSV.Parser.DOUBLE_QUOTE ,                  // Delimiter guard character
-                            WizardWrx.AnyCSV.Parser.GuardDisposition.Strip ,        // Override to keep.
+                        string [ ] astrStaticTestOutput2 = WizardWrx.AnyCSV.Parser.Parse (
+                            strTestCase ,                                                           // Input string
+                            WizardWrx.AnyCSV.Parser.COMMA ,                                         // Field delimiter character
+                            WizardWrx.AnyCSV.Parser.DOUBLE_QUOTE ,                                  // Delimiter guard character
+                            WizardWrx.AnyCSV.Parser.GuardDisposition.Keep );                        // Override to keep.
+
+                        intNFields = astrStaticTestOutput2.Length;
+                        ReportScenarioOutcome (
+                            Properties.Resources.STATIC_SCENARIO_2 ,
+                            astrStaticTestOutput2 ,
+                            intNFields );
+
+                        string [ ] astrStaticTestOutput3 = WizardWrx.AnyCSV.Parser.Parse (
+                            strTestCase ,                                                           // Input string
+                            WizardWrx.AnyCSV.Parser.COMMA ,                                         // Field delimiter character
+                            WizardWrx.AnyCSV.Parser.DOUBLE_QUOTE ,                                  // Delimiter guard character
+                            WizardWrx.AnyCSV.Parser.GuardDisposition.Strip ,                        // Override to keep.
                             WizardWrx.AnyCSV.Parser.TrimWhiteSpace.TrimLeading );
-                        intNFields = astrTestOutput3.Length;
+                        intNFields = astrStaticTestOutput3.Length;
                         ReportScenarioOutcome (
-                            Properties.Resources.SCENARIO_3 ,
-                            astrTestOutput3 ,
+                            Properties.Resources.STATIC_SCENARIO_3 ,
+                            astrStaticTestOutput3 ,
                             intNFields );
                     } while ( !srTestData.EndOfStream );
                 }   // using ( System.IO.StreamReader srTestData = new System.IO.StreamReader (

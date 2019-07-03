@@ -3,24 +3,30 @@
 	<!--
 	Any nuget reference you add will be included in the nuget package as a dependency without you
 	having to add it in here.
-	
-	For more info on how to compose a nuspec file see http://docs.nuget.org/create/nuspec-reference 
-	-->
 
+	For more info on how to compose a nuspec file see http://docs.nuget.org/create/nuspec-reference
+	-->
 	<metadata>
 		<!-- This will use the AssemblyName -->
 		<id>$id$</id>
 		<!-- This will use the AssemblyVersion -->
-		<version>$version$</version>
-		<title>AnyCSV</title>
-		<description>This library parses ANY delimited string, including the unusual strings found in the X.509 metadata of the certificates in the Trusted Root Certificate Store of Microsoft Windows.</description>
-		<authors>David A. Gray</authors>
-		<owners>David A. Gray</owners>
+	    <version>$version$</version>
+    	<title>$title$</title>
+	    <authors>$author$</authors>
+    	<owners>$author$</owners>
+    	<description>$description$</description>
+	    <license type="expression">BSD-3-Clause</license>
 		<projectUrl>https://github.com/txwizard/AnyCSV</projectUrl>
-		<requireLicenseAcceptance>false</requireLicenseAcceptance>
-		<releaseNotes>Unlike most CSV strings, these frequently come with &quot;just in time&quot; guard characters that enclose the command that they protect, and little else. Since I found nothing on the Web that met my need, and I had to roll my own, I gave it all the features that I expected of a robust delimited string parsing engine, such as the ability to use any character as the delimiter, and any other character as the guard character, to keep or discard the guard character, and, finally, to make absolutely no assumptions about the source of the input strings or the destination of the output strings. In other words, this is a robust delimited string parser, period. Both acquiring input strings and storing the returned string arrays are out of scope. Finally, this new version adds COM Interop support, so that it can be incorporated into VBA projects.</releaseNotes>
+		<requireLicenseAcceptance>true</requireLicenseAcceptance>
+		<releaseNotes>Unlike most CSV strings, these frequently come with &quot;just in time&quot; guard characters that enclose the command that they protect, and little else. Since I found nothing on the Web that met my need, and I had to roll my own, I gave it all the features that I expected of a robust delimited string parsing engine, such as the ability to use any character as the delimiter, and any other character as the guard character, to keep or discard the guard character, and, finally, to make absolutely no assumptions about the source of the input strings or the destination of the output strings. In other words, this is a robust delimited string parser, period. Both acquiring input strings and storing the returned string arrays are out of scope. This version has COM Interop support, so that it can be incorporated into VBA projects. This minor upgrade corrects an oversight arising from the last revision of the ToString override on the Parser object.</releaseNotes>
 		<copyright>BSD Three-Clause License</copyright>
-        <language>en-US</language>		
+        <language>en-US</language>
 		<tags>CSV,Delimited String,Parser</tags>
 	</metadata>
+	<files>
+   		<file src="readme.md" target="" />
+   		<file src="readme.txt" target="" />
+   		<file src="bin\$configuration$\$id$.pdb" target="lib" />
+   		<file src="bin\$configuration$\$id$.xml" target="lib" />
+	</files>
 </package>

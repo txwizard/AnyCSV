@@ -27,6 +27,8 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <NuGetPackageImportStamp>89ac1ab2</NuGetPackageImportStamp>
+    <!-- 2019/07/03 17:51:18 - DAG - Added for NuGet package builder -->
+    <PackageDir>Package\$(Configuration)</PackageDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -84,8 +86,6 @@
   <ItemGroup>
     <None Include="AnyCSV.nuspec" />
     <None Include="DavidAGrayMyAbacus.pfx" />
-    <None Include="package.builder.json" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -98,12 +98,31 @@
     <PostBuildEvent>wwBldNbrMgr.exe -r "-p$(ProjectDir) " "-t$(TargetPath)"</PostBuildEvent>
     <PostBuildEvent>"%Windir%\Microsoft.NET\Framework64\v2.0.50727\regasm" "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
-  <Import Project="..\packages\NuGet.Package.Builder.1.0.10\build\NuGet.Package.Builder.targets" Condition="Exists('..\packages\NuGet.Package.Builder.1.0.10\build\NuGet.Package.Builder.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild" Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\NuGet.Package.Builder.1.0.10\build\NuGet.Package.Builder.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NuGet.Package.Builder.1.0.10\build\NuGet.Package.Builder.targets'))" />
+  <!-- 2019/07/03 12:15:37 - DAG Everything from this point to the end is new, and was added to support NuGet package generation. -->
+  <Target Name="AfterBuild">
+    <!-- Load up the information from the assembly -->
+    <GetAssemblyIdentity AssemblyFiles="$(OutputPath)$(AssemblyName).dll">
+      <Output TaskParameter="Assemblies"
+      	      ItemName="OutputAssemblyInfo" />
+    </GetAssemblyIdentity>
+    <Message Text="Info: Assembly $(AssemblyName).dll version =  %(OutputAssemblyInfo.Version)" />
+  </Target>
+  <Target Name="Package"
+  	      AfterTargets="AfterBuild"
+  	      Condition=" '$(Configuration)' == 'Release'">
+    <!-- Ensure the Package directory exists for this project -->
+    <MakeDir Directories="$(PackageDir)" />
+    <!-- Package the project -->
+    <Exec WorkingDirectory="$(BuildDir)"
+    	  Command="NuGet.exe pack $(ProjectName).csproj -Properties Configuration=$(Configuration) -OutputDir $(PackageDir) -IncludeReferencedProjects" />
+  </Target>
+  <!-- 2019/07/03 12:15:37 - DAG Switch on the push target. -->
+  <!-- Publish the project. -->
+  <Target Name="Publish"
+  	      AfterTargets="Package"
+  	      Condition=" '$(Configuration)' == 'Release'">
+    <Exec WorkingDirectory="$(PackageDir)"
+    	  Command="NuGet.exe push $(AssemblyName).%(OutputAssemblyInfo.Version).nupkg" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -196,7 +196,7 @@ namespace WizardWrx.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delimiter         = {0}{6}Guard Character   = {1}{6}Trim White Space  = {2}{6}Guard Disposition = {3}{6}Lock State        = {4}{6}Lock Method       = {5}{6}.
+        ///   Looks up a localized string similar to Delimiter         = {0} (0x{1:x2}, {2} decimal){10}Guard Character   = {3} (0x{4:x2}, {5} decimal){10}Trim White Space  = {6}{10}Guard Disposition = {7}{10}Lock State        = {8}{10}Lock Method       = {9}{10}.
         /// </summary>
         internal static string TOSTRING_TEMPLATE {
             get {

@@ -59,8 +59,8 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http:/   w.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http:/   w.w3.org/XML/1998/namespace" />
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -132,6 +132,9 @@
     <value>The task completed successfully.</value>
     <comment>This is a stub; it is never used, although it could be, by changing the normal exit routine.</comment>
   </data>
+  <data name="INSTANCE_SCENARIO_1" xml:space="preserve">
+    <value>{0}               Instance Method, Scenario 1 of 1: Robust Parsing{0}</value>
+  </data>
   <data name="MSG_CASE_DETAIL" xml:space="preserve">
     <value>                           Field {0,2} of {1,2} = {2}</value>
   </data>
@@ -139,15 +142,27 @@
     <value>{4}Caee {0,2} of {1,2}: Subfield Count = {2}{4}               Input String   = {3}</value>
   </data>
   <data name="MSG_INPUT_FILENAME" xml:space="preserve">
-    <value>{2}Working Directory Name = {0}{2}{2}Test Case File  Name   = {1}</value>
+    <value>{2}Working Directory Name = {0}{2}{2}Test Case File  Name   = {1}{2}</value>
   </data>
-  <data name="SCENARIO_1" xml:space="preserve">
-    <value>{0}               Scenario 1: Robust Parsing{0}</value>
+  <data name="MSG_TOSTRING_CONSTRUCTED_FROM_ENUMS" xml:space="preserve">
+    <value>{0}, the ToString method on {1} reports as follows: {2}</value>
+    <comment>Render the result returned by ToString on a Parser instance.</comment>
   </data>
-  <data name="SCENARIO_2" xml:space="preserve">
-    <value>{0}               Scenario 2: Keep Guards{0}</value>
+  <data name="MSG_TOSTRING_JUST_CONSTRUCTED" xml:space="preserve">
+    <value>Immediately after object construction</value>
+    <comment>The first of two reports from ToString uses this as its opening clause.</comment>
   </data>
-  <data name="SCENARIO_3" xml:space="preserve">
-    <value>{0}               Scenario 3: Trim Leading{0}</value>
+  <data name="MSG_TOSTRING_POST_FIRST_USE" xml:space="preserve">
+    <value>Immediately following its first use</value>
+    <comment>The second of two reports from ToString uses this as its opening clause.</comment>
+  </data>
+  <data name="STATIC_SCENARIO_1" xml:space="preserve">
+    <value>{0}               Static Method, Scenario 1 of 3: Robust Parsing{0}</value>
+  </data>
+  <data name="STATIC_SCENARIO_2" xml:space="preserve">
+    <value>{0}               Static Method, Scenario 2 of 3: Keep Guards{0}</value>
+  </data>
+  <data name="STATIC_SCENARIO_3" xml:space="preserve">
+    <value>{0}               Static Method, Scenario 3 of 3: Trim Leading{0}</value>
   </data>
 </root>

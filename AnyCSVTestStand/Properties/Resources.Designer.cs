@@ -19,7 +19,7 @@ namespace AnyCSVTestStand.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -97,6 +97,15 @@ namespace AnyCSVTestStand.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0}               Instance Method, Scenario 1 of 1: Robust Parsing{0}.
+        /// </summary>
+        internal static string INSTANCE_SCENARIO_1 {
+            get {
+                return ResourceManager.GetString("INSTANCE_SCENARIO_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to                            Field {0,2} of {1,2} = {2}.
         /// </summary>
         internal static string MSG_CASE_DETAIL {
@@ -115,7 +124,7 @@ namespace AnyCSVTestStand.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {2}Working Directory Name = {0}{2}{2}Test Case File  Name   = {1}.
+        ///   Looks up a localized string similar to {2}Working Directory Name = {0}{2}{2}Test Case File  Name   = {1}{2}.
         /// </summary>
         internal static string MSG_INPUT_FILENAME {
             get {
@@ -124,29 +133,56 @@ namespace AnyCSVTestStand.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}               Scenario 1: Robust Parsing{0}.
+        ///   Looks up a localized string similar to {0}, the ToString method on {1} reports as follows: {2}.
         /// </summary>
-        internal static string SCENARIO_1 {
+        internal static string MSG_TOSTRING_CONSTRUCTED_FROM_ENUMS {
             get {
-                return ResourceManager.GetString("SCENARIO_1", resourceCulture);
+                return ResourceManager.GetString("MSG_TOSTRING_CONSTRUCTED_FROM_ENUMS", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}               Scenario 2: Keep Guards{0}.
+        ///   Looks up a localized string similar to Immediately after object construction.
         /// </summary>
-        internal static string SCENARIO_2 {
+        internal static string MSG_TOSTRING_JUST_CONSTRUCTED {
             get {
-                return ResourceManager.GetString("SCENARIO_2", resourceCulture);
+                return ResourceManager.GetString("MSG_TOSTRING_JUST_CONSTRUCTED", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}               Scenario 3: Trim Leading{0}.
+        ///   Looks up a localized string similar to Immediately following its first use.
         /// </summary>
-        internal static string SCENARIO_3 {
+        internal static string MSG_TOSTRING_POST_FIRST_USE {
             get {
-                return ResourceManager.GetString("SCENARIO_3", resourceCulture);
+                return ResourceManager.GetString("MSG_TOSTRING_POST_FIRST_USE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}               Static Method, Scenario 1 of 3: Robust Parsing{0}.
+        /// </summary>
+        internal static string STATIC_SCENARIO_1 {
+            get {
+                return ResourceManager.GetString("STATIC_SCENARIO_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}               Static Method, Scenario 2 of 3: Keep Guards{0}.
+        /// </summary>
+        internal static string STATIC_SCENARIO_2 {
+            get {
+                return ResourceManager.GetString("STATIC_SCENARIO_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}               Static Method, Scenario 3 of 3: Trim Leading{0}.
+        /// </summary>
+        internal static string STATIC_SCENARIO_3 {
+            get {
+                return ResourceManager.GetString("STATIC_SCENARIO_3", resourceCulture);
             }
         }
     }

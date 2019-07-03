@@ -20,7 +20,7 @@
 							https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
 							Retrieved 2017/08/05 07:28:24
 
-	License:            Copyright (C) 2014-2018, David A. Gray.
+	License:            Copyright (C) 2014-2019, David A. Gray.
 						All rights reserved.
 
                         Redistribution and use in source and binary forms, with
@@ -78,6 +78,12 @@
 
     2018/09/03 7.0     DAG    Amend ToString to display character codes as both
 	                          raw characters and decimal values.
+
+    2019/07/03 7.1     DAG    Synchronize the format control string used by the
+                              ToString override to align with the format items
+                              added in version 7.0, and add the overlooked
+                              abstract marking, and correct errors in the XML
+                              help text of two GuardChar enumeration members.
     ============================================================================
 */
 
@@ -87,6 +93,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.InteropServices;
 using System.Text;
+
 
 namespace WizardWrx.AnyCSV
 {
@@ -104,8 +111,8 @@ namespace WizardWrx.AnyCSV
 	[ComVisible ( true ) ,
 		   Guid ( "EE63E545-0FC1-42F0-9DDD-028A5FFD438F" )]
 	//	[ClassInterface ( ClassInterfaceType.None )]			<<-- I think this is another one of these cases in which the sanctioned approach isn't worth the trouble for its alleged benefits.
-	[ClassInterface ( ClassInterfaceType.AutoDual )]	//	<<-- This is how my AssemblyPropertyViewer class is marked.
-	public class CSVParseEngine : ICSVParser
+	[ClassInterface ( ClassInterfaceType.AutoDual )]	//	    <<-- This is how my AssemblyPropertyViewer class is marked.
+	public abstract class CSVParseEngine : ICSVParser
 	{
         #region Public Constants and Enumerations
 		/// <summary>
@@ -327,22 +334,22 @@ namespace WizardWrx.AnyCSV
 			/// </summary>
 			None = 0 ,
 
-			/// <summary>
-			/// Specify a double quotation as the protector of delimiters.
-			///
-			/// The equivalent character constant is SINGLE_QUOTE.
-			/// </summary>
-			BackQuote = 1 ,
+            /// <summary>
+            /// Specify a backwards quotation mark as the protector of delimiters.
+            ///
+            /// The equivalent character constant is BACK_QUOTE.
+            /// </summary>
+            BackQuote = 1 ,
 
 			/// <summary>
-            /// Specify a double quotation as the protector of delimiters.
+            /// Specify a double quotation mark as the protector of delimiters.
             ///
             /// The equivalent character constant is DOUBLE_QUOTE.
             /// </summary>
             DoubleQuote = 2,
 
             /// <summary>
-            /// Specify a double quotation as the protector of delimiters.
+            /// Specify a single quotation mark as the protector of delimiters.
             ///
             /// The equivalent character constant is SINGLE_QUOTE.
             /// </summary>
@@ -1844,15 +1851,17 @@ namespace WizardWrx.AnyCSV
 				Properties.Resources.TOSTRING_TEMPLATE ,	// Format control string
 				new object [ ]
 				{
-					_chrDelimiter ,							// Format item 0 = Delimiter character
-					( int ) _chrDelimiter ,					// Format Item 1 = Delimiter character (decimal)
-					_chrGuard ,								// Format Item 2 = Guard character
-					( int ) _chrGuard ,						// Format Item 3 = Guard character (decimal)
-					_enmTrimWhiteSpace ,					// Format Item 4 = White space disposition flag
-					_enmGuardDisposition ,					// Format item 5 = Guard character disposition flag
-					_fSettingsLocked ,						// Format Item 6 = Property lock state (Locked or Unlocked)
-					_enmLockMethod ,						// Format Item 7 = Property Locking method (unlocked, explicit, or implicit)
-					Environment.NewLine						// Format Item 8 = Embedded Newline
+					_chrDelimiter ,							// Format item  0 = Delimiter character					                         Delimiter         = {0} (0x{1:x2}, {2} decimal){10}
+					( int ) _chrDelimiter ,					// Format Item  1 = Delimiter character (hexadecimal)                            Delimiter         = {0} (0x{1:x2}, {2} decimal){10}
+					( int ) _chrDelimiter ,					// Format Item  2 = Delimiter character (decimal)                                Delimiter         = {0} (0x{1:x2}, {2} decimal){10}
+					_chrGuard ,								// Format Item  3 = Guard character                                              Guard Character   = {3} (0x{4:x2}, {5} decimal){10}
+					( int ) _chrGuard ,						// Format Item  4 = Guard character (hexadecimal)                                Guard Character   = {3} (0x{4:x2}, {5} decimal){10}
+					( int ) _chrGuard ,						// Format Item  5 = Guard character (decimal)                                    Guard Character   = {3} (0x{4:x2}, {5} decimal){10}
+					_enmTrimWhiteSpace ,					// Format Item  6 = White space disposition flag                                 Trim White Space  = {6}{10}
+					_enmGuardDisposition ,					// Format item  7 = Guard character disposition flag                             Guard Disposition = {7}{10}
+					_fSettingsLocked ,						// Format Item  8 = Property lock state (Locked or Unlocked)                     Lock State        = {8}{10}
+					_enmLockMethod ,						// Format Item  9 = Property Locking method (unlocked, explicit, or implicit)    Lock Method       = {9}{10}
+					Environment.NewLine						// Format Item 10 = Embedded Newline
 				} );
 		}	// ToString
 		#endregion	// Overridden Root Class Methods

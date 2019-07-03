@@ -202,21 +202,21 @@
         </member>
         <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardChar.BackQuote">
              <summary>
-             Specify a double quotation as the protector of delimiters.
+             Specify a backwards quotation mark as the protector of delimiters.
             
-             The equivalent character constant is SINGLE_QUOTE.
+             The equivalent character constant is BACK_QUOTE.
              </summary>
         </member>
         <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardChar.DoubleQuote">
              <summary>
-             Specify a double quotation as the protector of delimiters.
+             Specify a double quotation mark as the protector of delimiters.
             
              The equivalent character constant is DOUBLE_QUOTE.
              </summary>
         </member>
         <member name="F:WizardWrx.AnyCSV.CSVParseEngine.GuardChar.SingleQuote">
              <summary>
-             Specify a double quotation as the protector of delimiters.
+             Specify a single quotation mark as the protector of delimiters.
             
              The equivalent character constant is SINGLE_QUOTE.
              </summary>
@@ -1478,7 +1478,7 @@
         </member>
         <member name="P:WizardWrx.Properties.Resources.TOSTRING_TEMPLATE">
             <summary>
-              Looks up a localized string similar to Delimiter         = {0}{6}Guard Character   = {1}{6}Trim White Space  = {2}{6}Guard Disposition = {3}{6}Lock State        = {4}{6}Lock Method       = {5}{6}.
+              Looks up a localized string similar to Delimiter         = {0} (0x{1:x2}, {2} decimal){10}Guard Character   = {3} (0x{4:x2}, {5} decimal){10}Trim White Space  = {6}{10}Guard Disposition = {7}{10}Lock State        = {8}{10}Lock Method       = {9}{10}.
             </summary>
         </member>
     </members>

@@ -111,7 +111,7 @@ constructors and Parse methods.</p>
     <pre><code class="lang-csharp hljs">[ComVisible(true)]
 [Guid(&quot;EE63E545-0FC1-42F0-9DDD-028A5FFD438F&quot;)]
 [ClassInterface(ClassInterfaceType.AutoDual)]
-public class CSVParseEngine : ICSVParser</code></pre>
+public abstract class CSVParseEngine : ICSVParser</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -120,7 +120,7 @@ public class CSVParseEngine : ICSVParser</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__ctor.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.%23ctor%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L931">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L938">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine__ctor_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.#ctor*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__ctor" data-uid="WizardWrx.AnyCSV.CSVParseEngine.#ctor">CSVParseEngine()</h4>
@@ -141,7 +141,7 @@ fields, and preserves leading and trailing white space.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__chrDelimiter.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine._chrDelimiter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L849">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L856">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__chrDelimiter" data-uid="WizardWrx.AnyCSV.CSVParseEngine._chrDelimiter">_chrDelimiter</h4>
   <div class="markdown level1 summary"><p>Instance storage for the delimiter character is marked as protected,
@@ -173,7 +173,7 @@ stack space and processor time to go through its public property.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__chrGuard.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine._chrGuard%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L857">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L864">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__chrGuard" data-uid="WizardWrx.AnyCSV.CSVParseEngine._chrGuard">_chrGuard</h4>
   <div class="markdown level1 summary"><p>Instance storage for the delimiter guard character is marked as
@@ -206,7 +206,7 @@ public property.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__enmDelimiter.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine._enmDelimiter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L865">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L872">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__enmDelimiter" data-uid="WizardWrx.AnyCSV.CSVParseEngine._enmDelimiter">_enmDelimiter</h4>
   <div class="markdown level1 summary"><p>Instance storage for the delimiter character enumeration is marked
@@ -239,7 +239,7 @@ property.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__enmGuard.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine._enmGuard%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L873">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L880">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__enmGuard" data-uid="WizardWrx.AnyCSV.CSVParseEngine._enmGuard">_enmGuard</h4>
   <div class="markdown level1 summary"><p>Instance storage for the delimiter guard character enumeration is
@@ -272,7 +272,7 @@ public property.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__enmGuardDisposition.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine._enmGuardDisposition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L881">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L888">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__enmGuardDisposition" data-uid="WizardWrx.AnyCSV.CSVParseEngine._enmGuardDisposition">_enmGuardDisposition</h4>
   <div class="markdown level1 summary"><p>Instance storage for the delimiter guard character enumeration is
@@ -305,7 +305,7 @@ public property.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__enmLockMethod.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine._enmLockMethod%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L887">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L894">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__enmLockMethod" data-uid="WizardWrx.AnyCSV.CSVParseEngine._enmLockMethod">_enmLockMethod</h4>
   <div class="markdown level1 summary"><p>This flag maintains the method by which the class property values
@@ -336,7 +336,7 @@ became locked.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__enmTrimWhiteSpace.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine._enmTrimWhiteSpace%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L920">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L927">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__enmTrimWhiteSpace" data-uid="WizardWrx.AnyCSV.CSVParseEngine._enmTrimWhiteSpace">_enmTrimWhiteSpace</h4>
   <div class="markdown level1 summary"><p>Instance storage for the white space disposition enumeration is
@@ -369,7 +369,7 @@ public property.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__fSettingsLocked.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine._fSettingsLocked%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L895">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L902">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__fSettingsLocked" data-uid="WizardWrx.AnyCSV.CSVParseEngine._fSettingsLocked">_fSettingsLocked</h4>
   <div class="markdown level1 summary"><p>Instance storage for the settings lock state enumeration is marked
@@ -402,7 +402,7 @@ property.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__objParseingLockSync.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine._objParseingLockSync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L912">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L919">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__objParseingLockSync" data-uid="WizardWrx.AnyCSV.CSVParseEngine._objParseingLockSync">_objParseingLockSync</h4>
   <div class="markdown level1 summary"><p>Use this object to synchronize access to the Parse method by multiple
@@ -437,7 +437,7 @@ lock is evaluated and set if it isn't already.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine__objSettingsLockSync.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine._objSettingsLockSync%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L902">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L909">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine__objSettingsLockSync" data-uid="WizardWrx.AnyCSV.CSVParseEngine._objSettingsLockSync">_objSettingsLockSync</h4>
   <div class="markdown level1 summary"><p>Use this object to synchronize access by multiple threads. The only
@@ -469,7 +469,7 @@ or locked.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_BACK_QUOTE.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.BACK_QUOTE%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L120">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L127">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_BACK_QUOTE" data-uid="WizardWrx.AnyCSV.CSVParseEngine.BACK_QUOTE">BACK_QUOTE</h4>
   <div class="markdown level1 summary"><p>Protect delimiters enclosed in backwards quotation marks, commonly
@@ -503,7 +503,7 @@ public const char BACK_QUOTE = '`'</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_CARAT.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.CARAT%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L133">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L140">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_CARAT" data-uid="WizardWrx.AnyCSV.CSVParseEngine.CARAT">CARAT</h4>
   <div class="markdown level1 summary"><p>Use this symbolic constant to construct a Parser instance that uses
@@ -538,7 +538,7 @@ public const char CARAT = '^'</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_CARRIAGE_RETURN.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.CARRIAGE_RETURN%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L146">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L153">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_CARRIAGE_RETURN" data-uid="WizardWrx.AnyCSV.CSVParseEngine.CARRIAGE_RETURN">CARRIAGE_RETURN</h4>
   <div class="markdown level1 summary"><p>Use this symbolic constant to construct a Parser instance that uses
@@ -573,7 +573,7 @@ public const char CARRIAGE_RETURN = '\r'</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_COMMA.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.COMMA%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L159">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L166">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_COMMA" data-uid="WizardWrx.AnyCSV.CSVParseEngine.COMMA">COMMA</h4>
   <div class="markdown level1 summary"><p>Use this symbolic constant to construct a Parser instance that uses
@@ -608,7 +608,7 @@ public const char COMMA = ','</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_DEFAULT_DELIMITER.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_DELIMITER%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L483">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L490">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_DEFAULT_DELIMITER" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_DELIMITER">DEFAULT_DELIMITER</h4>
   <div class="markdown level1 summary"><p>This property governs the static Parse methods that omit a delimiter
@@ -640,7 +640,7 @@ public const char DEFAULT_DELIMITER = ','</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_DEFAULT_DELIMITER_GUARD.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_DELIMITER_GUARD%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L491">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L498">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_DEFAULT_DELIMITER_GUARD" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_DELIMITER_GUARD">DEFAULT_DELIMITER_GUARD</h4>
   <div class="markdown level1 summary"><p>This constant governs the static Parse methods that omit a delimiter
@@ -672,7 +672,7 @@ public const char DEFAULT_DELIMITER_GUARD = '&quot;'</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_DEFAULT_GUARD_DISPOSITION.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_GUARD_DISPOSITION%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L499">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L506">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_DEFAULT_GUARD_DISPOSITION" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_GUARD_DISPOSITION">DEFAULT_GUARD_DISPOSITION</h4>
   <div class="markdown level1 summary"><p>This constant governs the static Parse methods that leave the
@@ -704,7 +704,7 @@ public const CSVParseEngine.GuardDisposition DEFAULT_GUARD_DISPOSITION = CSVPars
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_DEFAULT_WHITESPACE_TREATMENT.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_WHITESPACE_TREATMENT%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L508">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L515">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_DEFAULT_WHITESPACE_TREATMENT" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DEFAULT_WHITESPACE_TREATMENT">DEFAULT_WHITESPACE_TREATMENT</h4>
   <div class="markdown level1 summary"><p>This constant governs the static Parse methods that leave the
@@ -737,7 +737,7 @@ public const CSVParseEngine.TrimWhiteSpace DEFAULT_WHITESPACE_TREATMENT = CSVPar
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_DOUBLE_QUOTE.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.DOUBLE_QUOTE%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L170">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L177">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_DOUBLE_QUOTE" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DOUBLE_QUOTE">DOUBLE_QUOTE</h4>
   <div class="markdown level1 summary"><p>Protect delimiters enclosed in double quotation marks.</p>
@@ -770,7 +770,7 @@ public const char DOUBLE_QUOTE = '&quot;'</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_LINE_FEED.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.LINE_FEED%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L183">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L190">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_LINE_FEED" data-uid="WizardWrx.AnyCSV.CSVParseEngine.LINE_FEED">LINE_FEED</h4>
   <div class="markdown level1 summary"><p>Use this symbolic constant to construct a Parser instance that uses
@@ -805,7 +805,7 @@ public const char LINE_FEED = '\n'</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_SINGLE_QUOTE.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.SINGLE_QUOTE%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L194">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L201">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_SINGLE_QUOTE" data-uid="WizardWrx.AnyCSV.CSVParseEngine.SINGLE_QUOTE">SINGLE_QUOTE</h4>
   <div class="markdown level1 summary"><p>Protect delimiters enclosed in single quotation marks.</p>
@@ -838,7 +838,7 @@ public const char SINGLE_QUOTE = '\''</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_SPACE.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.SPACE%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L207">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L214">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_SPACE" data-uid="WizardWrx.AnyCSV.CSVParseEngine.SPACE">SPACE</h4>
   <div class="markdown level1 summary"><p>Use this symbolic constant to construct a Parser instance that uses
@@ -873,7 +873,7 @@ public const char SPACE = ' '</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_TAB.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.TAB%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L220">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L227">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_TAB" data-uid="WizardWrx.AnyCSV.CSVParseEngine.TAB">TAB</h4>
   <div class="markdown level1 summary"><p>Use this symbolic constant to construct a Parser instance that uses
@@ -908,7 +908,7 @@ public const char TAB = '\t'</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_VERTICAL_BAR.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.VERTICAL_BAR%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L234">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L241">View Source</a>
   </span>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_VERTICAL_BAR" data-uid="WizardWrx.AnyCSV.CSVParseEngine.VERTICAL_BAR">VERTICAL_BAR</h4>
   <div class="markdown level1 summary"><p>Use this symbolic constant to construct a Parser instance that uses
@@ -946,7 +946,7 @@ public const char VERTICAL_BAR = '|'</code></pre>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_DelimiterGuard.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.DelimiterGuard%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L992">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L999">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_DelimiterGuard_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DelimiterGuard*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_DelimiterGuard" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DelimiterGuard">DelimiterGuard</h4>
@@ -988,7 +988,7 @@ permanently (for the remaining lifetime of the instance).</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_FieldDelimiter.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.FieldDelimiter%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L952">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L959">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_FieldDelimiter_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.FieldDelimiter*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_FieldDelimiter" data-uid="WizardWrx.AnyCSV.CSVParseEngine.FieldDelimiter">FieldDelimiter</h4>
@@ -1030,7 +1030,7 @@ permanently (for the remaining lifetime of the instance).</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_GuardCharDisposition.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.GuardCharDisposition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1028">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1035">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_GuardCharDisposition_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.GuardCharDisposition*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_GuardCharDisposition" data-uid="WizardWrx.AnyCSV.CSVParseEngine.GuardCharDisposition">GuardCharDisposition</h4>
@@ -1069,7 +1069,7 @@ permanently (for the remaining lifetime of the instance).</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_SettingsLocked.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.SettingsLocked%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1074">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1081">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_SettingsLocked_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.SettingsLocked*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_SettingsLocked" data-uid="WizardWrx.AnyCSV.CSVParseEngine.SettingsLocked">SettingsLocked</h4>
@@ -1113,7 +1113,7 @@ the most recent change made by code running on another thread.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_SettingsLockMethod.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.SettingsLockMethod%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1049">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1056">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_SettingsLockMethod_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.SettingsLockMethod*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_SettingsLockMethod" data-uid="WizardWrx.AnyCSV.CSVParseEngine.SettingsLockMethod">SettingsLockMethod</h4>
@@ -1145,7 +1145,7 @@ settings to become locked.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_WhiteSpaceDisposition.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.WhiteSpaceDisposition%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1096">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1103">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_WhiteSpaceDisposition_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.WhiteSpaceDisposition*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_WhiteSpaceDisposition" data-uid="WizardWrx.AnyCSV.CSVParseEngine.WhiteSpaceDisposition">WhiteSpaceDisposition</h4>
@@ -1186,7 +1186,7 @@ permanently (for the remaining lifetime of the instance).</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_DelimiterCharFromEnum_WizardWrx_AnyCSV_CSVParseEngine_DelimiterChar_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.DelimiterCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1468">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1475">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_DelimiterCharFromEnum_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DelimiterCharFromEnum*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_DelimiterCharFromEnum_WizardWrx_AnyCSV_CSVParseEngine_DelimiterChar_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DelimiterCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.DelimiterChar)">DelimiterCharFromEnum(CSVParseEngine.DelimiterChar)</h4>
@@ -1267,7 +1267,7 @@ DelimiterChar.None or DelimiterChar.None.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_DelimiterEnumFromChar_System_Char_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.DelimiterEnumFromChar(System.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1569">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1576">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_DelimiterEnumFromChar_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DelimiterEnumFromChar*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_DelimiterEnumFromChar_System_Char_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.DelimiterEnumFromChar(System.Char)">DelimiterEnumFromChar(Char)</h4>
@@ -1327,7 +1327,7 @@ the enumeration, is returned.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_Equals_System_Object_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.Equals(System.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1788">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1795">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_Equals_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Equals*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_Equals_System_Object_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Equals(System.Object)">Equals(Object)</h4>
@@ -1405,7 +1405,7 @@ ToString methods return).</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_FormatInvalidCastExceptionMessage_System_Object_System_Object_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.FormatInvalidCastExceptionMessage(System.Object%2CSystem.Object)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1500">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1507">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_FormatInvalidCastExceptionMessage_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.FormatInvalidCastExceptionMessage*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_FormatInvalidCastExceptionMessage_System_Object_System_Object_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.FormatInvalidCastExceptionMessage(System.Object,System.Object)">FormatInvalidCastExceptionMessage(Object, Object)</h4>
@@ -1468,7 +1468,7 @@ identify and correct its cause.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_GetHashCode.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.GetHashCode%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1814">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1821">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_GetHashCode_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.GetHashCode*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_GetHashCode" data-uid="WizardWrx.AnyCSV.CSVParseEngine.GetHashCode">GetHashCode()</h4>
@@ -1505,7 +1505,7 @@ list of the properties of the instance.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_GuardCharFromEnum_WizardWrx_AnyCSV_CSVParseEngine_GuardChar_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.GuardCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.GuardChar)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1540">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1547">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_GuardCharFromEnum_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.GuardCharFromEnum*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_GuardCharFromEnum_WizardWrx_AnyCSV_CSVParseEngine_GuardChar_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.GuardCharFromEnum(WizardWrx.AnyCSV.CSVParseEngine.GuardChar)">GuardCharFromEnum(CSVParseEngine.GuardChar)</h4>
@@ -1586,7 +1586,7 @@ or GuardChar.None.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_GuardEnumFromChar_System_Char_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.GuardEnumFromChar(System.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1594">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1601">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_GuardEnumFromChar_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.GuardEnumFromChar*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_GuardEnumFromChar_System_Char_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.GuardEnumFromChar(System.Char)">GuardEnumFromChar(Char)</h4>
@@ -1645,7 +1645,7 @@ enumeration, is returned.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_LockSettings.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.LockSettings%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1128">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1135">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_LockSettings_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.LockSettings*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_LockSettings" data-uid="WizardWrx.AnyCSV.CSVParseEngine.LockSettings">LockSettings()</h4>
@@ -1670,7 +1670,7 @@ same settings.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_Parse_System_String_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1156">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1163">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_Parse_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Parse*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_Parse_System_String_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String)">Parse(String)</h4>
@@ -1725,7 +1725,7 @@ on the like named static method.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_Parse_System_String_System_Char_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1399">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1406">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_Parse_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Parse*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_Parse_System_String_System_Char_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String,System.Char)">Parse(String, Char)</h4>
@@ -1789,7 +1789,7 @@ can occur in a text file is valid.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_Parse_System_String_System_Char_System_Char_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String%2CSystem.Char%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1368">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1375">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_Parse_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Parse*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_Parse_System_String_System_Char_System_Char_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String,System.Char,System.Char)">Parse(String, Char, Char)</h4>
@@ -1863,7 +1863,7 @@ the string, which always accompanies the request.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_Parse_System_String_System_Char_System_Char_WizardWrx_AnyCSV_CSVParseEngine_GuardDisposition_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String%2CSystem.Char%2CSystem.Char%2CWizardWrx.AnyCSV.CSVParseEngine.GuardDisposition)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1326">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1333">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_Parse_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Parse*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_Parse_System_String_System_Char_System_Char_WizardWrx_AnyCSV_CSVParseEngine_GuardDisposition_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String,System.Char,System.Char,WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition)">Parse(String, Char, Char, CSVParseEngine.GuardDisposition)</h4>
@@ -1936,7 +1936,7 @@ be stripped (default) or kept.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_Parse_System_String_System_Char_System_Char_WizardWrx_AnyCSV_CSVParseEngine_GuardDisposition_WizardWrx_AnyCSV_CSVParseEngine_TrimWhiteSpace_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String%2CSystem.Char%2CSystem.Char%2CWizardWrx.AnyCSV.CSVParseEngine.GuardDisposition%2CWizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1211">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1218">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_Parse_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Parse*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_Parse_System_String_System_Char_System_Char_WizardWrx_AnyCSV_CSVParseEngine_GuardDisposition_WizardWrx_AnyCSV_CSVParseEngine_TrimWhiteSpace_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.Parse(System.String,System.Char,System.Char,WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition,WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)">Parse(String, Char, Char, CSVParseEngine.GuardDisposition, CSVParseEngine.TrimWhiteSpace)</h4>
@@ -2024,7 +2024,7 @@ the string, which always accompanies the request.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_ShowDelimiterAndGuardChars_System_Char_System_Char_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.ShowDelimiterAndGuardChars(System.Char%2CSystem.Char)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1619">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1626">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_ShowDelimiterAndGuardChars_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.ShowDelimiterAndGuardChars*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_ShowDelimiterAndGuardChars_System_Char_System_Char_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.ShowDelimiterAndGuardChars(System.Char,System.Char)">ShowDelimiterAndGuardChars(Char, Char)</h4>
@@ -2083,7 +2083,7 @@ representations of their numeric values.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_StandardCSVParse_System_String_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.StandardCSVParse(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1431">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1438">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_StandardCSVParse_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.StandardCSVParse*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_StandardCSVParse_System_String_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.StandardCSVParse(System.String)">StandardCSVParse(String)</h4>
@@ -2146,7 +2146,7 @@ to true Comma Separated Values (CSV) strings.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_ToString.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.ToString%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1840">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1847">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_ToString_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.ToString*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_ToString" data-uid="WizardWrx.AnyCSV.CSVParseEngine.ToString">ToString()</h4>
@@ -2184,7 +2184,7 @@ them on a report.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_TransformAsDirectoed_System_Text_StringBuilder_System_Char_WizardWrx_AnyCSV_CSVParseEngine_GuardDisposition_WizardWrx_AnyCSV_CSVParseEngine_TrimWhiteSpace_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.TransformAsDirectoed(System.Text.StringBuilder%2CSystem.Char%2CWizardWrx.AnyCSV.CSVParseEngine.GuardDisposition%2CWizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1699">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1706">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_TransformAsDirectoed_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.TransformAsDirectoed*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_TransformAsDirectoed_System_Text_StringBuilder_System_Char_WizardWrx_AnyCSV_CSVParseEngine_GuardDisposition_WizardWrx_AnyCSV_CSVParseEngine_TrimWhiteSpace_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.TransformAsDirectoed(System.Text.StringBuilder,System.Char,WizardWrx.AnyCSV.CSVParseEngine.GuardDisposition,WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)">TransformAsDirectoed(StringBuilder, Char, CSVParseEngine.GuardDisposition, CSVParseEngine.TrimWhiteSpace)</h4>
@@ -2260,7 +2260,7 @@ trailing white space removed if so directed.</p>
     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine_TransformWhiteSpace_System_String_WizardWrx_AnyCSV_CSVParseEngine_TrimWhiteSpace_.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine.TransformWhiteSpace(System.String%2CWizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1742">View Source</a>
+    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L1749">View Source</a>
   </span>
   <a id="WizardWrx_AnyCSV_CSVParseEngine_TransformWhiteSpace_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.TransformWhiteSpace*"></a>
   <h4 id="WizardWrx_AnyCSV_CSVParseEngine_TransformWhiteSpace_System_String_WizardWrx_AnyCSV_CSVParseEngine_TrimWhiteSpace_" data-uid="WizardWrx.AnyCSV.CSVParseEngine.TransformWhiteSpace(System.String,WizardWrx.AnyCSV.CSVParseEngine.TrimWhiteSpace)">TransformWhiteSpace(String, CSVParseEngine.TrimWhiteSpace)</h4>
@@ -2327,7 +2327,7 @@ it is ready to return to the caller following this transformation.</p>
                     <a href="https://github.com/txwizard/AnyCSV/new/master/apiSpec/new?filename=WizardWrx_AnyCSV_CSVParseEngine.md&amp;value=---%0Auid%3A%20WizardWrx.AnyCSV.CSVParseEngine%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L104" class="contribution-link">View Source</a>
+                    <a href="https://github.com/txwizard/AnyCSV/blob/master/AnyCSV/CSVParseEngine.cs/#L111" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

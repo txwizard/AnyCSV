@@ -59,7 +59,8 @@
     <SignAssembly>false</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>DavidAGrayMyAbacus.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -89,12 +90,10 @@
     <Content Include="WW_Icon1.ico" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AnyCSVTestStand.nuspec" />
     <None Include="app.config" />
     <Content Include="WizardWrx.DLLServices2.dll.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="DavidAGrayMyAbacus.pfx" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resources.resx">
