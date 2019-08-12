@@ -6,5 +6,5 @@ This,test,ends,with,a,"quoted string."
 This,test,"contains an embedded",quoted,string.
 This,"test contains",two,"quoted strings."
 This,test,"contains a quoted string,",followed by more,"text, both of which include commas."
-,This,test,",includes a little of this, and a little of that,",,to,push,the,routine to its limits.,
+,This,test,",includes a little of this, and a little of that,",,to,push the ,routine to, its limits.,
 CN=RapidSSL CA, O="GeoTrust, Inc.", C=US

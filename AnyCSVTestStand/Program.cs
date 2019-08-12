@@ -3,7 +3,7 @@
 
     Module Name:        Program.cs
 
-    Namespace Name:     ConsoleUtility1
+    Namespace Name:     AnyCSVTestStand
 
     Class Name:         Program
 
@@ -15,10 +15,10 @@
                         which is functionally equivalent to the main() routine
                         of a standard C program.
 
-						This assembly leverages routines imported from several
+                        This assembly leverages routines imported from several
                         of my core helper class libraries, for which I make no
                         apology. Since it is a unit test program, and should not
-						go into a production environment, I am less concerned
+                        go into a production environment, I am less concerned
                         about dependencies, and will happily trade them for a
                         robust program that goes together quickly.
 
@@ -27,8 +27,18 @@
                         run against any version of the Microsoft .NET Framework
                         above 1.1 (Does anybody still use that version?).
 
-	License:            Copyright (C) 2014-2019, David A. Gray.
-						All rights reserved.
+                        I actually found a very old utility that accompanied a
+                        Code Project article that runs on the ancient 1.1 
+                        framework. I was equally surprise to find that Microsoft
+                        installs it on Windows 10 Pro.
+                        
+                        Although I upgraded the utility so that I could mold it
+                        to fit more stringent requirements, the original program
+                        worked correctly out of the archive "box" in which it
+                        came.
+
+    License:            Copyright (C) 2014-2019, David A. Gray.
+                        All rights reserved.
 
                         Redistribution and use in source and binary forms, with
                         or without modification, are permitted provided that the
@@ -73,7 +83,7 @@
     ---------- ------- ------ -------------------------------------------------
     2014/07/07 3.0     DAG    This is the first version.
 
-	2016/06/10 3.1     DAG    Embed my three-clause BSD license, and sever all
+    2016/06/10 3.1     DAG    Embed my three-clause BSD license, and sever all
                               ties with the deprecated class libraries and the
                               CodeProject library that AnyCSV superseded.
 
@@ -91,6 +101,21 @@
                               ToString method to report its properties 
                               immediately post-construction and immediately
                               after first use.
+
+    2019/08/11 7.2     DAG    To enable the test script that I wrote to feed the
+                              name and location of the input file to it to run
+                              directly from a File Explorer window, the shutdown
+                              sequence is changed so that it always waits for a
+                              carbon unit, unless it is instructed via command
+                              line argument to run completely silently.
+
+                              During a review that preceded the code change just
+                              mentioned, I discovered that the namespace name
+                              displayed in the flower box above was wrong, being
+                              a leftover from the DevEnv template, and corrected
+                              it, then added a bit of trivia about a rhetorical
+                              question about whether anybody uses version 1.1 of
+                              the .NET Framework. The short answer is yes.
     ============================================================================
 */
 
@@ -168,7 +193,7 @@ namespace AnyCSVTestStand
                 | ExceptionLogger.OutputOptions.EventLog
                 | ExceptionLogger.OutputOptions.Stack
                 | ExceptionLogger.OutputOptions.StandardError;
-			s_theApp.BaseStateManager.LoadErrorMessageTable ( s_astrErrorMessages );
+            s_theApp.BaseStateManager.LoadErrorMessageTable ( s_astrErrorMessages );
 
             string strDeferredMessage = null;
 
@@ -194,7 +219,7 @@ namespace AnyCSVTestStand
             string strTestFileName = cmdArgs.GetArgByPosition ( CmdLneArgsBasic.FIRST_POSITIONAL_ARG );
             Console.WriteLine (
                 Properties.Resources.MSG_INPUT_FILENAME ,
-				s_theApp.BaseStateManager.InitialWorkingDirectoryName ,
+                s_theApp.BaseStateManager.InitialWorkingDirectoryName ,
                 strTestFileName ,
                 Environment.NewLine );
 
@@ -330,7 +355,7 @@ namespace AnyCSVTestStand
             }
             catch ( Exception exAll )
             {   // The Message string is displayed, but the complete exception goes to the event log.
-				s_theApp.BaseStateManager.AppExceptionLogger.ReportException ( exAll );
+                s_theApp.BaseStateManager.AppExceptionLogger.ReportException ( exAll );
                 Console.WriteLine ( exAll.Message );
 
                 ExitWithError (
@@ -354,7 +379,7 @@ namespace AnyCSVTestStand
             }   // TRUE block, if ( enmOutputFormat == OutputFormat.None )
             else
             {   // Display the standard exit banner.
-                s_theApp.NormalExit ( ConsoleAppStateManager.NormalExitAction.ExitImmediately );
+                s_theApp.NormalExit(ConsoleAppStateManager.NormalExitAction.WaitForOperator);
             }   // FALSE block, if ( enmOutputFormat == OutputFormat.None )
 #endif
         }   // static void Main
@@ -373,11 +398,11 @@ namespace AnyCSVTestStand
                       intCurrField < pintNFields ;
                       intCurrField++ )
             {
-				Console.WriteLine (
-					Properties.Resources.MSG_CASE_DETAIL ,
-					ArrayInfo.OrdinalFromIndex ( intCurrField ) ,
-					pintNFields ,
-					pastrTestOutput [ intCurrField ] );
+                Console.WriteLine (
+                    Properties.Resources.MSG_CASE_DETAIL ,
+                    ArrayInfo.OrdinalFromIndex ( intCurrField ) ,
+                    pintNFields ,
+                    pastrTestOutput [ intCurrField ] );
             }   // for ( int intCurrField = StandardConstants.ARRAY_FIRST_ELEMENT ; intCurrField < intNFields ; intCurrField++ )
         }   //private static void ReportScenarioOutcome
 
@@ -414,10 +439,10 @@ namespace AnyCSVTestStand
             //  which became part of a sealed class, WizardWrx.StringTricks,
             //  exported by class library WizardWrx.SharedUtl2.dll version 2.62,
             //  which came into being exactly two years ago, 2011/11/23.
-			//
-			//	2016/06/10 - DAG - Though I have retired WizardWrx.SharedUtl2,
-			//	                   StringTricks went into WizardWrx.DLLServices,
-			//                     as did everything that was worth saving.
+            //
+            //	2016/06/10 - DAG - Though I have retired WizardWrx.SharedUtl2,
+            //	                   StringTricks went into WizardWrx.DLLServices,
+            //                     as did everything that was worth saving.
             //  ----------------------------------------------------------------
 
             const bool IGNORE_CASE = true;
@@ -445,7 +470,7 @@ namespace AnyCSVTestStand
             }
             catch ( ArgumentException exArg )
             {   // Display of the message is deferred until the BOJ message is printed.
-				s_theApp.BaseStateManager.AppExceptionLogger.ReportException ( exArg );
+                s_theApp.BaseStateManager.AppExceptionLogger.ReportException ( exArg );
                 pstrDeferredMessage = string.Format (
                     Properties.Resources.ERRMSG_INVALID_OUTPUT_FORMAT ,
                     exArg.Message.ExtractBoundedSubstrings ( WizardWrx.SpecialCharacters.SINGLE_QUOTE ) ,

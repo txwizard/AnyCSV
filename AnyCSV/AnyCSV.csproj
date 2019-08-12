@@ -10,8 +10,37 @@
         2017/08/12 DAG Manually change PlatformTarget from x86 to AnyCPU so that
                        the 64 bit assembly registrar can register the assembly
                        for COM interop.
+
+        2019/07/03 DAG Incorporate NuGet Package Manager instructions.
+
+        2019/08/11 DAG Remove the configuration from the name of the package
+                       directory, since I always package Release builds, and add
+                       a custom task, NuGetPackageNameFixup, to resolve the name
+                       of the NuGet package when the fourth part of the version
+                       string is zero.
         ========================================================================
-     -->
+  -->
+
+  <!-- 2019/08/11 20:17:28 - DAG Define custom task NuGetPackageNameFixup.  -->
+  <UsingTask TaskName="NuGetPackageNameFixup"
+             TaskFactory="CodeTaskFactory"
+             AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.Core.dll">
+    <ParameterGroup>
+      <RawNugetPackageVersion    ParameterType="System.String"
+                                 Required="true" />
+      <ActualNugetPackageVersion ParameterType="System.String"
+                                 Output="true" />
+    </ParameterGroup>
+    <Task>
+      <Code Type="Fragment" Language="cs">
+        <![CDATA[
+            ActualNugetPackageVersion = RawNugetPackageVersion.EndsWith ( ".0" ) ? RawNugetPackageVersion.Substring(0,RawNugetPackageVersion.Length-2) : RawNugetPackageVersion;
+            Log.LogMessage ( "Custom Task NuGetPackageNameFixup: RawNugetPackageVersion    = "+ RawNugetPackageVersion    );
+            Log.LogMessage ( "Custom Task NuGetPackageNameFixup: ActualNugetPackageVersion = "+ ActualNugetPackageVersion );
+        ]]>
+      </Code>
+    </Task>
+  </UsingTask>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -27,8 +56,8 @@
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
     <NuGetPackageImportStamp>89ac1ab2</NuGetPackageImportStamp>
-    <!-- 2019/07/03 17:51:18 - DAG - Added for NuGet package builder -->
-    <PackageDir>Package\$(Configuration)</PackageDir>
+    <!-- 2019/07/03 17:51:18 - DAG - Add for NuGet package builder -->
+    <PackageDir>Package</PackageDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -103,26 +132,30 @@
     <!-- Load up the information from the assembly -->
     <GetAssemblyIdentity AssemblyFiles="$(OutputPath)$(AssemblyName).dll">
       <Output TaskParameter="Assemblies"
-      	      ItemName="OutputAssemblyInfo" />
+              ItemName="OutputAssemblyInfo" />
     </GetAssemblyIdentity>
-    <Message Text="Info: Assembly $(AssemblyName).dll version =  %(OutputAssemblyInfo.Version)" />
+    <Message Text="Info: Assembly $(AssemblyName).dll version = %(OutputAssemblyInfo.Version)" />
   </Target>
   <Target Name="Package"
-  	      AfterTargets="AfterBuild"
-  	      Condition=" '$(Configuration)' == 'Release'">
+          AfterTargets="AfterBuild"
+          Condition=" '$(Configuration)' == 'Release'">
     <!-- Ensure the Package directory exists for this project -->
     <MakeDir Directories="$(PackageDir)" />
     <!-- Package the project -->
     <Exec WorkingDirectory="$(BuildDir)"
-    	  Command="NuGet.exe pack $(ProjectName).csproj -Properties Configuration=$(Configuration) -OutputDir $(PackageDir) -IncludeReferencedProjects" />
+          Command="NuGet.exe pack $(ProjectName).csproj -Properties Configuration=$(Configuration) -OutputDir $(PackageDir) -IncludeReferencedProjects" />
   </Target>
   <!-- 2019/07/03 12:15:37 - DAG Switch on the push target. -->
   <!-- Publish the project. -->
+  <!-- 2019/08/11 20:17:28 - DAG Add custom task NuGetPackageNameFixup.  -->
   <Target Name="Publish"
-  	      AfterTargets="Package"
-  	      Condition=" '$(Configuration)' == 'Release'">
+          AfterTargets="Package"
+          Condition=" '$(Configuration)' == 'Release' ">
+    <NuGetPackageNameFixup RawNugetPackageVersion="%(OutputAssemblyInfo.Version)">
+		<Output PropertyName="NuGetPackageVersion" TaskParameter="ActualNugetPackageVersion" />
+    </NuGetPackageNameFixup>
     <Exec WorkingDirectory="$(PackageDir)"
-    	  Command="NuGet.exe push $(AssemblyName).%(OutputAssemblyInfo.Version).nupkg" />
+          Command="NuGet.exe push $(AssemblyName).$(NuGetPackageVersion).nupkg" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

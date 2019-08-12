@@ -9,11 +9,11 @@
     <StartArguments>CSV_Test_Strings.TXT</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
-    <StartWorkingDirectory>F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\NOTES</StartWorkingDirectory>
+    <StartWorkingDirectory>F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\scripts</StartWorkingDirectory>
     <StartArguments>CSV_Test_Strings.TXT</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
-    <StartWorkingDirectory>C:\Users\DAVE\Documents\Visual Studio 2013\Projects\WizardWrx_Libs\AnyCSV\NOTES</StartWorkingDirectory>
+    <StartWorkingDirectory>F:\Source_Code\Visual_Studio\Projects\WizardWrx_Libs\AnyCSV\scripts</StartWorkingDirectory>
     <StartArguments>CSV_Test_Strings.TXT</StartArguments>
   </PropertyGroup>
 </Project>

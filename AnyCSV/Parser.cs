@@ -5,7 +5,7 @@
 
     Class Name:         Parser
 
-	Base Class Name:	CSVParseEngine
+    Base Class Name:	CSVParseEngine
 
     File Name:          Parser.cs
 
@@ -32,12 +32,12 @@
                         reference to them, so that this library is completely
                         freestanding.
 
-	Reference:			"Issues with building a project with "Register for COM interop" for a 64-bit assembly"
-						https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
-						Retrieved 2017/08/05 07:28:24
+    Reference:			"Issues with building a project with "Register for COM interop" for a 64-bit assembly"
+                        https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
+                        Retrieved 2017/08/05 07:28:24
 
-	License:            Copyright (C) 2014-2018, David A. Gray.
-						All rights reserved.
+    License:            Copyright (C) 2014-2018, David A. Gray.
+                        All rights reserved.
 
                         Redistribution and use in source and binary forms, with
                         or without modification, are permitted provided that the
@@ -98,6 +98,9 @@
                               are no other changes, there is no debug build.
 
     2018/09/03 7.0     DAG    Eliminate unused using directives.
+
+    2019/08/10 7.2     DAG    Make this class vislble with to COM, but make the
+                              typelib generator responsible for the GUIDs.
     ============================================================================
 */
 
@@ -112,12 +115,13 @@ namespace WizardWrx.AnyCSV
     /// conceive, based on 17 years of experience writing CSV parsers, leading
     /// to the discovery today of a use case that breaks parsers that were
     /// thought to be bulletproof.
-	/// 
-	/// Like its parent, RobustDelimitedStringParser, this class relies upon a
-	/// static method on its base class, CSVParseEngine, to do the work.
+    /// 
+    /// Like its parent, RobustDelimitedStringParser, this class relies upon a
+    /// static method on its base class, CSVParseEngine, to do the work.
     /// </summary>
-	[ComVisible ( false ) ]
-	public class Parser : CSVParseEngine
+    [ComVisible ( true ) ]
+    [ClassInterface ( ClassInterfaceType.AutoDual )]
+    public class Parser : CSVParseEngine
     {
         #region Constructors
         /// <summary>
@@ -126,7 +130,7 @@ namespace WizardWrx.AnyCSV
         /// quotation marks, discards double quotation marks that surround whole
         /// fields, and preserves leading and trailing white space.
         /// </summary>
-		public Parser ( ) { }   // The default constructor is 1 of 9.
+        public Parser ( ) { }   // The default constructor is 1 of 9.
 
 
         /// <summary>
@@ -137,7 +141,7 @@ namespace WizardWrx.AnyCSV
         /// Specify the character to treat as the delimiter. Any character that
         /// can occur in a text file is valid.
         /// </param>
-		public Parser ( char pchrDelimiter )
+        public Parser ( char pchrDelimiter )
         {
             _chrDelimiter = pchrDelimiter;
             _enmDelimiter = DelimiterEnumFromChar ( pchrDelimiter );
@@ -152,7 +156,7 @@ namespace WizardWrx.AnyCSV
         /// Use any member of the DelimiterChar enumeration except DelimiterChar.Other
         /// to specify your chosen delimiter.
         /// </param>
-		public Parser ( DelimiterChar penmDelimiter )
+        public Parser ( DelimiterChar penmDelimiter )
         {
             _enmDelimiter = penmDelimiter;
             _chrDelimiter = DelimiterCharFromEnum ( penmDelimiter );
@@ -167,7 +171,7 @@ namespace WizardWrx.AnyCSV
         /// Use any member of the GuardChar enumeration except GuardChar.Other
         /// to specify your chosen character to protect delimiters.
         /// </param>
-		public Parser ( GuardChar penmProtector )
+        public Parser ( GuardChar penmProtector )
         {
             _enmGuard = penmProtector;
             _chrGuard = GuardCharFromEnum ( penmProtector );
@@ -193,7 +197,7 @@ namespace WizardWrx.AnyCSV
         /// protector. (It could be done, but not without fabricated types.) For
         /// most applications, the enumerated types are adequate, and safer.
         /// </remarks>
-		public Parser (
+        public Parser (
             char pchrDelimiter ,
             char pchrProtector )
         {
@@ -219,7 +223,7 @@ namespace WizardWrx.AnyCSV
         /// Use any member of the GuardChar enumeration except GuardChar.Other
         /// to specify your chosen character to protect delimiters.
         /// </param>
-		public Parser (
+        public Parser (
             DelimiterChar penmDelimiter ,
             GuardChar penmProtector )
         {
@@ -254,7 +258,7 @@ namespace WizardWrx.AnyCSV
         /// Specify whether guard characters that surround a whole field should
         /// be stripped (default) or kept.
         /// </param>
-		public Parser (
+        public Parser (
             DelimiterChar penmDelimiter ,
             GuardChar penmProtector ,
             GuardDisposition penmGuardDisposition )
@@ -291,7 +295,7 @@ namespace WizardWrx.AnyCSV
         /// Specify whether leading or trailing white space should be trimmed
         /// from a field.
         /// </param>
-		public Parser (
+        public Parser (
             DelimiterChar penmDelimiter ,
             GuardChar penmProtector ,
             TrimWhiteSpace penmTrimWhiteSpace )
@@ -332,7 +336,7 @@ namespace WizardWrx.AnyCSV
         /// Specify whether leading or trailing white space should be trimmed
         /// from a field.
         /// </param>
-		public Parser (
+        public Parser (
             DelimiterChar penmDelimiter ,
             GuardChar penmProtector ,
             GuardDisposition penmGuardDisposition ,

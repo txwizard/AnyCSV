@@ -8,15 +8,15 @@
     File Name:          ICSVParser.cs
 
     Synopsis:           This class defines the interface by which I shall expose
-						the most robust CSV string parser that I can conceive to
-						COM.
+                        the most robust CSV string parser that I can conceive to
+                        COM.
 
-	Reference:			"Issues with building a project with "Register for COM interop" for a 64-bit assembly"
-						https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
-						Retrieved 2017/08/05 07:28:24
+    Reference:			"Issues with building a project with "Register for COM interop" for a 64-bit assembly"
+                        https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
+                        Retrieved 2017/08/05 07:28:24
 
-	License:            Copyright (C) 2014-2017, David A. Gray.
-						All rights reserved.
+    License:            Copyright (C) 2014-2019, David A. Gray.
+                        All rights reserved.
 
                         Redistribution and use in source and binary forms, with
                         or without modification, are permitted provided that the
@@ -68,157 +68,157 @@
 
                               Since the interface is unchanged, I kept the 
                               original GUID.
+
+    2019/08/10 7.2     DAG    Hide the interface from COM in favor of exposing
+                              its implementation by an instantiable class.
     ============================================================================
 */
 
-using System;
-using System.ComponentModel;
+
 using System.Runtime.InteropServices;
 
 
 namespace WizardWrx.AnyCSV
 {
-	[ComVisible ( true ) ,
-		   Guid ( "89879EAA-AFAF-4B9D-8D2D-8FE3AD396FE7" ) ]
-	[ InterfaceType ( ComInterfaceType.InterfaceIsDual ) ]
-	interface ICSVParser
-	{
-		#region Properties
-		/// <summary>
-		/// Get or set the character currently specified as the delimiter
-		/// character.
-		///
-		/// Before a value is accepted, it is compared against the current
-		/// delimiter guard character. If the two characters are different, the
-		/// new value is accepted and saved. Otherwise, an
-		/// InvalidOperationException exception is thrown.
-		///
-		/// To ensure consistent behavior in a loop, once the LockSettings or
-		/// Parse method on an instance is called, the property values are fixed
-		/// permanently (for the remaining lifetime of the instance).
-		/// </summary>
-		/// <remarks>
-		/// The setter method is thread-safe.
-		/// </remarks>
-		char FieldDelimiter
-		{
-			get;
-			set;
-		}   // FieldDelimiter property
+    [ComVisible ( false ) ]
+    interface ICSVParser
+    {
+        #region Properties
+        /// <summary>
+        /// Get or set the character currently specified as the delimiter
+        /// character.
+        ///
+        /// Before a value is accepted, it is compared against the current
+        /// delimiter guard character. If the two characters are different, the
+        /// new value is accepted and saved. Otherwise, an
+        /// InvalidOperationException exception is thrown.
+        ///
+        /// To ensure consistent behavior in a loop, once the LockSettings or
+        /// Parse method on an instance is called, the property values are fixed
+        /// permanently (for the remaining lifetime of the instance).
+        /// </summary>
+        /// <remarks>
+        /// The setter method is thread-safe.
+        /// </remarks>
+        char FieldDelimiter
+        {
+            get;
+            set;
+        }   // FieldDelimiter property
 
 
-		/// <summary>
-		/// Get or set the character currently specified as the delimiter guard
-		/// character.
-		///
-		/// Before a value is accepted, it is compared against the current
-		/// delimiter character. If the two characters are different, the new
-		/// value is accepted and saved. Otherwise, an InvalidOperationException
-		/// exception is thrown.
-		///
-		/// To ensure consistent behavior in a loop, once the LockSettings or
-		/// Parse method on an instance is called, the property values are fixed
-		/// permanently (for the remaining lifetime of the instance).
-		/// </summary>
-		/// <remarks>
-		/// The setter method is thread-safe.
-		/// </remarks>
-		char DelimiterGuard
-		{
-			get;
-			set;
-		}   // DelimiterGuard property
+        /// <summary>
+        /// Get or set the character currently specified as the delimiter guard
+        /// character.
+        ///
+        /// Before a value is accepted, it is compared against the current
+        /// delimiter character. If the two characters are different, the new
+        /// value is accepted and saved. Otherwise, an InvalidOperationException
+        /// exception is thrown.
+        ///
+        /// To ensure consistent behavior in a loop, once the LockSettings or
+        /// Parse method on an instance is called, the property values are fixed
+        /// permanently (for the remaining lifetime of the instance).
+        /// </summary>
+        /// <remarks>
+        /// The setter method is thread-safe.
+        /// </remarks>
+        char DelimiterGuard
+        {
+            get;
+            set;
+        }   // DelimiterGuard property
 
 
-		/// <summary>
-		/// Get or set the flag implemented by the GuardDisposition enumeration
-		/// that indicates whether delimiter guard characters surrounding a
-		/// whole filed are discarded (default) or kept.
-		///
-		/// To ensure consistent behavior in a loop, once the LockSettings or
-		/// Parse method on an instance is called, the property values are fixed
-		/// permanently (for the remaining lifetime of the instance).
-		/// </summary>
-		/// <remarks>
-		/// The setter method is thread-safe.
-		/// </remarks>
-		CSVParseEngine.GuardDisposition GuardCharDisposition
-		{
-			get;
-			set;
-		}   // GuardCharDisposition
+        /// <summary>
+        /// Get or set the flag implemented by the GuardDisposition enumeration
+        /// that indicates whether delimiter guard characters surrounding a
+        /// whole filed are discarded (default) or kept.
+        ///
+        /// To ensure consistent behavior in a loop, once the LockSettings or
+        /// Parse method on an instance is called, the property values are fixed
+        /// permanently (for the remaining lifetime of the instance).
+        /// </summary>
+        /// <remarks>
+        /// The setter method is thread-safe.
+        /// </remarks>
+        CSVParseEngine.GuardDisposition GuardCharDisposition
+        {
+            get;
+            set;
+        }   // GuardCharDisposition
 
 
-		/// <summary>
-		/// Get or set the flag implemented by the TrimWhiteSpace enumeration
-		/// that indicates whether leading and trailing white space is kept
-		/// (default) or discarded if at the beginning, end, or both.
-		///
-		/// To ensure consistent behavior in a loop, once the LockSettings or
-		/// Parse method on an instance is called, the property values are fixed
-		/// permanently (for the remaining lifetime of the instance).
-		/// </summary>
-		/// <remarks>
-		/// The setter method is thread-safe.
-		/// </remarks>
-		CSVParseEngine.TrimWhiteSpace WhiteSpaceDisposition
-		{
-			get;
-			set;
-		}   // WhiteSpaceDisposition
+        /// <summary>
+        /// Get or set the flag implemented by the TrimWhiteSpace enumeration
+        /// that indicates whether leading and trailing white space is kept
+        /// (default) or discarded if at the beginning, end, or both.
+        ///
+        /// To ensure consistent behavior in a loop, once the LockSettings or
+        /// Parse method on an instance is called, the property values are fixed
+        /// permanently (for the remaining lifetime of the instance).
+        /// </summary>
+        /// <remarks>
+        /// The setter method is thread-safe.
+        /// </remarks>
+        CSVParseEngine.TrimWhiteSpace WhiteSpaceDisposition
+        {
+            get;
+            set;
+        }   // WhiteSpaceDisposition
 
 
-		/// <summary>
-		/// This read only flag indicates whether the other settings are
-		/// locked, and cannot henceforth be changed, for the remaining lifetime
-		/// of the instance.
-		///
-		/// There are two ways for settings to become locked.
-		///
-		/// 1) Call the instance Parse method.
-		///
-		/// 2) Call the LockSettings method.
-		/// </summary>
-		CSVParseEngine.LockState SettingsLocked
-		{
-			get;
-		}	// SettingsLocked property
-		#endregion  // Properties
+        /// <summary>
+        /// This read only flag indicates whether the other settings are
+        /// locked, and cannot henceforth be changed, for the remaining lifetime
+        /// of the instance.
+        ///
+        /// There are two ways for settings to become locked.
+        ///
+        /// 1) Call the instance Parse method.
+        ///
+        /// 2) Call the LockSettings method.
+        /// </summary>
+        CSVParseEngine.LockState SettingsLocked
+        {
+            get;
+        }	// SettingsLocked property
+        #endregion  // Properties
 
 
-		#region Methods
-		/// <summary>
-		/// Lock the properties against changes.
-		///
-		/// IMPORTANT: Once this method is called on an instance, subsequent
-		/// attempts to set any of its properties are punished, without a trial,
-		/// by an InvalidOperationException exception.
-		/// </summary>
-		/// <remarks>
-		/// The fact that there is no inverse (unlock) method is by design, to
-		/// ensure that a series of calls to parse all records in a file use the
-		/// same settings.
-		/// 
-		/// This method is manifestly thread-safe.
-		/// </remarks>
-		void LockSettings ( );
+        #region Methods
+        /// <summary>
+        /// Lock the properties against changes.
+        ///
+        /// IMPORTANT: Once this method is called on an instance, subsequent
+        /// attempts to set any of its properties are punished, without a trial,
+        /// by an InvalidOperationException exception.
+        /// </summary>
+        /// <remarks>
+        /// The fact that there is no inverse (unlock) method is by design, to
+        /// ensure that a series of calls to parse all records in a file use the
+        /// same settings.
+        /// 
+        /// This method is manifestly thread-safe.
+        /// </remarks>
+        void LockSettings ( );
 
 
-		/// <summary>
-		/// Use the properties set on the current Parser instance to parse any
-		/// valid CSV string.
-		/// </summary>
-		/// <param name="pstrAnyCSV">
-		/// The string may be any type of well formed CSV string. See Remarks
-		/// on the like named static method.
-		/// </param>
-		/// <returns>
-		/// The return value is the array of fields parsed from the string.
-		/// </returns>
-		/// <remarks>
-		/// This method is thread-safe.
-		/// </remarks>
-		string [ ] Parse ( string pstrAnyCSV );
-		#endregion	// Methods
-	}	// interface ICSVParser
+        /// <summary>
+        /// Use the properties set on the current Parser instance to parse any
+        /// valid CSV string.
+        /// </summary>
+        /// <param name="pstrAnyCSV">
+        /// The string may be any type of well formed CSV string. See Remarks
+        /// on the like named static method.
+        /// </param>
+        /// <returns>
+        /// The return value is the array of fields parsed from the string.
+        /// </returns>
+        /// <remarks>
+        /// This method is thread-safe.
+        /// </remarks>
+        string [ ] Parse ( string pstrAnyCSV );
+        #endregion	// Methods
+    }	// interface ICSVParser
 }	// partial namespace WizardWrx.AnyCSV

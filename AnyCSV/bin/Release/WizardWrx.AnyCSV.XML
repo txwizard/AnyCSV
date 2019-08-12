@@ -10,11 +10,11 @@
             parsing algorithm, along with the code and data to support a set of 
             commonly used delimiter and guard characters. 
             
-            RobustDelimitedStringParser, a companion class defined in the same
-            assembly, is a basic concrete instance of this class, which contains the
-            bare essentials needed to expose its functionality to COM. The original
-            class, Parser, extends RobustDelimitedStringParser with overloaded class
-            constructors and Parse methods.
+            Companion class Parser, defined in the same assembly, is a complete
+            concrete instance of this class. Being concrete, it is instantiable, and
+            makes a better candidate for being the library's ambassador to COM. This
+            class supersedes the original RobustDelimitedStringParser with
+            overloaded class constructors and Parse methods.
             </summary>
         </member>
         <member name="F:WizardWrx.AnyCSV.CSVParseEngine.BACK_QUOTE">

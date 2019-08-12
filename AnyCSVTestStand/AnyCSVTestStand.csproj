@@ -1,4 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+    ============================================================================
+    File Name:          AnyCSVTestStand.csproj
+
+    File Abstract:      This is the C# project configuration for the like-named
+                        project.
+
+    Remarks:            This file gets a flower box because I manually updated
+                        it to force automatic generation of binding redirects
+                        for WizardWrx.AnyCSV.dll, which has a strong name.
+
+    ============================================================================
+    Revision History
+    ============================================================================
+    
+    Date       By  Detail
+    ============================================================================
+    2019/08/10 DAG Add AutoGenerateBindingRedirects, as suggested in the article
+                   at http://go.microsoft.com/fwlink/?LinkId=294190, since the
+                   build engine doesn't handle this intrinsically for the target
+                   framework, 3.5.
+    2019/08/11 DAG Incorporate DocFX and surround both custom tasks with echo
+                   messages.
+    ============================================================================
+-->
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -14,6 +39,7 @@
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>16c18c11</NuGetPackageImportStamp>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -110,12 +136,21 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>wwBldNbrMgr.exe -r "-p$(ProjectDir) " "-t$(TargetPath)"</PostBuildEvent>
+    <PreBuildEvent>
+        echo $(ConfigurationName) PreBuild begin
+        wwBldNbrMgr.exe "$(ProjectDir) "
+        echo $(ConfigurationName) PreBuild done
+    </PreBuildEvent>
   </PropertyGroup>
-  <PropertyGroup>
-    <PreBuildEvent>wwBldNbrMgr.exe "$(ProjectDir) "</PreBuildEvent>
-  </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+    <PropertyGroup>
+        <PostBuildEvent>
+            echo $(ConfigurationName) PostBuild begin
+            wwBldNbrMgr.exe -r "-p$(ProjectDir) " "-t$(TargetPath)"
+            docfx.exe $(SolutionDir)docfx_project\docfx.json --metadata
+            echo $(ConfigurationName) PostBuild done
+        </PostBuildEvent>
+    </PropertyGroup>
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>

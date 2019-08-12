@@ -10,18 +10,24 @@
     Synopsis:           This class defines the managed implementation of my
                         robust CSV parsing algorithm.
 
-	Remarks:			It wouldn't surprise me to discover that the base class
-						being abstract trips up COM Interop.
+    Remarks:			It wouldn't surprise me to discover that the base class
+                        being abstract trips up COM Interop. As of 2019/08/08,
+                        when I finally had a chance to explore the COM interop
+                        issue thoroughly, I discovered that to be so, with the
+                        immediate consequence being that version 7.2 hides most
+                        of this class from COM, and may eventually be entirely
+                        hidden, in favor of moving the exposed constants into a
+                        new class with a new set of GUIDs.
 
-	Reference:			1)	"C++ calling C# COM Interop Error: HRESULT 0x80131509"
-							http://stackoverflow.com/questions/9093531/c-calling-c-sharp-com-interop-error-hresult-0x80131509
+    Reference:			1)	"C++ calling C# COM Interop Error: HRESULT 0x80131509"
+                            http://stackoverflow.com/questions/9093531/c-calling-c-sharp-com-interop-error-hresult-0x80131509
 
-						2)	"Issues with building a project with "Register for COM interop" for a 64-bit assembly"
-							https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
-							Retrieved 2017/08/05 07:28:24
+                        2)	"Issues with building a project with "Register for COM interop" for a 64-bit assembly"
+                            https://support.microsoft.com/en-us/help/956933/issues-with-building-a-project-with-register-for-com-interop-for-a-64
+                            Retrieved 2017/08/05 07:28:24
 
-	License:            Copyright (C) 2014-2019, David A. Gray.
-						All rights reserved.
+    License:            Copyright (C) 2014-2019, David A. Gray.
+                        All rights reserved.
 
                         Redistribution and use in source and binary forms, with
                         or without modification, are permitted provided that the
@@ -77,13 +83,17 @@
                               are no other changes, there is no debug build.
 
     2018/09/03 7.0     DAG    Amend ToString to display character codes as both
-	                          raw characters and decimal values.
+                              raw characters and decimal values.
 
     2019/07/03 7.1     DAG    Synchronize the format control string used by the
                               ToString override to align with the format items
                               added in version 7.0, and add the overlooked
                               abstract marking, and correct errors in the XML
                               help text of two GuardChar enumeration members.
+
+    2019/08/10 7.2     DAG    Suppress generation of an interface for this class
+                              but keep the symbolic constants and the instance
+                              methods visible.
     ============================================================================
 */
 
@@ -97,203 +107,202 @@ using System.Text;
 
 namespace WizardWrx.AnyCSV
 {
-	/// <summary>
-	/// This abstract class encapsulates the core components of my robust string
-	/// parsing algorithm, along with the code and data to support a set of 
-	/// commonly used delimiter and guard characters. 
-	/// 
-	/// RobustDelimitedStringParser, a companion class defined in the same
-	/// assembly, is a basic concrete instance of this class, which contains the
-	/// bare essentials needed to expose its functionality to COM. The original
-	/// class, Parser, extends RobustDelimitedStringParser with overloaded class
-	/// constructors and Parse methods.
-	/// </summary>
-	[ComVisible ( true ) ,
-		   Guid ( "EE63E545-0FC1-42F0-9DDD-028A5FFD438F" )]
-	//	[ClassInterface ( ClassInterfaceType.None )]			<<-- I think this is another one of these cases in which the sanctioned approach isn't worth the trouble for its alleged benefits.
-	[ClassInterface ( ClassInterfaceType.AutoDual )]	//	    <<-- This is how my AssemblyPropertyViewer class is marked.
-	public abstract class CSVParseEngine : ICSVParser
-	{
+    /// <summary>
+    /// This abstract class encapsulates the core components of my robust string
+    /// parsing algorithm, along with the code and data to support a set of 
+    /// commonly used delimiter and guard characters. 
+    /// 
+    /// Companion class Parser, defined in the same assembly, is a complete
+    /// concrete instance of this class. Being concrete, it is instantiable, and
+    /// makes a better candidate for being the library's ambassador to COM. This
+    /// class supersedes the original RobustDelimitedStringParser with
+    /// overloaded class constructors and Parse methods.
+    /// </summary>
+    [ComVisible ( true ) ,
+        Guid ( "EE63E545-0FC1-42F0-9DDD-028A5FFD438F" )]
+    [ClassInterface ( ClassInterfaceType.AutoDual )]	        //  <<-- This is how my AssemblyPropertyViewer class is marked.
+    public abstract class CSVParseEngine : ICSVParser
+    {
         #region Public Constants and Enumerations
-		/// <summary>
-		/// Protect delimiters enclosed in backwards quotation marks, commonly
-		/// called back-ticks.
-		///
-		/// The equivalent GuardChar member is BackQuote (2), and its integral
-		/// value is 0x60 (96 decimal).
-		/// </summary>
-		[ComVisible ( true )]
-		[MarshalAs ( UnmanagedType.I1 )]
-		public const char BACK_QUOTE = '\x0060';			// Protect enclosed delimiter characters that are enclosed in double quotation marks (ASCII code 096 = 0x0060).
+        /// <summary>
+        /// Protect delimiters enclosed in backwards quotation marks, commonly
+        /// called back-ticks.
+        ///
+        /// The equivalent GuardChar member is BackQuote (2), and its integral
+        /// value is 0x60 (96 decimal).
+        /// </summary>
+        [ComVisible ( true )]
+        [MarshalAs ( UnmanagedType.I1 )]
+        public const char BACK_QUOTE = '\x0060';			// Protect enclosed delimiter characters that are enclosed in double quotation marks (ASCII code 096 = 0x0060).
 
 
-		/// <summary>
-		/// Use this symbolic constant to construct a Parser instance that uses
-		/// a carat ('^') as its delimiter, or to specify one to the static
-		/// Parse method.
-		///
-		/// The equivalent DelimiterChar member is Carat (3), and its integral
-		/// value is 0x5e (94 decimal).
-		/// </summary>
-		[ComVisible ( true )]
-		[MarshalAs ( UnmanagedType.I1 )]
-		public const char CARAT = '^';						// Treat the space character (ASCII code 094 = 0x005E) as a field delimiter, unless it falls within a pair of guard characters.
+        /// <summary>
+        /// Use this symbolic constant to construct a Parser instance that uses
+        /// a carat ('^') as its delimiter, or to specify one to the static
+        /// Parse method.
+        ///
+        /// The equivalent DelimiterChar member is Carat (3), and its integral
+        /// value is 0x5e (94 decimal).
+        /// </summary>
+        [ComVisible ( true )]
+        [MarshalAs ( UnmanagedType.I1 )]
+        public const char CARAT = '^';						// Treat the space character (ASCII code 094 = 0x005E) as a field delimiter, unless it falls within a pair of guard characters.
 
 
-		/// <summary>
-		/// Use this symbolic constant to construct a Parser instance that uses
-		/// a Carriage Return (CR) character as its delimiter, or to specify one 
-		/// to the static Parse method.
-		/// 
-		/// The equivalent DelimiterChar member is CarriageReturn (5), and its
-		/// integral value is 0x0D (013 decimal).
-		/// </summary>
-		[ComVisible ( true )]
-		[MarshalAs ( UnmanagedType.I1 )]
-		public const char CARRIAGE_RETURN = '\r';			// Treat the Carriage Return (ASCII code 013 = 0x000D) as a field delimiter, unless it falls within a pair of guard characters.
+        /// <summary>
+        /// Use this symbolic constant to construct a Parser instance that uses
+        /// a Carriage Return (CR) character as its delimiter, or to specify one 
+        /// to the static Parse method.
+        /// 
+        /// The equivalent DelimiterChar member is CarriageReturn (5), and its
+        /// integral value is 0x0D (013 decimal).
+        /// </summary>
+        [ComVisible ( true )]
+        [MarshalAs ( UnmanagedType.I1 )]
+        public const char CARRIAGE_RETURN = '\r';			// Treat the Carriage Return (ASCII code 013 = 0x000D) as a field delimiter, unless it falls within a pair of guard characters.
 
 
-		/// <summary>
+        /// <summary>
         /// Use this symbolic constant to construct a Parser instance that uses
         /// a comma (',') as its delimiter, or to specify one to the static
         /// Parse method.
         ///
-		/// The equivalent DelimiterChar member is Comma (0), and its integral 
-		/// value is 0x2c (44 decimal).
+        /// The equivalent DelimiterChar member is Comma (0), and its integral 
+        /// value is 0x2c (44 decimal).
         /// </summary>
-		[ComVisible ( true )]
-		[MarshalAs ( UnmanagedType.I1 )]
-		public const char COMMA = ',';						// Treat the space character (ASCII code 044 = 0x002C) as a field delimiter, unless it falls within a pair of guard characters.
+        [ComVisible ( true )]
+        [MarshalAs ( UnmanagedType.I1 )]
+        public const char COMMA = ',';						// Treat the space character (ASCII code 044 = 0x002C) as a field delimiter, unless it falls within a pair of guard characters.
 
 
-		/// <summary>
-		/// Protect delimiters enclosed in double quotation marks.
-		///
-		/// The equivalent GuardChar member is DoubleQuote (0), and its integral
-		/// value is 0x22 (34 decimal).
-		/// </summary>
-		[ComVisible ( true )]
-		[MarshalAs ( UnmanagedType.I1 )]
-		public const char DOUBLE_QUOTE = '\x0022';			// Protect enclosed delimiter characters that are enclosed in double quotation marks (ASCII code 034 = 0x0022).
+        /// <summary>
+        /// Protect delimiters enclosed in double quotation marks.
+        ///
+        /// The equivalent GuardChar member is DoubleQuote (0), and its integral
+        /// value is 0x22 (34 decimal).
+        /// </summary>
+        [ComVisible ( true )]
+        [MarshalAs ( UnmanagedType.I1 )]
+        public const char DOUBLE_QUOTE = '\x0022';			// Protect enclosed delimiter characters that are enclosed in double quotation marks (ASCII code 034 = 0x0022).
 
 
-		/// <summary>
-		/// Use this symbolic constant to construct a Parser instance that uses
-		/// a Line Feed (LF) character as its delimiter, or to specify one 
-		/// to the static Parse method.
-		/// 
-		/// The equivalent DelimiterChar member is LineFeed (6), and its
-		/// integral value is 0x0A (010 decimal).
-		/// </summary>
-		[ComVisible ( true )]
-		[MarshalAs ( UnmanagedType.I1 )]
-		public const char LINE_FEED = '\n';					// Treat the Line Feed (ASCII code 010 = 0x000A) as a field delimiter, unless it falls within a pair of guard characters.
+        /// <summary>
+        /// Use this symbolic constant to construct a Parser instance that uses
+        /// a Line Feed (LF) character as its delimiter, or to specify one 
+        /// to the static Parse method.
+        /// 
+        /// The equivalent DelimiterChar member is LineFeed (6), and its
+        /// integral value is 0x0A (010 decimal).
+        /// </summary>
+        [ComVisible ( true )]
+        [MarshalAs ( UnmanagedType.I1 )]
+        public const char LINE_FEED = '\n';					// Treat the Line Feed (ASCII code 010 = 0x000A) as a field delimiter, unless it falls within a pair of guard characters.
 
 
-		/// <summary>
-		/// Protect delimiters enclosed in single quotation marks.
-		///
-		/// The equivalent GuardChar member is SingleQuote (1), and its integral
-		/// value is 0x27 (39 decimal).
-		/// </summary>
-		[ComVisible ( true )]
-		[MarshalAs ( UnmanagedType.I1 )]
-		public const char SINGLE_QUOTE = '\x0027';			// Protect enclosed delimiter characters that are enclosed in single quotation marks (ASCII code 039 = 0x0027).
+        /// <summary>
+        /// Protect delimiters enclosed in single quotation marks.
+        ///
+        /// The equivalent GuardChar member is SingleQuote (1), and its integral
+        /// value is 0x27 (39 decimal).
+        /// </summary>
+        [ComVisible ( true )]
+        [MarshalAs ( UnmanagedType.I1 )]
+        public const char SINGLE_QUOTE = '\x0027';			// Protect enclosed delimiter characters that are enclosed in single quotation marks (ASCII code 039 = 0x0027).
 
 
-		/// <summary>
-		/// Use this symbolic constant to construct a Parser instance that uses
-		/// a space (' ') as its delimiter, or to specify one to the static
-		/// Parse method.
-		///
-		/// The equivalent DelimiterChar member is Space (4), and its integral
-		/// value is 0x20 (32 decimal).
-		/// </summary>
-		[ComVisible ( true )]
-		[MarshalAs ( UnmanagedType.I1 )]
-		public const char SPACE = '\x0020';					// Treat the space character (ASCII code 032 = 0x0020) as a field delimiter, unless it falls within a pair of guard characters.
+        /// <summary>
+        /// Use this symbolic constant to construct a Parser instance that uses
+        /// a space (' ') as its delimiter, or to specify one to the static
+        /// Parse method.
+        ///
+        /// The equivalent DelimiterChar member is Space (4), and its integral
+        /// value is 0x20 (32 decimal).
+        /// </summary>
+        [ComVisible ( true )]
+        [MarshalAs ( UnmanagedType.I1 )]
+        public const char SPACE = '\x0020';					// Treat the space character (ASCII code 032 = 0x0020) as a field delimiter, unless it falls within a pair of guard characters.
 
 
-		/// <summary>
+        /// <summary>
         /// Use this symbolic constant to construct a Parser instance that uses
         /// a tab ('\t") as its delimiter, or to specify one to the static Parse
         /// method.
         ///
         /// The equivalent DelimiterChar member is Tab (1), and its integral value
-		/// is 9.
+        /// is 9.
         /// </summary>
-		[ComVisible ( true )]
-		[MarshalAs ( UnmanagedType.I1 )]
-		public const char TAB = '\t';						// Treat the space character (ASCII code 009 = 0x0009) as a field delimiter, unless it falls within a pair of guard characters.
+        [ComVisible ( true )]
+        [MarshalAs ( UnmanagedType.I1 )]
+        public const char TAB = '\t';						// Treat the space character (ASCII code 009 = 0x0009) as a field delimiter, unless it falls within a pair of guard characters.
 
 
-		/// <summary>
-		/// Use this symbolic constant to construct a Parser instance that uses
-		/// a vertical bar ('|'), also known as the Pipe character, vertical 
-		/// slash, bar, obelisk, and various other names, as its delimiter, or
-		/// to specify one to the static Parse method.
-		///
-		/// The equivalent DelimiterChar member is VerticalBar (2), and its integral
-		/// value is 0x7C (124 decimal).
-		/// </summary>
-		[ComVisible ( true )]
-		[MarshalAs ( UnmanagedType.I1 )]
-		public const char VERTICAL_BAR = '|';				// Treat the space character (ASCII code 124 = 0x007C) as a field delimiter, unless it falls within a pair of guard characters.
+        /// <summary>
+        /// Use this symbolic constant to construct a Parser instance that uses
+        /// a vertical bar ('|'), also known as the Pipe character, vertical 
+        /// slash, bar, obelisk, and various other names, as its delimiter, or
+        /// to specify one to the static Parse method.
+        ///
+        /// The equivalent DelimiterChar member is VerticalBar (2), and its integral
+        /// value is 0x7C (124 decimal).
+        /// </summary>
+        [ComVisible ( true )]
+        [MarshalAs ( UnmanagedType.I1 )]
+        public const char VERTICAL_BAR = '|';				// Treat the space character (ASCII code 124 = 0x007C) as a field delimiter, unless it falls within a pair of guard characters.
 
 
         /// <summary>
         /// The DelimiterChar enumeration simplifies specifying any of the
-		/// commonly used field delimiter characters. 
-		/// 
-		/// All but the first and last values map to one of the public constants
-		/// defined by this class.
+        /// commonly used field delimiter characters. 
+        /// 
+        /// All but the first and last values map to one of the public constants
+        /// defined by this class.
         /// </summary>
-		[ComVisible ( true ) ,
-			   Guid ( "EBC3549F-FE2A-4CB1-9006-0F48427F2A7A" )]
-		public enum DelimiterChar
+        [ComVisible ( true ) ,
+               Guid ( "EBC3549F-FE2A-4CB1-9006-0F48427F2A7A" )]
+        public enum DelimiterChar
         {
-			/// <summary>
-			/// This value indicates that the DelimiterChar is uninitialized.
-			/// </summary>
-			None = 0 ,
+            /// <summary>
+            /// This value indicates that the DelimiterChar is uninitialized.
+            /// </summary>
+            None = 0 ,
 
-			/// <summary>
-			/// Specify a CARAT (^) as the delimiter.
-			///
-			/// The equivalent character constant is CARAT.
-			/// </summary>
-			Carat = 1 ,
-			
-			/// <summary>
-			/// Specify a Carriage Return (CR) control character as the delimiter.
-			/// 
-			/// The equivalent character constant is CARRIAGE_RETURN.
-			/// </summary>
-			CarriageReturn = 2 ,
+            /// <summary>
+            /// Specify a CARAT (^) as the delimiter.
+            ///
+            /// The equivalent character constant is CARAT.
+            /// </summary>
+            Carat = 1 ,
+            
+            /// <summary>
+            /// Specify a Carriage Return (CR) control character as the delimiter.
+            /// 
+            /// The equivalent character constant is CARRIAGE_RETURN.
+            /// </summary>
+            CarriageReturn = 2 ,
 
-			/// <summary>
+            /// <summary>
             /// Specify a comma as the delimiter.
             ///
             /// The equivalent character constant is COMMA.
             /// </summary>
             Comma = 3,
 
-			/// <summary>
-			/// Specify a Line Feed (LF) control character as the delimiter.
-			///
-			/// The equivalent character constant is LINE_FEED.
-			/// </summary>
-			LineFeed = 4,
-
-			/// <summary>
-			/// Specify a SPACE (' ') as the delimiter.
-			///
-			/// The equivalent character constant is SPACE.
-			/// </summary>
-			Space = 5 ,
+            /// <summary>
+            /// Specify a Line Feed (LF) control character as the delimiter.
+            ///
+            /// The equivalent character constant is LINE_FEED.
+            /// </summary>
+            LineFeed = 4,
 
             /// <summary>
-			/// Specify a tab control character as the delimiter.
+            /// Specify a SPACE (' ') as the delimiter.
+            ///
+            /// The equivalent character constant is SPACE.
+            /// </summary>
+            Space = 5 ,
+
+            /// <summary>
+            /// Specify a tab control character as the delimiter.
             ///
             /// The equivalent character constant is TAB.
             /// </summary>
@@ -321,18 +330,18 @@ namespace WizardWrx.AnyCSV
         /// <summary>
         /// The GuardChar enumeration simplifies specifying any of the
         /// commonly used field delimiter protector characters.
-		/// 
-		/// All but the first and last values map to one of the public constants
-		/// defined by this class.
-		/// </summary>
-		[ComVisible ( true ) ,
-			   Guid ( "A9271285-A237-4778-924F-4D0FA90F9604" )]
-		public enum GuardChar
+        /// 
+        /// All but the first and last values map to one of the public constants
+        /// defined by this class.
+        /// </summary>
+        [ComVisible ( true ) ,
+               Guid ( "A9271285-A237-4778-924F-4D0FA90F9604" )]
+        public enum GuardChar
         {
-			/// <summary>
-			/// This value indicates that the GuardChar is uninitialized.
-			/// </summary>
-			None = 0 ,
+            /// <summary>
+            /// This value indicates that the GuardChar is uninitialized.
+            /// </summary>
+            None = 0 ,
 
             /// <summary>
             /// Specify a backwards quotation mark as the protector of delimiters.
@@ -341,7 +350,7 @@ namespace WizardWrx.AnyCSV
             /// </summary>
             BackQuote = 1 ,
 
-			/// <summary>
+            /// <summary>
             /// Specify a double quotation mark as the protector of delimiters.
             ///
             /// The equivalent character constant is DOUBLE_QUOTE.
@@ -368,11 +377,11 @@ namespace WizardWrx.AnyCSV
 
         /// <summary>
         /// Indicate whether to keep or discard field guard characters. Guards
-		/// that simply appear in the body of a field are always preserved.
+        /// that simply appear in the body of a field are always preserved.
         /// </summary>
-		[ComVisible ( true ) ,
-			   Guid ( "71CCEE5A-CF43-43B2-A6C8-F219EEC9E30F" )]
-		public enum GuardDisposition
+        [ComVisible ( true ) ,
+               Guid ( "71CCEE5A-CF43-43B2-A6C8-F219EEC9E30F" )]
+        public enum GuardDisposition
         {
             /// <summary>
             /// Keep guards that surround a whole field.
@@ -386,70 +395,70 @@ namespace WizardWrx.AnyCSV
         }   // GuardDisposition
 
 
-		/// <summary>
-		/// Once locked, this flag tracks whether the lock was applied by an
-		/// explicit call to LockSettings or by an internal call made on the
-		/// first call to the Parse method. Until then, its value is IsUnlocked,
-		/// which reflects the uninitialized state of its instance member.
-		/// </summary>
-		[ComVisible ( true ) ,
-			   Guid ( "8F92D749-FD8E-4573-8D5B-5997280B370A" )]
-		public enum LockMethod
-		{
-			/// <summary>
-			/// The properties are unlocked, which is their initial state, even
-			/// when the constructor sets one or more of them.
-			/// </summary>
-			IsUnlocked ,
+        /// <summary>
+        /// Once locked, this flag tracks whether the lock was applied by an
+        /// explicit call to LockSettings or by an internal call made on the
+        /// first call to the Parse method. Until then, its value is IsUnlocked,
+        /// which reflects the uninitialized state of its instance member.
+        /// </summary>
+        [ComVisible ( true ) ,
+               Guid ( "8F92D749-FD8E-4573-8D5B-5997280B370A" )]
+        public enum LockMethod
+        {
+            /// <summary>
+            /// The properties are unlocked, which is their initial state, even
+            /// when the constructor sets one or more of them.
+            /// </summary>
+            IsUnlocked ,
 
-			/// <summary>
-			/// The LockSettings method was called explicitly by the code that
-			/// called this instance into existence.
-			/// </summary>
-			LockedExplicitly ,
+            /// <summary>
+            /// The LockSettings method was called explicitly by the code that
+            /// called this instance into existence.
+            /// </summary>
+            LockedExplicitly ,
 
-			/// <summary>
-			/// The LockSettings method was called by the Parse method.
-			/// </summary>
-			LockedImplicitly
-		}	// LockMethod
+            /// <summary>
+            /// The LockSettings method was called by the Parse method.
+            /// </summary>
+            LockedImplicitly
+        }	// LockMethod
 
 
-		/// <summary>
-		/// This flag tracks the lock state of the instance properties that
-		/// govern operation of the CSV parsing engine when the instance method
-		/// calls upon it to parse a string.
-		/// </summary>
-		[ComVisible ( true ) ,
-			   Guid ( "31C2E565-76BB-4DCE-9648-530B5C83CECA" )]
-		public enum LockState
-		{
-			/// <summary>
-			/// Initially, the operating parameters are unlocked.
-			/// </summary>
-			Unlocked ,
+        /// <summary>
+        /// This flag tracks the lock state of the instance properties that
+        /// govern operation of the CSV parsing engine when the instance method
+        /// calls upon it to parse a string.
+        /// </summary>
+        [ComVisible ( true ) ,
+               Guid ( "31C2E565-76BB-4DCE-9648-530B5C83CECA" )]
+        public enum LockState
+        {
+            /// <summary>
+            /// Initially, the operating parameters are unlocked.
+            /// </summary>
+            Unlocked ,
 
-			/// <summary>
-			/// When the object is locked, either explicitly by calling the
-			/// LockSettings method on the instance, or implicitly, the first
-			/// time that an instance Parse method is called, whichever comes
-			/// first, a private LockState member transitions to this state.
-			/// 
-			/// Thereafter, it is an error to change any property, and any
-			/// attempt to do so elicits an InvalidOperationException exception.
-			/// </summary>
-			Locked
-		};	// LockState
+            /// <summary>
+            /// When the object is locked, either explicitly by calling the
+            /// LockSettings method on the instance, or implicitly, the first
+            /// time that an instance Parse method is called, whichever comes
+            /// first, a private LockState member transitions to this state.
+            /// 
+            /// Thereafter, it is an error to change any property, and any
+            /// attempt to do so elicits an InvalidOperationException exception.
+            /// </summary>
+            Locked
+        };	// LockState
 
 
         /// <summary>
         /// Indicate whether to trim leading and trailing space from fields. By
-		/// default, leading and trailing white space is left. The other three
-		/// options are self explanatory.
+        /// default, leading and trailing white space is left. The other three
+        /// options are self explanatory.
         /// </summary>
-		[ComVisible ( true ) ,
-			   Guid ( "093B06A4-2450-430E-8E67-0D988638FE2A" )]
-		public enum TrimWhiteSpace
+        [ComVisible ( true ) ,
+               Guid ( "093B06A4-2450-430E-8E67-0D988638FE2A" )]
+        public enum TrimWhiteSpace
         {
             /// <summary>
             /// Leave leading and trailing white space. Assume that its presence
@@ -486,24 +495,24 @@ namespace WizardWrx.AnyCSV
         /// This property governs the static Parse methods that omit a delimiter
         /// argument.
         /// </summary>
-		[ComVisible ( false )]
-		public const char DEFAULT_DELIMITER = COMMA;
+        [ ComVisible ( false )]
+        public const char DEFAULT_DELIMITER = COMMA;
 
 
         /// <summary>
         /// This constant governs the static Parse methods that omit a delimiter
         /// protector (guard) character.
         /// </summary>
-		[ComVisible ( false )]
-		public const char DEFAULT_DELIMITER_GUARD = DOUBLE_QUOTE;
+        [ComVisible ( false )]
+        public const char DEFAULT_DELIMITER_GUARD = DOUBLE_QUOTE;
 
 
         /// <summary>
         /// This constant governs the static Parse methods that leave the
         /// disposition of guard characters unspecified.
         /// </summary>
-		[ComVisible ( false )]
-		public const GuardDisposition DEFAULT_GUARD_DISPOSITION = GuardDisposition.Strip;
+        [ComVisible ( false )]
+        public const GuardDisposition DEFAULT_GUARD_DISPOSITION = GuardDisposition.Strip;
 
 
         /// <summary>
@@ -511,268 +520,268 @@ namespace WizardWrx.AnyCSV
         /// treatment of white space unspecified. The default is the most
         /// conservative treatment.
         /// </summary>
-		[ComVisible ( false )]
-		public const TrimWhiteSpace DEFAULT_WHITESPACE_TREATMENT = TrimWhiteSpace.Leave;
+        [ComVisible ( false )]
+        public const TrimWhiteSpace DEFAULT_WHITESPACE_TREATMENT = TrimWhiteSpace.Leave;
         #endregion  // Public Constants and Enumerations
 
 
         #region Private Structures, Constants, and Enumerations
-		/// <summary>
-		/// Specify whether and why the current character is guarded.
-		/// </summary>
+        /// <summary>
+        /// Specify whether and why the current character is guarded.
+        /// </summary>
         enum GuardState
         {
-			/// <summary>
-			/// The current character is unguarded.
-			/// </summary>
+            /// <summary>
+            /// The current character is unguarded.
+            /// </summary>
             Unguarded,										// There are currently no unmatched quotes.
 
-			/// <summary>
-			/// The current character belongs to a guarded field.
-			/// </summary>
+            /// <summary>
+            /// The current character belongs to a guarded field.
+            /// </summary>
             FieldIsGuarded,									// The first character of the current field is a guard character.
 
-			/// <summary>
-			/// The current character belongs to a guarded segment of a field.
-			/// </summary>
+            /// <summary>
+            /// The current character belongs to a guarded segment of a field.
+            /// </summary>
             SegmentIsGuarded,								// A guard character was found in the middle of a field.
         }   // GuardState
 
 
-		/// <summary>
-		/// An element of an array of these structures identifies the delimiter
-		/// character, the corresponding member of the DelimiterChar enumeration,
-		/// and a string representation to display on reports and in debugger
-		/// windows.
-		/// </summary>
-		struct DelimiterMap
+        /// <summary>
+        /// An element of an array of these structures identifies the delimiter
+        /// character, the corresponding member of the DelimiterChar enumeration,
+        /// and a string representation to display on reports and in debugger
+        /// windows.
+        /// </summary>
+        struct DelimiterMap
         {
-			/// <summary>
-			/// The DelimiterChar enumeration does double duty, both as an index
-			/// for the array of these structures that defines preset delimiter
-			/// characters, and as a convenient mechanism for using unambiguous
-			/// numeric constants as inputs to the parsing engine.
-			/// </summary>
+            /// <summary>
+            /// The DelimiterChar enumeration does double duty, both as an index
+            /// for the array of these structures that defines preset delimiter
+            /// characters, and as a convenient mechanism for using unambiguous
+            /// numeric constants as inputs to the parsing engine.
+            /// </summary>
             public DelimiterChar DelimiterEnum;
 
-			/// <summary>
-			/// This member stores a preset character, to simplify using several
-			/// popular field delimiter characters, most of which are tricky to
-			/// define correctly in code.
-			/// </summary>
+            /// <summary>
+            /// This member stores a preset character, to simplify using several
+            /// popular field delimiter characters, most of which are tricky to
+            /// define correctly in code.
+            /// </summary>
             public char DelimiterCharacter;
 
-			/// <summary>
-			/// This member stores a preset string, constructed from a template,
-			/// that displays the character, itself, or a literal proxy, along
-			/// with decimal and hexadecimal representations of its numeric
-			/// value.
-			/// </summary>
+            /// <summary>
+            /// This member stores a preset string, constructed from a template,
+            /// that displays the character, itself, or a literal proxy, along
+            /// with decimal and hexadecimal representations of its numeric
+            /// value.
+            /// </summary>
             public string DelimiterDisplay;
 
-			/// <summary>
-			/// The purpose of this constructor is to permit the array of preset
-			/// delimiters to be constructed at compile time.
-			/// </summary>
-			/// <param name="penmDelimiterEnum">
-			/// Specify the DelimiterChar member to store into the DelimiterEnum
-			/// member.
-			/// </param>
-			/// <param name="pchrDelimiterCharacter">
-			/// Specify the character to store into the DelimiterCharacter
-			/// member.
-			/// </param>
-			/// <param name="pstrDelimiterDisplay">
-			/// Specify the string to store into the DelimiterDisplay member.
-			/// </param>
-			public DelimiterMap ( 
-				DelimiterChar penmDelimiterEnum, 
-				char pchrDelimiterCharacter, 
-				string pstrDelimiterDisplay)
-			{
-				this.DelimiterEnum = penmDelimiterEnum;
-				this.DelimiterCharacter = pchrDelimiterCharacter;
-				this.DelimiterDisplay = pstrDelimiterDisplay;
-			}	// public DelimiterMap constructor
+            /// <summary>
+            /// The purpose of this constructor is to permit the array of preset
+            /// delimiters to be constructed at compile time.
+            /// </summary>
+            /// <param name="penmDelimiterEnum">
+            /// Specify the DelimiterChar member to store into the DelimiterEnum
+            /// member.
+            /// </param>
+            /// <param name="pchrDelimiterCharacter">
+            /// Specify the character to store into the DelimiterCharacter
+            /// member.
+            /// </param>
+            /// <param name="pstrDelimiterDisplay">
+            /// Specify the string to store into the DelimiterDisplay member.
+            /// </param>
+            public DelimiterMap ( 
+                DelimiterChar penmDelimiterEnum, 
+                char pchrDelimiterCharacter, 
+                string pstrDelimiterDisplay)
+            {
+                this.DelimiterEnum = penmDelimiterEnum;
+                this.DelimiterCharacter = pchrDelimiterCharacter;
+                this.DelimiterDisplay = pstrDelimiterDisplay;
+            }	// public DelimiterMap constructor
 
-			/// <summary>
-			/// Take control of the string representation of this structure.
-			/// </summary>
-			/// <returns>
-			/// Use the DelimiterDisplay member as the string representation.
-			/// </returns>
-			/// <remarks>
-			/// The default string representation of a user defined type is its
-			/// absolute (fully qualified) type name, which isn't much use in a
-			/// debugger windows, since such a rendering duplicates information
-			/// that appears in the last column anyway. On the other hand, a
-			/// labeled display of the properties means that the value shown in
-			/// the debug window is immediately useful, and expanding the member
-			/// list is unnecessary.
-			/// </remarks>
-			public override string ToString ( )
-			{
-				return this.DelimiterDisplay;
-			}	// public ToString method override
-			
-			/// <summary>
-			/// Take control of the IEquatable interface implementation of this
-			/// structure.
-			/// </summary>
-			/// <param name="obj">
-			/// Specify the other GuardMap structure against which to compare
-			/// this structure.
-			/// </param>
-			/// <returns>
-			/// Equality is evaluated based on the values of the GuardEnum and
-			/// GuardCharacter members of each structure.
-			/// </returns>
-			/// <remarks>
-			/// Taking control of the IEquatable implementation partially paves
-			/// the way for sorting the list in a meaningful fashion. Though it
-			/// is probably overkill, it's ready if needed for some future 
-			/// extension.
-			/// </remarks>
-			public override bool Equals ( object obj )
-			{
-				if ( obj.GetType ( ) == typeof ( DelimiterMap ) )
-				{	// Cast once, use twice.
-					DelimiterMap Comparand = ( DelimiterMap ) obj;
-					return this.DelimiterEnum.Equals ( Comparand.DelimiterEnum ) & this.DelimiterCharacter.Equals ( Comparand.DelimiterCharacter );
-				}	// TRUE (anticipated outcome) block, if ( obj.GetType ( ) == typeof ( GuardChar ) )
-				else
-				{
-					throw new InvalidCastException ( FormatInvalidCastExceptionMessage ( this, obj ) );
-				}	// FALSE (unanticipated outcome) block, if ( obj.GetType ( ) == typeof ( GuardChar ) )
-			}	// Public Equals method override
-
-
-			/// <summary>
-			/// Since I overrode the Equals method, the compiler insists that I
-			/// must also override GetHashCode. That being the case, I'll accept
-			/// the default method generated by the compiler.
-			/// </summary>
-			/// <returns></returns>
-			public override int GetHashCode ( )
-			{
-				return base.GetHashCode ( );
-			}	// public GetHashCode method override
-		};  // DelimiterMap
+            /// <summary>
+            /// Take control of the string representation of this structure.
+            /// </summary>
+            /// <returns>
+            /// Use the DelimiterDisplay member as the string representation.
+            /// </returns>
+            /// <remarks>
+            /// The default string representation of a user defined type is its
+            /// absolute (fully qualified) type name, which isn't much use in a
+            /// debugger windows, since such a rendering duplicates information
+            /// that appears in the last column anyway. On the other hand, a
+            /// labeled display of the properties means that the value shown in
+            /// the debug window is immediately useful, and expanding the member
+            /// list is unnecessary.
+            /// </remarks>
+            public override string ToString ( )
+            {
+                return this.DelimiterDisplay;
+            }	// public ToString method override
+            
+            /// <summary>
+            /// Take control of the IEquatable interface implementation of this
+            /// structure.
+            /// </summary>
+            /// <param name="obj">
+            /// Specify the other GuardMap structure against which to compare
+            /// this structure.
+            /// </param>
+            /// <returns>
+            /// Equality is evaluated based on the values of the GuardEnum and
+            /// GuardCharacter members of each structure.
+            /// </returns>
+            /// <remarks>
+            /// Taking control of the IEquatable implementation partially paves
+            /// the way for sorting the list in a meaningful fashion. Though it
+            /// is probably overkill, it's ready if needed for some future 
+            /// extension.
+            /// </remarks>
+            public override bool Equals ( object obj )
+            {
+                if ( obj.GetType ( ) == typeof ( DelimiterMap ) )
+                {	// Cast once, use twice.
+                    DelimiterMap Comparand = ( DelimiterMap ) obj;
+                    return this.DelimiterEnum.Equals ( Comparand.DelimiterEnum ) & this.DelimiterCharacter.Equals ( Comparand.DelimiterCharacter );
+                }	// TRUE (anticipated outcome) block, if ( obj.GetType ( ) == typeof ( GuardChar ) )
+                else
+                {
+                    throw new InvalidCastException ( FormatInvalidCastExceptionMessage ( this, obj ) );
+                }	// FALSE (unanticipated outcome) block, if ( obj.GetType ( ) == typeof ( GuardChar ) )
+            }	// Public Equals method override
 
 
-		/// <summary>
-		/// An element of an array of these structures identifies the delimiter
-		/// guard character, the corresponding member of the GuardChar 
-		/// enumeration, and a string representation to display on reports and
-		/// in debugger windows.
-		/// </summary>
+            /// <summary>
+            /// Since I overrode the Equals method, the compiler insists that I
+            /// must also override GetHashCode. That being the case, I'll accept
+            /// the default method generated by the compiler.
+            /// </summary>
+            /// <returns></returns>
+            public override int GetHashCode ( )
+            {
+                return base.GetHashCode ( );
+            }	// public GetHashCode method override
+        };  // DelimiterMap
+
+
+        /// <summary>
+        /// An element of an array of these structures identifies the delimiter
+        /// guard character, the corresponding member of the GuardChar 
+        /// enumeration, and a string representation to display on reports and
+        /// in debugger windows.
+        /// </summary>
         struct GuardMap
         {
-			/// <summary>
-			/// The GuardChar enumeration does double duty, both as an index
-			/// for the array of these structures that defines preset delimiter
-			/// guard characters, and as a convenient mechanism for using
-			/// unambiguous numeric constants as inputs to the parsing engine.
-			/// </summary>
+            /// <summary>
+            /// The GuardChar enumeration does double duty, both as an index
+            /// for the array of these structures that defines preset delimiter
+            /// guard characters, and as a convenient mechanism for using
+            /// unambiguous numeric constants as inputs to the parsing engine.
+            /// </summary>
             public GuardChar GuardEnum;
 
-			/// <summary>
-			/// This member stores a preset character, to simplify using several
-			/// popular field delimiter guard characters, most of which are 
-			/// tricky to define correctly in code.
-			/// </summary>
+            /// <summary>
+            /// This member stores a preset character, to simplify using several
+            /// popular field delimiter guard characters, most of which are 
+            /// tricky to define correctly in code.
+            /// </summary>
             public char GuardCharacter;
 
-			/// <summary>
-			/// This member stores a preset string, constructed from a template,
-			/// that displays the character, itself, or a literal proxy, along
-			/// with decimal and hexadecimal representations of its numeric
-			/// value.
-			/// </summary>
+            /// <summary>
+            /// This member stores a preset string, constructed from a template,
+            /// that displays the character, itself, or a literal proxy, along
+            /// with decimal and hexadecimal representations of its numeric
+            /// value.
+            /// </summary>
             public string GuardDisplay;
 
-			public GuardMap (
-				GuardChar penmGuardEnum,
-				char pchrGuardCharacter,
-				string pstrGuardDisplay)
-			{
-				this.GuardEnum = penmGuardEnum;
-				this.GuardCharacter = pchrGuardCharacter;
-				this.GuardDisplay = pstrGuardDisplay;
-			}	// public GuardMap constructor
+            public GuardMap (
+                GuardChar penmGuardEnum,
+                char pchrGuardCharacter,
+                string pstrGuardDisplay)
+            {
+                this.GuardEnum = penmGuardEnum;
+                this.GuardCharacter = pchrGuardCharacter;
+                this.GuardDisplay = pstrGuardDisplay;
+            }	// public GuardMap constructor
 
-			/// <summary>
-			/// Take control of the string representation of this structure.
-			/// </summary>
-			/// <returns>
-			/// Use the GuardDisplay member as the string representation.
-			/// </returns>
-			/// <remarks>
-			/// The default string representation of a user defined type is its
-			/// absolute (fully qualified) type name, which isn't much use in a
-			/// debugger windows, since such a rendering duplicates information
-			/// that appears in the last column anyway. On the other hand, a
-			/// labeled display of the properties means that the value shown in
-			/// the debug window is immediately useful, and expanding the member
-			/// list is unnecessary.
-			/// </remarks>
-			[ComVisible ( false )]
-			public override string ToString ( )
-			{
-				return this.GuardDisplay;
-			}	// public ToString method override
+            /// <summary>
+            /// Take control of the string representation of this structure.
+            /// </summary>
+            /// <returns>
+            /// Use the GuardDisplay member as the string representation.
+            /// </returns>
+            /// <remarks>
+            /// The default string representation of a user defined type is its
+            /// absolute (fully qualified) type name, which isn't much use in a
+            /// debugger windows, since such a rendering duplicates information
+            /// that appears in the last column anyway. On the other hand, a
+            /// labeled display of the properties means that the value shown in
+            /// the debug window is immediately useful, and expanding the member
+            /// list is unnecessary.
+            /// </remarks>
+            [ComVisible ( false )]
+            public override string ToString ( )
+            {
+                return this.GuardDisplay;
+            }	// public ToString method override
 
-			/// <summary>
-			/// Take control of the IEquatable interface implementation of this
-			/// structure.
-			/// </summary>
-			/// <param name="obj">
-			/// Specify the other GuardMap structure against which to compare
-			/// this structure.
-			/// </param>
-			/// <returns>
-			/// Equality is evaluated based on the values of the GuardEnum and
-			/// GuardCharacter members of each structure.
-			/// </returns>
-			/// <remarks>
-			/// Taking control of the IEquatable implementation partially paves
-			/// the way for sorting the list in a meaningful fashion. Though it
-			/// is probably overkill, it's ready if needed for some future 
-			/// extension.
-			/// </remarks>
-			[ComVisible ( false )]
-			public override bool Equals ( object obj )
-			{
-				if ( obj.GetType ( ) == typeof ( GuardChar ) )
-				{	// Cats once, use twice.
-					GuardMap Comparand = ( GuardMap ) obj;
-					return this.GuardEnum.Equals ( Comparand.GuardEnum ) & this.GuardCharacter.Equals ( Comparand.GuardCharacter );
-				}	// TRUE (anticipated outcome) block, if ( obj.GetType ( ) == typeof ( GuardChar ) )
-				else
-				{
-					throw new InvalidCastException ( FormatInvalidCastExceptionMessage ( this , obj ) );
-				}	// FALSE (unanticipated outcome) block, if ( obj.GetType ( ) == typeof ( GuardChar ) )
-			}	// Public Equals method override
+            /// <summary>
+            /// Take control of the IEquatable interface implementation of this
+            /// structure.
+            /// </summary>
+            /// <param name="obj">
+            /// Specify the other GuardMap structure against which to compare
+            /// this structure.
+            /// </param>
+            /// <returns>
+            /// Equality is evaluated based on the values of the GuardEnum and
+            /// GuardCharacter members of each structure.
+            /// </returns>
+            /// <remarks>
+            /// Taking control of the IEquatable implementation partially paves
+            /// the way for sorting the list in a meaningful fashion. Though it
+            /// is probably overkill, it's ready if needed for some future 
+            /// extension.
+            /// </remarks>
+            [ComVisible ( false )]
+            public override bool Equals ( object obj )
+            {
+                if ( obj.GetType ( ) == typeof ( GuardChar ) )
+                {	// Cats once, use twice.
+                    GuardMap Comparand = ( GuardMap ) obj;
+                    return this.GuardEnum.Equals ( Comparand.GuardEnum ) & this.GuardCharacter.Equals ( Comparand.GuardCharacter );
+                }	// TRUE (anticipated outcome) block, if ( obj.GetType ( ) == typeof ( GuardChar ) )
+                else
+                {
+                    throw new InvalidCastException ( FormatInvalidCastExceptionMessage ( this , obj ) );
+                }	// FALSE (unanticipated outcome) block, if ( obj.GetType ( ) == typeof ( GuardChar ) )
+            }	// Public Equals method override
 
-			/// <summary>
-			/// Since I overrode the Equals method, the compiler insists that I
-			/// must also override GetHashCode. That being the case, I'll accept
-			/// the default method generated by the compiler.
-			/// </summary>
-			/// <returns></returns>
-			[ComVisible ( false )]
-			public override int GetHashCode ( )
-			{
-				return base.GetHashCode ( );
-			}	// public GetHashCode method override
-		};  // GuardMap
+            /// <summary>
+            /// Since I overrode the Equals method, the compiler insists that I
+            /// must also override GetHashCode. That being the case, I'll accept
+            /// the default method generated by the compiler.
+            /// </summary>
+            /// <returns></returns>
+            [ComVisible ( false )]
+            public override int GetHashCode ( )
+            {
+                return base.GetHashCode ( );
+            }	// public GetHashCode method override
+        };  // GuardMap
 
 
-		const string ARG_NAME_DELIMITER_ENUM = @"penmDelimiter";
-		const string ARG_NAME_GUARD_CHAR = @"penmGuardChar";
-		const string ARG_NAME_TRIM_WHITESPACE = @"penmTrimWhiteSpace";
+        const string ARG_NAME_DELIMITER_ENUM = @"penmDelimiter";
+        const string ARG_NAME_GUARD_CHAR = @"penmGuardChar";
+        const string ARG_NAME_TRIM_WHITESPACE = @"penmTrimWhiteSpace";
 
-		const int ARRAY_BASE = 0;
+        const int ARRAY_BASE = 0;
         const int ARRAY_INDEX_TO_ORDINAL = 1;
         const int EMPTY = 0;
         const int SUBSTRING_2ND_CHAR = 1;
@@ -786,146 +795,146 @@ namespace WizardWrx.AnyCSV
 
 
         #region Private Static Storage and Initializer
-		/// <summary>
-		/// This array stores information about the preset delimiter characters,
-		/// ordered by the integral value to which their DelimiterChar members
-		/// resolve.
-		/// </summary>
-		static readonly DelimiterMap [ ] s_aDelimiterMap =
-		{
-			new DelimiterMap (
-				DelimiterChar.Carat ,
-				CARAT ,
-				Properties.Resources.DLM_DSP_CARAT ) ,
-			new DelimiterMap (
-				DelimiterChar.CarriageReturn ,
-				CARRIAGE_RETURN ,
-				Properties.Resources.DLM_DSP_CARRIAGE_RETURN ),
-			new DelimiterMap (
-				DelimiterChar.Comma ,
-				COMMA ,
-				Properties.Resources.DLM_DSP_COMMA ),
-			new DelimiterMap (
-				DelimiterChar.LineFeed ,
-				LINE_FEED ,
-				Properties.Resources.DLM_DSP_LINE_FEED ),
-			new DelimiterMap (
-				DelimiterChar.Space ,
-				SPACE ,
-				Properties.Resources.DLM_DSP_SPACE ),
-			new DelimiterMap (
-				DelimiterChar.Tab ,
-				TAB ,
-				Properties.Resources.DLM_DSP_TAB ),
-			new DelimiterMap (
-				DelimiterChar.VerticalBar ,
-				VERTICAL_BAR ,
-				Properties.Resources.DLM_DSP_VERTICAL_BAR )
-		};	// s_aDelimiterMap array
+        /// <summary>
+        /// This array stores information about the preset delimiter characters,
+        /// ordered by the integral value to which their DelimiterChar members
+        /// resolve.
+        /// </summary>
+        static readonly DelimiterMap [ ] s_aDelimiterMap =
+        {
+            new DelimiterMap (
+                DelimiterChar.Carat ,
+                CARAT ,
+                Properties.Resources.DLM_DSP_CARAT ) ,
+            new DelimiterMap (
+                DelimiterChar.CarriageReturn ,
+                CARRIAGE_RETURN ,
+                Properties.Resources.DLM_DSP_CARRIAGE_RETURN ),
+            new DelimiterMap (
+                DelimiterChar.Comma ,
+                COMMA ,
+                Properties.Resources.DLM_DSP_COMMA ),
+            new DelimiterMap (
+                DelimiterChar.LineFeed ,
+                LINE_FEED ,
+                Properties.Resources.DLM_DSP_LINE_FEED ),
+            new DelimiterMap (
+                DelimiterChar.Space ,
+                SPACE ,
+                Properties.Resources.DLM_DSP_SPACE ),
+            new DelimiterMap (
+                DelimiterChar.Tab ,
+                TAB ,
+                Properties.Resources.DLM_DSP_TAB ),
+            new DelimiterMap (
+                DelimiterChar.VerticalBar ,
+                VERTICAL_BAR ,
+                Properties.Resources.DLM_DSP_VERTICAL_BAR )
+        };	// s_aDelimiterMap array
 
 
-		/// <summary>
-		/// This array stores information about the preset delimiter guard
-		/// characters, ordered by the integral value to which their GuardChar
-		/// members resolve.
-		/// </summary>
-		static readonly GuardMap [ ] s_aGuardrMap =
-		{
-			new GuardMap (
-				GuardChar.BackQuote ,
-				BACK_QUOTE ,
-				Properties.Resources.GRD_DSP_BACK_QUOTE ) ,
-			new GuardMap (
-				GuardChar.DoubleQuote ,
-				DOUBLE_QUOTE ,
-				Properties.Resources.GRD_DSP_DOUBLE_QUOTE ) ,
-			new GuardMap (
-				GuardChar.SingleQuote ,
-				SINGLE_QUOTE ,
-				Properties.Resources.GRD_DSP_SINGLE_QUOTE )
-		};	// s_aGuardrMap
+        /// <summary>
+        /// This array stores information about the preset delimiter guard
+        /// characters, ordered by the integral value to which their GuardChar
+        /// members resolve.
+        /// </summary>
+        static readonly GuardMap [ ] s_aGuardrMap =
+        {
+            new GuardMap (
+                GuardChar.BackQuote ,
+                BACK_QUOTE ,
+                Properties.Resources.GRD_DSP_BACK_QUOTE ) ,
+            new GuardMap (
+                GuardChar.DoubleQuote ,
+                DOUBLE_QUOTE ,
+                Properties.Resources.GRD_DSP_DOUBLE_QUOTE ) ,
+            new GuardMap (
+                GuardChar.SingleQuote ,
+                SINGLE_QUOTE ,
+                Properties.Resources.GRD_DSP_SINGLE_QUOTE )
+        };	// s_aGuardrMap
         #endregion  // Private Static Storage
 
 
         #region Instance Storage
-		/// <summary>
-		/// Instance storage for the delimiter character is marked as protected,
-		/// so that derived classes can access it directly, rather than wasting
-		/// stack space and processor time to go through its public property.
-		/// </summary>
+        /// <summary>
+        /// Instance storage for the delimiter character is marked as protected,
+        /// so that derived classes can access it directly, rather than wasting
+        /// stack space and processor time to go through its public property.
+        /// </summary>
         protected char _chrDelimiter = DEFAULT_DELIMITER;
 
-		/// <summary>
-		/// Instance storage for the delimiter guard character is marked as 
-		/// protected, so that derived classes can access it directly, rather
-		/// than wasting stack space and processor time to go through its
-		/// public property.
-		/// </summary>
-		protected char _chrGuard = DEFAULT_DELIMITER_GUARD;
+        /// <summary>
+        /// Instance storage for the delimiter guard character is marked as 
+        /// protected, so that derived classes can access it directly, rather
+        /// than wasting stack space and processor time to go through its
+        /// public property.
+        /// </summary>
+        protected char _chrGuard = DEFAULT_DELIMITER_GUARD;
 
-		/// <summary>
-		/// Instance storage for the delimiter character enumeration is marked
-		/// as protected, so that derived classes can access it directly, rather
-		/// than wasting stack space and processor time to go through its public
-		/// property.
-		/// </summary>
-		protected DelimiterChar _enmDelimiter = DelimiterEnumFromChar ( DEFAULT_DELIMITER );
+        /// <summary>
+        /// Instance storage for the delimiter character enumeration is marked
+        /// as protected, so that derived classes can access it directly, rather
+        /// than wasting stack space and processor time to go through its public
+        /// property.
+        /// </summary>
+        protected DelimiterChar _enmDelimiter = DelimiterEnumFromChar ( DEFAULT_DELIMITER );
 
-		/// <summary>
-		/// Instance storage for the delimiter guard character enumeration is
-		/// marked as protected, so that derived classes can access it directly,
-		/// rather than wasting stack space and processor time to go through its
-		/// public property.
-		/// </summary>
-		protected GuardChar _enmGuard = GuardEnumFromChar ( DEFAULT_DELIMITER_GUARD );
+        /// <summary>
+        /// Instance storage for the delimiter guard character enumeration is
+        /// marked as protected, so that derived classes can access it directly,
+        /// rather than wasting stack space and processor time to go through its
+        /// public property.
+        /// </summary>
+        protected GuardChar _enmGuard = GuardEnumFromChar ( DEFAULT_DELIMITER_GUARD );
 
-		/// <summary>
-		/// Instance storage for the delimiter guard character enumeration is
-		/// marked as protected, so that derived classes can access it directly,
-		/// rather than wasting stack space and processor time to go through its
-		/// public property.
-		/// </summary>
-		protected GuardDisposition _enmGuardDisposition = DEFAULT_GUARD_DISPOSITION;
+        /// <summary>
+        /// Instance storage for the delimiter guard character enumeration is
+        /// marked as protected, so that derived classes can access it directly,
+        /// rather than wasting stack space and processor time to go through its
+        /// public property.
+        /// </summary>
+        protected GuardDisposition _enmGuardDisposition = DEFAULT_GUARD_DISPOSITION;
 
-		/// <summary>
-		/// This flag maintains the method by which the class property values
-		/// became locked.
-		/// </summary>
-		protected LockMethod _enmLockMethod = LockMethod.IsUnlocked;
+        /// <summary>
+        /// This flag maintains the method by which the class property values
+        /// became locked.
+        /// </summary>
+        protected LockMethod _enmLockMethod = LockMethod.IsUnlocked;
 
-		/// <summary>
-		/// Instance storage for the settings lock state enumeration is marked
-		/// as protected, so that derived classes can access it directly, rather
-		/// than wasting stack space and processor time to go through its public
-		/// property.
-		/// </summary>
-		protected LockState _fSettingsLocked = LockState.Unlocked;
+        /// <summary>
+        /// Instance storage for the settings lock state enumeration is marked
+        /// as protected, so that derived classes can access it directly, rather
+        /// than wasting stack space and processor time to go through its public
+        /// property.
+        /// </summary>
+        protected LockState _fSettingsLocked = LockState.Unlocked;
 
-		/// <summary>
-		/// Use this object to synchronize access by multiple threads. The only
-		/// case in which this seems necessary is when the properties are edited
-		/// or locked.
-		/// </summary>
-		protected object _objSettingsLockSync = new object ( );
+        /// <summary>
+        /// Use this object to synchronize access by multiple threads. The only
+        /// case in which this seems necessary is when the properties are edited
+        /// or locked.
+        /// </summary>
+        protected object _objSettingsLockSync = new object ( );
 
-		/// <summary>
-		/// Use this object to synchronize access to the Parse method by multiple
-		/// threads.
-		/// </summary>
-		/// <remarks>
-		/// The parse method uses this lock only very briefly while the settings
-		/// lock is evaluated and set if it isn't already.
-		/// </remarks>
-		protected object _objParseingLockSync = new object ( );
+        /// <summary>
+        /// Use this object to synchronize access to the Parse method by multiple
+        /// threads.
+        /// </summary>
+        /// <remarks>
+        /// The parse method uses this lock only very briefly while the settings
+        /// lock is evaluated and set if it isn't already.
+        /// </remarks>
+        protected object _objParseingLockSync = new object ( );
 
-		/// <summary>
-		/// Instance storage for the white space disposition enumeration is
-		/// marked as protected, so that derived classes can access it directly,
-		/// rather than wasting stack space and processor time to go through its
-		/// public property.
-		/// </summary>
-		protected TrimWhiteSpace _enmTrimWhiteSpace = DEFAULT_WHITESPACE_TREATMENT;
-		#endregion  // Instance Storage
+        /// <summary>
+        /// Instance storage for the white space disposition enumeration is
+        /// marked as protected, so that derived classes can access it directly,
+        /// rather than wasting stack space and processor time to go through its
+        /// public property.
+        /// </summary>
+        protected TrimWhiteSpace _enmTrimWhiteSpace = DEFAULT_WHITESPACE_TREATMENT;
+        #endregion  // Instance Storage
 
 
         #region Constructors
@@ -935,7 +944,7 @@ namespace WizardWrx.AnyCSV
         /// quotation marks, discards double quotation marks that surround whole
         /// fields, and preserves leading and trailing white space.
         /// </summary>
-		public CSVParseEngine ( ) { }   // The base class provides only the default constructor.
+        public CSVParseEngine ( ) { }   // The base class provides only the default constructor.
         #endregion  // Constructors TrimWhiteSpace
 
 
@@ -956,27 +965,27 @@ namespace WizardWrx.AnyCSV
         /// <remarks>
         /// The setter method is thread-safe.
         /// </remarks>
-		public char FieldDelimiter
+        public char FieldDelimiter
         {
-			[return: MarshalAs ( UnmanagedType.I1 )]
-			get { return _chrDelimiter; }
+            [return: MarshalAs ( UnmanagedType.I1 )]
+            get { return _chrDelimiter; }
 
-			[param: MarshalAs ( UnmanagedType.I1 )]
-			set
-			{
-				lock ( _objSettingsLockSync )
-					if ( _fSettingsLocked == LockState.Locked )
-						throw new InvalidOperationException (
-							Properties.Resources.ERRMSG_SETTINGS_ARE_LOCKED );
-					else
-						if ( value != _chrGuard )
-							_chrDelimiter = value;
-						else
-							throw new InvalidOperationException (
-								ShowDelimiterAndGuardChars (
-								value ,
-								_chrGuard ) );
-			}   // FieldDelimiter setter method
+            [param: MarshalAs ( UnmanagedType.I1 )]
+            set
+            {
+                lock ( _objSettingsLockSync )
+                    if ( _fSettingsLocked == LockState.Locked )
+                        throw new InvalidOperationException (
+                            Properties.Resources.ERRMSG_SETTINGS_ARE_LOCKED );
+                    else
+                        if ( value != _chrGuard )
+                            _chrDelimiter = value;
+                        else
+                            throw new InvalidOperationException (
+                                ShowDelimiterAndGuardChars (
+                                value ,
+                                _chrGuard ) );
+            }   // FieldDelimiter setter method
         }   // public char FieldDelimiter
 
 
@@ -996,27 +1005,27 @@ namespace WizardWrx.AnyCSV
         /// <remarks>
         /// The setter method is thread-safe.
         /// </remarks>
-		public char DelimiterGuard
+        public char DelimiterGuard
         {
-			[return: MarshalAs ( UnmanagedType.I1 )]
+            [return: MarshalAs ( UnmanagedType.I1 )]
             get { return _chrGuard; }
 
-			[param: MarshalAs ( UnmanagedType.I1 )]
-			set
-			{
-				lock ( _objSettingsLockSync )
-					if ( _fSettingsLocked == LockState.Locked )
-						throw new InvalidOperationException (
-							Properties.Resources.ERRMSG_SETTINGS_ARE_LOCKED );
-					else
-						if ( value != _chrDelimiter )
-							_chrGuard = value;
-						else
-							throw new InvalidOperationException (
-								ShowDelimiterAndGuardChars (
-								_chrDelimiter ,
-								value ) );
-			}   // DelimiterGuard setter method
+            [param: MarshalAs ( UnmanagedType.I1 )]
+            set
+            {
+                lock ( _objSettingsLockSync )
+                    if ( _fSettingsLocked == LockState.Locked )
+                        throw new InvalidOperationException (
+                            Properties.Resources.ERRMSG_SETTINGS_ARE_LOCKED );
+                    else
+                        if ( value != _chrDelimiter )
+                            _chrGuard = value;
+                        else
+                            throw new InvalidOperationException (
+                                ShowDelimiterAndGuardChars (
+                                _chrDelimiter ,
+                                value ) );
+            }   // DelimiterGuard setter method
         }   // public char DelimiterGuard property
 
 
@@ -1032,60 +1041,60 @@ namespace WizardWrx.AnyCSV
         /// <remarks>
         /// The setter method is thread-safe.
         /// </remarks>
-		public GuardDisposition GuardCharDisposition
+        public GuardDisposition GuardCharDisposition
         {
             get { return _enmGuardDisposition; }
 
-			set
-			{
-				lock ( _objSettingsLockSync )
-					if ( _fSettingsLocked == LockState.Locked )
-						throw new InvalidOperationException (
-							Properties.Resources.ERRMSG_SETTINGS_ARE_LOCKED );
-					else
-						_enmGuardDisposition = value;
-			}   // GuardDisposition setter method
+            set
+            {
+                lock ( _objSettingsLockSync )
+                    if ( _fSettingsLocked == LockState.Locked )
+                        throw new InvalidOperationException (
+                            Properties.Resources.ERRMSG_SETTINGS_ARE_LOCKED );
+                    else
+                        _enmGuardDisposition = value;
+            }   // GuardDisposition setter method
         }   // public GuardDisposition GuardCharDisposition
 
 
-		/// <summary>
-		/// This read only flag indicates the event that caused the other
-		/// settings to become locked.
-		/// </summary>
-		/// <see cref="SettingsLocked"/>
-		public LockMethod SettingsLockMethod
-		{
-			get
-			{
-				lock ( _objSettingsLockSync )
-					return _enmLockMethod;
-			}	// LockMethod SettingsLockMethod getter method
-		}	// public LockMethod SettingsLockMethod property
+        /// <summary>
+        /// This read only flag indicates the event that caused the other
+        /// settings to become locked.
+        /// </summary>
+        /// <see cref="SettingsLocked"/>
+        public LockMethod SettingsLockMethod
+        {
+            get
+            {
+                lock ( _objSettingsLockSync )
+                    return _enmLockMethod;
+            }	// LockMethod SettingsLockMethod getter method
+        }	// public LockMethod SettingsLockMethod property
 
 
-		/// <summary>
-		/// This read only flag indicates whether the other settings are
-		/// locked, and cannot henceforth be changed, for the remaining lifetime
-		/// of the instance.
-		///
-		/// There are two ways for settings to become locked.
-		///
-		/// 1) Call the instance Parse method.
-		///
-		/// 2) Call the LockSettings method.
-		/// </summary>
-		/// <remarks>
-		/// Since access to this property is synchronized, its value reflects
-		/// the most recent change made by code running on another thread.
-		/// </remarks>
-		public LockState SettingsLocked
-		{
-			get
-			{
-				lock ( _objSettingsLockSync )
-					return _fSettingsLocked;
-			}	// SettingsLocked getter method
-		}	// public LockState SettingsLocked property
+        /// <summary>
+        /// This read only flag indicates whether the other settings are
+        /// locked, and cannot henceforth be changed, for the remaining lifetime
+        /// of the instance.
+        ///
+        /// There are two ways for settings to become locked.
+        ///
+        /// 1) Call the instance Parse method.
+        ///
+        /// 2) Call the LockSettings method.
+        /// </summary>
+        /// <remarks>
+        /// Since access to this property is synchronized, its value reflects
+        /// the most recent change made by code running on another thread.
+        /// </remarks>
+        public LockState SettingsLocked
+        {
+            get
+            {
+                lock ( _objSettingsLockSync )
+                    return _fSettingsLocked;
+            }	// SettingsLocked getter method
+        }	// public LockState SettingsLocked property
 
 
         /// <summary>
@@ -1100,19 +1109,19 @@ namespace WizardWrx.AnyCSV
         /// <remarks>
         /// The setter method is thread-safe.
         /// </remarks>
-		public TrimWhiteSpace WhiteSpaceDisposition
+        public TrimWhiteSpace WhiteSpaceDisposition
         {
             get { return _enmTrimWhiteSpace; }
 
-			set
-			{
-				lock ( _objSettingsLockSync )
-					if ( _fSettingsLocked == LockState.Locked )
-						throw new InvalidOperationException (
-							Properties.Resources.ERRMSG_SETTINGS_ARE_LOCKED );
-					else
-						_enmTrimWhiteSpace = value;
-			}   // TrimWhiteSpace setter method
+            set
+            {
+                lock ( _objSettingsLockSync )
+                    if ( _fSettingsLocked == LockState.Locked )
+                        throw new InvalidOperationException (
+                            Properties.Resources.ERRMSG_SETTINGS_ARE_LOCKED );
+                    else
+                        _enmTrimWhiteSpace = value;
+            }   // TrimWhiteSpace setter method
         }   // public TrimWhiteSpace WhiteSpaceDisposition
         #endregion  // Public Properties
 
@@ -1126,27 +1135,27 @@ namespace WizardWrx.AnyCSV
         /// by an InvalidOperationException exception.
         /// </summary>
         /// <remarks>
-		/// The fact that there is no inverse (unlock) method is by design, to
-		/// ensure that a series of calls to parse all records in a file use the
-		/// same settings.
-		/// 
+        /// The fact that there is no inverse (unlock) method is by design, to
+        /// ensure that a series of calls to parse all records in a file use the
+        /// same settings.
+        /// 
         /// This method is manifestly thread-safe.
         /// </remarks>
-		public void LockSettings ( )
+        public void LockSettings ( )
         {
-			lock ( _objSettingsLockSync )
-			{	// Synchronize access to the variables affected by this method.
-				_fSettingsLocked = LockState.Locked; 
+            lock ( _objSettingsLockSync )
+            {	// Synchronize access to the variables affected by this method.
+                _fSettingsLocked = LockState.Locked; 
 
-				if ( _enmLockMethod == LockMethod.IsUnlocked)
-				{	// The Parse method sets this flag before it calls this method.
-					_enmLockMethod = LockMethod.LockedExplicitly;
-				}	// if ( _enmLockMethod == LockMethod.IsUnlocked)
-			}	// lock ( s_objSyncLock )
+                if ( _enmLockMethod == LockMethod.IsUnlocked)
+                {	// The Parse method sets this flag before it calls this method.
+                    _enmLockMethod = LockMethod.LockedExplicitly;
+                }	// if ( _enmLockMethod == LockMethod.IsUnlocked)
+            }	// lock ( s_objSyncLock )
         }   // public void LockSettings
 
 
-		/// <summary>
+        /// <summary>
         /// Use the properties set on the current Parser instance to parse any
         /// valid CSV string.
         /// </summary>
@@ -1160,18 +1169,19 @@ namespace WizardWrx.AnyCSV
         /// <remarks>
         /// This method is thread-safe.
         /// </remarks>
-		public string [ ] Parse ( string pstrAnyCSV )
+        [ComVisible ( true ) ]
+        public string [ ] Parse ( string pstrAnyCSV )
         {
-			lock ( _objParseingLockSync )
-			{	// To avoid a deadlock, this method uses a dedicated synchronization object.
-				if ( _enmLockMethod == LockMethod.IsUnlocked )
-				{	// Since the initial value of this flag equates to unlocked, unnecessary calls to LockSettings are easily avaoidable.
-					_enmLockMethod = LockMethod.LockedImplicitly;
-					LockSettings ( );
-				}	// if ( _enmLockMethod == LockMethod.IsUnlocked )
-			}	// lock ( _objParseingLockSync )
+            lock ( _objParseingLockSync )
+            {	// To avoid a deadlock, this method uses a dedicated synchronization object.
+                if ( _enmLockMethod == LockMethod.IsUnlocked )
+                {	// Since the initial value of this flag equates to unlocked, unnecessary calls to LockSettings are easily avaoidable.
+                    _enmLockMethod = LockMethod.LockedImplicitly;
+                    LockSettings ( );
+                }	// if ( _enmLockMethod == LockMethod.IsUnlocked )
+            }	// lock ( _objParseingLockSync )
 
-			return Parse (
+            return Parse (
                 pstrAnyCSV ,
                 _chrDelimiter ,
                 _chrGuard ,
@@ -1215,14 +1225,14 @@ namespace WizardWrx.AnyCSV
         /// the instance method pass in its current property values, along with
         /// the string, which always accompanies the request.
         /// </remarks>
-		public static string [ ] Parse (
+        public static string [ ] Parse (
             string pstrAnyCSV ,
             char pchrDelimiter ,
             char pchrProtector ,
             GuardDisposition penmGuardDisposition ,
             TrimWhiteSpace penmTrimWhiteSpace )
         {
-			List<string> lstSubstrings = new List<string> ( );
+            List<string> lstSubstrings = new List<string> ( );
 
             if ( string.IsNullOrEmpty ( pstrAnyCSV ) )
             {
@@ -1265,7 +1275,7 @@ namespace WizardWrx.AnyCSV
                                     sbCurrentField.Length );
                                 fInProgress = false;                    // Reset both state flags.
                                 fProtectDelimiters = false;
-							}	// if ( fProtectDelimiters )
+                            }	// if ( fProtectDelimiters )
                         }   // TRUE (normal case) block, if ( fInProgress )
                         else
                         {   // The field is empty. Add the empty string, and ignore the empty StringBuilder.
@@ -1330,7 +1340,7 @@ namespace WizardWrx.AnyCSV
         /// <returns>
         /// The return value is the array of fields parsed from the string.
         /// </returns>
-		public static string [ ] Parse (
+        public static string [ ] Parse (
             string pstrAnyCSV ,
             char pchrDelimiter ,
             char pchrProtector ,
@@ -1372,7 +1382,7 @@ namespace WizardWrx.AnyCSV
         /// the instance method pass in its current property values, along with
         /// the string, which always accompanies the request.
         /// </remarks>
-		public static string [ ] Parse (
+        public static string [ ] Parse (
             string pstrAnyCSV ,
             char pchrDelimiter ,
             char pchrProtector )
@@ -1402,8 +1412,8 @@ namespace WizardWrx.AnyCSV
         /// <returns>
         /// The return value is the array of fields parsed from the string.
         /// </returns>
-		/// <seealso cref="StandardCSVParse"/>
-		public static string [ ] Parse (
+        /// <seealso cref="StandardCSVParse"/>
+        public static string [ ] Parse (
             string pstrAnyCSV ,
             char pchrDelimiter )
         {
@@ -1434,8 +1444,8 @@ namespace WizardWrx.AnyCSV
         /// well, because its distinctive name clarifies that its use is limited
         /// to true Comma Separated Values (CSV) strings.
         /// </remarks>
-		/// <seealso cref="Parse(string, char, char, GuardDisposition, TrimWhiteSpace)"/>
-		public static string [ ] StandardCSVParse ( string pstrAnyCSV )
+        /// <seealso cref="Parse(string, char, char, GuardDisposition, TrimWhiteSpace)"/>
+        public static string [ ] StandardCSVParse ( string pstrAnyCSV )
         {
             return Parse (
                 pstrAnyCSV ,
@@ -1448,131 +1458,131 @@ namespace WizardWrx.AnyCSV
 
 
         #region Regular Protected Static Methods
-		/// <summary>
-		/// The inverse of DelimiterEnumFromChar, this method returns the 
-		/// character that corresponds to the specified member of the
-		/// DelimiterChar enumeration, unless the specified DelimiterChar is not
-		/// that of one of the presets.
-		/// </summary>
-		/// <param name="penmDelimiter">
-		/// Specify the DelimiterChar member to be mapped to the corresponding
-		/// delimiter character. This routine treats DelimiterChar.None and
-		/// DelimiterChar.Other as invalid values, and raises an
-		/// InvalidEnumArgumentException Exception, as it does if its value is
-		/// outright invalid (out of range).
-		/// </param>
-		/// <returns>
-		/// The return value is the character that corresponds to the specified
-		/// DelimiterChar enumeration member.
-		/// </returns>
-		/// <exception cref="System.ComponentModel.InvalidEnumArgumentException">
-		/// An InvalidEnumArgumentException exception is thrown if the specified
-		/// DelimiterChar value is either out of range, or is either of
-		/// DelimiterChar.None or DelimiterChar.None.
-		/// </exception>
-		/// <seealso cref="DelimiterEnumFromChar"/>
-		/// <seealso cref="GuardCharFromEnum"/>
-		protected static char DelimiterCharFromEnum ( DelimiterChar penmDelimiter )
+        /// <summary>
+        /// The inverse of DelimiterEnumFromChar, this method returns the 
+        /// character that corresponds to the specified member of the
+        /// DelimiterChar enumeration, unless the specified DelimiterChar is not
+        /// that of one of the presets.
+        /// </summary>
+        /// <param name="penmDelimiter">
+        /// Specify the DelimiterChar member to be mapped to the corresponding
+        /// delimiter character. This routine treats DelimiterChar.None and
+        /// DelimiterChar.Other as invalid values, and raises an
+        /// InvalidEnumArgumentException Exception, as it does if its value is
+        /// outright invalid (out of range).
+        /// </param>
+        /// <returns>
+        /// The return value is the character that corresponds to the specified
+        /// DelimiterChar enumeration member.
+        /// </returns>
+        /// <exception cref="System.ComponentModel.InvalidEnumArgumentException">
+        /// An InvalidEnumArgumentException exception is thrown if the specified
+        /// DelimiterChar value is either out of range, or is either of
+        /// DelimiterChar.None or DelimiterChar.None.
+        /// </exception>
+        /// <seealso cref="DelimiterEnumFromChar"/>
+        /// <seealso cref="GuardCharFromEnum"/>
+        protected static char DelimiterCharFromEnum ( DelimiterChar penmDelimiter )
         {
             foreach ( DelimiterMap dm in s_aDelimiterMap )
                 if ( dm.DelimiterEnum == penmDelimiter )
                     return dm.DelimiterCharacter;
 
             throw new InvalidEnumArgumentException (
-				ARG_NAME_DELIMITER_ENUM ,
+                ARG_NAME_DELIMITER_ENUM ,
                 ( int ) penmDelimiter ,
                 typeof ( DelimiterChar ) );
         }   // DelimiterCharFromEnum
 
 
-		/// <summary>
-		/// The Equals methods on the two structures, DelimiterMap and GuardMap,
-		/// use this static method to format a detailed exception report when
-		/// either is called to compare an instance with an object of the wrong
-		/// type.
-		/// </summary>
-		/// <param name="pobjThis">
-		/// This argument is the instance on which the Equals method was called.
-		/// </param>
-		/// <param name="pobjOther">
-		/// This argument is the instance against which a comparison was 
-		/// requested. This method is called when the System.Type of pobjOther
-		/// differs from that of pobjThis.
-		/// </param>
-		/// <returns>
-		/// The return value is a string that endeavors to provide the person
-		/// who is tasked with investigating the exception with enough data to
-		/// identify and correct its cause.
-		/// </returns>
-		protected static string FormatInvalidCastExceptionMessage (
-			object pobjThis ,
-			object pobjOther )
-		{
-			return string.Format (
-				Properties.Resources.ERRMSG_TYPE_MISMATCH ,	// Format control string
-				new object [ ]
-				{
-					pobjOther ,								// Format Item 0 = string representation of the comparand object
-					pobjOther.GetType ( ).FullName ,		// Format Item 1 = Absolute (fully qualified) type of the comparand object
-					pobjThis ,								// Format Item 2 = string representation of this object
-					pobjThis.GetType ( ).FullName			// Format Item 3 = Absolute (fully qualified) type of this object
-				} );
-		}	// FormatInvalidCastExceptionMessage
+        /// <summary>
+        /// The Equals methods on the two structures, DelimiterMap and GuardMap,
+        /// use this static method to format a detailed exception report when
+        /// either is called to compare an instance with an object of the wrong
+        /// type.
+        /// </summary>
+        /// <param name="pobjThis">
+        /// This argument is the instance on which the Equals method was called.
+        /// </param>
+        /// <param name="pobjOther">
+        /// This argument is the instance against which a comparison was 
+        /// requested. This method is called when the System.Type of pobjOther
+        /// differs from that of pobjThis.
+        /// </param>
+        /// <returns>
+        /// The return value is a string that endeavors to provide the person
+        /// who is tasked with investigating the exception with enough data to
+        /// identify and correct its cause.
+        /// </returns>
+        protected static string FormatInvalidCastExceptionMessage (
+            object pobjThis ,
+            object pobjOther )
+        {
+            return string.Format (
+                Properties.Resources.ERRMSG_TYPE_MISMATCH ,	// Format control string
+                new object [ ]
+                {
+                    pobjOther ,								// Format Item 0 = string representation of the comparand object
+                    pobjOther.GetType ( ).FullName ,		// Format Item 1 = Absolute (fully qualified) type of the comparand object
+                    pobjThis ,								// Format Item 2 = string representation of this object
+                    pobjThis.GetType ( ).FullName			// Format Item 3 = Absolute (fully qualified) type of this object
+                } );
+        }	// FormatInvalidCastExceptionMessage
 
 
-		/// <summary>
-		/// The inverse of GuardEnumFromChar, this method returns the
-		/// character that corresponds to the specified member of the GuardChar
-		/// enumeration, unless the specified GuardChar is not that of one of the
-		/// presets.
-		/// </summary>
-		/// <param name="penmGuardChar">
-		/// Specify the GuardMap member to be mapped to the corresponding guard
-		/// character. This routine treats GuardMap.None and GuardMap.Other as
-		/// invalid values, and raises an InvalidEnumArgumentException
-		/// Exception, as it does if its value is outright invalid (out of
-		/// range).
-		/// </param>
-		/// <returns>
-		/// The return value is the character that corresponds to the specified
-		/// GuardChar enumeration member.
-		/// </returns>
-		/// <exception cref="System.ComponentModel.InvalidEnumArgumentException">
-		/// An InvalidEnumArgumentException exception is thrown if the specified
-		/// GuardChar value is either out of range, or is either of GuardChar.None
-		/// or GuardChar.None.
-		/// </exception>
-		/// <seealso cref="GuardEnumFromChar"/>
-		/// <seealso cref="DelimiterEnumFromChar"/>
-		protected static char GuardCharFromEnum ( GuardChar penmGuardChar )
+        /// <summary>
+        /// The inverse of GuardEnumFromChar, this method returns the
+        /// character that corresponds to the specified member of the GuardChar
+        /// enumeration, unless the specified GuardChar is not that of one of the
+        /// presets.
+        /// </summary>
+        /// <param name="penmGuardChar">
+        /// Specify the GuardMap member to be mapped to the corresponding guard
+        /// character. This routine treats GuardMap.None and GuardMap.Other as
+        /// invalid values, and raises an InvalidEnumArgumentException
+        /// Exception, as it does if its value is outright invalid (out of
+        /// range).
+        /// </param>
+        /// <returns>
+        /// The return value is the character that corresponds to the specified
+        /// GuardChar enumeration member.
+        /// </returns>
+        /// <exception cref="System.ComponentModel.InvalidEnumArgumentException">
+        /// An InvalidEnumArgumentException exception is thrown if the specified
+        /// GuardChar value is either out of range, or is either of GuardChar.None
+        /// or GuardChar.None.
+        /// </exception>
+        /// <seealso cref="GuardEnumFromChar"/>
+        /// <seealso cref="DelimiterEnumFromChar"/>
+        protected static char GuardCharFromEnum ( GuardChar penmGuardChar )
         {
             foreach ( GuardMap pm in s_aGuardrMap )
                 if ( pm.GuardEnum == penmGuardChar )
                     return pm.GuardCharacter;
 
             throw new InvalidEnumArgumentException (
-				ARG_NAME_GUARD_CHAR ,
+                ARG_NAME_GUARD_CHAR ,
                 ( int ) penmGuardChar ,
                 typeof ( GuardChar ) );
         }   // ProtectorCharFromEnum
 
 
-		/// <summary>
-		/// Return the DelimiterChar enumeration member that corresponds to a given
-		/// character, if it is one of the presets.
-		/// </summary>
-		/// <param name="pchrDelimiter">
-		/// Specify the character to be mapped onto the DelimiterChar
-		/// enumeration.
-		/// </param>
-		/// <returns>
-		/// If the pchrDelimiter argument is one of the preset characters, the
-		/// return value is the corresponding member of the DelimiterChar
-		/// enumeration. Otherwise, DelimiterChar.Other, the highest value in
-		/// the enumeration, is returned.
-		/// </returns>
-		/// <seealso cref="DelimiterCharFromEnum"/>
-		/// <seealso cref="GuardCharFromEnum"/>
+        /// <summary>
+        /// Return the DelimiterChar enumeration member that corresponds to a given
+        /// character, if it is one of the presets.
+        /// </summary>
+        /// <param name="pchrDelimiter">
+        /// Specify the character to be mapped onto the DelimiterChar
+        /// enumeration.
+        /// </param>
+        /// <returns>
+        /// If the pchrDelimiter argument is one of the preset characters, the
+        /// return value is the corresponding member of the DelimiterChar
+        /// enumeration. Otherwise, DelimiterChar.Other, the highest value in
+        /// the enumeration, is returned.
+        /// </returns>
+        /// <seealso cref="DelimiterCharFromEnum"/>
+        /// <seealso cref="GuardCharFromEnum"/>
         protected static DelimiterChar DelimiterEnumFromChar ( char pchrDelimiter )
         {
             foreach ( DelimiterMap dm in s_aDelimiterMap )
@@ -1583,22 +1593,22 @@ namespace WizardWrx.AnyCSV
         }   // DelimiterEnumFromChar
 
 
-		/// <summary>
-		/// Return the GuardChar enumeration member that corresponds to a given
-		/// character, if it is one of the presets.
-		/// </summary>
-		/// <param name="pchrProtector">
-		/// Specify the character to be mapped onto the GuardChar enumeration.
-		/// </param>
-		/// <returns>
-		/// If the pchrProtector argument is one of the preset characters, the
-		/// return value is the corresponding member of the GuardChar
-		/// enumeration. Otherwise, GuardChar.Other, the highest value in the
-		/// enumeration, is returned.
-		/// </returns>
-		/// <seealso cref="GuardCharFromEnum"/>
-		/// <seealso cref="DelimiterCharFromEnum"/>
-		protected static GuardChar GuardEnumFromChar ( char pchrProtector )
+        /// <summary>
+        /// Return the GuardChar enumeration member that corresponds to a given
+        /// character, if it is one of the presets.
+        /// </summary>
+        /// <param name="pchrProtector">
+        /// Specify the character to be mapped onto the GuardChar enumeration.
+        /// </param>
+        /// <returns>
+        /// If the pchrProtector argument is one of the preset characters, the
+        /// return value is the corresponding member of the GuardChar
+        /// enumeration. Otherwise, GuardChar.Other, the highest value in the
+        /// enumeration, is returned.
+        /// </returns>
+        /// <seealso cref="GuardCharFromEnum"/>
+        /// <seealso cref="DelimiterCharFromEnum"/>
+        protected static GuardChar GuardEnumFromChar ( char pchrProtector )
         {
             foreach ( GuardMap pm in s_aGuardrMap )
                 if ( pm.GuardCharacter == pchrProtector )
@@ -1608,22 +1618,22 @@ namespace WizardWrx.AnyCSV
         }   // GuardEnumFromChar
 
 
-		/// <summary>
-		/// Format a message that unambiguously describes the delimiter and
-		/// guard characters specified for an instance.
-		/// </summary>
-		/// <param name="pchrDelimiter">
-		/// Specify the selected delimiter character.
-		/// </param>
-		/// <param name="pchrGuard">
-		/// Specify the selected guard character.
-		/// </param>
-		/// <returns>
-		/// The return value is a message string that fully describes the guard
-		/// and delimiter characters, including both decimal and hexadecimal
-		/// representations of their numeric values.
-		/// </returns>
-		protected static string ShowDelimiterAndGuardChars (
+        /// <summary>
+        /// Format a message that unambiguously describes the delimiter and
+        /// guard characters specified for an instance.
+        /// </summary>
+        /// <param name="pchrDelimiter">
+        /// Specify the selected delimiter character.
+        /// </param>
+        /// <param name="pchrGuard">
+        /// Specify the selected guard character.
+        /// </param>
+        /// <returns>
+        /// The return value is a message string that fully describes the guard
+        /// and delimiter characters, including both decimal and hexadecimal
+        /// representations of their numeric values.
+        /// </returns>
+        protected static string ShowDelimiterAndGuardChars (
             char pchrDelimiter ,
             char pchrGuard )
         {
@@ -1677,33 +1687,33 @@ namespace WizardWrx.AnyCSV
         }   // ShowDelimiterAndGuardChars
 
 
-		/// <summary>
-		/// Other methods on the base class and its derived classes, usually
-		/// working through a base class method, invoke this routine to put the
-		/// finishing touches on a parsed substring, which may consist of
-		/// trimming its guard characters, if present, trimming leading and/or
-		/// trailing white space, or neither.
-		/// </summary>
-		/// <param name="psbCurrentField">
-		/// This string is the raw substring returned by the parsing engine.
-		/// </param>
-		/// <param name="pchrProtector">
-		/// This character is the guard character that protects delimiter
-		/// characters that are to be ignored.
-		/// </param>
-		/// <param name="penmGuardDisposition">
-		/// This flag specifies whether guard characters, if present, should be
-		/// striped or left.
-		/// </param>
-		/// <param name="penmTrimWhiteSpace">
-		/// This flag specifies whether to trim or leave leading and/or trailing
-		/// white space.
-		/// </param>
-		/// <returns>
-		/// A copy of the string, with guard characters, leading white space, and
-		/// trailing white space removed if so directed.
-		/// </returns>
-		protected static string TransformAsDirectoed (
+        /// <summary>
+        /// Other methods on the base class and its derived classes, usually
+        /// working through a base class method, invoke this routine to put the
+        /// finishing touches on a parsed substring, which may consist of
+        /// trimming its guard characters, if present, trimming leading and/or
+        /// trailing white space, or neither.
+        /// </summary>
+        /// <param name="psbCurrentField">
+        /// This string is the raw substring returned by the parsing engine.
+        /// </param>
+        /// <param name="pchrProtector">
+        /// This character is the guard character that protects delimiter
+        /// characters that are to be ignored.
+        /// </param>
+        /// <param name="penmGuardDisposition">
+        /// This flag specifies whether guard characters, if present, should be
+        /// striped or left.
+        /// </param>
+        /// <param name="penmTrimWhiteSpace">
+        /// This flag specifies whether to trim or leave leading and/or trailing
+        /// white space.
+        /// </param>
+        /// <returns>
+        /// A copy of the string, with guard characters, leading white space, and
+        /// trailing white space removed if so directed.
+        /// </returns>
+        protected static string TransformAsDirectoed (
             StringBuilder psbCurrentField ,
             char pchrProtector ,
             GuardDisposition penmGuardDisposition ,
@@ -1729,24 +1739,24 @@ namespace WizardWrx.AnyCSV
         }   // TransformAsDirectoed
 
 
-		/// <summary>
-		/// The companion TransformAsDirectoed method calls upon this method as
-		/// needed to trim leading and/or trailing white space, depending upon
-		/// the state of the TrimWhiteSpace flag.
-		/// </summary>
-		/// <param name="pstrAlmostReady">
-		/// This string is the input that was fed to TransformAsDirectoed, with
-		/// guard characters, if any, stripped from both ends.
-		/// </param>
-		/// <param name="penmTrimWhiteSpace">
-		/// The TrimWhiteSpace flag is passed through from TransformAsDirectoed,
-		/// and it determines the action taken by this routine.
-		/// </param>
-		/// <returns>
-		/// The returned string is handed up through TransformAsDirectoed, since
-		/// it is ready to return to the caller following this transformation.
-		/// </returns>
-		protected static string TransformWhiteSpace (
+        /// <summary>
+        /// The companion TransformAsDirectoed method calls upon this method as
+        /// needed to trim leading and/or trailing white space, depending upon
+        /// the state of the TrimWhiteSpace flag.
+        /// </summary>
+        /// <param name="pstrAlmostReady">
+        /// This string is the input that was fed to TransformAsDirectoed, with
+        /// guard characters, if any, stripped from both ends.
+        /// </param>
+        /// <param name="penmTrimWhiteSpace">
+        /// The TrimWhiteSpace flag is passed through from TransformAsDirectoed,
+        /// and it determines the action taken by this routine.
+        /// </param>
+        /// <returns>
+        /// The returned string is handed up through TransformAsDirectoed, since
+        /// it is ready to return to the caller following this transformation.
+        /// </returns>
+        protected static string TransformWhiteSpace (
             string pstrAlmostReady ,
             TrimWhiteSpace penmTrimWhiteSpace )
         {
@@ -1762,108 +1772,108 @@ namespace WizardWrx.AnyCSV
                     return pstrAlmostReady.Trim ( );
                 default:
                     throw new InvalidEnumArgumentException (
-						ARG_NAME_TRIM_WHITESPACE ,
+                        ARG_NAME_TRIM_WHITESPACE ,
                         ( int ) penmTrimWhiteSpace ,
                         typeof ( TrimWhiteSpace ) );
             }   // switch ( penmTrimWhiteSpace )
         }   // TransformWhiteSpace
-		#endregion  // Regular Protected Static Methods
+        #endregion  // Regular Protected Static Methods
 
 
-		#region Overridden Root Class Methods
-		/// <summary>
-		/// Overriding the Equals method permits meaningful equality comparisons
-		/// of CSVParseEngine instances.
-		/// </summary>
-		/// <param name="obj">
-		/// To be valid, the other object must be a CSVParseEngine object or a
-		/// derivative thereof. Otherwise, an InvalidCastException exception is
-		/// thrown.
-		/// </param>
-		/// <returns>
-		/// If all four public properties other than the locked state are equal,
-		/// two CSVParseEngine instances are evaluated as equal to each other.
-		/// Otherwise, they are evaluates as unequal.
-		/// </returns>
-		/// <exception cref="System.InvalidCastException">
-		/// Attempting to evaluate the equality of a CSVParseEngine against an
-		/// object of another type raises an InvalidCastException exception,
-		/// which reports the fully qualified types of both comparands, along
-		/// with a string representation of each (whatever their respective
-		/// ToString methods return).
-		/// </exception>
-		[ComVisible ( false )]
-		public override bool Equals ( object obj )
-		{
-			if ( this.GetType ( ) == obj.GetType ( ) )
-			{	// Cast once, use twice.
-				CSVParseEngine objComparand = ( CSVParseEngine ) obj;
-				return ( ( this._chrDelimiter == objComparand._chrDelimiter )
-					&& ( this._chrGuard == objComparand._chrGuard )
-					&& ( this._enmGuardDisposition == objComparand._enmGuardDisposition )
-					&& ( this._enmTrimWhiteSpace == objComparand._enmTrimWhiteSpace ) );
-			}	// TRUE (anticipated outcome) block, if ( this.GetType ( ) == obj.GetType ( ) )
-			else
-			{
-				return false;
-			}	// FALSE (unanticipated outcome) block, if ( this.GetType ( ) == obj.GetType ( ) )
-		}	// Equals
+        #region Overridden Root Class Methods
+        /// <summary>
+        /// Overriding the Equals method permits meaningful equality comparisons
+        /// of CSVParseEngine instances.
+        /// </summary>
+        /// <param name="obj">
+        /// To be valid, the other object must be a CSVParseEngine object or a
+        /// derivative thereof. Otherwise, an InvalidCastException exception is
+        /// thrown.
+        /// </param>
+        /// <returns>
+        /// If all four public properties other than the locked state are equal,
+        /// two CSVParseEngine instances are evaluated as equal to each other.
+        /// Otherwise, they are evaluates as unequal.
+        /// </returns>
+        /// <exception cref="System.InvalidCastException">
+        /// Attempting to evaluate the equality of a CSVParseEngine against an
+        /// object of another type raises an InvalidCastException exception,
+        /// which reports the fully qualified types of both comparands, along
+        /// with a string representation of each (whatever their respective
+        /// ToString methods return).
+        /// </exception>
+        [ComVisible ( false )]
+        public override bool Equals ( object obj )
+        {
+            if ( this.GetType ( ) == obj.GetType ( ) )
+            {	// Cast once, use twice.
+                CSVParseEngine objComparand = ( CSVParseEngine ) obj;
+                return ( ( this._chrDelimiter == objComparand._chrDelimiter )
+                    && ( this._chrGuard == objComparand._chrGuard )
+                    && ( this._enmGuardDisposition == objComparand._enmGuardDisposition )
+                    && ( this._enmTrimWhiteSpace == objComparand._enmTrimWhiteSpace ) );
+            }	// TRUE (anticipated outcome) block, if ( this.GetType ( ) == obj.GetType ( ) )
+            else
+            {
+                return false;
+            }	// FALSE (unanticipated outcome) block, if ( this.GetType ( ) == obj.GetType ( ) )
+        }	// Equals
 
 
-		/// <summary>
-		/// Return the hash code of a string composed of a concatenation of the
-		/// string representations of the key properties of the instance.
-		/// </summary>
-		/// <returns>
-		/// The return value is the hash code generated from a comma-separated
-		/// list of the properties of the instance.
-		/// </returns>
-		[ComVisible ( false )]
-		public override int GetHashCode ( )
-		{	// 
-			return string.Format (
-				Properties.Resources.HASH_CODE_TEMPLATE ,	// Format control string
-				new object [ ]
-				{
-					_chrDelimiter ,							// Format item 0 = Delimiter character
-					_chrGuard ,								// Format Item 1 = Guard character
-					_enmTrimWhiteSpace ,					// Format Item 2 = White space disposition flag
-					_enmGuardDisposition ,					// Format item 3 = Guard character disposition flag
-					_fSettingsLocked ,						// Format Item 4 = Property lock state (Locked or Unlocked)
-					_enmLockMethod							// Format Item 5 = Property Locking method (unlocked, explicit, or implicit)
-				} ).GetHashCode ( );
-		}	// GetHashCode
+        /// <summary>
+        /// Return the hash code of a string composed of a concatenation of the
+        /// string representations of the key properties of the instance.
+        /// </summary>
+        /// <returns>
+        /// The return value is the hash code generated from a comma-separated
+        /// list of the properties of the instance.
+        /// </returns>
+        [ComVisible ( false )]
+        public override int GetHashCode ( )
+        {	// 
+            return string.Format (
+                Properties.Resources.HASH_CODE_TEMPLATE ,	// Format control string
+                new object [ ]
+                {
+                    _chrDelimiter ,							// Format item 0 = Delimiter character
+                    _chrGuard ,								// Format Item 1 = Guard character
+                    _enmTrimWhiteSpace ,					// Format Item 2 = White space disposition flag
+                    _enmGuardDisposition ,					// Format item 3 = Guard character disposition flag
+                    _fSettingsLocked ,						// Format Item 4 = Property lock state (Locked or Unlocked)
+                    _enmLockMethod							// Format Item 5 = Property Locking method (unlocked, explicit, or implicit)
+                } ).GetHashCode ( );
+        }	// GetHashCode
 
 
-		/// <summary>
-		/// Return a message that displays the state of the properties that
-		/// govern the behavior of the Parse method.
-		/// </summary>
-		/// <returns>
-		/// The returned string makes all properties visible in debugger windows
-		/// without expanding the properties, and provides a quick way to list
-		/// them on a report.
-		/// </returns>
-		[ComVisible ( false )]
-		public override string ToString ( )
-		{
-			return string.Format (
-				Properties.Resources.TOSTRING_TEMPLATE ,	// Format control string
-				new object [ ]
-				{
-					_chrDelimiter ,							// Format item  0 = Delimiter character					                         Delimiter         = {0} (0x{1:x2}, {2} decimal){10}
-					( int ) _chrDelimiter ,					// Format Item  1 = Delimiter character (hexadecimal)                            Delimiter         = {0} (0x{1:x2}, {2} decimal){10}
-					( int ) _chrDelimiter ,					// Format Item  2 = Delimiter character (decimal)                                Delimiter         = {0} (0x{1:x2}, {2} decimal){10}
-					_chrGuard ,								// Format Item  3 = Guard character                                              Guard Character   = {3} (0x{4:x2}, {5} decimal){10}
-					( int ) _chrGuard ,						// Format Item  4 = Guard character (hexadecimal)                                Guard Character   = {3} (0x{4:x2}, {5} decimal){10}
-					( int ) _chrGuard ,						// Format Item  5 = Guard character (decimal)                                    Guard Character   = {3} (0x{4:x2}, {5} decimal){10}
-					_enmTrimWhiteSpace ,					// Format Item  6 = White space disposition flag                                 Trim White Space  = {6}{10}
-					_enmGuardDisposition ,					// Format item  7 = Guard character disposition flag                             Guard Disposition = {7}{10}
-					_fSettingsLocked ,						// Format Item  8 = Property lock state (Locked or Unlocked)                     Lock State        = {8}{10}
-					_enmLockMethod ,						// Format Item  9 = Property Locking method (unlocked, explicit, or implicit)    Lock Method       = {9}{10}
-					Environment.NewLine						// Format Item 10 = Embedded Newline
-				} );
-		}	// ToString
-		#endregion	// Overridden Root Class Methods
-	}	// public abstract class CSVParseEngine
+        /// <summary>
+        /// Return a message that displays the state of the properties that
+        /// govern the behavior of the Parse method.
+        /// </summary>
+        /// <returns>
+        /// The returned string makes all properties visible in debugger windows
+        /// without expanding the properties, and provides a quick way to list
+        /// them on a report.
+        /// </returns>
+        [ComVisible ( false )]
+        public override string ToString ( )
+        {
+            return string.Format (
+                Properties.Resources.TOSTRING_TEMPLATE ,	// Format control string
+                new object [ ]
+                {
+                    _chrDelimiter ,							// Format item  0 = Delimiter character					                         Delimiter         = {0} (0x{1:x2}, {2} decimal){10}
+                    ( int ) _chrDelimiter ,					// Format Item  1 = Delimiter character (hexadecimal)                            Delimiter         = {0} (0x{1:x2}, {2} decimal){10}
+                    ( int ) _chrDelimiter ,					// Format Item  2 = Delimiter character (decimal)                                Delimiter         = {0} (0x{1:x2}, {2} decimal){10}
+                    _chrGuard ,								// Format Item  3 = Guard character                                              Guard Character   = {3} (0x{4:x2}, {5} decimal){10}
+                    ( int ) _chrGuard ,						// Format Item  4 = Guard character (hexadecimal)                                Guard Character   = {3} (0x{4:x2}, {5} decimal){10}
+                    ( int ) _chrGuard ,						// Format Item  5 = Guard character (decimal)                                    Guard Character   = {3} (0x{4:x2}, {5} decimal){10}
+                    _enmTrimWhiteSpace ,					// Format Item  6 = White space disposition flag                                 Trim White Space  = {6}{10}
+                    _enmGuardDisposition ,					// Format item  7 = Guard character disposition flag                             Guard Disposition = {7}{10}
+                    _fSettingsLocked ,						// Format Item  8 = Property lock state (Locked or Unlocked)                     Lock State        = {8}{10}
+                    _enmLockMethod ,						// Format Item  9 = Property Locking method (unlocked, explicit, or implicit)    Lock Method       = {9}{10}
+                    Environment.NewLine						// Format Item 10 = Embedded Newline
+                } );
+        }	// ToString
+        #endregion	// Overridden Root Class Methods
+    }	// public abstract class CSVParseEngine
 }	// partial namespace WizardWrx.AnyCSV
