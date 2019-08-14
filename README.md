@@ -11,14 +11,38 @@ Separation of Concerns; this class parses strings, period. Reading them is the
 responsibility of other code; I see no point in deciding for you how to acquire
 them.
 
-## News Flash
+## News
 
-2019/08/11 00:41:48 - A few days ago, it came to my attention that COM interop
-was broken in the published version of the library. Prior to the release of
-version 7.2, I tested the COM Interop interface in the VBA code of the Microsoft
-Excel add-in that makes it accessible to every Excel workbook in my possession.
-The macro-enabled test workbook, `P6CXLSLib4_Dev.XLSM`, is included in the
-`/scripts` directory, along with two Windows NT command scripts,
+__2019/08/14 14:38:41__ - Setting a reference to another Excel add-in,
+`P6CXLSLib3.XLAM`, caused `P6CXLSLib4.XLAM`, the add-in version of
+`P6CXLSLib4_Dev.XLSM`, to elicit a message "This workbook is currently
+referenced by another workbook and cannot be closed." whenever Microsoft Excel
+is opened and add-in `P6CXLSLib4.XLAM` is enabled. Since this behavior arose
+when I deployed `P6CXLSLib4.XLAM`, it was fairly easy to identify and correct
+the cause.
+
+Since the reason for the reference was to resolve a call to `getfolder`, a VBA
+function that wraps a call into the Lightweight Shell API, `ShlWAPI.dll`. I
+imported a copy of the VBA module in `P6CXLSLib3.XLAM` that defines and
+implements `getfolder`. Though I could have imported that function alone, doing
+so required more effort that I wanted to put into it, since I could get it by
+importing the entire module, which is fairly small, being composed of a handful
+of simple Lightweight Shell API wrapper functions. As a benefit, using either of
+the two add-ins gives you access to all of them.
+
+Finally, astute visitors may notice that 3 directories, `/\_archive`, `/NOTES`,
+and `/Reference`, are missing from the repository. Since this is one of the
+oldest repositories in my account, I didn't know nearly as much about Git as I
+do today, and the result is that things got into the repository that had no
+business being there. Though all now have global `.gitignore` files in them,
+that didn't cause my Git client to delete them from the repository.
+
+__2019/08/11 00:41:48__ - A few days ago, it came to my attention that COM
+interop was broken in the published version of the library. Before version 7.2,
+was cleared for release, I tested the COM Interop interface in the VBA code of
+the Microsoft Excel add-in that makes it accessible to every Excel workbook in
+my possession. The macro-enabled test workbook, `P6CXLSLib4_Dev.XLSM`, is
+included in the `/scripts` directory, along with two Windows NT command scripts,
 `AnyCSV_Demo_Debug.CMD` and `AnyCSV_Demo_Release.CMD`, that run the unit test
 program, `AnyCSVTestStand.exe`, from a File Explorer window. The test program
 has a built-in stop, so that you can review or save its output.
@@ -177,11 +201,10 @@ self-signed with a long-lived signature, and the project is protected against
 accidental changes; the protection password is __TheCodeProject__.
 
 Alongside `P6CXLSLib4_Dev.XLSM`, which lives in the `/scripts` directory, is
-`Dependencies.7z`, which includes  another add-in, `P6CXLSLib3.XLAM`, upon which
-`P6CXLSLib4_Dev.XLSM` depends, along with several other DLLs that it imports.
-This add-in exposes even more custom worksheet functions.
+`Dependencies.7z`, which includes several DLLs that `P6CXLSLib4_Dev.XLSM`
+imports.
 
-Many of the custom worksheet functions in both add-in libraries rely upon one or
+Many of the custom worksheet functions in the add-in library relies upon one or
 more custom native (C and C++) dynamic-link libraries, all of which are listed
 and briefely described in the following table.
 
@@ -190,17 +213,7 @@ and briefely described in the following table.
 |HMAC_SHAx.dll                       |HMAC SHAx (Secure Hash Algorithm) functions with strengths to 512 bits.                                                                                                       |
 |MD5Digest.dll                       |MD5 (RSA Message Digest 5) hash algorithm, included for backward compatibility, since MDF digests remain fairly common)                                                       |
 |P6CStringLib1.dll                   |Assorted string mainpulation functions, mostly used as infrastructure by other libraries                                                                                      |
-|P6CUtilLib1.dll                     |Assorted utility functions that leverage features of the Windows API                                                                                                          |
-|P6CXLSLib3.XLAM                     |The Excel add-in function library upon which `P6CXLSLib4_Dev.XLSM` relies                                                                                                     |
-|P6VersionInfo.dll                   |Wrapper around Windows API library Version.dll, used to extract version information from program files                                                                        |
 |SafeMemCpy.dll                      |Safe, in the sense of being resistant to buffer overflows, string copying routines                                                                                            |
-|WizardWrx.AssemblyPropertyViewer.dll|Managed routines exposed to COM for extracting details from .NET Assembly files - IMPORTANT: This library must be registered!                                                 |
-|WizardWrx.AssemblyPropertyViewer.pdb|Debug symbols for `WizardWrx.AssemblyPropertyViewer.dll`                                                                                                                      |
-|WizardWrx.AssemblyPropertyViewer.tlb|COM type library for for `WizardWrx.AssemblyPropertyViewer.dll`                                                                                                               |
-|WizardWrx.SharedUtl2.dll            |Managed static Infrastructure methods used by `WizardWrx.AssemblyPropertyViewer.dll` - Note: This library is no longer actively maintained, but it has been stable since 2012.|
-|WizardWrx.SharedUtl2.pdb            |Debug symbols for `WizardWrx.SharedUtl2.dll`                                                                                                                                  |
-|WizardWrx.SharedUtl2.xml            |Technical documentation for `WizardWrx.SharedUtl2.dll`                                                                                                                        |
-|WWDatelib.dll                       |Date formatting, Gregorian Leap Year evaluation, and other routines used by functions exposed by `P6VersionInfo.dll`, though invisible to VBA                                 |
 |WWKernelLibWrapper.dll              |Infrastructure functions for managing heaps and other tasks, used by virtually everything else in this collection                                                             |
 
 ## Internal Documentation
@@ -253,3 +266,4 @@ free to use and adapt.
 - 2018/12/01 Conversion of ReadMe from plain ASCII text to Markdown, fix display issues with DocFX documentation
 - 2019/07/03 Correct string returned by ToString method on parser instances, and add basic usage help and a link to the NuGet package to this ReadMe file.
 - 2019/08/11 Fix broken COM interface, and incorporate the Excel workbook that demonstrates that it works.
+- 2019/08/14 Update to account for removal of `P6CXLSLib3.XLAM` and its dependents.
